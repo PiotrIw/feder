@@ -1,8 +1,12 @@
-{% load i18n %}
+{% load i18n humanize %}
 <h2>
     <i class="fa fa-folder-open"></i>
     <a href="{{ object.get_absolute_url }}">{{ object }}</a>
 </h2>
+{% include 'cases/_case_quarantined.html' with object=object %}
+<p>
+    {% trans 'Creation date' %}
+    <time datetime="{{ object.created }}" title="{{ object.created | naturaltime }}">{{ object.created }}</time>
+</p>
 <p>{% trans 'Institution' %}: <a href="{{ object.institution.get_absolute_url }}">{{ object.institution }}</a></p>
 <p>{% trans 'Monitoring' %}: <a href="{{ object.monitoring.get_absolute_url }}">{{ object.monitoring }}</a></p>
-<p>{% trans 'Letter count' %}: {{ object.letter_count }}</a></p>

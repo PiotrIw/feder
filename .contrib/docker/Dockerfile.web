@@ -1,0 +1,33 @@
+# This is Dockerfile for development purposes only.
+ARG PYTHON_VERSION='3.10.6'
+FROM python:${PYTHON_VERSION}-slim
+RUN python --version
+RUN pip install --upgrade pip
+RUN pip --version
+RUN mkdir /code /code/production
+WORKDIR /code
+
+# Install python dependencies
+ENV PYTHONUNBUFFERED 1
+RUN apt-get update \
+&& apt-get install -y --no-install-recommends \
+   default-libmysqlclient-dev \
+   gcc \
+   build-essential \
+   git \
+   curl \
+   gettext libgettextpo-dev wait-for-it \
+&& rm -rf /var/lib/apt/lists/*
+COPY requirements/*.txt ./requirements/
+ARG DJANGO_VERSION='==3.2.18'
+# TODO: Move to /requirements/base.txt after fixing following bug:
+#       https://github.com/readthedocs/readthedocs-docker-images/issues/158
+RUN pip install mysqlclient==2.1.1
+RUN bash -c "if [[ "${DJANGO_VERSION}" == 'master' ]]; then \
+pip install --no-cache-dir -r requirements/dev.txt https://github.com/django/django/archive/master.tar.gz; else \
+pip install --no-cache-dir -r requirements/dev.txt \"django${DJANGO_VERSION}\"; fi"
+# CMD ["bash", "-c", "python manage.py collectstatic --no-input && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]
+# to allow VScode run and debug django app:
+CMD ["bash", "-c", "python manage.py collectstatic --no-input && python manage.py migrate && sleep infinity"]
+# to debug container starting errors:
+# CMD ["bash", "-c", "python manage.py collectstatic --no-input ; python manage.py migrate ; sleep infinity"]

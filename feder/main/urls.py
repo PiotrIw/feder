@@ -1,99 +1,104 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from django.conf import settings
-from django.conf.urls import include, url
+from django.urls import include, path, re_path
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.sitemaps.views import index, sitemap
-from django.http import HttpResponseServerError
-from django.template import loader
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from django.views.generic import TemplateView
 from rest_framework import routers
-from teryt_tree.rest_framework_ext.viewsets import \
-    JednostkaAdministracyjnaViewSet
+from teryt_tree.rest_framework_ext.viewsets import JednostkaAdministracyjnaViewSet
 
 from feder.cases.sitemaps import CaseSitemap
+from feder.cases.viewsets import CaseViewSet, CaseReportViewSet
 from feder.institutions.sitemaps import InstitutionSitemap, TagSitemap
-from feder.institutions.viewsets import (InstitutionViewSet,
-                                         TagViewSet)
+from feder.institutions.viewsets import InstitutionViewSet, TagViewSet
 from feder.letters.sitemaps import LetterSitemap
 from feder.main.sitemaps import StaticSitemap
-from feder.monitorings.sitemaps import (MonitoringPagesSitemap,
-                                        MonitoringSitemap)
-from feder.questionaries.sitemaps import QuestionarySitemap
-from feder.tasks.sitemaps import TaskSitemap
+from feder.monitorings.sitemaps import MonitoringPagesSitemap, MonitoringSitemap
+from feder.monitorings.viewsets import MonitoringViewSet
+from feder.records.viewsets import RecordViewSet
 from feder.teryt.sitemaps import JSTSitemap
+from feder.monitorings.views import MultiCaseTagManagement
 from . import views
 
-router = routers.DefaultRouter()
-router.register(r'institutions', InstitutionViewSet)
-router.register(r'tags', TagViewSet)
-router.register(r'teryt', JednostkaAdministracyjnaViewSet)
+handler500 = views.handler500  # required to have exception id
 
-urlpatterns = [
-    url(_(r'^$'), views.HomeView.as_view(), name="home"),
-]
+router = routers.DefaultRouter()
+router.register(r"institutions", InstitutionViewSet, basename="institution")
+router.register(r"tags", TagViewSet)
+router.register(r"teryt", JednostkaAdministracyjnaViewSet)
+router.register(r"records", RecordViewSet)
+router.register(r"cases/report", CaseReportViewSet, basename="case-report")
+router.register(r"cases", CaseViewSet)
+router.register(r"monitorings", MonitoringViewSet)
+
+urlpatterns = [re_path(_(r"^$"), views.HomeView.as_view(), name="home")]
 
 urlpatterns += [
-    url(_(r'^about/$'), TemplateView.as_view(template_name='pages/about.html'), name="about"),
-
+    re_path(
+        _(r"^about/$"),
+        TemplateView.as_view(template_name="pages/about.html"),
+        name="about",
+    ),
     # Django Admin
-    url(r'^admin/', admin.site.urls),
-
+    re_path(r"^admin/", admin.site.urls),
     # User management
-    url(_(r'^users/'), include("feder.users.urls", namespace="users")),
-    url(r'^accounts/', include('allauth.urls')),
-
+    re_path(_(r"^users/"), include("feder.users.urls", namespace="users")),
+    path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
-    url(_(r'^institutions/'), include('feder.institutions.urls', namespace="institutions")),
-    url(_(r'^monitorings/'), include('feder.monitorings.urls', namespace="monitorings")),
-    url(_(r'^cases/'), include('feder.cases.urls', namespace="cases")),
-    url(_(r'^tasks/'), include('feder.tasks.urls', namespace="tasks")),
-    url(_(r'^questionaries/'), include('feder.questionaries.urls', namespace="questionaries")),
-    url(_(r'^alerts/'), include('feder.alerts.urls', namespace="alerts")),
-    url(_(r'^letters/'), include('feder.letters.urls', namespace="letters")),
-    url(_(r'^teryt/'), include('feder.teryt.urls', namespace="teryt")),
-    url(_(r'^letters/logs/'), include('feder.letters.logs.urls', namespace="logs")),
-    url(_(r'^parcels/'), include('feder.parcels.urls', namespace="parcels")),
-    url(r'^api/', include(router.urls)),
+    re_path(
+        _(r"^institutions/"),
+        include("feder.institutions.urls", namespace="institutions"),
+    ),
+    re_path(
+        _(r"^monitorings/"), include("feder.monitorings.urls", namespace="monitorings")
+    ),
+    re_path(_(r"^cases/"), include("feder.cases.urls", namespace="cases")),
+    re_path(
+        _(r"^cases/tags/"), include("feder.cases_tags.urls", namespace="cases_tags")
+    ),
+    re_path(_(r"^alerts/"), include("feder.alerts.urls", namespace="alerts")),
+    re_path(_(r"^letters/"), include("feder.letters.urls", namespace="letters")),
+    re_path(_(r"^teryt/"), include("feder.teryt.urls", namespace="teryt")),
+    re_path(_(r"^letters/logs/"), include("feder.letters.logs.urls", namespace="logs")),
+    re_path(_(r"^parcels/"), include("feder.parcels.urls", namespace="parcels")),
+    re_path(
+        _(r"^virus_scan/"), include("feder.virus_scan.urls", namespace="virus_scan")
+    ),
+    path(
+        "api/monitorings/<int:monitoring_pk>/case-tags/update/",
+        MultiCaseTagManagement.as_view(),
+        name="monitoring-case-tags-update",
+    ),
+    path("api/", include(router.urls)),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-sitemaps = {'cases': CaseSitemap,
-            'institutions': InstitutionSitemap,
-            'institutions_tags': TagSitemap,
-            'letters': LetterSitemap,
-            'main': StaticSitemap,
-            'monitorings': MonitoringSitemap,
-            'monitorings_pages': MonitoringPagesSitemap,
-            'questionaries': QuestionarySitemap,
-            'tasks': TaskSitemap,
-            'teryt': JSTSitemap}
+sitemaps = {
+    "cases": CaseSitemap,
+    "institutions": InstitutionSitemap,
+    "institutions_tags": TagSitemap,
+    "letters": LetterSitemap,
+    "main": StaticSitemap,
+    "monitorings": MonitoringSitemap,
+    "monitorings_pages": MonitoringPagesSitemap,
+    "teryt": JSTSitemap,
+}
 
 urlpatterns += [
-    url(r'^sitemap\.xml$', index, {'sitemaps': sitemaps, 'sitemap_url_name': 'sitemaps'}),
-    url(r'^sitemap-(?P<section>.+)\.xml$', sitemap, {'sitemaps': sitemaps}, name='sitemaps'),
+    re_path(
+        r"^sitemap\.xml$", index, {"sitemaps": sitemaps, "sitemap_url_name": "sitemaps"}
+    ),
+    re_path(
+        r"^sitemap-(?P<section>.+)\.xml$",
+        sitemap,
+        {"sitemaps": sitemaps},
+        name="sitemaps",
+    ),
 ]
 
 if settings.DEBUG:
     import debug_toolbar
 
-    urlpatterns = [
-                      url(r'^__debug__/', include(debug_toolbar.urls)),
-                  ] + urlpatterns
-
-
-def handler500(request):
-    """500 error handler which includes ``request`` in the context.
-
-    Templates: `500.html`
-    Context: None
-    """
-
-    t = loader.get_template('500.html')
-    return HttpResponseServerError(t.render({
-        'request': request,
-    }))
+    urlpatterns = [path("__debug__/", include(debug_toolbar.urls))] + urlpatterns

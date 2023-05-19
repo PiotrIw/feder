@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-05 23:04+0000\n"
-"PO-Revision-Date: 2017-09-20 20:27+0200\n"
+"POT-Creation-Date: 2021-05-13 10:41+0000\n"
+"PO-Revision-Date: 2021-05-10 15:21+0200\n"
 "Last-Translator: Adam Dobrawy <naczelnik@jawnosc.tk>\n"
 "Language-Team: \n"
 "Language: pl\n"
@@ -17,9 +17,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Poedit 2.4.1\n"
 
-#: logs/apps.py:10
+#: logs/apps.py:7
 msgid "Logs of letter"
 msgstr "Dziennik listów"
 
@@ -55,7 +55,7 @@ msgstr "Odroczone"
 msgid "Unknown"
 msgstr "Nieznane"
 
-#: logs/models.py:35 logs/templates/logs/_list.html:7
+#: logs/models.py:34 logs/templates/logs/_list.html:7
 msgid "Case"
 msgstr "Sprawa"
 
@@ -63,27 +63,27 @@ msgstr "Sprawa"
 msgid "Letter"
 msgstr "List"
 
-#: logs/models.py:37
+#: logs/models.py:38
 msgid "Message-ID"
 msgstr "Message-ID"
 
-#: logs/models.py:38
+#: logs/models.py:39
 msgid "To"
 msgstr "Do"
 
-#: logs/models.py:48 logs/models.py:82
+#: logs/models.py:49 logs/models.py:90
 msgid "Email"
 msgstr "E-mail"
 
-#: logs/models.py:49
+#: logs/models.py:50
 msgid "Emails"
 msgstr "E-maile"
 
-#: logs/models.py:99
+#: logs/models.py:108
 msgid "Log record"
 msgstr "Rekord dziennika"
 
-#: logs/models.py:100
+#: logs/models.py:109
 msgid "Log records"
 msgstr "Rekordy dziennika"
 
@@ -108,18 +108,18 @@ msgstr "Dziennik"
 msgid "Download .csv"
 msgstr "Pobierz .csv"
 
-#: logs/urls.py:10
+#: logs/urls.py:8
 msgid "^case-(?P<case_pk>[\\d-]+)$"
 msgstr "^spraw-(?P<case_pk>[\\d-]+)$"
 
-#: logs/urls.py:12
+#: logs/urls.py:13
 msgid "^monitoring-(?P<monitoring_pk>[\\d-]+)$"
 msgstr "^monitoring-(?P<monitoring_pk>[\\d-]+)$"
 
-#: logs/urls.py:14
+#: logs/urls.py:18
 msgid "^monitoring-(?P<monitoring_pk>[\\d-]+)/export$"
 msgstr "^monitoring-(?P<monitoring_pk>[\\d-]+)/eksport$"
 
-#: logs/urls.py:16
+#: logs/urls.py:22
 msgid "^log-(?P<pk>[\\d-]+)$"
 msgstr "^wpis-(?P<pk>[\\d-]+)$"

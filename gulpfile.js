@@ -7,7 +7,7 @@ var gulp = require('gulp'),
     livereload = require('gulp-livereload'),
     postcss = require('gulp-postcss'),
     rename = require('gulp-rename'),
-    sass = require('gulp-sass'),
+    sass = require('gulp-sass')(require('sass')),
     uglify = require('gulp-uglify');
 
 var autoprefixer = require('autoprefixer')
@@ -106,4 +106,7 @@ gulp.task('watch', function () {
     });
 });
 
-gulp.task('default', ['icons', 'js', 'scss', 'watch']);
+
+gulp.task('build', gulp.series('icons', 'js', 'scss'));
+
+gulp.task('default', gulp.series('build', 'watch'));

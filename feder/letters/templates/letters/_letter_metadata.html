@@ -1,4 +1,9 @@
-{% load i18n %}
+{% load guardian_tags i18n %}
+{% if object.is_mass_draft %}
+    {% get_obj_perms request.user for object.mass_draft.monitoring as "monitoring_perms" %}
+{% else %}
+    {% get_obj_perms request.user for object.case.monitoring as "monitoring_perms" %}
+{% endif %}
 <div class="metadata-button-container">
     <button type="button" class="btn btn-primary metadata-toggle" aria-expanded="false" data-toggle="collapse" data-target=".email_metadata">
         <span class="sr-only">{% trans 'Toggle metadata' %}</span>
@@ -33,6 +38,14 @@
                     {% endif %}
                 </td>
             </tr>
+            {% if 'view_email_address' in monitoring_perms %}
+            <tr>
+                <td class="metadata_desc"><i class="fa fa-check-square-o" aria-hidden="false"></i> {% trans 'E-mail of case' %}</td>
+                <td class="metadata_value">
+                    <code>{{ object.case.email }}</code>
+                </td>
+            </tr>
+            {% endif %}
         </tbody>
     </table>
 </div>

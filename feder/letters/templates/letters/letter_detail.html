@@ -10,18 +10,26 @@
             itemprop="itemListElement"
             itemscope
             itemtype="http://schema.org/ListItem">
-            <a itemprop="item" href="{{ object.case.monitoring.get_absolute_url }}">
-                <span itemprop="name">{{ object.case.monitoring }}</span>
-            </a>
+            {% if object.is_mass_draft %}
+                <a itemprop="item" href="{{ object.mass_draft.monitoring.get_absolute_url }}">
+                    <span itemprop="name">{{ object.mass_draft.monitoring }}</span>
+                </a>
+            {% else %}
+                <a itemprop="item" href="{{ object.case.monitoring.get_absolute_url }}">
+                    <span itemprop="name">{{ object.case.monitoring }}</span>
+                </a>
+            {% endif %}
         </li>
-        <li
-            itemprop="itemListElement"
-            itemscope
-            itemtype="http://schema.org/ListItem">
-            <a itemprop="item" href="{{ object.case.get_absolute_url }}">
-                <span itemprop="name">{{ object.case }}</span>
-            </a>
-        </li>
+        {% if object.case %}
+            <li
+                itemprop="itemListElement"
+                itemscope
+                itemtype="http://schema.org/ListItem">
+                <a itemprop="item" href="{{ object.case.get_absolute_url }}">
+                    <span itemprop="name">{{ object.case }}</span>
+                </a>
+            </li>
+        {% endif %}
         <li
             itemprop="itemListElement"
             itemscope
@@ -35,10 +43,22 @@
 {% block content_object %}
     {% include 'letters/_letter_metadata.html' with object=object %}
     {% include 'letters/_object.html' with object=object %}
-    {% if object.eml %}
-        <a class="btn btn-default" href="{% url 'letters:download' pk=object.pk %}">
+    {% if object.eml and not user.is_anonymous %}
+        <a class="btn btn-default" href="{{ object.get_eml_url }}">
             <i class="fa fa-download"></i>
             {% trans 'Download letter' %}
         </a>
+    {% endif %}
+    {% if show_similar and similar_list %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            {% trans 'Similar list' %}
+        </div>
+        <table class="table">
+            {% for sm in similar_list %}
+                {% include 'letters/_letter_content_item.html' with object=sm %}
+            {% endfor %}
+        </table>
+    </div>
     {% endif %}
 {% endblock %}

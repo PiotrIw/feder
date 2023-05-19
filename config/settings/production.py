@@ -1,8 +1,8 @@
-# -*- coding: utf-8 -*-
-from __future__ import absolute_import, unicode_literals
-from dealer.auto import auto
-
 from .common import *  # noqa
+
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+
 
 # SECRET CONFIGURATION
 # ------------------------------------------------------------------------------
@@ -12,7 +12,7 @@ SECRET_KEY = env("DJANGO_SECRET_KEY")
 
 # This ensures that Django will be able to detect a secure connection
 # properly on Heroku.
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 # set this to 60 seconds and then to 518400 when you can prove it works
 """
@@ -33,107 +33,71 @@ SECURE_SSL_REDIRECT = env.bool("DJANGO_SECURE_SSL_REDIRECT", default=True)
 ALLOWED_HOSTS = ["*"]
 # END SITE CONFIGURATION
 
-INSTALLED_APPS += ("gunicorn", )
+INSTALLED_APPS += ("gunicorn",)
 
 # STORAGE CONFIGURATION
 # ------------------------------------------------------------------------------
 # Uploaded Media Files
 # ------------------------
 # See: http://django-storages.readthedocs.org/en/latest/index.html
-"""
-INSTALLED_APPS += (
-    'storages',
-)
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-
-AWS_ACCESS_KEY_ID = env('DJANGO_AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = env('DJANGO_AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = env('DJANGO_AWS_STORAGE_BUCKET_NAME')
-AWS_AUTO_CREATE_BUCKET = True
-AWS_QUERYSTRING_AUTH = False
-AWS_S3_CALLING_FORMAT = OrdinaryCallingFormat()
-
-# AWS cache settings, don't change unless you know what you're doing:
-AWS_EXPIRY = 60 * 60 * 24 * 7
-
-# TODO See: https://github.com/jschneier/django-storages/issues/47
-# Revert the following and use str after the above-mentioned bug is fixed in
-# either django-storage-redux or boto
-AWS_HEADERS = {
-    'Cache-Control': six.b('max-age=%d, s-maxage=%d, must-revalidate' % (
-        AWS_EXPIRY, AWS_EXPIRY))
-}
-
-# URL that handles the media served from MEDIA_ROOT, used for managing stored files.
-MEDIA_URL = 'https://s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
-
-# Static Assests
-# ------------------------
-
-STATICFILES_STORAGE = DEFAULT_FILE_STORAGE
-STATIC_URL = MEDIA_URL
-
-# See: https://github.com/antonagestam/collectfast
-# For Django 1.7+, 'collectfast' should come before 'django.contrib.staticfiles'
-AWS_PRELOAD_METADATA = True
-INSTALLED_APPS = ('collectfast', ) + INSTALLED_APPS
-"""
-SENDFILE_BACKEND = 'sendfile.backends.nginx'
-MEDIA_URL = '/media_internal/'
+SENDFILE_BACKEND = "django_sendfile.backends.nginx"
+MEDIA_URL = "/media_internal/"
 SENDFILE_ROOT = MEDIA_ROOT
 SENDFILE_URL = MEDIA_URL
 
 # EMAIL
 # ------------------------------------------------------------------------------
-DEFAULT_FROM_EMAIL = env('DJANGO_DEFAULT_FROM_EMAIL',
-                         default='feder <noreply@dane.siecobywatelska.pl>')
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_SUBJECT_PREFIX = env("DJANGO_EMAIL_SUBJECT_PREFIX", default='[feder] ')
-SERVER_EMAIL = env('DJANGO_SERVER_EMAIL')
+DEFAULT_FROM_EMAIL = env(
+    "DJANGO_DEFAULT_FROM_EMAIL", default="feder <noreply@dane.siecobywatelska.pl>"
+)
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_SUBJECT_PREFIX = env("DJANGO_EMAIL_SUBJECT_PREFIX", default="[feder] ")
+SERVER_EMAIL = env("DJANGO_SERVER_EMAIL")
 
 # TEMPLATE CONFIGURATION
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/templates/api/#django.template.loaders.cached.Loader
-TEMPLATES[0]['OPTIONS']['loaders'] = [
-    ('django.template.loaders.cached.Loader', [
-        'django.template.loaders.filesystem.Loader',
-        'django.template.loaders.app_directories.Loader',
-    ]),
+TEMPLATES[0]["OPTIONS"]["loaders"] = [
+    (
+        "django.template.loaders.cached.Loader",
+        [
+            "django.template.loaders.filesystem.Loader",
+            "django.template.loaders.app_directories.Loader",
+        ],
+    )
 ]
 
 # DATABASE CONFIGURATION
 # ------------------------------------------------------------------------------
 # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ
-DATABASES['default'] = env.db("DATABASE_URL")
+DATABASES["default"] = env.db("DATABASE_URL")
 
 # CACHING
 # ------------------------------------------------------------------------------
-try:
-    # Only do this here because thanks to django-pylibmc-sasl and pylibmc
-    # memcacheify is painful to install on windows.
-    # See: https://github.com/rdegges/django-heroku-memcacheify
-    from memcacheify import memcacheify
-    CACHES = memcacheify()
-except ImportError:
-    CACHES = {
-        'default': env.cache_url("DJANGO_CACHE_URL", default="memcache://127.0.0.1:11211"),
-    }
 
-
-RELEASE_ID = auto.revision
-RAVEN_CONFIG = {
-    'dsn': env.str('RAVEN_DSN', 'http://example.com'),
-    'release': RELEASE_ID
+CACHES = {
+    "default": env.cache_url("DJANGO_CACHE_URL", default="memcache://127.0.0.1:11211")
 }
-INSTALLED_APPS = INSTALLED_APPS + (
-    'raven.contrib.django.raven_compat',
-)
 
-MIDDLEWARE = (
-    # 'raven.contrib.django.raven_compat.middleware.Sentry404CatchMiddleware',
-    'raven.contrib.django.raven_compat.middleware.SentryResponseErrorIdMiddleware',
-) + MIDDLEWARE
+EMAILLABS_APP_KEY = env("EMAILLABS_APP_KEY")
 
-EMAILLABS_APP_KEY = env('EMAILLABS_APP_KEY')
+EMAILLABS_SECRET_KEY = env("EMAILLABS_SECRET_KEY")
 
-EMAILLABS_SECRET_KEY = env('EMAILLABS_SECRET_KEY')
+LETTER_RECEIVE_SECRET = env("LETTER_RECEIVE_SECRET")
+
+# SENTRY CONFIGURATION
+# ------------------------------------------------------------------------------
+
+SENTRY_DSN = env("SENTRY_DSN", default="")
+if SENTRY_DSN:
+    sentry_sdk.init(
+        dsn=SENTRY_DSN,
+        integrations=[DjangoIntegration()],
+        # Set traces_sample_rate to 1.0 to capture 100%
+        # of transactions for performance monitoring.
+        # We recommend adjusting this value in production.
+        traces_sample_rate=0.1,
+        # If you wish to associate users to errors (assuming you are using
+        # django.contrib.auth) you may enable sending PII data.
+        send_default_pii=True,
+    )

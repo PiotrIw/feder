@@ -1,24 +1,28 @@
 from django.urls import reverse
 from django.urls import reverse_lazy
 from django.test import RequestFactory, TestCase
-
+from feder.users.factories import UserFactory
 from feder.teryt import views
 from feder.teryt.factories import JSTFactory
 
 
-class TerytViewTestCase(TestCase):
+class JSTListViewTestCase(TestCase):
     def setUp(self):
-        self.factory = RequestFactory()
         self.jst = JSTFactory()
+        self.user = UserFactory()
 
-    def test_list_display(self):
-        request = self.factory.get(reverse('teryt:list'))
-        response = views.JSTListView.as_view()(request)
+    def test_plain_display(self):
+        response = self.client.get(reverse("teryt:list"))
         self.assertEqual(response.status_code, 200)
 
-    def test_details_display(self):
-        request = self.factory.get(self.jst.get_absolute_url())
-        response = views.JSTDetailView.as_view()(request, slug=self.jst.slug)
+
+class JSTDetailViewTestCase(TestCase):
+    def setUp(self):
+        self.jst = JSTFactory()
+        self.user = UserFactory()
+
+    def test_plain_display(self):
+        response = self.client.get(reverse("teryt:detail", slug=self.jst.slug))
         self.assertEqual(response.status_code, 200)
 
 
@@ -29,7 +33,7 @@ class JSTDetailViewTestCase(TestCase):
 
     def test_template_used(self):
         resp = self.client.get(self.url)
-        self.assertTemplateUsed(resp, 'teryt/jst_detail.html')
+        self.assertTemplateUsed(resp, "teryt/jst_detail.html")
 
     def test_contains_name(self):
         resp = self.client.get(self.url)
@@ -37,7 +41,7 @@ class JSTDetailViewTestCase(TestCase):
 
 
 class JSTListViewTestCase(TestCase):
-    url = reverse_lazy('teryt:list')
+    url = reverse_lazy("teryt:list")
 
     def setUp(self):
         self.object = JSTFactory()
@@ -45,7 +49,7 @@ class JSTListViewTestCase(TestCase):
 
     def test_template_used(self):
         resp = self.client.get(self.url)
-        self.assertTemplateUsed(resp, 'teryt/jst_list.html')
+        self.assertTemplateUsed(resp, "teryt/jst_list.html")
 
     def test_contains_name(self):
         resp = self.client.get(self.url)
@@ -58,6 +62,6 @@ class SitemapTestCase(TestCase):
         self.teryt = JSTFactory()
 
     def test_letters(self):
-        url = reverse('sitemaps', kwargs={'section': 'teryt'})
+        url = reverse("sitemaps", kwargs={"section": "teryt"})
         response = self.client.get(url)
         self.assertContains(response, self.teryt.get_absolute_url())

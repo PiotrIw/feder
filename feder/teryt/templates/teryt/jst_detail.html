@@ -8,36 +8,23 @@
         class="breadcrumb"
         itemscope
         itemtype="http://schema.org/BreadcrumbList">
-        {% for jst in object.get_ancestors.all %}
-            <li
-                itemprop="itemListElement"
-                itemscope
-                itemtype="http://schema.org/ListItem">
-                <a itemprop="item" href="{{ jst.get_absolute_url }}">
-                    <span itemprop="name">{{ jst }}</span>
-                </a>
-            </li>
-        {% endfor %}
-        <li
-            itemprop="itemListElement"
-            itemscope
-            itemtype="http://schema.org/ListItem"
-            class="active">
-            <span itemprop="name">{{ object }}</span>
-        </li>
+
+        {% with obj_jst=object %}
+            {% include "institutions/_jst_breadcrumbs.html" %}
+        {% endwith %}
     </ol>
 {% endblock %}
 
 {% block content %}
     <div class="page-header">
-        <h2><i class="fa fa-globe"></i> {{ object }}
+        <h2><i class="fa fa-globe"></i> {{ object.name }}
             <small>{{ object.category }}</small>
         </h2>
     </div>
 
     <div class="row">
         {% if object.children.with_category.all %}
-            <div class="col-md-3">
+            <div class="col-md-4">
                 {% if object.level < 2 %}
                     <div class="gray">
                         <h3 class="title">{% trans 'Voivodeships' %}</h3>
@@ -55,35 +42,30 @@
             </div>
         {% endif %}
 
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="red">
                 <h3 class="title">
                     <i class="fa fa-home"></i>
                     {% trans 'Institutions' %}
                 </h3>
-                {% if object.institution_qs.all %}
-                    {% include '_select_list.html' with object_list=object.institution_qs.all %}
+                {% if institution_qs %}
+                    {% include '_select_list.html' with object_list=institution_qs %}
                 {% else %}
                     <p>{% trans 'No rows.' %}</p>
                 {% endif %}
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="gray">
                 <h3 class="title">
                     <i class="fa fa-search"></i>
                     {% trans 'Cases' %}
                 </h3>
-                {% include '_select_list.html' with object_list=object.case_qs.all %}
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="red">
-                <h3 class="title">
-                    <i class="fa fa-folder-open"></i>
-                    {% trans 'Tasks' %}
-                </h3>
-                {% include '_select_list.html' with object_list=object.task_qs.all %}
+                {% if case_qs %}
+                    {% include '_select_list.html' with object_list=case_qs %}
+                {% else %}
+                    <p>{% trans 'No rows.' %}</p>
+                {% endif %}
             </div>
         </div>
     </div>

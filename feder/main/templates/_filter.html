@@ -1,5 +1,4 @@
 {% load i18n crispy_forms_tags bootstrap_pagination %}
-{# task_filter.html use own copy #}
 <div class="page-header">
     <h2>{% trans title %}</h2>
 </div>
@@ -17,21 +16,24 @@
                 </p>
             </div>
         {% endfor %}
-
-        {% bootstrap_paginate page_obj %}
-
+        {% if pager == 'performant' %}
+            {% bootstrap_pager page_obj %}
+        {% else %}
+            {% bootstrap_paginate page_obj %}
+        {% endif %}
     </div>
 
     <div class="col-sm-4 col-sm-pull-8">
         <div class="red">
             <form method="GET">
                 {{ filter.form | crispy }}
-                <button type="submit" class="btn btn-primary">
+                {% block form_buttons %}
+                <button type="submit" class="btn btn-primary btn-block">
                     <i class="fa fa-search" aria-hidden="true"></i>
-                    {% trans 'Filtr' %}
+                    {% trans 'Filter' %}
                 </button>
+                {% endblock %}
             </form>
         </div>
     </div>
-
 </div>

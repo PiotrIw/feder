@@ -1,0 +1,105 @@
+{% load i18n bootstrap_pagination %}
+<div class="monitoring-report-content">
+    <h3 class="sr-only">{% trans 'Report' %}</h3>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="table__col_checkbox table__col_bottom">
+                    <label for="multi-case-tag-select-all">
+                        <span class="sr-only">{% trans "select or unselect all" %}</span>
+                        <input type="checkbox"
+                               id="multi-case-tag-select-all"
+                               name="select-all-cases">
+                    </label>
+                </th>
+                <th>{% trans 'institution' %}</th>
+                <th>{% trans 'administrative unit' %}</th>
+                <th class="centered centered_cell">
+                    {% trans 'tags' %}
+                </th>
+                <th class="table__col_narrow centered centered_cell">
+                    {% trans 'request sending date' %}
+                </th>
+                <th class="table__col_narrow centered centered_cell">
+                    {% trans 'request status' %}
+                </th>
+                <th class="table__col_narrow centered centered_cell">
+                    {% trans 'request confirmed' %}
+                </th>
+                <th class="table__col_narrow centered centered_cell">
+                    {% trans 'response received' %}
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for case in object_list %}
+            <tr>
+                <td class="table__col_checkbox centered centered_cell">
+                    <label for="select-case-{{ case.id }}">
+                        <span class="sr-only">{% trans "case" %} {{ case.slug }}</span>
+                        <input type="checkbox"
+                               id="select-case-{{ case.id }}"
+                               name="select-case-{{ case.id }}"
+                               value="{{ case.id }}"
+                               class="select-case-input">
+                    </label>
+                </td>
+                <td>
+                    <a href="{% url 'cases:details' slug=case.slug %}">
+                      {{ case.institution.name }}
+                    </a><br>
+                    {{ case.institution.email }}<br>
+                    {% if case.institution.regon %}
+                      REGON: {{ case.institution.regon }}
+                    {% endif %}
+                </td>
+                <td>
+                    {{ case.institution.voivodeship|default:'' }}<br>
+                    {{ case.institution.county|default:'' }}<br>
+                    {{ case.institution.community|default:'' }}
+                </td>
+                <td>
+                    {{ case.tags_str }}
+                </td>
+                {% with case.application_letter as letter %}
+                <td class="centered centered_cell">{{ letter.created|date }}</td>
+                <td class="centered centered_cell">{{ letter.emaillog.get_status_display }}</td>
+                {% endwith %}
+                <td>
+                    {% if case.confirmation_received %}
+                        <i class="fa fa-check-circle fa-lg color-success centered"
+                           title="{% trans 'yes' %}"></i>
+                    {% else %}
+                        <i class="fa fa-times-circle fa-lg color-danger centered"
+                           title="{% trans 'no' %}"></i>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if case.response_received %}
+                        <i class="fa fa-check-circle fa-lg color-success centered"
+                           title="{% trans 'yes' %}"></i>
+                    {% else %}
+                        <i class="fa fa-times-circle fa-lg color-danger centered"
+                           title="{% trans 'no' %}"></i>
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6">{% trans 'No rows.' %}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="text-center">
+        {# bootstrap_paginate object_list url_view_name='monitorings:report' url_extra_kwargs=url_extra_kwargs #}
+        {% if pager == 'performant' %}
+            {% bootstrap_pager page_obj %}
+        {% else %}
+            {% bootstrap_paginate page_obj %}
+        {% endif %}
+    </div>
+</div>

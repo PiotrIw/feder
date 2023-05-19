@@ -1,25 +1,30 @@
 import django_filters
+from django.db import models
+from base64 import b64encode
 from braces.views import LoginRequiredMixin
 from django.core.exceptions import ImproperlyConfigured
 from django.core.paginator import EmptyPage, Paginator
-from django.utils import six
 from django.views.generic.detail import BaseDetailView
 from guardian.mixins import PermissionRequiredMixin
-from guardian.shortcuts import assign_perm
-from sendfile import sendfile
+from django_sendfile import sendfile
+from django.core.paginator import InvalidPage
+from rest_framework_csv.renderers import CSVRenderer
 
-from feder.users.factories import UserFactory
+from .paginator import ModernPerformantPaginator
+from django.http import Http404
+from django.utils.translation import gettext as _
 
 
-class ExtraListMixin(object):
+class ExtraListMixin:
     """Mixins for view to add additional paginated object list
 
     Attributes:
         extra_list_context (str): Name of extra list context
         paginate_by (int): Number of added objects per page
     """
+
     paginate_by = 25
-    extra_list_context = 'object_list'
+    extra_list_context = "object_list"
 
     def paginator(self, object_list):
         """A Method to paginate object_list accordingly.
@@ -32,7 +37,7 @@ class ExtraListMixin(object):
         """
         paginator = Paginator(object_list, self.paginate_by)
         try:
-            return paginator.page(self.kwargs.get('page', 1))
+            return paginator.page(self.kwargs.get("page", 1))
         except EmptyPage:
             # If page is out of range (e.g. 9999), deliver last page of results.
             return paginator.page(paginator.num_pages)
@@ -49,19 +54,20 @@ class ExtraListMixin(object):
             ImproperlyConfigured: The method was not overrided.
         """
         raise ImproperlyConfigured(
-            '{0} is missing a permissions to assign. Define {0}.permission '
-            'or override {0}.get_permission().'.format(self.__class__.__name__))
+            "{0} is missing a permissions to assign. Define {0}.permission "
+            "or override {0}.get_permission().".format(self.__class__.__name__)
+        )
 
     def get_context_data(self, **kwargs):
-        context = super(ExtraListMixin, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         object_list = self.get_object_list(self.object)
         context[self.extra_list_context] = self.paginator(object_list)
         return context
 
 
 class RaisePermissionRequiredMixin(LoginRequiredMixin, PermissionRequiredMixin):
-    """Mixin to verify object permission with preserve correct status code in view
-    """
+    """Mixin to verify object permission with preserve correct status code in view"""
+
     raise_exception = True
     redirect_unauthenticated_users = True
 
@@ -72,6 +78,7 @@ class AttrPermissionRequiredMixin(RaisePermissionRequiredMixin):
     Attributes:
         permission_attribute (str): A path to traverse from object to permission object
     """
+
     permission_attribute = None
 
     @staticmethod
@@ -86,153 +93,60 @@ class AttrPermissionRequiredMixin(RaisePermissionRequiredMixin):
             A oject at end of resolved path
         """
         if path:
-            for attr_name in path.split('__'):
+            for attr_name in path.split("__"):
                 obj = getattr(obj, attr_name)
         return obj
 
     def get_permission_object(self):
-        obj = super(AttrPermissionRequiredMixin, self).get_object()
+        obj = super().get_object()
         return self._resolve_path(obj, self.permission_attribute)
 
     def get_object(self):
-        if not hasattr(self, 'object'):
-            self.object = super(AttrPermissionRequiredMixin, self).get_object()
+        if not hasattr(self, "object"):
+            self.object = super().get_object()
         return self.object
 
 
-class AutocompletePerformanceMixin(object):
+class AutocompletePerformanceMixin:
     """A mixin to improve autocomplete to limit SELECTed fields
 
     Attributes:
         select_only (list): List of fields to select
     """
+
     select_only = None
 
     def choices_for_request(self, *args, **kwargs):
-        qs = super(AutocompletePerformanceMixin, self).choices_for_request(*args, **kwargs)
+        qs = super().choices_for_request(*args, **kwargs)
         if self.select_only:
             qs = qs.only(*self.select_only)
         return qs
 
 
-class PermissionStatusMixin(object):
-    """Mixin to verify object permission status codes for different users
-
-    Require user with username='john' and password='pass'
-
-    Attributes:
-        permission (TYPE): Description
-        status_anonymous (int): Status code for anonymouser
-        status_has_permission (int): Status code for user with permission
-        status_no_permission (403): Status code for user without permission
-        url (TYPE): url to test
-    """
-    url = None
-    permission = None
-    status_anonymous = 302
-    status_no_permission = 403
-    status_has_permission = 200
-
-    def setUp(self):
-        super(PermissionStatusMixin, self).setUp()
-        self.user = getattr(self, 'user', UserFactory(username='john'))
-
-    def get_url(self):
-        """Get url to tests
-
-        Returns:
-            str: url to test
-
-        Raises:
-            ImproperlyConfigured: Missing a url to test
-        """
-        if self.url is None:
-            raise ImproperlyConfigured(
-                '{0} is missing a url to test. Define {0}.url '
-                'or override {0}.get_url().'.format(self.__class__.__name__))
-        return self.url
-
-    def get_permission(self):
-        """Returns the permission to assign for granted permission user
-
-        Returns:
-            list: A list of permission in format ```codename.permission_name```
-
-        Raises:
-            ImproperlyConfigured: Missing a permission to assign
-        """
-        if self.permission is None:
-            raise ImproperlyConfigured(
-                '{0} is missing a permissions to assign. Define {0}.permission '
-                'or override {0}.get_permission().'.format(self.__class__.__name__))
-        return self.permission
-
-    def get_permission_object(self):
-        """Returns object of permission-carrying object for grant permission
-        """
-        return getattr(self, 'permission_object', None)
-
-    def grant_permission(self):
-        """Grant permission to user in self.user
-
-        Returns:
-            TYPE: Description
-        """
-        for perm in self.get_permission():
-            obj = self.get_permission_object()
-            assign_perm(perm, self.user, obj)
-
-    def login_permitted_user(self):
-        """Login client to user with granted permissions
-
-        """
-        self.grant_permission()
-        self.client.login(username='john', password='pass')
-
-    def test_status_code_for_anonymous_user(self):
-        """A test status code of response for anonymous user
-
-        """
-        response = self.client.get(self.get_url())
-        self.assertEqual(response.status_code, self.status_anonymous)
-
-    def test_status_code_for_signed_user(self):
-        """A test for status code of response for signed (logged-in) user
-
-        Only login before test.
-        """
-        self.client.login(username='john', password='pass')
-        response = self.client.get(self.get_url())
-        self.assertEqual(response.status_code, self.status_no_permission)
-
-    def test_status_code_for_privileged_user(self):
-        """A test for status code of response for privileged user
-
-        Grant permission to permission-carrying object and login before test
-        """
-        self.grant_permission()
-        self.client.login(username='john', password='pass')
-        response = self.client.get(self.get_url())
-        self.assertEqual(response.status_code, self.status_has_permission)
-
-
 class DisabledWhenFilterSetMixin(django_filters.filterset.BaseFilterSet):
-    @property
-    def qs(self):
-        if not hasattr(self, '_qs') and self.is_bound and self.form.is_valid():
-            for name in list(self.filters.keys()):
-                filter_ = self.filters[name]
-                value = self.form.cleaned_data.get(name)
-                enabled_test = getattr(filter_, 'check_enabled', lambda _: True)  # legacy-filter compatible
-                if not enabled_test(self.form.cleaned_data):
-                    del self.filters[name]
-        return super(DisabledWhenFilterSetMixin, self).qs
+    def filter_queryset(self, queryset):
+        for name, value in self.form.cleaned_data.items():
+            filter_ = self.filters[name]
+            enabled_test = getattr(
+                filter_, "check_enabled", lambda _: True
+            )  # standard-filter compatible
+            if not enabled_test(self.form.cleaned_data):
+                continue
+            queryset = self.filters[name].filter(queryset, value)
+            assert isinstance(
+                queryset, models.QuerySet
+            ), "Expected '{}.{}' to return a QuerySet, but got a {} instead.".format(
+                type(self).__name__,
+                name,
+                type(queryset).__name__,
+            )
+        return queryset
 
 
-class DisabledWhenFilterMixin(object):
+class DisabledWhenFilterMixin:
     def __init__(self, *args, **kwargs):
-        self.disabled_when = kwargs.pop('disabled_when', [])
-        super(DisabledWhenFilterMixin, self).__init__(*args, **kwargs)
+        self.disabled_when = kwargs.pop("disabled_when", [])
+        super().__init__(*args, **kwargs)
 
     def check_enabled(self, form_data):
         return not any(form_data[field] for field in self.disabled_when)
@@ -249,9 +163,81 @@ class BaseXSendFileView(BaseDetailView):
         return getattr(object, self.get_file_field()).path
 
     def get_sendfile_kwargs(self, context):
-        return dict(request=self.request,
-                    filename=self.get_file_path(context['object']),
-                    attachment=self.send_as_attachment)
+        return dict(
+            request=self.request,
+            filename=self.get_file_path(context["object"]),
+            attachment=self.send_as_attachment,
+        )
 
     def render_to_response(self, context):
         return sendfile(**self.get_sendfile_kwargs(context))
+
+
+class DisableOrderingListViewMixin:
+    def get_queryset(self):
+        return super().get_queryset().order_by("pk")
+
+
+class PerformantPagintorMixin:
+    paginator_class = ModernPerformantPaginator
+    first_page = b64encode(b"0").decode("utf-8")
+
+    def paginate_queryset(self, queryset, page_size):
+        """
+        Overwrite pagination for support non-number paginator
+        See https://github.com/django/django/pull/12429 for details
+        """
+        paginator = self.get_paginator(
+            queryset,
+            page_size,
+            orphans=self.get_paginate_orphans(),
+            allow_empty_first_page=self.get_allow_empty(),
+        )
+        page_kwarg = self.page_kwarg
+        page = (
+            self.kwargs.get(page_kwarg)
+            or self.request.GET.get(page_kwarg)
+            or self.first_page
+        )
+        try:
+            page_number = paginator.validate_number(page)
+        except (ValueError, InvalidPage):
+            raise Http404(_("Page number is not valid."))
+        try:
+            page = paginator.page(page_number)
+            return (paginator, page, page.object_list, page.has_other_pages())
+        except InvalidPage as e:
+            raise Http404(
+                _("Invalid page (%(page_number)s): %(message)s")
+                % {"page_number": page_number, "message": str(e)}
+            )
+
+    def get_context_data(self, **kwargs):
+        """Insert the single object into the context dict."""
+        context = {"pager": "performant"}
+        context.update(kwargs)
+        return super().get_context_data(**context)
+
+
+class CsvRendererViewMixin:
+    """
+    csv_serializer and default_serializer attributes can be set on derived class
+    to be used accordingly with CSV and other renderers.
+    """
+
+    csv_file_name = _("data")
+
+    def get_serializer_class(self):
+        if isinstance(self.request.accepted_renderer, CSVRenderer):
+            serializer = getattr(self, "csv_serializer", None)
+        else:
+            serializer = getattr(self, "default_serializer", None)
+        return serializer or super().get_serializer_class()
+
+    def finalize_response(self, request, response, *args, **kwargs):
+        response = super().finalize_response(request, response, *args, **kwargs)
+        if isinstance(self.request.accepted_renderer, CSVRenderer):
+            response["Content-Disposition"] = "attachment; filename={}.csv".format(
+                self.csv_file_name
+            )
+        return response

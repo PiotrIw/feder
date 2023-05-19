@@ -1,46 +1,96 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
-from django.conf.urls import url
-from django.utils.translation import ugettext_lazy as _
+from django.urls import re_path
+from django.utils.translation import gettext_lazy as _
 
 from . import views
 
 urlpatterns = [
-    url(_(r'^$'), views.MonitoringListView.as_view(),
-        name="list"),
-    url(_(r'^~create$'), views.MonitoringCreateView.as_view(),
-        name="create"),
-    url(_(r'^~autocomplete$'), views.MonitoringAutocomplete.as_view(),
-        name="autocomplete"),
-    url(_(r'^~autocomplete/user$'), views.UserMonitoringAutocomplete.as_view(),
-        name="autocomplete_user"),
-    url(_(r'^(?P<slug>[\w-]+)$'), views.MonitoringDetailView.as_view(),
-        name="details"),
-    url(_(r'^(?P<slug>[\w-]+)/page-(?P<page>[\d]+)$'),
+    re_path(_(r"^$"), views.MonitoringListView.as_view(), name="list"),
+    re_path(_(r"^~create$"), views.MonitoringCreateView.as_view(), name="create"),
+    re_path(_(r"^feed$"), views.MonitoringRssFeed(), name="rss"),
+    re_path(_(r"^feed/atom$"), views.MonitoringAtomFeed(), name="atom"),
+    re_path(
+        _(r"^~autocomplete$"),
+        views.MonitoringAutocomplete.as_view(),
+        name="autocomplete",
+    ),
+    re_path(
+        _(r"^~autocomplete/user$"),
+        views.UserMonitoringAutocomplete.as_view(),
+        name="autocomplete_user",
+    ),
+    re_path(
+        _(r"^(?P<slug>[\w-]+)$"), views.MonitoringDetailView.as_view(), name="details"
+    ),
+    re_path(
+        _(r"^(?P<slug>[\w-]+)/page-(?P<page>[\d]+)$"),
         view=views.MonitoringDetailView.as_view(),
-        name="details"),
-    url(_(r'^(?P<slug>[\w-]+)/letter$'), views.LetterListMonitoringView.as_view(),
-        name="letters"),
-    url(_(r'^(?P<slug>[\w-]+)/letter/page-(?P<page>[\d]+)$'), views.LetterListMonitoringView.as_view(),
-        name="letters"),
-    url(_(r'^(?P<slug>[\w-]+)/drafts'), views.DraftListMonitoringView.as_view(),
-        name="drafts"),
-    url(_(r'^(?P<slug>[\w-]+)/drafts/page-(?P<page>[\d]+)$'), views.DraftListMonitoringView.as_view(),
-        name="drafts"),
-    url(_(r'^(?P<slug>[\w-]+)/~update$'), views.MonitoringUpdateView.as_view(),
-        name="update"),
-    url(_(r'^(?P<slug>[\w-]+)/~delete$'), views.MonitoringDeleteView.as_view(),
-        name="delete"),
-    url(_(r'^(?P<slug>[\w-]+)/~permission/~add$'), views.PermissionWizard.as_view(),
-        name="perm-add"),
-    url(_(r'^(?P<slug>[\w-]+)/~permission-(?P<user_pk>[\d]+)$'),
+        name="details",
+    ),
+    re_path(
+        _(r"^(?P<slug>[\w-]+)/letter$"),
+        views.LetterListMonitoringView.as_view(),
+        name="letters",
+    ),
+    re_path(
+        _(r"^(?P<slug>[\w-]+)/letter/page-(?P<page>[\d]+)$"),
+        views.LetterListMonitoringView.as_view(),
+        name="letters",
+    ),
+    re_path(
+        _(r"^(?P<slug>[\w-]+)/report$"),
+        views.MonitoringReportView.as_view(),
+        name="report",
+    ),
+    re_path(
+        _(r"^(?P<slug>[\w-]+)/report/page-(?P<page>[\d]+)$"),
+        views.MonitoringReportView.as_view(),
+        name="report",
+    ),
+    re_path(
+        _(r"^(?P<slug>[\w-]+)/drafts"),
+        views.DraftListMonitoringView.as_view(),
+        name="drafts",
+    ),
+    re_path(
+        _(r"^(?P<slug>[\w-]+)/drafts/page-(?P<page>[\d]+)$"),
+        views.DraftListMonitoringView.as_view(),
+        name="drafts",
+    ),
+    re_path(
+        _(r"^(?P<slug>[\w-]+)/~update$"),
+        views.MonitoringUpdateView.as_view(),
+        name="update",
+    ),
+    re_path(
+        _(r"^(?P<slug>[\w-]+)/~delete$"),
+        views.MonitoringDeleteView.as_view(),
+        name="delete",
+    ),
+    re_path(
+        _(r"^(?P<slug>[\w-]+)/~permission/~add$"),
+        views.PermissionWizard.as_view(),
+        name="perm-add",
+    ),
+    re_path(
+        _(r"^(?P<slug>[\w-]+)/~permission-(?P<user_pk>[\d]+)$"),
         views.MonitoringUpdatePermissionView.as_view(),
-        name="perm-update"),
-    url(_(r'^(?P<slug>[\w-]+)/~permission$'), views.MonitoringPermissionView.as_view(),
-        name="perm"),
-    url(_(r'^(?P<slug>[\w-]+)/~assign$'), views.MonitoringAssignView.as_view(),
-        name="assign"),
+        name="perm-update",
+    ),
+    re_path(
+        _(r"^(?P<slug>[\w-]+)/~permission$"),
+        views.MonitoringPermissionView.as_view(),
+        name="perm",
+    ),
+    re_path(
+        _(r"^(?P<slug>[\w-]+)/~assign$"),
+        views.MonitoringAssignView.as_view(),
+        name="assign",
+    ),
+    re_path(
+        _(r"^(?P<slug>[\w-]+)/~mass-message$"),
+        views.MassMessageView.as_view(),
+        name="mass-message",
+    ),
 ]
 
-app_name = 'feder.monitorings'
+app_name = "feder.monitorings"

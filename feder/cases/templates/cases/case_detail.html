@@ -26,21 +26,10 @@
 
 {% block content %}
     {% include 'cases/_header.html' %}
-    <div class="row">'
+    <div class="row">
         <div class="col-sm-5">
             <div class="gray">
                 {% include 'cases/_desc.html' with object=object %}
-            </div>
-            <div class="red">
-                <h2>
-                    <i class="fa fa-edit"></i>
-                    {% trans 'Tasks' %}
-                </h2>
-                {% if object.task_set.all %}
-                    {% include 'tasks/_task_select_list.html' with object_list=object.task_set.all %}
-                {% else %}
-                    <p>{% trans 'No rows.' %}</p>
-                {% endif %}
             </div>
         </div>
 

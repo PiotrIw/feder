@@ -28,33 +28,25 @@ pod adresem ``http://localhost:1080``.
 Jak uruchomić automatyczne testy?
 ---------------------------------
 
-Do prawidłowego uruchomienia automatycznych testów bezwzględnie wymagane jest zainstalowanie wszystkich deweloperskich pakietów. Można to osiągnąc poprzez::
+Do prawidłowego uruchomienia automatycznych testów bezwzględnie wymagane jest zainstalowanie wszystkich deweloperskich pakietów. Można to osiągnąć poprzez::
 
-    $ pip install -r requirements/dev.txt;
+    $ make build
 
 Następnie należy wywołać::
 
-    $ python manage.py test
-
-Warto wyróznić kilka przełączników, które mogą zapewnić sprawniejsze wykorzystanie testów:
-
-- ``-v2`` oznacza, że będą na bieżąco wypisywane nazwy wszystkich testów wraz z ich rezultatem,
-- ``--keepdb`` oznacza, że struktura bazy danych nie zostanie skasowana po wykonaniu testów, co pozwala oszczędzić jej tworzenie każdorazowo, co jednak uniemożliwi wykrycie testów np. w migracjach,
-- ``--parallel 4`` oznacza, że testy będa wykonywane równolegle, a wcześniej zostaną utworzone 4 identyczne struktury bazy danych.
-
-.. warning:: Warto zaznaczyć, że zrównoleglenie testów nie oznacza, że będą one wykonywane szybciej niż proces utworzenia dodatkowych baz danych może się wydłużyć o więcej niż sam proces wykonywania testów.
+    $ make test
 
 
 Jak wygenerować dokumentacje?
 -----------------------------
 
-Do prawidłowego uruchomienia automatycznych testów bezwzględnie wymagane jest zainstalowanie wszystkich deweloperskich pakietów. Można to osiągnąc poprzez::
+Do prawidłowego zbudowania dokumentacji bezwzględnie wymagane jest zainstalowanie wszystkich deweloperskich pakietów. Można to osiągnąć poprzez::
 
-    $ pip install -r requirements/dev.txt;
+    $ make build
 
-Nastepnie należy przejść do katalogu ``docs`` i wywołać::
+Następnie wywołać::
 
-    $ make html
+    $ make docs
 
 Warto zaznaczyć, że aktualna dokumentacja jest budowana automatycznie i publikowana na `Read the Docs`_.
 
@@ -90,9 +82,3 @@ Jak utworzyć konto administratora?
 ----------------------------------
 
 Konto administratora może zostać utworzone poprzez polecenie ``python manage.py creatsuperuser``. Szczegółowe parametry są przedstawione na `odpowiedniej podstronie dokumentacji Django <https://docs.djangoproject.com/en/1.11/ref/django-admin/#createsuperuser>`_.
-
-
-W jaki sposób postępować w przypadku błędu ``No Facebook app configured`` na ekranie logowania?
--------------------------------------------------------------------------------------------------
-
-Przedstawiony błąd związany jest z próbą uzyskania kluczy API dla logowania społecznościowego za pośrednictwem Facebook-a. Należy utworzyć konto adinistratora (zob. :ref:`add_admin_account` ), następnie zalogować się do panelu administracyjnego (``http://localhost:8000/admin/``). Ostatecznie należy dodać aplikacje ``ScoialApp`` (``https://localhost:8000/admin/socialaccount/socialapp/``) typu Facebook z losowymi danymi kluczy.

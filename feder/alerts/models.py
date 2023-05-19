@@ -6,8 +6,7 @@ from django.urls import reverse
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.utils.encoding import python_2_unicode_compatible
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from model_utils.models import TimeStampedModel
 
 from feder.monitorings.models import Monitoring
@@ -23,21 +22,29 @@ class AlertQuerySet(models.QuerySet):
         obj_type = ContentType.objects.get_for_model(obj)
         return self.filter(content_type__pk=obj_type.id, object_id=obj.id)
 
+    def for_user(self, user):
+        return self
 
-@python_2_unicode_compatible
+
 class Alert(TimeStampedModel):
-    monitoring = models.ForeignKey(Monitoring, on_delete=models.CASCADE, verbose_name=_("Monitoring"))
+    monitoring = models.ForeignKey(
+        Monitoring, on_delete=models.CASCADE, verbose_name=_("Monitoring")
+    )
     reason = models.TextField(verbose_name=_("Reason"))
-    author = models.ForeignKey(settings.AUTH_USER_MODEL,
-                               on_delete=models.CASCADE,
-                               verbose_name=_("Author"),
-                               related_name="alert_author",
-                               null=True)
-    solver = models.ForeignKey(settings.AUTH_USER_MODEL,
-                               on_delete=models.CASCADE,
-                               verbose_name=_("Solver"),
-                               related_name="alert_solver",
-                               null=True)
+    author = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        verbose_name=_("Author"),
+        related_name="alert_author",
+        null=True,
+    )
+    solver = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        verbose_name=_("Solver"),
+        related_name="alert_solver",
+        null=True,
+    )
     status = models.BooleanField(default=False, verbose_name=_("Status"))
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, null=True)
     object_id = models.PositiveIntegerField(null=True)
@@ -47,7 +54,7 @@ class Alert(TimeStampedModel):
     class Meta:
         verbose_name = _("Alert")
         verbose_name_plural = _("Alerts")
-        ordering = ['created']
+        ordering = ["created"]
 
     def get_status_display(self):
         return _("Closed") if self.status else _("Open")
@@ -64,14 +71,18 @@ class Alert(TimeStampedModel):
         return str(self.created)
 
     def get_absolute_url(self):
-        return reverse('alerts:details', kwargs={'pk': self.pk})
+        return reverse("alerts:details", kwargs={"pk": self.pk})
 
 
 @receiver(post_save, sender=Alert, dispatch_uid="notify_users")
 def notify_users(sender, instance, created, **kwargs):
     if created and instance.monitoring.notify_alert:
-        recipient_list = [x.email for x in instance.monitoring.get_users_with_perm('view_alert')]
-        send_mail(subject='New alert',
-                  message=u'in monitoring {monitoring}'.format(monitoring=instance.monitoring),
-                  from_email=settings.EMAIL_NOTIFICATION,
-                  recipient_list=recipient_list)
+        recipient_list = [
+            x.email for x in instance.monitoring.get_users_with_perm("view_alert")
+        ]
+        send_mail(
+            subject="New alert",
+            message=f"in monitoring {instance.monitoring}",
+            from_email=settings.EMAIL_NOTIFICATION,
+            recipient_list=recipient_list,
+        )

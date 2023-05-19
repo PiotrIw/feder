@@ -5,16 +5,26 @@ from .models import Institution, Tag
 
 
 class InstitutionFactory(factory.django.DjangoModelFactory):
-    name = factory.Sequence('institution-{0}'.format)
+    name = factory.Sequence("institution-{}".format)
     jst = factory.SubFactory(JSTFactory)
-    email = factory.Sequence('email-{0}@example.com'.format)
+    email = factory.Sequence("email-{}@example.com".format)
 
     class Meta:
         model = Institution
 
+    @factory.post_generation
+    def tags(self, create, extracted, **kwargs):
+        if not create:
+            # Simple build, do nothing.
+            return
+
+        if extracted:
+            for tag in extracted:
+                self.tags.add(tag)
+
 
 class TagFactory(factory.django.DjangoModelFactory):
-    name = factory.Sequence('tag-{0}'.format)
+    name = factory.Sequence("tag-{}".format)
 
     class Meta:
         model = Tag

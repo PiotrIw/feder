@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cases 0.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-28 00:33+0000\n"
-"PO-Revision-Date: 2018-02-28 01:34+0100\n"
+"POT-Creation-Date: 2021-09-23 23:55+0000\n"
+"PO-Revision-Date: 2021-09-24 01:57+0200\n"
 "Last-Translator: Adam Dobrawy <naczelnik@jawnosc.tk>\n"
 "Language-Team: Adam Dobrawy <naczelnik@jawnosc.tk>\n"
 "Language: pl_PL\n"
@@ -19,46 +19,75 @@ msgstr ""
 "|| n%100>=20) ? 1 : 2);\n"
 "X-Generator: Poedit 1.8.7.1\n"
 
-#: filters.py:10
+#: filters.py:20 templates/cases/_case_small.html:8
 msgid "Creation date"
 msgstr "Data utworzenia"
 
-#: filters.py:15 models.py:54
+#: filters.py:28 models.py:127 viewsets.py:34
 msgid "Name"
 msgstr "Nazwa"
 
-#: filters.py:25
-msgid "Record count (descending)"
-msgstr "Liczba listów (malejąco)"
+#: filters.py:51
+msgid "Institution name"
+msgstr "Nazwa instytucji"
 
-#: filters.py:26
-msgid "Record count (ascending)"
-msgstr "Liczba listów (rosnąco)"
+#: filters.py:69 models.py:145 viewsets.py:40
+msgid "Tags"
+msgstr "Tagi"
 
-#: filters.py:27
-msgid "creation date (ascending)"
-msgstr "Data utworzenia (od najstarszych)"
+#: filters.py:72
+msgid "Application letter sending date"
+msgstr "Data wysyłki wniosku"
 
-#: filters.py:28
-msgid "creation date (descending)"
-msgstr "Data utworzenia (od najnowszych)"
+#: filters.py:75
+msgid "Application letter status"
+msgstr "Status wniosku"
 
-#: models.py:55
+#: models.py:129
 msgid "Slug"
 msgstr "Identyfikator redakcyjny"
 
-#: models.py:57 templates/cases/_case_small.html:7
+#: models.py:133 templates/cases/_case_small.html:12
 #: templates/cases/_desc.html:10
 msgid "Monitoring"
 msgstr "Monitoring"
 
-#: models.py:58 templates/cases/_case_small.html:6 templates/cases/_desc.html:4
+#: models.py:136 templates/cases/_case_small.html:11
+#: templates/cases/_desc.html:4
 msgid "Institution"
 msgstr "Instytucja"
 
-#: models.py:63 models.py:64 models.py:87
+#: models.py:149 viewsets.py:43
+msgid "Confirmation received"
+msgstr "Otrzymano potwierdzenie"
+
+#: models.py:152 viewsets.py:44
+msgid "Response received"
+msgstr "Otrzymano odpowiedź"
+
+#: models.py:155
+msgid "Quarantined"
+msgstr "Poddany kwarantannie"
+
+#: models.py:160 models.py:161 models.py:219
 msgid "Case"
 msgstr "Sprawa"
+
+#: serializers.py:34 viewsets.py:42
+msgid "Request status"
+msgstr "Status wniosku"
+
+#: serializers.py:75
+msgid "unknown"
+msgstr "nieznany"
+
+#: serializers.py:78 serializers.py:81
+msgid "yes"
+msgstr "tak"
+
+#: serializers.py:78 serializers.py:81
+msgid "no"
+msgstr "nie"
 
 #: templates/cases/_btn.html:9
 msgid "Edit"
@@ -68,29 +97,37 @@ msgstr "Edytuj"
 msgid "Delete"
 msgstr "Usuń"
 
-#: templates/cases/_btn.html:19
-msgid "Add tasks"
-msgstr "Utwórz zadania"
-
-#: templates/cases/_btn.html:25
+#: templates/cases/_btn.html:20
 msgid "View logs"
 msgstr "Zobacz dzienniki"
 
-#: templates/cases/_btn.html:31
+#: templates/cases/_btn.html:27
 msgid "Add parcel post"
 msgstr "Dodaj przesyłkę pocztową"
 
-#: templates/cases/_btn.html:35
+#: templates/cases/_btn.html:33
 msgid "Incoming parcel"
 msgstr "Przychodzącą przesyłkę"
 
-#: templates/cases/_btn.html:36
+#: templates/cases/_btn.html:38
 msgid "Outgoing parcel"
 msgstr "Wychodzącą przesyłkę"
 
-#: templates/cases/_case_small.html:8
-msgid "Letter count"
-msgstr "Liczba listów"
+#: templates/cases/_case_quarantined.html:3
+#, python-format
+msgid ""
+"\n"
+"    The case \"%(object)s\" is in quarantine. It is not available to users "
+"who do not have permission\n"
+"    'view_quarantined_case' to monitoring. Remove legal restrictions and "
+"edit the case to disclose it.\n"
+"    "
+msgstr ""
+"\n"
+"    Sprawa \"%(object)s\" jest poddana kwarantannie. Jest ona niedostępna "
+"dla użytkowników, którzy nie mają uprawnienia 'view_quarantined_case' w "
+"monitoringu. Usuń ograniczenia prawne i edytuj sprawę, aby ją ujawnić.\n"
+"    "
 
 #: templates/cases/base.html:4 templates/cases/case_detail.html:3
 msgid "Cases"
@@ -100,17 +137,13 @@ msgstr "Sprawy"
 msgid "Confirm delete"
 msgstr "Potwierdź usunięcie"
 
-#: templates/cases/case_detail.html:37
-msgid "Tasks"
-msgstr "Zadania"
-
-#: templates/cases/case_detail.html:42 templates/cases/case_detail.html:57
-msgid "No rows."
-msgstr "Brak wierszy"
-
-#: templates/cases/case_detail.html:50
+#: templates/cases/case_detail.html:39
 msgid "Content"
 msgstr "Treść"
+
+#: templates/cases/case_detail.html:46
+msgid "No rows."
+msgstr "Brak wierszy."
 
 #: templates/cases/case_form.html:33
 msgid "Update case"
@@ -120,19 +153,19 @@ msgstr "Zaktualizuj sprawę"
 msgid "Add case"
 msgstr "Utwórz sprawę"
 
-#: urls.py:10
+#: urls.py:7
 msgid "^$"
 msgstr "^$"
 
-#: urls.py:12
+#: urls.py:9
 msgid "^~create-(?P<monitoring>[\\d]+)$"
 msgstr "^~utworz-(?P<monitoring>[\\d]+)$"
 
-#: urls.py:14
+#: urls.py:13
 msgid "^(?P<slug>[\\w-]+)$"
 msgstr "^(?P<slug>[\\w-]+)$"
 
-#: urls.py:16
+#: urls.py:15
 msgid "^(?P<slug>[\\w-]+)/~update$"
 msgstr "^(?P<slug>[\\w-]+)/~edytuj$"
 
@@ -148,9 +181,64 @@ msgstr "^~autocomplete$"
 msgid "^~autocomplete/~find$"
 msgstr "^~autocomplete-szukaj$"
 
-#: views.py:22
+#: views.py:25
 msgid "Case index"
 msgstr "Wykaz spraw"
+
+#: viewsets.py:33
+msgid "Id"
+msgstr "Id"
+
+#: viewsets.py:35
+msgid "Email of institution"
+msgstr "E-mail instytucji"
+
+#: viewsets.py:36
+msgid "REGON"
+msgstr "REGON"
+
+#: viewsets.py:37
+msgid "Community"
+msgstr "Gmina"
+
+#: viewsets.py:38
+msgid "County"
+msgstr "Powiat"
+
+#: viewsets.py:39
+msgid "Voivodeship"
+msgstr "Województwo"
+
+#: viewsets.py:41
+msgid "Request date"
+msgstr "Data wniosku"
+
+#: viewsets.py:56
+msgid "case_report"
+msgstr "raport_spraw"
+
+#, fuzzy
+#~| msgid "Confirmation received"
+#~ msgid "Confirmation confirmed"
+#~ msgstr "Otrzymano potwierdzenie"
+
+#~ msgid "Receiving confirmed"
+#~ msgstr "Potwierdzono dostarczenie"
+
+#~ msgid "Record count (descending)"
+#~ msgstr "Liczba listów (malejąco)"
+
+#~ msgid "Record count (ascending)"
+#~ msgstr "Liczba listów (rosnąco)"
+
+#~ msgid "creation date (descending)"
+#~ msgstr "Data utworzenia (od najnowszych)"
+
+#~ msgid "Add tasks"
+#~ msgstr "Utwórz zadania"
+
+#~ msgid "Letter count"
+#~ msgstr "Liczba listów"
 
 #~ msgid "Letters"
 #~ msgstr "Listy"

@@ -1,0 +1,32 @@
+{
+  "extends": [
+    "config:base"
+  ],
+  "enabledManagers": ["dockerfile", "pip_requirements", "pip_setup", "github-actions", "npm"],
+  "packageRules": [
+    {
+      "managers": ["pip_requirements"],
+      "paths": ["requirements/dev.txt","requirements/test.txt"],
+      "groupName": "non-production-dependencies"
+    },
+    {
+      "managers": ["pip_requirements"],
+      "packageNames": ["gevent", "coveralls", "django-allauth", "django-floppyforms", "django-guardian", "django-crispy-forms", "elasticsearch-dsl", "Sphinx", "lxml", "mysqlclient", "Pillow", "pytz"],
+      "automerge": true
+    }
+  ],
+  "pip_requirements": {
+    "fileMatch": ["requirements/.+?.txt"]
+  },
+  "dockerfile": {
+    "fileMatch": ["^.contrib/docker/Dockerfile\\..*$"]
+  },
+  "constraints": {
+    "node": "< 15.0.0"
+  },
+  "force": {
+    "constraints": {
+      "node": "< 15.0.0"
+    }
+  }
+}

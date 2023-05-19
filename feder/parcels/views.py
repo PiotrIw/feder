@@ -1,40 +1,50 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from atom.views import DeleteMessageMixin
-from braces.views import SelectRelatedMixin, UserFormKwargsMixin, FormValidMessageMixin, SetHeadlineMixin
+from braces.views import (
+    SelectRelatedMixin,
+    UserFormKwargsMixin,
+    FormValidMessageMixin,
+    SetHeadlineMixin,
+)
 from cached_property import cached_property
 from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
-from guardian.mixins import LoginRequiredMixin
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from feder.cases.models import Case
-from feder.letters.views import MixinGzipXSendFile
 from feder.main.mixins import RaisePermissionRequiredMixin, BaseXSendFileView
 from feder.parcels.forms import IncomingParcelPostForm, OutgoingParcelPostForm
 from feder.parcels.models import IncomingParcelPost, OutgoingParcelPost
 
 
 class ParcelPostDetailView(SelectRelatedMixin, DetailView):
-    select_related = ['record__case__monitoring', ]
+    select_related = ["record__case__monitoring"]
+
+    def get_queryset(self):
+        return super().get_queryset().for_user(self.request.user)
 
 
-class CaseMixin(object):
+class CaseMixin:
     case = None
 
     def get_form_kwargs(self):
-        kwargs = super(CaseMixin, self).get_form_kwargs()
-        kwargs['case'] = self.case
+        kwargs = super().get_form_kwargs()
+        kwargs["case"] = self.case
         return kwargs
 
 
-class ParcelPostCreateView(RaisePermissionRequiredMixin, SetHeadlineMixin, CaseMixin, UserFormKwargsMixin, CreateView):
-    permission_required = 'monitorings.add_parcelpost'
+class ParcelPostCreateView(
+    RaisePermissionRequiredMixin,
+    SetHeadlineMixin,
+    CaseMixin,
+    UserFormKwargsMixin,
+    CreateView,
+):
+    permission_required = "monitorings.add_parcelpost"
 
     @cached_property
     def case(self):
-        return get_object_or_404(Case.objects.select_related('monitoring'), pk=self.kwargs['case_pk'])
+        qs = Case.objects.select_related("monitoring").for_user(self.request.user)
+        return get_object_or_404(qs, pk=self.kwargs["case_pk"])
 
     def get_object(self, *args, **kwargs):
         return self.case
@@ -43,22 +53,31 @@ class ParcelPostCreateView(RaisePermissionRequiredMixin, SetHeadlineMixin, CaseM
         return self.case.monitoring
 
     def get_context_data(self, **kwargs):
-        context = super(ParcelPostCreateView, self).get_context_data(**kwargs)
-        context['case'] = self.case
+        context = super().get_context_data(**kwargs)
+        context["case"] = self.case
         return context
 
     def get_form_valid_message(self):
         return _("{0} created!").format(self.object)
 
 
-class ParcelPostUpdateView(SetHeadlineMixin, RaisePermissionRequiredMixin, CaseMixin, UserFormKwargsMixin,
-                           FormValidMessageMixin, UpdateView):
-    permission_required = 'monitorings.change_parcelpost'
+class ParcelPostUpdateView(
+    SetHeadlineMixin,
+    RaisePermissionRequiredMixin,
+    CaseMixin,
+    UserFormKwargsMixin,
+    FormValidMessageMixin,
+    UpdateView,
+):
+    permission_required = "monitorings.change_parcelpost"
 
     def get_object(self, *args, **kwargs):
-        if not hasattr(self, '_object'):
-            self._object = super(ParcelPostUpdateView, self).get_object(*args, **kwargs)
+        if not hasattr(self, "_object"):
+            self._object = super().get_object(*args, **kwargs)
         return self._object
+
+    def get_queryset(self):
+        return super().get_queryset().for_user(self.request.user)
 
     @property
     def case(self):
@@ -71,13 +90,18 @@ class ParcelPostUpdateView(SetHeadlineMixin, RaisePermissionRequiredMixin, CaseM
         return _("{0} updated!").format(self.object)
 
 
-class ParcelPostDeleteView(RaisePermissionRequiredMixin, DeleteMessageMixin, DeleteView):
-    permission_required = 'monitorings.delete_parcelpost'
+class ParcelPostDeleteView(
+    RaisePermissionRequiredMixin, DeleteMessageMixin, DeleteView
+):
+    permission_required = "monitorings.delete_parcelpost"
 
     def get_object(self, *args, **kwargs):
-        if not hasattr(self, '_object'):
-            self._object = super(ParcelPostDeleteView, self).get_object(*args, **kwargs)
+        if not hasattr(self, "_object"):
+            self._object = super().get_object(*args, **kwargs)
         return self._object
+
+    def get_queryset(self):
+        return super().get_queryset().for_user(self.request.user)
 
     def get_permission_object(self):
         return self.get_object().case.monitoring
@@ -131,11 +155,11 @@ class OutgoingParcelPostDeleteView(ParcelPostDeleteView):
 
 
 class AttachmentParcelPostXSendFileView(BaseXSendFileView):
-    file_field = 'content'
+    file_field = "content"
     send_as_attachment = True
 
     def get_queryset(self):
-        return super(AttachmentParcelPostXSendFileView, self).get_queryset().for_user(self.request.user)
+        return super().get_queryset().for_user(self.request.user)
 
 
 class OutgoingAttachmentParcelPostXSendFileView(AttachmentParcelPostXSendFileView):
