@@ -446,6 +446,11 @@ class LetterListMonitoringView(SelectRelatedMixin, ExtraListMixin, DetailView):
     select_related = ["user"]
     paginate_by = 25
 
+    def get_queryset(self):
+        qs = super().get_queryset()
+        qs = qs.for_user(self.request.user)
+        return qs
+
     def get_context_data(self, **kwargs):
         kwargs["url_extra_kwargs"] = {"slug": self.object.slug}
         context = super().get_context_data(**kwargs)
@@ -525,6 +530,11 @@ class DraftListMonitoringView(SelectRelatedMixin, ExtraListMixin, DetailView):
     select_related = ["user"]
     paginate_by = 25
 
+    def get_queryset(self):
+        qs = super().get_queryset()
+        qs = qs.for_user(self.request.user)
+        return qs
+
     def get_context_data(self, **kwargs):
         kwargs["url_extra_kwargs"] = {"slug": self.object.slug}
         context = super().get_context_data(**kwargs)
@@ -554,6 +564,11 @@ class MonitoringTemplateView(DetailView):
     template_name_suffix = "_template"
     select_related = ["user"]
 
+    def get_queryset(self):
+        qs = super().get_queryset()
+        qs = qs.for_user(self.request.user)
+        return qs
+
     def get_context_data(self, **kwargs):
         kwargs["url_extra_kwargs"] = {"slug": self.object.slug}
         context = super().get_context_data(**kwargs)
@@ -576,6 +591,11 @@ class MonitoringResultsView(DetailView):
     template_name_suffix = "_results"
     select_related = ["user"]
 
+    def get_queryset(self):
+        qs = super().get_queryset()
+        qs = qs.for_user(self.request.user)
+        return qs
+
     def get_context_data(self, **kwargs):
         kwargs["url_extra_kwargs"] = {"slug": self.object.slug}
         context = super().get_context_data(**kwargs)
@@ -593,6 +613,11 @@ class MonitoringChatView(DetailView):
     model = Monitoring
     template_name_suffix = "_chat"
     select_related = ["user"]
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        qs = qs.for_user(self.request.user)
+        return qs
 
     def get_context_data(self, **kwargs):
         kwargs["url_extra_kwargs"] = {"slug": self.object.slug}
