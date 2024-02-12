@@ -5,14 +5,16 @@ from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from jsonfield import JSONField
-from langchain.callbacks import get_openai_callback
-from langchain.chat_models import AzureChatOpenAI
 from langchain.schema.output_parser import StrOutputParser
 from langchain.text_splitter import TokenTextSplitter
+from langchain_community.callbacks import get_openai_callback
+from langchain_openai import AzureChatOpenAI
 from model_utils import Choices
 from model_utils.models import TimeStampedModel
 
-from .llm_tools import num_tokens_from_string
+from feder.letters.utils import html_to_text
+
+from .llm_tools import get_serializable_dict, num_tokens_from_string
 from .prompts import (
     letter_categorization,
     letter_evaluation_intro,
@@ -73,11 +75,27 @@ class LlmLetterRequest(LlmRequest):
 
     @classmethod
     def categorize_letter(cls, letter):
+        # llm_engine = settings.OPENAI_API_ENGINE_35
+        llm_engine = settings.OPENAI_API_ENGINE_4
         institution_name = ""
         monitoring_template = ""
+        max_engine_tokens = min(settings.OPENAI_API_ENGINE_4_MAX_TOKENS, 6000)
         if letter.case and letter.case.monitoring:
             institution_name = letter.case.institution.name
-            monitoring_template = letter.case.monitoring.template
+            monitoring_template = html_to_text(letter.case.monitoring.template)
+            monitoring_template_tokens = num_tokens_from_string(
+                monitoring_template, llm_engine
+            )
+            if monitoring_template_tokens > (max_engine_tokens // 3 * 2):
+                text_splitter = TokenTextSplitter(
+                    chunk_size=(max_engine_tokens // 3 * 2), chunk_overlap=0
+                )
+                texts = text_splitter.split_text(monitoring_template)
+                monitoring_template = texts[0] + "... (tekst skrócony)"
+                logger.warning(
+                    "Monitoring template text too long for LLM engine: "
+                    + f"{monitoring_template_tokens} tokens. Using only first 66%."
+                )
         intro = letter_evaluation_intro.format(
             institution=institution_name,
             monitoring_question=monitoring_template,
@@ -87,14 +105,15 @@ class LlmLetterRequest(LlmRequest):
             institution=institution_name,
             monitoring_response="",
         )
-        # llm_engine = settings.OPENAI_API_ENGINE_35
-        llm_engine = settings.OPENAI_API_ENGINE_4
+
         q_tokens = num_tokens_from_string(test_prompt, llm_engine)
         # print(f"q_tokens: {q_tokens}")
 
-        max_tokens = min(settings.OPENAI_API_ENGINE_4_MAX_TOKENS, 6000) - q_tokens - 500
+        max_tokens = max_engine_tokens - q_tokens - 500
         # print(f"max_tokens: {max_tokens}")
-        text_splitter = TokenTextSplitter(chunk_size=max_tokens, chunk_overlap=100)
+        text_splitter = TokenTextSplitter(
+            chunk_size=max_tokens, chunk_overlap=min(max_tokens // 2, 100)
+        )
         texts = text_splitter.split_text(letter.get_full_content())
         # print(
         #     "texts[0] tokens:",
@@ -118,7 +137,7 @@ class LlmLetterRequest(LlmRequest):
             openai_api_type=settings.OPENAI_API_TYPE,
             openai_api_key=settings.OPENAI_API_KEY,
             openai_api_version=settings.OPENAI_API_VERSION,
-            openai_api_base=settings.OPENAI_API_BASE,
+            azure_endpoint=settings.AZURE_ENDPOINT,
             deployment_name=llm_engine,
             temperature=settings.OPENAI_API_TEMPERATURE,
         )
@@ -134,7 +153,7 @@ class LlmLetterRequest(LlmRequest):
             )
         end_time = time.time()
         execution_time = end_time - start_time
-        llm_info_dict = vars(cb)
+        llm_info_dict = get_serializable_dict(cb)
         llm_info_dict["completion_time"] = execution_time
         letter_llm_request.response = resp
         letter_llm_request.token_usage = llm_info_dict
@@ -197,7 +216,7 @@ class LlmLetterRequest(LlmRequest):
             openai_api_type=settings.OPENAI_API_TYPE,
             openai_api_key=settings.OPENAI_API_KEY,
             openai_api_version=settings.OPENAI_API_VERSION,
-            openai_api_base=settings.OPENAI_API_BASE,
+            azure_endpoint=settings.AZURE_ENDPOINT,
             deployment_name=llm_engine,
             temperature=settings.OPENAI_API_TEMPERATURE,
         )
@@ -274,7 +293,7 @@ class LlmMonitoringRequest(LlmRequest):
             openai_api_type=settings.OPENAI_API_TYPE,
             openai_api_key=settings.OPENAI_API_KEY,
             openai_api_version=settings.OPENAI_API_VERSION,
-            openai_api_base=settings.OPENAI_API_BASE,
+            azure_endpoint=settings.AZURE_ENDPOINT,
             deployment_name=llm_engine,
             temperature=settings.OPENAI_API_TEMPERATURE,
         )

@@ -7,6 +7,7 @@ https://docs.djangoproject.com/en/dev/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/dev/ref/settings/
 """
+
 import os
 import sys
 
@@ -513,7 +514,7 @@ BLEACH_ALLOWED_ATTRIBUTES = ALLOWED_ATTRIBUTES = {
 OPENAI_API_KEY = env.str("OPENAI_API_KEY", "")
 OPENAI_API_VERSION = env.str("OPENAI_API_VERSION", "")
 OPENAI_API_TYPE = env.str("OPENAI_API_TYPE", "")
-OPENAI_API_BASE = env.str("OPENAI_API_BASE", "")
+AZURE_ENDPOINT = env.str("AZURE_ENDPOINT", "")
 OPENAI_API_ENGINE_35 = env.str("OPENAI_API_ENGINE_35", "")
 OPENAI_API_ENGINE_35_MAX_TOKENS = env.int("OPENAI_API_ENGINE_35_MAX_TOKENS", 4096)
 OPENAI_API_ENGINE_4 = env.str("OPENAI_API_ENGINE_4", "")
