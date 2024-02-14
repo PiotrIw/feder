@@ -137,9 +137,9 @@
         }
         autosize(chatInput);
 
-        messageForm.addEventListener('submit', (event) => {
+        messageForm.addEventListener('submit', async (event) => {
           event.preventDefault();
-      
+
           const message = messageInput.value.trim().replace(/\n/g, '<br>');
           if (message.length === 0) {
             return;
@@ -156,49 +156,56 @@
               </div>
             </div>`;
           messagesList.appendChild(messageItem);
-      
+
           messageInput.value = '';
           resp_wait_seconds = 1;
           loadingText.textContent = `{% trans "Response is being prepared" %}...`;
+
           // Call the updateLoadingText function every second
           const intervalId = setInterval(updateLoadingText, 1000);
           spinnerContainer.style.display = 'flex';
           chatInput.disabled = true;
           submitChat.disabled = true;
           chatInput.style.height = '';
-          
-          fetch('{{chat_post_url}}', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams({
-              'csrfmiddlewaretoken': document.querySelector('[name=csrfmiddlewaretoken]').value,
-              'message': message
-            })
-          })
-            .then(response => response.json())
-            .then(data => {
-              const response = data.response;
-              const messageItem = document.createElement('li');
-              messageItem.classList.add('message', 'received');
-              messageItem.innerHTML = `
+          // console.log("Before posting question", new Date());
+
+          try {
+            const response = await fetch('{{chat_post_url}}', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+              body: new URLSearchParams({
+                'csrfmiddlewaretoken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+                'message': message
+              })
+            });
+
+            // console.log("Response received, processing start ", new Date());
+
+            const data = await response.json();
+            const responseText = data.response;
+            const receivedMessageItem = document.createElement('li');
+            receivedMessageItem.classList.add('message', 'received');
+            receivedMessageItem.innerHTML = `
               <div class="message-text">
                 <div class="message-sender">
-                  <b>{% trans "LLM response based on responses content:"  %}</b>
+                  <b>{% trans "LLM response based on responses content (prepared in ${resp_wait_seconds}s):"  %}</b>
                 </div>
                 <div class="content-frame">
-                  ${response}
+                  ${responseText}
                 </div>
               </div>`;
-              messagesList.appendChild(messageItem);
-              
-              spinnerContainer.style.display = 'none';
-              chatInput.disabled = false;
-              submitChat.disabled = false;
-              // To stop running the updateLoadingText function
-              clearInterval(intervalId);
-
-            });
+            // console.log("After receivedMessageItem value set ", new Date());
+            messagesList.appendChild(receivedMessageItem);
+            // console.log("After messagesList child appended", new Date());
+            spinnerContainer.style.display = 'none';
+            chatInput.disabled = false;
+            submitChat.disabled = false;
+            clearInterval(intervalId); // To stop running the updateLoadingText function
+            // console.log("Event listener completed", new Date());
+          } catch (error) {
+            console.error('Error:', error);
+          }
         });
-      
+     
       </script>
 {% endblock %}
