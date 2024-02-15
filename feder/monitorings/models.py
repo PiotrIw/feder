@@ -1,3 +1,6 @@
+import json
+import logging
+import time
 from itertools import groupby
 
 import reversion
@@ -6,12 +9,14 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.urls import reverse
+from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from guardian.models import GroupObjectPermissionBase, UserObjectPermissionBase
 from jsonfield import JSONField
 from model_utils.models import TimeStampedModel
 
 from feder.domains.models import Domain
+from feder.llm_evaluation.llm_tools import num_tokens_from_string
 from feder.main.utils import (
     FormattedDatetimeMixin,
     RenderBooleanFieldMixin,
@@ -20,6 +25,8 @@ from feder.main.utils import (
 from feder.teryt.models import JST
 
 from .validators import validate_nested_lists, validate_template_syntax
+
+logger = logging.getLogger(__name__)
 
 _("Monitorings index")
 _("Can add Monitoring")
@@ -257,6 +264,102 @@ class Monitoring(RenderBooleanFieldMixin, TimeStampedModel):
                 self.normalized_response_template
             )
         return ""
+
+    def get_responses_chat_context(self):
+        logger.info(
+            f"Monitoring: {self.name}, id={self.id}, AI chat context generation start."
+        )
+        start_time = time.time()
+        if not self.use_llm:
+            return {}
+        chat_context = {}
+        chat_context["monitoring"] = self.name
+        chat_context["monitoring_id"] = self.id
+        chat_context["updated"] = timezone.now()
+        chat_context["responses"] = {}
+        cases = self.case_set.with_letter().all()
+        logger.info(f"Monitoring: {self.name}, id: {self.id}, has {len(cases)} cases.")
+        for case in cases:
+            case_responses = {}
+            response_records = (
+                case.record_set.all()
+                .filter(
+                    letters_letters__ai_evaluation__contains="A) email jest odpowiedzią"
+                )
+                .order_by("created")
+            )
+            logger.info(
+                f"Monitoring: {self.name}, id: {self.id}, "
+                + f"case: {case.id}, has {len(response_records)} responses."
+            )
+            if len(response_records) >= 1:
+                try:
+                    # TODO - add method to get best not last response
+                    last_response = response_records.last()
+                    case_responses = json.loads(
+                        last_response.letters_letter_related.normalized_response
+                    )
+                except json.JSONDecodeError:
+                    logger.info(
+                        f"Monitoring: {self.name}, id: {self.id}, "
+                        + f"case: {case.id}, has invalid JSON response."
+                    )
+            else:
+                logger.info(
+                    f"Monitoring: {self.name}, id: {self.id}, "
+                    + f"case: {case.id}, has {len(response_records)} responses."
+                )
+            chat_context["responses"][case.institution.name] = case_responses
+        logger.info(
+            f"Monitoring: {self.name}, id: {self.id}, "
+            + "normalized AI chat context genrated in %s seconds."
+            % (time.time() - start_time)
+        )
+        # return json.dumps(chat_context, indent=4)
+        return chat_context
+
+    def get_responses_chat_context_texts(self):  # TODO - complete and check this method
+        chat_context_texts = []
+        sorted_response_items = sorted(
+            self.responses_chat_context["responses"].items(), key=lambda x: x[0]
+        )
+        llm_engine = settings.OPENAI_API_ENGINE_35
+        while len(sorted_response_items) > 0:
+            text_tokens = 0
+            text_dict = {}
+            chunk = {sorted_response_items[0][0]: sorted_response_items[0][1]}
+            chunk_tokens = num_tokens_from_string(
+                json.dumps(chunk, ensure_ascii=False), llm_engine
+            )
+            while (text_tokens + chunk_tokens) < 14000 and len(
+                sorted_response_items
+            ) > 0:
+                text_dict.update(chunk)
+                text_tokens += chunk_tokens
+                sorted_response_items.pop(0)
+                if len(sorted_response_items) > 0:
+                    chunk = {sorted_response_items[0][0]: sorted_response_items[0][1]}
+                    chunk_tokens = num_tokens_from_string(
+                        json.dumps(chunk, ensure_ascii=False), llm_engine
+                    )
+            chat_context_texts.append(json.dumps(text_dict, ensure_ascii=False))
+
+            logger.info(
+                (
+                    f"Monitoring: {self.name}, id: {self.id}, "
+                    + f"chat context text chunk added, tokens: {text_tokens}. "
+                    + "Context texts number: %s." % (len(chat_context_texts)),
+                    # num_tokens_from_string(chat_context_texts[-1], llm_engine),
+                )
+            )
+        return chat_context_texts
+
+    def update_responses_chat_context(self):
+        self.responses_chat_context = self.get_responses_chat_context()
+        self.responses_chat_context["chat_context_texts"] = (
+            self.get_responses_chat_context_texts()
+        )
+        self.save()
 
 
 class MonitoringUserObjectPermission(UserObjectPermissionBase):
