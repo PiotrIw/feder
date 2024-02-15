@@ -271,6 +271,9 @@ class Monitoring(RenderBooleanFieldMixin, TimeStampedModel):
         )
         start_time = time.time()
         if not self.use_llm:
+            logger.info(
+                f"Monitoring: {self.name}, id={self.id} is not allowed to use LLM."
+            )
             return {}
         chat_context = {}
         chat_context["monitoring"] = self.name
@@ -319,6 +322,16 @@ class Monitoring(RenderBooleanFieldMixin, TimeStampedModel):
         return chat_context
 
     def get_responses_chat_context_texts(self):  # TODO - complete and check this method
+        if (
+            not self.use_llm
+            or not isinstance(self.responses_chat_context, dict)
+            or not self.responses_chat_context.get("responses")
+        ):
+            logger.info(
+                "Monitoring: %s, id: %s, no responses chat context available."
+                % (self.name, self.id)
+            )
+            return []
         chat_context_texts = []
         sorted_response_items = sorted(
             self.responses_chat_context["responses"].items(), key=lambda x: x[0]
