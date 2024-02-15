@@ -1,8 +1,10 @@
 import json
 import logging
 import time
+from datetime import datetime
 from itertools import groupby
 
+import pytz
 import reversion
 from autoslug.fields import AutoSlugField
 from django.conf import settings
@@ -278,7 +280,7 @@ class Monitoring(RenderBooleanFieldMixin, TimeStampedModel):
         chat_context = {}
         chat_context["monitoring"] = self.name
         chat_context["monitoring_id"] = self.id
-        chat_context["updated"] = timezone.now()
+        chat_context["updated"] = timezone.now().replace(tzinfo=timezone.utc)
         chat_context["responses"] = {}
         cases = self.case_set.with_letter().all()
         logger.info(f"Monitoring: {self.name}, id: {self.id}, has {len(cases)} cases.")
@@ -373,6 +375,33 @@ class Monitoring(RenderBooleanFieldMixin, TimeStampedModel):
             self.get_responses_chat_context_texts()
         )
         self.save()
+
+    @property
+    def chat_context_update_required(self):
+        from feder.letters.models import Letter
+
+        if not self.use_llm:
+            return False
+        if not isinstance(
+            self.responses_chat_context, dict
+        ) or not self.responses_chat_context.get("updated"):
+            return True
+
+        last_response_received = (
+            Letter.objects.filter(record__case__monitoring=self)
+            .filter(ai_evaluation__contains="A) email jest odpowiedzią")
+            .order_by("-created")
+            .first()
+        )
+        if (
+            last_response_received
+            and last_response_received.created
+            > datetime.strptime(
+                self.responses_chat_context["updated"], "%Y-%m-%dT%H:%M:%S.%fZ"
+            ).replace(tzinfo=pytz.UTC)
+        ):
+            return True
+        return False
 
 
 class MonitoringUserObjectPermission(UserObjectPermissionBase):
