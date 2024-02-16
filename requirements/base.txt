@@ -94,3 +94,4 @@ langchain==0.1.6
 openai==1.12.0
 langchain-openai==0.0.5
 tiktoken==0.5.2
+chromadb==0.4.22

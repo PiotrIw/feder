@@ -18,7 +18,10 @@ from jsonfield import JSONField
 from model_utils.models import TimeStampedModel
 
 from feder.domains.models import Domain
-from feder.llm_evaluation.llm_tools import num_tokens_from_string
+from feder.llm_evaluation.llm_tools import (
+    create_vectordb_data_for_monitoring_chat,
+    num_tokens_from_string,
+)
 from feder.main.utils import (
     FormattedDatetimeMixin,
     RenderBooleanFieldMixin,
@@ -346,7 +349,9 @@ class Monitoring(RenderBooleanFieldMixin, TimeStampedModel):
             chunk_tokens = num_tokens_from_string(
                 json.dumps(chunk, ensure_ascii=False), llm_engine
             )
-            while (text_tokens + chunk_tokens) < 14000 and len(
+            while (
+                text_tokens + chunk_tokens
+            ) < settings.OPENAI_API_ENGINE_EMBEDDINGS_MAX_TOKENS and len(
                 sorted_response_items
             ) > 0:
                 text_dict.update(chunk)
@@ -374,6 +379,7 @@ class Monitoring(RenderBooleanFieldMixin, TimeStampedModel):
         self.responses_chat_context["chat_context_texts"] = (
             self.get_responses_chat_context_texts()
         )
+        create_vectordb_data_for_monitoring_chat(self)
         self.save()
 
     @property
