@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: main 0.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-09 18:20+0100\n"
+"POT-Creation-Date: 2024-02-22 15:32+0100\n"
 "PO-Revision-Date: 2024-02-09 18:24+0124\n"
 "Last-Translator:   <piotr.iwanski@gmail.com>\n"
 "Language-Team: Adam Dobrawy <naczelnik@jawnosc.tk>\n"
@@ -20,11 +20,11 @@ msgstr ""
 "X-Generator: Poedit 2.4.1\n"
 "X-Translated-Using: django-rosetta 0.9.9\n"
 
-#: config/settings/common.py:180
+#: config/settings/common.py:181
 msgid "Polish"
 msgstr "Polski"
 
-#: config/settings/common.py:180
+#: config/settings/common.py:181
 msgid "English"
 msgstr "Angielski"
 
@@ -174,13 +174,7 @@ msgstr "Panel administracyjny"
 msgid "Logout"
 msgstr "Wyloguj"
 
-#: feder/main/templates/_sidebar.html:83
-#: feder/main/templates/account/signup.html:10
-#: feder/main/templates/account/signup.html:22
-msgid "Sign Up"
-msgstr "Zarejestuj się"
-
-#: feder/main/templates/_sidebar.html:87
+#: feder/main/templates/_sidebar.html:88
 msgid "Log In"
 msgstr "Zaloguj"
 
@@ -420,6 +414,11 @@ msgstr "Ustaw hasło"
 msgid "Signup"
 msgstr "Zarejestruj się"
 
+#: feder/main/templates/account/signup.html:10
+#: feder/main/templates/account/signup.html:22
+msgid "Sign Up"
+msgstr "Zarejestuj się"
+
 #: feder/main/templates/account/signup.html:12
 #, python-format
 msgid ""
@@ -497,15 +496,15 @@ msgstr ""
 "<strong>Uwaga:</strong> możesz ciągle <a href=\"%(email_url)s\">zmienić swój "
 "adres e-mail</a>."
 
-#: feder/main/templates/base.html:99
+#: feder/main/templates/base.html:103
 msgid "This site uses cookies."
 msgstr "Ta strona wykorzystuje cookies."
 
-#: feder/main/templates/base.html:122
+#: feder/main/templates/base.html:126
 msgid "Show quote"
 msgstr "Pokaż cytat"
 
-#: feder/main/templates/base.html:123
+#: feder/main/templates/base.html:127
 msgid "Hide quote"
 msgstr "Ukryj cytat"
 
