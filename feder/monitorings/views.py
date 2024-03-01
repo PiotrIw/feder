@@ -627,8 +627,9 @@ class MonitoringChatView(DetailView):
         )
         context["chats"] = [
             {
-                "message": llm_monitoring_request.request_prompt,
-                "response": llm_monitoring_request.response,
+                "message": mark_safe(llm_monitoring_request.request_prompt),
+                "response": llm_monitoring_request.response_text,
+                "resp_time": llm_monitoring_request.completion_time,
             }
             for llm_monitoring_request in LlmMonitoringRequest.objects.filter(
                 evaluated_monitoring=self.object, chat_request=True
