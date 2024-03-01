@@ -99,3 +99,65 @@ monitoring_response_normalized_template = PromptTemplate.from_template(
     """,
     template_format="f-string",
 )
+
+monitoring_chat_prompt_template = PromptTemplate.from_template(
+    """
+    Skorzystaj z poniższych fragmentów kontekstu, aby odpowiedzieć na pytanie na końcu.
+    Jeśli nie znasz odpowiedzi, po prostu powiedz, że nie wiesz, nie próbuj wymyślać
+    odpowiedzi. Kontekst zawiera zebrane odpowiedzi w formacie JSON na ankietę
+    wysłaną do instytucji. Struktura JSONa z odpowiedziami jest następująca:
+    ```
+    {{
+        {{ Nazwa_instytucji_1: {{
+            "1": {{"Pytanie":"treść pytania 1", "Odpowiedź":"treść odpowiedzi 1"}},
+            "2": {{"Pytanie":"treść pytania 2", "Odpowiedź":"treść odpowiedzi 2"}}
+        }},
+        {{ Nazwa_instytucji_2: {{
+            "1": {{"Pytanie":"treść pytania 1", "Odpowiedź":"treść odpowiedzi 1"}},
+            "2": {{"Pytanie":"treść pytania 2", "Odpowiedź":"treść odpowiedzi 2"}}
+        }}
+    }}
+    ```
+    Jeśli instytucja nie udzieliła odpowiedzi to JSON dla tej instytucji będzie
+    zawierał pusty obiekt: {{}}. Udziel odpowiedzi po polsku.
+
+    Kontekst:
+    ---
+    {text}
+    ---
+    Pytanie: {question}
+    """,
+    template_format="f-string",
+)
+
+monitoring_chat_refine_template = PromptTemplate.from_template(
+    """
+    Uzupełnij odpowiedź na pytanie z poprzedniego zadania, korzystając z poniższych
+    fragmentów kontekstu, aby otrzymać wyczerpującą odpowiedzieć na pytanie na końcu.
+    Jeśli nie znasz odpowiedzi, po prostu powiedz, że nie wiesz, nie próbuj wymyślać
+    odpowiedzi. Kontekst zawiera zebrane odpowiedzi w formacie JSON na ankietę
+    wysłaną do instytucji. Struktura JSONa z odpowiedziami jest następująca:
+    ```
+    {{
+        {{ Nazwa_instytucji_1: {{
+            "1": {{"Pytanie":"treść pytania 1", "Odpowiedź":"treść odpowiedzi 1"}},
+            "2": {{"Pytanie":"treść pytania 2", "Odpowiedź":"treść odpowiedzi 2"}}
+        }},
+        {{ Nazwa_instytucji_2: {{
+            "1": {{"Pytanie":"treść pytania 1", "Odpowiedź":"treść odpowiedzi 1"}},
+            "2": {{"Pytanie":"treść pytania 2", "Odpowiedź":"treść odpowiedzi 2"}}
+        }}
+    }}
+    ```
+    Jeśli instytucja nie udzieliła odpowiedzi to JSON dla tej instytucji będzie
+    zawierał pusty obiekt: {{}}. Udziel odpowiedzi po polsku.
+
+    Odpowiedź z poprzedniego zadania: {existing_answer}
+    Kontekst:
+    ---
+    {text}
+    ---
+    Pytanie: {question}
+    """,
+    template_format="f-string",
+)
