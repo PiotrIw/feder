@@ -1,5 +1,5 @@
 {% extends 'monitorings/base_monitoring_detail.html' %}
-{% load i18n humanize bootstrap_pagination%}
+{% load i18n humanize bootstrap_pagination %}
 {% block content_object %}
     {% include 'monitorings/_tabs.html' with tab='chat' %}
     <style>
@@ -95,10 +95,11 @@
           <li class="message received">
             <div class="message-text">
               <div class="message-sender">
-                <b>{% trans "LLM response based on responses content:"  %}</b>
+                <b>{% trans "LLM response based on monitoring responses content (prepared in "  %}
+                   {{chat.resp_time}}s):</b>
               </div>
               <div class="content-frame">
-                {{chat.response}}
+                {{chat.response|linebreaksbr}}
               </div>
             </div>
           </li>
@@ -191,7 +192,7 @@
                   <b>{% trans "LLM response based on responses content (prepared in ${resp_wait_seconds}s):"  %}</b>
                 </div>
                 <div class="content-frame">
-                  ${responseText}
+                    ${responseText.replace(/\n/g, '<br>')}
                 </div>
               </div>`;
             // console.log("After receivedMessageItem value set ", new Date());
