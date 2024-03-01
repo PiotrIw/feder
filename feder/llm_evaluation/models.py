@@ -1,16 +1,16 @@
 import json
 import logging
-import random
 import time
-from datetime import datetime
 
 from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from jsonfield import JSONField
+from langchain.chains import load_summarize_chain
 from langchain.schema.output_parser import StrOutputParser
 from langchain.text_splitter import TokenTextSplitter
 from langchain_community.callbacks import get_openai_callback
+from langchain_core.documents import Document
 from langchain_openai import AzureChatOpenAI
 from model_utils import Choices
 from model_utils.models import TimeStampedModel
@@ -22,6 +22,8 @@ from .prompts import (
     letter_categorization,
     letter_evaluation_intro,
     letter_response_normalization,
+    monitoring_chat_prompt_template,
+    monitoring_chat_refine_template,
     monitoring_response_normalized_template,
 )
 
@@ -283,7 +285,7 @@ class LlmLetterRequest(LlmRequest):
                 )
             end_time = time.time()
             execution_time = end_time - start_time
-            llm_info_dict = vars(cb)
+            llm_info_dict = get_serializable_dict(cb)
             llm_info_dict["completion_time"] = execution_time
             letter_llm_request.response = resp
             letter_llm_request.token_usage = llm_info_dict
@@ -339,7 +341,7 @@ class LlmMonitoringRequest(LlmRequest):
             resp = chain.invoke({"monitoring_template": monitoring.template})
         end_time = time.time()
         execution_time = end_time - start_time
-        llm_info_dict = vars(cb)
+        llm_info_dict = get_serializable_dict(cb)
         llm_info_dict["completion_time"] = execution_time
         monitoring_llm_request.response = resp
         monitoring_llm_request.token_usage = llm_info_dict
@@ -351,7 +353,10 @@ class LlmMonitoringRequest(LlmRequest):
     @classmethod
     def get_monitoring_chat_response(cls, monitoring=None, chat_question=None):
         logger.info(
-            f"get_monitoring_chat_response called with: monitoring={monitoring}, chat_question={chat_question}"
+            (
+                f"get_monitoring_chat_response called with: monitoring={monitoring},",
+                +f" chat_question={chat_question}",
+            )
         )
         if not monitoring:
             message = _("Monitoring not provided.")
@@ -364,7 +369,10 @@ class LlmMonitoringRequest(LlmRequest):
         if not monitoring.use_llm:
             logger.info(f"Monitoring pk={monitoring.pk} not using LLM - skipping chat.")
             return
-        chat_context_texts = monitoring.responses_chat_context["chat_context_texts"]
+        chat_context_docs = [
+            Document(page_content=text)
+            for text in monitoring.responses_chat_context["chat_context_texts"]
+        ]
         llm_engine = settings.OPENAI_API_ENGINE_35
         monitoring_llm_request = cls.objects.create(
             evaluated_monitoring=monitoring,
@@ -376,39 +384,36 @@ class LlmMonitoringRequest(LlmRequest):
             chat_request=True,
         )
         monitoring_llm_request.save()
-        req_time = datetime.now()
-        req_timestamp = req_time.strftime("%Y-%m-%d %H:%M:%S")
-        sleep_time = random.randint(3, 15)
-        time.sleep(sleep_time)
-        # model = AzureChatOpenAI(
-        #     openai_api_type=settings.OPENAI_API_TYPE,
-        #     openai_api_key=settings.OPENAI_API_KEY,
-        #     openai_api_version=settings.OPENAI_API_VERSION,
-        #     openai_api_base=settings.OPENAI_API_BASE,
-        #     deployment_name=llm_engine,
-        #     temperature=settings.OPENAI_API_TEMPERATURE,
-        # )
-        # chain = monitoring_response_normalized_template | model | StrOutputParser()
-        # start_time = time.time()
-        # with get_openai_callback() as cb:
-        #     resp = chain.invoke({"monitoring_template": monitoring.template})
-        # end_time = time.time()
-        # execution_time = end_time - start_time
-        # llm_info_dict = vars(cb)
-        # llm_info_dict["completion_time"] = execution_time
-        resp_time = datetime.now()
-        resp_timestamp = resp_time.strftime("%Y-%m-%d %H:%M:%S")
-        resp = (
-            "This is a test response at "
-            + resp_timestamp
-            + " to request at "
-            + req_timestamp
+        chain = load_summarize_chain(
+            AzureChatOpenAI(
+                openai_api_type=settings.OPENAI_API_TYPE,
+                openai_api_key=settings.OPENAI_API_KEY,
+                openai_api_version=settings.OPENAI_API_VERSION,
+                azure_endpoint=settings.AZURE_ENDPOINT,
+                deployment_name=llm_engine,
+                temperature=settings.OPENAI_API_TEMPERATURE,
+            ),
+            chain_type="refine",
+            question_prompt=monitoring_chat_prompt_template,
+            refine_prompt=monitoring_chat_refine_template,
+            return_intermediate_steps=True,
+            input_key="input_documents",
+            output_key="output_text",
         )
-        llm_info_dict = {}
-        llm_info_dict["completion_time"] = resp_time - req_time
+        start_time = time.time()
+        with get_openai_callback() as cb:
+            resp = chain(
+                {"input_documents": chat_context_docs, "question": chat_question},
+                return_only_outputs=True,
+            )
+        end_time = time.time()
+        execution_time = end_time - start_time
+        llm_info_dict = get_serializable_dict(cb)
+        llm_info_dict["completion_time"] = execution_time
+        llm_info_dict["completion_time"] = execution_time
         monitoring_llm_request.response = resp
         monitoring_llm_request.token_usage = llm_info_dict
         monitoring_llm_request.status = cls.STATUS.done
         monitoring_llm_request.save()
         logger.info(f"Monitoring pk={monitoring.pk} chat response: {resp}")
-        return resp
+        return resp["output_text"]
