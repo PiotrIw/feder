@@ -326,7 +326,7 @@ class Monitoring(RenderBooleanFieldMixin, TimeStampedModel):
         # return json.dumps(chat_context, indent=4)
         return chat_context
 
-    def get_responses_chat_context_texts(self):  # TODO - complete and check this method
+    def get_responses_chat_context_texts(self):
         if (
             not self.use_llm
             or not isinstance(self.responses_chat_context, dict)
@@ -374,6 +374,8 @@ class Monitoring(RenderBooleanFieldMixin, TimeStampedModel):
             )
         return chat_context_texts
 
+    # TODO: add a backgroud task initiated by a chat view when chat context update
+    #       is required
     def update_responses_chat_context(self):
         self.responses_chat_context = self.get_responses_chat_context()
         self.responses_chat_context["chat_context_texts"] = (
