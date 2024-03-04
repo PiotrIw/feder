@@ -270,6 +270,7 @@ class Monitoring(RenderBooleanFieldMixin, TimeStampedModel):
             )
         return ""
 
+    # TODO: refactor to reuse get_normalized_responses_data
     def get_responses_chat_context(self):
         logger.info(
             f"Monitoring: {self.name}, id={self.id}, AI chat context generation start."
