@@ -629,7 +629,7 @@ class MonitoringChatView(DetailView):
             {
                 "message": mark_safe(llm_monitoring_request.request_prompt),
                 "response": llm_monitoring_request.response_text,
-                "resp_time": llm_monitoring_request.completion_time,
+                "resp_time": llm_monitoring_request.completion_time_str,
             }
             for llm_monitoring_request in LlmMonitoringRequest.objects.filter(
                 evaluated_monitoring=self.object, chat_request=True
