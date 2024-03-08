@@ -4,6 +4,8 @@ import time
 
 from django.conf import settings
 from django.db import models
+from django.db.models.functions import Substr
+from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from jsonfield import JSONField
 from langchain.chains import load_summarize_chain
@@ -16,6 +18,7 @@ from model_utils import Choices
 from model_utils.models import TimeStampedModel
 
 from feder.letters.utils import html_to_text
+from feder.main.utils import FormattedDatetimeMixin
 
 from .llm_tools import get_serializable_dict, num_tokens_from_string
 from .prompts import (
@@ -30,7 +33,7 @@ from .prompts import (
 logger = logging.getLogger(__name__)
 
 
-class LLmRequestQuerySet(models.QuerySet):
+class LLmRequestQuerySet(FormattedDatetimeMixin, models.QuerySet):
     def queued(self):
         return self.filter(status=self.model.STATUS.queued)
 
@@ -60,15 +63,20 @@ class LlmRequest(TimeStampedModel):
     class Meta:
         abstract = True
 
-    def get_cost(self):
+    @property
+    def completion_time(self):
         if self.token_usage:
-            return self.token_usage.get("total_cost", 0)
+            return float(self.token_usage.get("completion_time", 0))
         return 0
 
-    def get_time_used(self):
-        if self.token_usage:
-            return self.token_usage.get("completion_time", 0)
-        return 0
+    @property
+    def completion_time_str(self):
+        value = self.completion_time
+        if value < 1:
+            return f"{value:.2f}s"
+        elif value < 10:
+            return f"{value:.1f}s"
+        return f"{value:.0f}s"
 
     @property
     def tokens_used(self):
@@ -77,19 +85,14 @@ class LlmRequest(TimeStampedModel):
         return 0
 
     @property
-    def completion_time_str(self):
-        if self.token_usage:
-            value = float(self.token_usage.get("completion_time", 0))
-            if value < 1:
-                return f"{value:.2f}"
-            return f"{value:.0f}"
-        return 0
-
-    @property
     def cost(self):
         if self.token_usage:
             return float(self.token_usage.get("total_cost", 0))
         return 0
+
+    @property
+    def cost_str(self):
+        return f"${self.cost:.5f}"
 
     @property
     def response_text(self):
@@ -350,70 +353,153 @@ class LlmMonitoringRequest(LlmRequest):
         monitoring.normalized_response_template = resp
         monitoring.save()
 
+
+class LlmMonthlyCost(TimeStampedModel):
+    year_month = models.CharField(
+        max_length=20, verbose_name=_("Month"), null=True, blank=True
+    )
+    engine_name = models.CharField(
+        max_length=20, verbose_name=_("LLM Engine name"), null=True, blank=True
+    )
+    cost = models.FloatField(verbose_name=_("Cost"))
+
+    class Meta:
+        verbose_name = _("LLM Monthly Cost")
+
     @classmethod
-    def get_monitoring_chat_response(cls, monitoring=None, chat_question=None):
-        logger.info(
-            (
-                f"get_monitoring_chat_response called with: monitoring={monitoring},",
-                +f" chat_question={chat_question}",
+    def get_costs_dict(cls):
+        llm_letters_costs = list(
+            LlmLetterRequest.objects.all()
+            .with_formatted_datetime("created", timezone.get_default_timezone())
+            .annotate(
+                year_month=Substr("created_str", 1, 7),
+            )
+            .values(
+                "created_str",
+                "year_month",
+                "engine_name",
+                "token_usage",
             )
         )
-        if not monitoring:
-            message = _("Monitoring not provided.")
-            logger.warning(message)
-            return message
-        if not chat_question:
-            message = _("Chat question not provided.")
-            logger.warning(message)
-            return message
-        if not monitoring.use_llm:
-            logger.info(f"Monitoring pk={monitoring.pk} not using LLM - skipping chat.")
-            return
-        chat_context_docs = [
-            Document(page_content=text)
-            for text in monitoring.responses_chat_context["chat_context_texts"]
+        llm_monitorings_costs = list(
+            LlmMonitoringRequest.objects.all()
+            .with_formatted_datetime("created", timezone.get_default_timezone())
+            .annotate(
+                year_month=Substr("created_str", 1, 7),
+            )
+            .values(
+                "created_str",
+                "year_month",
+                "engine_name",
+                "token_usage",
+            )
+        )
+        llm_costs = llm_letters_costs + llm_monitorings_costs
+        cost_months = sorted(list({x["year_month"] for x in llm_costs}))
+        llm_engines = sorted(list({x["engine_name"] for x in llm_costs}))
+        llm_monthly_costs = [
+            {
+                "year_month": y_m,
+                "engine_name": e_n,
+                "cost": 0.0,
+            }
+            for y_m in cost_months
+            for e_n in llm_engines
         ]
-        llm_engine = settings.OPENAI_API_ENGINE_35
-        monitoring_llm_request = cls.objects.create(
-            evaluated_monitoring=monitoring,
-            engine_name=llm_engine,
-            request_prompt=chat_question,
-            status=cls.STATUS.created,
-            response="",
-            token_usage={},
-            chat_request=True,
-        )
-        monitoring_llm_request.save()
-        chain = load_summarize_chain(
-            AzureChatOpenAI(
-                openai_api_type=settings.OPENAI_API_TYPE,
-                openai_api_key=settings.OPENAI_API_KEY,
-                openai_api_version=settings.OPENAI_API_VERSION,
-                azure_endpoint=settings.AZURE_ENDPOINT,
-                deployment_name=llm_engine,
-                temperature=settings.OPENAI_API_TEMPERATURE,
-            ),
-            chain_type="refine",
-            question_prompt=monitoring_chat_prompt_template,
-            refine_prompt=monitoring_chat_refine_template,
-            return_intermediate_steps=True,
-            input_key="input_documents",
-            output_key="output_text",
-        )
-        start_time = time.time()
-        with get_openai_callback() as cb:
-            resp = chain(
-                {"input_documents": chat_context_docs, "question": chat_question},
-                return_only_outputs=True,
+        id = 0
+        for llm_cost in llm_monthly_costs:
+            id += 1
+            year_month = llm_cost["year_month"]
+            engine_name = llm_cost["engine_name"]
+            llm_cost["id"] = id
+            llm_cost["cost"] = sum(
+                [
+                    float(x["token_usage"].get("total_cost", 0))
+                    for x in llm_costs
+                    if x["year_month"] == year_month and x["engine_name"] == engine_name
+                ]
             )
-        end_time = time.time()
-        execution_time = end_time - start_time
-        llm_info_dict = get_serializable_dict(cb)
-        llm_info_dict["completion_time"] = execution_time
-        llm_info_dict["completion_time"] = execution_time
-        monitoring_llm_request.response = resp
-        monitoring_llm_request.token_usage = llm_info_dict
-        monitoring_llm_request.status = cls.STATUS.done
-        monitoring_llm_request.save()
-        logger.info(f"Monitoring pk={monitoring.pk} chat response: {resp}")
-        return resp["output_text"]
+        return llm_monthly_costs
+
+
+class LlmMonitoringCost(TimeStampedModel):
+    monitoring_id = models.IntegerField(verbose_name=_("Monitoring ID"))
+    monitoring_name = models.CharField(
+        max_length=100, verbose_name=_("Monitoring Name"), null=True, blank=True
+    )
+    engine_name = models.CharField(
+        max_length=20, verbose_name=_("LLM Engine name"), null=True, blank=True
+    )
+    cost = models.FloatField(verbose_name=_("Cost"))
+
+    class Meta:
+        verbose_name = _("LLM Cost Per Monitoring")
+        verbose_name_plural = _("LLM Costs Per Monitoring")
+
+    @classmethod
+    def get_costs_dict(cls):
+        llm_letters_costs = list(
+            LlmLetterRequest.objects.all()
+            .annotate(
+                monitoring_id=models.F(
+                    "evaluated_letter__record__case__monitoring__id"
+                ),
+                monitoring_name=models.F(
+                    "evaluated_letter__record__case__monitoring__name"
+                ),
+            )
+            .values(
+                "monitoring_id",
+                "monitoring_name",
+                "engine_name",
+                "token_usage",
+            )
+        )
+        llm_monitorings_costs = list(
+            LlmMonitoringRequest.objects.all()
+            .annotate(
+                monitoring_id=models.F("evaluated_monitoring__id"),
+                monitoring_name=models.F("evaluated_monitoring__name"),
+            )
+            .values(
+                "monitoring_id",
+                "monitoring_name",
+                "engine_name",
+                "token_usage",
+            )
+        )
+        llm_costs = llm_letters_costs + llm_monitorings_costs
+        monitorings = sorted(list({x["monitoring_id"] or 0 for x in llm_costs}))
+        llm_engines = sorted(list({x["engine_name"] for x in llm_costs}))
+        llm_monitorings_costs = [
+            {
+                "monitoring_id": m_id,
+                "engine_name": e_n,
+                "cost": 0.0,
+            }
+            for m_id in monitorings
+            for e_n in llm_engines
+        ]
+        id = 0
+        for llm_cost in llm_monitorings_costs:
+            id += 1
+            monitoring_id = llm_cost["monitoring_id"]
+            engine_name = llm_cost["engine_name"]
+            llm_cost["id"] = id
+            llm_cost["monitoring_name"] = next(
+                (
+                    x["monitoring_name"]
+                    for x in llm_costs
+                    if x["monitoring_id"] == monitoring_id
+                ),
+                "",
+            )
+            llm_cost["cost"] = sum(
+                [
+                    float(x["token_usage"].get("total_cost", 0))
+                    for x in llm_costs
+                    if x["monitoring_id"] == monitoring_id
+                    and x["engine_name"] == engine_name
+                ]
+            )
+        return llm_monitorings_costs

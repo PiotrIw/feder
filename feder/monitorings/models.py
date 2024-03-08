@@ -1,7 +1,4 @@
 import json
-import logging
-import time
-from datetime import datetime
 from itertools import groupby
 
 import pytz
@@ -270,147 +267,77 @@ class Monitoring(RenderBooleanFieldMixin, TimeStampedModel):
             )
         return ""
 
-    # TODO: refactor to reuse get_normalized_responses_data
-    def get_responses_chat_context(self):
-        logger.info(
-            f"Monitoring: {self.name}, id={self.id}, AI chat context generation start."
-        )
-        start_time = time.time()
+    def get_normalized_responses_data(self, user):
         if not self.use_llm:
-            logger.info(
-                f"Monitoring: {self.name}, id={self.id} is not allowed to use LLM."
-            )
-            return {}
-        chat_context = {}
-        chat_context["monitoring"] = self.name
-        chat_context["monitoring_id"] = self.id
-        chat_context["updated"] = timezone.now().replace(tzinfo=timezone.utc)
-        chat_context["responses"] = {}
-        cases = self.case_set.with_letter().all()
-        logger.info(f"Monitoring: {self.name}, id: {self.id}, has {len(cases)} cases.")
-        for case in cases:
-            case_responses = {}
-            response_records = (
-                case.record_set.all()
-                .filter(
-                    letters_letters__ai_evaluation__contains="A) email jest odpowiedzią"
-                )
-                .order_by("created")
-            )
-            logger.info(
-                f"Monitoring: {self.name}, id: {self.id}, "
-                + f"case: {case.id}, has {len(response_records)} responses."
-            )
-            if len(response_records) >= 1:
-                try:
-                    # TODO - add method to get best not last response
-                    last_response = response_records.last()
-                    case_responses = json.loads(
-                        last_response.letters_letter_related.normalized_response
-                    )
-                except json.JSONDecodeError:
-                    logger.info(
-                        f"Monitoring: {self.name}, id: {self.id}, "
-                        + f"case: {case.id}, has invalid JSON response."
-                    )
-            else:
-                logger.info(
-                    f"Monitoring: {self.name}, id: {self.id}, "
-                    + f"case: {case.id}, has {len(response_records)} responses."
-                )
-            chat_context["responses"][case.institution.name] = case_responses
-        logger.info(
-            f"Monitoring: {self.name}, id: {self.id}, "
-            + "normalized AI chat context genrated in %s seconds."
-            % (time.time() - start_time)
-        )
-        # return json.dumps(chat_context, indent=4)
-        return chat_context
-
-    def get_responses_chat_context_texts(self):
-        if (
-            not self.use_llm
-            or not isinstance(self.responses_chat_context, dict)
-            or not self.responses_chat_context.get("responses")
-        ):
-            logger.info(
-                "Monitoring: %s, id: %s, no responses chat context available."
-                % (self.name, self.id)
-            )
             return []
-        chat_context_texts = []
-        sorted_response_items = sorted(
-            self.responses_chat_context["responses"].items(), key=lambda x: x[0]
-        )
-        llm_engine = settings.OPENAI_API_ENGINE_35
-        while len(sorted_response_items) > 0:
-            text_tokens = 0
-            text_dict = {}
-            chunk = {sorted_response_items[0][0]: sorted_response_items[0][1]}
-            chunk_tokens = num_tokens_from_string(
-                json.dumps(chunk, ensure_ascii=False), llm_engine
-            )
-            while (
-                text_tokens + chunk_tokens
-            ) < settings.OPENAI_API_ENGINE_EMBEDDINGS_MAX_TOKENS and len(
-                sorted_response_items
-            ) > 0:
-                text_dict.update(chunk)
-                text_tokens += chunk_tokens
-                sorted_response_items.pop(0)
-                if len(sorted_response_items) > 0:
-                    chunk = {sorted_response_items[0][0]: sorted_response_items[0][1]}
-                    chunk_tokens = num_tokens_from_string(
-                        json.dumps(chunk, ensure_ascii=False), llm_engine
-                    )
-            chat_context_texts.append(json.dumps(text_dict, ensure_ascii=False))
-
-            logger.info(
-                (
-                    f"Monitoring: {self.name}, id: {self.id}, "
-                    + f"chat context text chunk added, tokens: {text_tokens}. "
-                    + "Context texts number: %s." % (len(chat_context_texts)),
-                    # num_tokens_from_string(chat_context_texts[-1], llm_engine),
-                )
-            )
-        return chat_context_texts
-
-    # TODO: add a backgroud task initiated by a chat view when chat context update
-    #       is required
-    def update_responses_chat_context(self):
-        self.responses_chat_context = self.get_responses_chat_context()
-        self.responses_chat_context["chat_context_texts"] = (
-            self.get_responses_chat_context_texts()
-        )
-        create_vectordb_data_for_monitoring_chat(self)
-        self.save()
-
-    @property
-    def chat_context_update_required(self):
         from feder.letters.models import Letter
 
-        if not self.use_llm:
-            return False
-        if not isinstance(
-            self.responses_chat_context, dict
-        ) or not self.responses_chat_context.get("updated"):
-            return True
+        def validate_json(j):
+            try:
+                return json.loads(j)
+            except json.JSONDecodeError:
+                return {}
 
-        last_response_received = (
+        resp_letters = (
             Letter.objects.filter(record__case__monitoring=self)
             .filter(ai_evaluation__contains="A) email jest odpowiedzią")
-            .order_by("-created")
-            .first()
+            .for_user(user)
+            .annotate(
+                case_name=models.F("record__case__name"),
+                case_id=models.F("record__case__id"),
+                institution_name=models.F("record__case__institution__name"),
+                institution_id=models.F("record__case__institution__id"),
+                institution_email=models.F("record__case__institution__email"),
+                jst=models.F("record__case__institution__jst__name"),
+                jst_category=models.F("record__case__institution__jst__category__name"),
+                jst_code=models.F("record__case__institution__jst__id"),
+                jst_level=models.F("record__case__institution__jst__category__level"),
+                jst_parent=models.F("record__case__institution__jst__parent__name"),
+                jst_parent_parent=models.F(
+                    "record__case__institution__jst__parent__parent__name"
+                ),
+            )
+            .order_by(
+                "record__case__institution__jst__parent__parent__name",
+                "record__case__institution__jst__parent__name",
+                "record__case__institution__jst__name",
+                "record__case__institution__name",
+            )
         )
-        if (
-            last_response_received
-            and last_response_received.created
-            > datetime.strptime(
-                self.responses_chat_context["updated"], "%Y-%m-%dT%H:%M:%S.%fZ"
-            ).replace(tzinfo=pytz.UTC)
-        ):
-            return True
-        return False
+        resp_data = [
+            {
+                "case_name": x.case_name,
+                "case_id": x.case_id,
+                "institution_name": x.institution_name,
+                "institution_id": x.institution_id,
+                "institution_email": x.institution_email,
+                "jst": x.jst,
+                "jst_category": x.jst_category,
+                "jst_code": x.jst_code,
+                "voivodship": (
+                    x.jst
+                    if x.jst_level == 1
+                    else x.jst_parent if x.jst_level == 2 else x.jst_parent_parent
+                ),
+                "county": (
+                    x.jst
+                    if x.jst_level == 2
+                    else x.jst_parent if x.jst_level == 3 else ""
+                ),
+                "community": (x.jst if x.jst_level == 3 else ""),
+                "jst_full_name": (
+                    (f"{x.jst_parent_parent} / " if x.jst_parent_parent else "")
+                    + (f"{x.jst_parent} / " if x.jst_parent else "")
+                    + f"{x.jst} ({x.jst_code}, {x.jst_category})"
+                ),
+                "received_on": x.created.astimezone(
+                    timezone.get_default_timezone()
+                ).strftime("%Y-%m-%d %H:%M:%S"),
+                "normalized_response": validate_json(x.normalized_response),
+            }
+            for x in resp_letters
+        ]
+        return resp_data
 
 
 class MonitoringUserObjectPermission(UserObjectPermissionBase):
