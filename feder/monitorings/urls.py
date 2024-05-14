@@ -83,14 +83,9 @@ urlpatterns = [
         name="results",
     ),
     re_path(
-        r"^(?P<slug>[\w-]+)/answers-categories",
-        views.MonitoringAnswersCategoriesView.as_view(),
-        name="answers-categories",
-    ),
-    re_path(
-        r"^(?P<slug>[\w-]+)/answer-categories-prompt",
-        views.MonitoringAnswerCategoriesPromptView.as_view(),
-        name="answer-categories-prompt",
+        r"^(?P<slug>[\w-]+)/chat",
+        views.MonitoringChatView.as_view(),
+        name="chat",
     ),
     re_path(
         r"^(?P<slug>[\w-]+)/responses-report",

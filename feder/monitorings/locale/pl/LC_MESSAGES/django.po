@@ -459,6 +459,10 @@ msgid "Drafts"
 msgstr "Projekty"
 
 #: feder/monitorings/templates/monitorings/_tabs.html:36
+#: feder/monitorings/templates/monitorings/monitoring_chat.html:19
+msgid "Chat"
+msgstr ""
+
 #: feder/monitorings/templates/monitorings/monitoring_answers_categories.html:60
 msgid "Answers categories"
 msgstr "Kategorie odpowiedzi"
@@ -600,6 +604,18 @@ msgstr "Kwarantanna? (kol. Kwar.?)"
 #: feder/monitorings/templates/monitorings/monitoring_cases_table.html:106
 msgid "Filter area and tags"
 msgstr "Filtruj obszar i tagi"
+
+#: feder/monitorings/templates/monitorings/monitoring_chat.html:12
+#, fuzzy
+#| msgid "Monitoring Cases"
+msgid "Monitoring Chat"
+msgstr "Sprawy w Monitoringu"
+
+#: feder/monitorings/templates/monitorings/monitoring_chat.html:14
+#, fuzzy
+#| msgid "Monitoring Cases"
+msgid "Monitoring Chat subject"
+msgstr "Sprawy w Monitoringu"
 
 #: feder/monitorings/templates/monitorings/monitoring_confirm_delete.html:9
 msgid "Confirm delete"

@@ -1,6 +1,8 @@
 import json
+import logging
 from itertools import groupby
 
+import pytz
 import reversion
 from autoslug.fields import AutoSlugField
 from django.conf import settings
@@ -14,7 +16,10 @@ from jsonfield import JSONField
 from model_utils.models import TimeStampedModel
 
 from feder.domains.models import Domain
-from feder.llm_evaluation.prompts import EMAIL_IS_ANSWER, answer_categorization
+from feder.llm_evaluation.llm_tools import (
+    create_vectordb_data_for_monitoring_chat,
+    num_tokens_from_string,
+)
 from feder.main.utils import (
     FormattedDatetimeMixin,
     RenderBooleanFieldMixin,
@@ -23,6 +28,8 @@ from feder.main.utils import (
 from feder.teryt.models import JST
 
 from .validators import validate_nested_lists, validate_template_syntax
+
+logger = logging.getLogger(__name__)
 
 _("Monitorings index")
 _("Can add Monitoring")

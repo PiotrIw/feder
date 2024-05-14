@@ -8,9 +8,11 @@ from django.db.models.functions import Substr
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from jsonfield import JSONField
+from langchain.chains import load_summarize_chain
 from langchain.schema.output_parser import StrOutputParser
 from langchain.text_splitter import TokenTextSplitter
 from langchain_community.callbacks import get_openai_callback
+from langchain_core.documents import Document
 from langchain_openai import AzureChatOpenAI
 from model_utils import Choices
 from model_utils.models import TimeStampedModel
@@ -23,6 +25,8 @@ from .prompts import (
     letter_categorization,
     letter_evaluation_intro,
     letter_response_normalization,
+    monitoring_chat_prompt_template,
+    monitoring_chat_refine_template,
     monitoring_response_normalized_template,
 )
 
