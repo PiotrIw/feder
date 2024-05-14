@@ -83,6 +83,11 @@ urlpatterns = [
         name="results",
     ),
     re_path(
+        r"^(?P<slug>[\w-]+)/chat",
+        views.MonitoringChatView.as_view(),
+        name="chat",
+    ),
+    re_path(
         r"^(?P<slug>[\w-]+)/responses-report",
         views.MonitoringResponsesReportView.as_view(),
         name="responses_report",
