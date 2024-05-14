@@ -39,6 +39,13 @@ _("Can delete Monitoring")
 NOTIFY_HELP = _("Notify about new alerts person who can view alerts")
 
 
+def validate_json(j):
+    try:
+        return json.loads(j or "")
+    except json.JSONDecodeError:
+        return {}
+
+
 class MonitoringQuerySet(FormattedDatetimeMixin, models.QuerySet):
     def with_case_count(self):
         return self.annotate(case_count=models.Count("case"))
@@ -128,6 +135,11 @@ class Monitoring(RenderBooleanFieldMixin, TimeStampedModel):
     )
     normalized_response_template = JSONField(
         verbose_name=_("Normalized response template"),
+        null=True,
+        blank=True,
+    )
+    normalized_response_answers_categories = JSONField(
+        verbose_name=_("Normalized response answers categories"),
         null=True,
         blank=True,
     )
@@ -273,15 +285,9 @@ class Monitoring(RenderBooleanFieldMixin, TimeStampedModel):
             return []
         from feder.letters.models import Letter
 
-        def validate_json(j):
-            try:
-                return json.loads(j)
-            except json.JSONDecodeError:
-                return {}
-
         resp_letters = (
             Letter.objects.filter(record__case__monitoring=self)
-            .filter(ai_evaluation__contains="A) email jest odpowiedzią")
+            .filter(ai_evaluation__contains=EMAIL_IS_ANSWER)
             .for_user(user)
             .annotate(
                 case_name=models.F("record__case__name"),
@@ -339,6 +345,71 @@ class Monitoring(RenderBooleanFieldMixin, TimeStampedModel):
             for x in resp_letters
         ]
         return resp_data
+
+    def refresh_normalized_response_answers_categories(self):
+        nr_answers_categories = validate_json(
+            self.normalized_response_answers_categories
+        )
+        nr_template_dict = validate_json(self.normalized_response_template)
+        if len(nr_template_dict.keys()) > 0:
+            for key in nr_template_dict.keys():
+                if key not in nr_answers_categories:
+                    nr_answers_categories[key] = {
+                        "question": nr_template_dict[key].get("Pytanie", ""),
+                        "answer_categories": "",
+                    }
+                else:
+                    nr_answers_categories[key]["question"] = nr_template_dict[key].get(
+                        "Pytanie", ""
+                    )
+            for key in nr_answers_categories.keys():
+                if key not in nr_template_dict:
+                    del nr_answers_categories[key]
+        self.normalized_response_answers_categories = json.dumps(
+            nr_answers_categories, indent=4
+        )
+        self.save()
+
+    def get_normalized_response_answers_categories_dict(self):
+        self.refresh_normalized_response_answers_categories()
+        return validate_json(self.normalized_response_answers_categories)
+
+    def set_answer_categories_for_question(self, question_number, answer_categories):
+        nr_answers_categories = self.get_normalized_response_answers_categories_dict()
+        nr_answers_categories[question_number]["answer_categories"] = answer_categories
+        nr_answers_categories[question_number][
+            "update_time"
+        ] = timezone.localtime().strftime("%Y-%m-%d %H:%M:%S %Z%z")
+        self.normalized_response_answers_categories = json.dumps(
+            nr_answers_categories, indent=4
+        )
+        self.save()
+
+    def get_answer_categorization_prompt_sample(self, question_number):
+        answers_categorization_dict = (
+            self.get_normalized_response_answers_categories_dict()
+        )
+        if question_number in answers_categorization_dict:
+            question_text = answers_categorization_dict[question_number]["question"]
+            answer_categories = answers_categorization_dict[question_number][
+                "answer_categories"
+            ]
+            if not answer_categories:
+                return (
+                    "Kategorie odpowiedzi nie zostały zdefiniowane,"
+                    + " zapytanie LLM o kategorie odpowiedzi nie zostanie wysłane."
+                )
+            return answer_categorization.format(
+                institution="INSTITUTION",
+                question=question_text,
+                answer="ODPOWIEDŹ Z INSTYTUCJI",
+                answer_categories=answer_categories,
+            ).replace("    ", "")
+        else:
+            return (
+                f'Brak pytania "{question_number}", zapytanie LLM o kategorie'
+                + " odpowiedzi nie zostanie wysłane."
+            )
 
 
 class MonitoringUserObjectPermission(UserObjectPermissionBase):

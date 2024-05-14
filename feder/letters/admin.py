@@ -3,6 +3,8 @@ from django.db.models import Q
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
+from feder.llm_evaluation.prompts import letter_categories_list
+
 from .models import Attachment, Letter, LetterEmailDomain, ReputableLetterEmailTLD
 
 
@@ -23,6 +25,29 @@ class LetterDirectionListFilter(admin.SimpleListFilter):
             return queryset.is_outgoing()
         elif self.value() == "incoming":
             return queryset.is_incoming()
+
+
+class LetterLlmEvaluationListFilter(admin.SimpleListFilter):
+    title = _("Letter LLM Evaluation")  # Displayed in the admin sidebar
+    parameter_name = "letter_llm_evaluation_filter"  # The URL parameter name
+
+    def lookups(self, request, model_admin):
+        # Return the filter options as a list of tuples
+        return list(
+            (
+                " ".join(item.format(institution=" ... ").replace("\n", "").split())[
+                    :20
+                ],
+                " ".join(item.format(institution=" ... ").replace("\n", "").split()),
+            )
+            for item in letter_categories_list
+        )
+
+    def queryset(self, request, queryset):
+        # Apply the filter to the queryset based on the selected option
+        if self.value():
+            return queryset.filter(ai_evaluation__startswith=self.value())
+        return queryset
 
 
 class AttachmentInline(admin.StackedInline):
@@ -54,6 +79,7 @@ class LetterAdmin(admin.ModelAdmin):
         "get_outgoing",
         "get_delivery_status",
         "is_spam",
+        "ai_evaluation",
         "email_from",
         "email_to",
         "eml",
@@ -61,6 +87,7 @@ class LetterAdmin(admin.ModelAdmin):
     )
     list_filter = (
         "is_spam",
+        LetterLlmEvaluationListFilter,
         LetterDirectionListFilter,
         # "created",
         "record__case__monitoring",
@@ -78,7 +105,7 @@ class LetterAdmin(admin.ModelAdmin):
         "email_from",
         "email_to",
     )
-    raw_id_fields = ("author_user", "author_institution", "record")
+    # raw_id_fields = ("author_user", "author_institution", "record")
     # list_editable = ("is_spam",)
     ordering = ("-id",)
     actions = [
@@ -88,6 +115,16 @@ class LetterAdmin(admin.ModelAdmin):
         "mark_spam_unknown",
         "mark_non_spam",
     ]
+    readonly_fields = ("author_user", "author_institution", "record")
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
 
     @admin.display(
         description=_("Record id"),

@@ -1,5 +1,5 @@
 # This is Dockerfile for development purposes only.
-ARG PYTHON_VERSION='3.10.12'
+ARG PYTHON_VERSION='3.10.14'
 FROM python:${PYTHON_VERSION}-slim
 RUN python --version
 RUN mkdir /code /code/production
@@ -18,6 +18,7 @@ RUN apt-get update \
    nano \
    htop \
    gettext libgettextpo-dev wait-for-it
+RUN git config --global --add safe.directory /code
 RUN pip install --upgrade pip
 RUN pip --version
 COPY requirements/*.txt ./requirements/

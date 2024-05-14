@@ -80,7 +80,6 @@ LOCAL_APPS = (
     "feder.parcels.apps.ParcelsConfig",
     "feder.virus_scan",
     "feder.organisations",
-    "feder.es_search.apps.EsSearchConfig",
     "feder.llm_evaluation",
     # Your stuff: custom apps go here
 )
@@ -109,9 +108,7 @@ MIDDLEWARE = (
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "reversion.middleware.RevisionMiddleware",
     # Add the account middleware:
-    # needed for django-allauth==0.57.0
-    # but v0.57.0 does not work with production mariadb 10.1
-    # "allauth.account.middleware.AccountMiddleware",
+    "allauth.account.middleware.AccountMiddleware",
 )
 
 # MIGRATIONS CONFIGURATION
@@ -133,20 +130,21 @@ FIXTURE_DIRS = (str(APPS_DIR.path("fixtures")),)
 EMAIL_BACKEND = env.str(
     "DJANGO_EMAIL_BACKEND", default="django.core.mail.backends.smtp.EmailBackend"
 )
+EMAIL_HOST = env.str("DJANGO_EMAIL_HOST", default="")
+EMAIL_HOST_PASSWORD = env.str("DJANGO_EMAIL_HOST_PASSWORD", "")
+EMAIL_HOST_USER = env.str("DJANGO_EMAIL_HOST_USER", "")
+EMAIL_PORT = env.str("DJANGO_EMAIL_PORT", default=25)
+
 DEFAULT_FROM_EMAIL = env.str(
     "DJANGO_DEFAULT_FROM_EMAIL", default="feder <noreply@dane.siecobywatelska.pl>"
 )
-EMAIL_HOST = env.str("DJANGO_EMAIL_HOST", default="localhost")
-EMAIL_PORT = env.str("DJANGO_EMAIL_PORT", default=25)
-EMAIL_USE_TLS = env.bool("DJANGO_EMAIL_USE_TLS", True)
 EMAIL_SUBJECT_PREFIX = env.str("DJANGO_EMAIL_SUBJECT_PREFIX", default="[feder] ")
-EMAIL_HOST_USER = env.str("DJANGO_EMAIL_HOST_USER", "")
-SERVER_EMAIL = EMAIL_HOST_USER
-# EMAIL production
-# ------------------------------------------------------------------------------
+EMAIL_USE_TLS = env.bool("DJANGO_EMAIL_USE_TLS", True)
 SERVER_EMAIL = env.str(
     "DJANGO_SERVER_EMAIL", default="feder <<noreply@dane.siecobywatelska.pl>"
 )
+# END EMAIL CONFIGURATION
+# ------------------------------------------------------------------------------
 
 # MANAGER CONFIGURATION
 # ------------------------------------------------------------------------------
@@ -186,9 +184,6 @@ SITE_ID = 1
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#use-i18n
 USE_I18N = True
-
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#use-l10n
-USE_L10N = True
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#use-tz
 USE_TZ = True
@@ -420,13 +415,8 @@ CORS_ALLOWED_ORIGINS = [
 ]
 CORS_URLS_REGEX = r"^/api/.*$"
 
-ELASTICSEARCH_URL = env("ELASTICSEARCH_URL", default=None)
-APACHE_TIKA_URL = env("APACHE_TIKA_URL", default="http://localhost:9998/tika")
-
 FILE_TO_TEXT_URL = env("FILE_TO_TEXT_URL", default="http://localhost:9980/")
 FILE_TO_TEXT_TOKEN = env("FILE_TO_TEXT_TOKEN", default="")
-
-ELASTICSEARCH_SHOW_SIMILAR = env("ELASTICSEARCH_SHOW_SIMILAR", default=False)
 
 # To avoid unwanted migrations when upgrading to Django 3.2
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"

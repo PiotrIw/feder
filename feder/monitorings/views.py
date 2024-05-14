@@ -56,10 +56,7 @@ from feder.letters.logs.models import STATUS
 from feder.letters.models import Letter
 from feder.letters.utils import is_formatted_html, text_to_html
 from feder.letters.views import LetterCommonMixin
-from feder.llm_evaluation.tasks import (
-    LlmMonitoringRequest,
-    get_monitoring_normalized_response_template,
-)
+from feder.llm_evaluation.tasks import get_monitoring_normalized_response_template
 from feder.main.mixins import ExtraListMixin, RaisePermissionRequiredMixin
 from feder.main.utils import DeleteViewLogEntryMixin, FormValidLogEntryMixin
 
@@ -613,6 +610,54 @@ class MonitoringResultsView(DetailView):
         else:
             context["results"] = mark_safe(text_to_html(self.object.results))
         return context
+
+
+class MonitoringAnswersCategoriesView(DetailView):
+    model = Monitoring
+    template_name_suffix = "_answers_categories"
+    select_related = ["user"]
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        qs = qs.for_user(self.request.user)
+        return qs
+
+    def get_context_data(self, **kwargs):
+        kwargs["url_extra_kwargs"] = {"slug": self.object.slug}
+        context = super().get_context_data(**kwargs)
+        context["voivodeship_table"] = mark_safe(
+            self.object.generate_voivodeship_table()
+        )
+        context["answers_categories"] = (
+            self.object.get_normalized_response_answers_categories_dict()
+        )
+        return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.set_answer_categories_for_question(
+            request.POST["question_number"], request.POST["answer_categories"]
+        )
+        return self.get(request, *args, **kwargs)
+
+
+class MonitoringAnswerCategoriesPromptView(DetailView):
+    model = Monitoring
+    select_related = ["user"]
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        qs = qs.for_user(self.request.user)
+        return qs
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        resp = {
+            "prompt_sample": self.object.get_answer_categorization_prompt_sample(
+                request.GET.get("question_number", "")
+            )
+        }
+        return JsonResponse(resp)
 
 
 class MonitoringResponsesReportView(View):

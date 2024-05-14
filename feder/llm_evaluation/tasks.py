@@ -3,6 +3,8 @@ import logging
 from background_task import background
 from django.utils.translation import gettext_lazy as _
 
+from feder.llm_evaluation.prompts import EMAIL_IS_ANSWER
+
 from .models import LlmLetterRequest, LlmMonitoringRequest
 
 logger = logging.getLogger(__name__)
@@ -38,12 +40,66 @@ def categorize_letter_in_background(letter_pk):
         letter.save()
         return
 
+    the_same_content_evaluated = (
+        Letter.objects.filter(
+            title=letter.title, body=letter.body, ai_evaluation__isnull=False
+        )
+        .exclude(pk=letter_pk)
+        .first()
+    )
+
+    if (
+        the_same_content_evaluated
+        and "F) email nie jest odpowiedzią" in the_same_content_evaluated.ai_evaluation
+        and "jest spamem" in the_same_content_evaluated.ai_evaluation
+    ):
+        message = _(
+            "AI categorisation skipped for letter with the same content "
+            + "as already evaluated letter: "
+        ) + str(the_same_content_evaluated.pk)
+        logger.info(f"Letter (pk={letter_pk}): {message}")
+        letter.ai_evaluation = the_same_content_evaluated.ai_evaluation
+        letter.is_spam = the_same_content_evaluated.is_spam
+        letter.save()
+        letter_llm_request = LlmLetterRequest.objects.create(
+            evaluated_letter=letter,
+            engine_name="",
+            request_prompt=message,
+            status=LlmLetterRequest.STATUS.done,
+            response=the_same_content_evaluated.ai_evaluation,
+            token_usage={},
+        )
+        letter_llm_request.save()
+        return
+
     LlmLetterRequest.categorize_letter(letter)
     logger.info(f"Letter with pk={letter_pk} categorized.")
-    if "A) email jest odpowiedzią" in letter.ai_evaluation:
+    if EMAIL_IS_ANSWER in letter.ai_evaluation:
         LlmLetterRequest.get_normalized_answers(letter)
         logger.info(f"Letter with pk={letter_pk} answer normalization processed.")
     else:
+        logger.info(
+            f"Letter with pk={letter_pk} is not a response - "
+            + "skipping answers normalization."
+        )
+
+
+@background(schedule=120)
+def update_letter_normalized_answers(letter_pk):
+    from feder.letters.models import Letter
+
+    letter = Letter.objects.filter(pk=letter_pk).first()
+
+    if not letter:
+        logger.warning(f"Letter with pk={letter_pk} not found.")
+        return
+
+    if EMAIL_IS_ANSWER in letter.ai_evaluation:
+        LlmLetterRequest.get_normalized_answers(letter)
+        logger.info(f"Letter with pk={letter_pk} answer normalization processed.")
+    else:
+        letter.normalized_response = None
+        letter.save()
         logger.info(
             f"Letter with pk={letter_pk} is not a response - skipping normalization."
         )

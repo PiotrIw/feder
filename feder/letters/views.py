@@ -19,7 +19,6 @@ from braces.views import (
     UserFormKwargsMixin,
 )
 from cached_property import cached_property
-from django.conf import settings
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.syndication.views import Feed
 from django.core.exceptions import PermissionDenied
@@ -143,9 +142,6 @@ class LetterDetailView(SelectRelatedMixin, LetterCommonMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        if settings.ELASTICSEARCH_SHOW_SIMILAR:
-            context["similar_list"] = context["object"].get_more_like_this()
-        context["show_similar"] = settings.ELASTICSEARCH_SHOW_SIMILAR
         return context
 
     def get_queryset(self):
@@ -303,6 +299,11 @@ class LetterUpdateView(
 
     def get_queryset(self):
         return super().get_queryset().for_user(self.request.user).with_attachment()
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs["request"] = self.request
+        return kwargs
 
 
 class LetterDeleteView(
@@ -473,6 +474,7 @@ class LetterResendView(
             body=self.object.body,
             html_body=self.object.html_body,
         )
+        self.resend.save()
         self.resend.send(commit=True, only_email=False)
         update_sent_letter_status(schedule=(3 * 60))
 
@@ -598,6 +600,7 @@ class AssignLetterFormView(
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
         kwargs["letter"] = self.letter
+        kwargs["request"] = self.request
         return kwargs
 
     def form_valid(self, form):

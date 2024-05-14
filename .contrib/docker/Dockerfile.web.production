@@ -1,5 +1,5 @@
-# This is Dockerfile for development purposes only.
-ARG PYTHON_VERSION='3.10.12'
+# This is Dockerfile for production.
+ARG PYTHON_VERSION='3.10.14'
 FROM python:${PYTHON_VERSION}-slim
 RUN python --version
 RUN mkdir /code code/media code/staticfiles
@@ -17,13 +17,30 @@ RUN apt-get update \
    curl \
    nano \
    htop \
+   cron \
    gettext libgettextpo-dev wait-for-it
+RUN git config --global --add safe.directory /code
 RUN pip install --upgrade pip
 RUN pip --version
 COPY requirements/*.txt ./requirements/
-ARG DJANGO_VERSION='==3.2.23'
 RUN pip install --no-cache-dir -r requirements/production.txt
-COPY . /code/
+RUN ls -la
+COPY . .
+RUN ls -la
+RUN mv .git_copy .git
+RUN ls -la
+RUN git status
+RUN export DJANGO_SETTINGS_MODULE="config.settings.production" && \
+   export DJANGO_SECRET_KEY="fake_key" && \
+   export DJANGO_SERVER_EMAIL="fake_server" && \
+   export DATABASE_URL="fake_database" && \
+   export EMAILLABS_APP_KEY="fake_app_key" &&\
+   export EMAILLABS_SECRET_KEY="fake_secret_key" &&\
+   export LETTER_RECEIVE_SECRET="fake_secret_key" &&\
+   export RAVEN_DSN="https://examplePublicKey@o0.ingest.sentry.io/0" && \
+   export CACHE_URL="locmemcache://" && \
+   python manage.py collectstatic --no-input && \
+   cp -r staticfiles image_staticfiles
 # Start container with bash shell to allow run and debug django app
 #   or debug container starting errors:
 CMD ["bash", "-c", " sleep infinity "]

@@ -28,12 +28,11 @@ from model_utils import Choices
 from feder.cases.models import Case, enforce_quarantined_queryset
 from feder.domains.models import Domain
 from feder.institutions.models import Institution
-from feder.llm_evaluation.prompts import letter_categorization
+from feder.llm_evaluation.prompts import letter_categories_list, letter_categories_text
 from feder.main.exceptions import FederValueError
 from feder.main.utils import get_email_domain, render_normalized_response_html_table
 from feder.records.models import AbstractRecord, AbstractRecordQuerySet, Record
 
-from ..es_search.queries import find_document, more_like_this
 from ..virus_scan.models import Request as ScanRequest
 from .logs.tasks import update_sent_letter_status
 from .utils import (
@@ -300,6 +299,7 @@ class Letter(AbstractRecord):
             html_body=render_to_string("letters/_letter_reply_body.html", context),
             body=render_to_string("letters/_letter_reply_body.txt", context),
         )
+        letter.save()
         letter.send(commit=True, only_email=False)
         update_sent_letter_status(schedule=(3 * 60))
         return letter
@@ -424,14 +424,6 @@ class Letter(AbstractRecord):
                 self.case.save()
         return message.send()
 
-    def get_more_like_this(self):
-        doc = find_document(self.pk)
-        if not doc:
-            return Letter._default_manager.none()
-        result = more_like_this(doc)
-        ids = [x.letter_id for x in result]
-        return Letter._default_manager.filter(pk__in=ids).all()
-
     def get_recipients(self):
         """
         Returns a list of all email addresses from the "To" and "Cc" fields of the
@@ -505,12 +497,31 @@ class Letter(AbstractRecord):
 
     def ai_prompt_help(self):
         return (
-            "Ocena wykonana za pomocą Azure OpenAI. Wszystkie możliwe opcje: \n"
-            + letter_categorization.format(
-                intro="",
-                institution=self.case.institution.name,
-                monitoring_response="",
-            ).split("```")[1]
+            "Ocena wykonana za pomocą Azure OpenAI. Wszystkie możliwe opcje: \n\n"
+            + letter_categories_text.format(
+                institution=self.case.institution.name if self.case else "???"
+            )
+        )
+
+    def ai_letter_category_choices(self):
+        return list(
+            (
+                " ".join(
+                    item.format(
+                        institution=self.case.institution.name if self.case else "???"
+                    )
+                    .replace("\n", "")
+                    .split()
+                ),
+                " ".join(
+                    item.format(
+                        institution=self.case.institution.name if self.case else "???"
+                    )
+                    .replace("\n", "")
+                    .split()
+                ),
+            )
+            for item in letter_categories_list
         )
 
     def get_normalized_response_html_table(self):

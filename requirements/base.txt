@@ -1,5 +1,5 @@
 # Production and staging Django
-Django==3.2.24
+Django==4.2.13
 
 # Database adapter
 mysqlclient==2.2.4
@@ -12,15 +12,16 @@ django-braces==1.15.0
 django-crispy-forms==1.14.0
 
 # Models
-django-model-utils==4.4.0
+django-model-utils==4.5.1
 
 # Images
-Pillow==10.2.0
+Pillow==10.3.0
 
 # For user registration, either via email or social
 # Well-built with regular release cycles!
-# django-allauth==0.57.0 # v0.57.0 does not work with production mariadb 10.1
-django-allauth==0.54.0
+#django-allauth[socialaccount]==0.62.1
+# version 0.62 requires config change
+django-allauth==0.61.1
 
 # Unicode slugification
 unicode-slugify==0.1.5
@@ -30,13 +31,13 @@ django-autoslug==1.9.9
 pytz==2024.1
 
 # Commands
-lxml==5.1.0
+lxml==5.2.1
 
 
 # Your custom requirements go here
-cryptography==42.0.4
-django-filter==23.5
-django-autocomplete-light==3.9.7
+cryptography==42.0.7
+django-filter==24.2
+django-autocomplete-light==3.11.0
 # django-ajax-datatable to be installed from github fork until
 # https://github.com/morlandi/django-ajax-datatable/pull/111 is merged
 # django-ajax-datatable==4.4.5
@@ -48,6 +49,7 @@ django-tinymce==3.7.1
 # django-atom==0.16.3
 git+https://github.com/PiotrIw/django-atom.git@master#egg=django-atom
 
+# django-tinycontent is not supported anymore so watchdog maintained fork is used
 git+https://github.com/watchdogpolska/django-tinycontent.git@master
 
 django-formtools==2.5.1
@@ -62,10 +64,10 @@ cached-property==1.5.2
 git+https://github.com/PiotrIw/django-bootstrap-pagination.git@master#egg=django-bootstrap-pagination
 
 django-reversion==5.0.12
-djangorestframework==3.14.0
+djangorestframework==3.15.1
 djangorestframework-csv==3.0.2
 unicodecsv==0.14.1
-tqdm==4.66.2
+tqdm==4.66.4
 django-github-revision==0.0.3
 django-extensions==3.2.3
 django-cleanup==8.1.0
@@ -81,19 +83,17 @@ https://github.com/ross/performant-pagination/archive/5b537da95728d622792031071e
 
 django4-background-tasks==1.2.9
 django-cors-headers==4.3.1
-elasticsearch-dsl==7.4.1
-tika==2.6.0
 
-django-rosetta==0.9.9
+django-rosetta==0.10.0
 bleach==6.1.0
 beautifulsoup4==4.12.3
-html2text==2020.1.16
+html2text==2024.2.26
 openpyxl==3.1.2
 
 # LLM exvaluation
-langchain==0.1.9
+langchain==0.1.19
 #langchain[llms]==0.1.5
-openai==1.12.0
-langchain-openai==0.0.7
+openai==1.28.0
+langchain-openai==0.1.6
 tiktoken==0.6.0
 chromadb==0.4.22
