@@ -541,7 +541,7 @@ class LetterMarkSpamView(RaisePermissionRequiredMixin, ActionMessageMixin, Actio
             self.object.is_spam = Letter.SPAM.spam
         self.object.mark_spam_by = self.request.user
         self.object.mark_spam_at = timezone.now()
-        self.object.save(update_fields=["is_spam", "mark_spam_by"])
+        self.object.save(update_fields=["is_spam", "mark_spam_by", "mark_spam_at"])
         Alert.objects.link_object(self.object).update(
             solver=self.request.user, status=True
         )
