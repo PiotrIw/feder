@@ -1,7 +1,6 @@
 import json
 import logging
 import uuid
-from datetime import datetime
 from os import path
 
 from atom.ext.django_filters.views import UserKwargFilterSetMixin
@@ -29,6 +28,7 @@ from django.db.models import Q
 from django.http import HttpResponseBadRequest, JsonResponse
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
+from django.utils import timezone
 from django.utils.encoding import force_str
 from django.utils.feedgenerator import Atom1Feed
 from django.utils.translation import gettext_lazy as _
@@ -540,7 +540,7 @@ class LetterMarkSpamView(RaisePermissionRequiredMixin, ActionMessageMixin, Actio
         else:
             self.object.is_spam = Letter.SPAM.spam
         self.object.mark_spam_by = self.request.user
-        self.object.mark_spam_at = datetime.now()
+        self.object.mark_spam_at = timezone.now()
         self.object.save(update_fields=["is_spam", "mark_spam_by"])
         Alert.objects.link_object(self.object).update(
             solver=self.request.user, status=True
