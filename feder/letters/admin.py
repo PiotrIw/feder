@@ -297,7 +297,9 @@ class AttachmentAdmin(admin.ModelAdmin):
     ordering = ("-id",)
     actions = ["schedule_update_text_content"]
 
-    @admin.action(description=_("Schedule text content update for selected attachments"))
+    @admin.action(
+        description=_("Schedule text content update for selected attachments")
+    )
     def schedule_update_text_content(self, request, queryset):
         count = queryset.count()
         for pk in queryset.values_list("pk", flat=True):
