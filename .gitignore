@@ -67,3 +67,6 @@ logs/*
 
 # docker development secrets
 *.env
+
+# temporary migration folder
+tests/bs3-bs5_migration/*
