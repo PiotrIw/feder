@@ -36,7 +36,7 @@
 
     {% if object %}
         {% include 'institutions/_btn.html' with object=object %}
-        <div class="page-header">
+        <div class="pb-2 mb-4 border-bottom">
             <h2><i class="fa-solid fa-house"></i> <a href="{{ object.get_absolute_url }}">{{ object }}</a></h2>
         </div>
 

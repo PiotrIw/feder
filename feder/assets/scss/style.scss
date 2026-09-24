@@ -67,16 +67,10 @@ $gray: #F0F0F0;
     color: color.scale(#fff, $lightness: -20%);
   }
 
-  .page-title {
-    color: #fff;
-  }
   .select-list {
     li:after {
       background-color: color.scale($gray, $lightness: -10%);
     }
-  }
-  .has-error .help-block, .has-error .control-label, .has-error .radio, .has-error .checkbox, .has-error .radio-inline, .has-error .checkbox-inline, .has-error.radio label, .has-error.checkbox label, .has-error.radio-inline label, .has-error.checkbox-inline label {
-    color: #FFF643;
   }
 }
 
@@ -100,13 +94,13 @@ $gray: #F0F0F0;
   padding-bottom: 2px;
   display: inline-block; // e.g.  display regardless of screen size
 
-  .icon-bar {
+  .toggle-bar {
     background-color: $btn-primary-color;
     :hover, :focus {
 
       background-color: $btn-primary-color;
     }
-    + .icon-bar {
+    + .toggle-bar {
       margin-top: 1px;
     }
   }
@@ -114,7 +108,7 @@ $gray: #F0F0F0;
     line-height:75%;
   }
   // Bars
-  .icon-bar {
+  .toggle-bar {
     display: block;
     width: 22px;
     height: 2px;
@@ -137,9 +131,6 @@ $gray: #F0F0F0;
     li:after {
       background-color: $red;
     }
-  }
-  .page-title {
-    color: $red;
   }
   .metadata-button-container {
     text-align: right;
@@ -167,9 +158,6 @@ $gray: #F0F0F0;
     text-align: center;
 }
 
-.progress-bar {
-  color: #000;
-}
 .link-tag {
   border: 1px solid rgb(230, 230, 230);
   border-radius: 15px;
@@ -214,14 +202,6 @@ iframe.letter-quote {
   display: block;
   text-align: center;
 
-  &_inline {
-    display: inline;
-  }
-
-  &_block {
-    display: block;
-  }
-
   &_cell {
     display: table-cell;
   }
@@ -261,11 +241,6 @@ iframe.letter-quote {
       margin: 0 !important;
       font-size: 16px;
     }
-  }
-
-  &__col_bottom {
-    vertical-align: bottom !important;
-    padding-bottom: 4px !important;
   }
 }
 

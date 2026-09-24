@@ -63,7 +63,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="page-header">
+    <div class="pb-2 mb-4 border-bottom">
         <h2>
             <i class="fa-solid fa-envelope"></i>
             {% with object=object.letter object_url=object.letter.get_absolute_url author=object.letter.author author_url=object.letter.author.get_absolute_url created=object.created created_natural=object.created|naturaltime %}
