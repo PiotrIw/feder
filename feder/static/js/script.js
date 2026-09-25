@@ -10714,7 +10714,7 @@ if ( typeof noGlobal === "undefined" ) {
 
 return jQuery;
 } );
-
+;
 var htmx = (function() {
   'use strict'
 
@@ -16057,7 +16057,7 @@ var htmx = (function() {
  * @property {(xhr: XMLHttpRequest, parameters: FormData, elt: Node) => *|string|null} encodeParameters
  * @property {() => string[]|null} getSelectors
  */
-
+;
 /*!
   * Bootstrap v5.3.8 (https://getbootstrap.com/)
   * Copyright 2011-2025 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
@@ -22370,7 +22370,7 @@ var htmx = (function() {
 
 }));
 //# sourceMappingURL=bootstrap.bundle.js.map
-
+;
 /*! DataTables 1.13.11
  * ©2008-2024 SpryMedia Ltd - datatables.net/license
  */
@@ -38104,7 +38104,7 @@ var htmx = (function() {
 
 	return DataTable;
 }));
-
+;
 /*! DataTables styling integration
  * ©2018 SpryMedia Ltd - datatables.net/license
  */
@@ -38160,7 +38160,7 @@ var DataTable = $.fn.dataTable;
 
 return DataTable;
 }));
-
+;
 /*! Buttons for DataTables 2.4.2
  * © SpryMedia Ltd - datatables.net/license
  */
@@ -40753,7 +40753,7 @@ if (DataTable.ext.features) {
 
 return DataTable;
 }));
-
+;
 (function () {
     "use strict";
 
@@ -40770,7 +40770,7 @@ return DataTable;
         var body = document.getElementById("attachmentTextModalBody");
         if (body) body.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
 
-        modal.classList.add("in");
+        modal.classList.add("show");
         modal.style.display = "block";
         modal.removeAttribute("aria-hidden");
         document.body.classList.add("modal-open");
@@ -40778,7 +40778,7 @@ return DataTable;
         if (!document.getElementById(BACKDROP_ID)) {
             var backdrop = document.createElement("div");
             backdrop.id = BACKDROP_ID;
-            backdrop.className = "modal-backdrop fade in";
+            backdrop.className = "modal-backdrop fade show";
             document.body.appendChild(backdrop);
         }
     }
@@ -40787,7 +40787,7 @@ return DataTable;
         var modal = document.getElementById(MODAL_ID);
         if (!modal) return;
 
-        modal.classList.remove("in");
+        modal.classList.remove("show");
         modal.style.display = "none";
         modal.setAttribute("aria-hidden", "true");
         document.body.classList.remove("modal-open");
@@ -40815,7 +40815,7 @@ return DataTable;
         if (event.key === "Escape") closeModal();
     });
 })();
-
+;
 /**
  * Adds additional utility buttons to form groups having "checkbox-utils" class
  * which allows user to select unselect all options in CheckboxSelectMultiple widgets.
@@ -40844,7 +40844,7 @@ $(function () {
         });
     });
 });
-
+;
 'use strict';
 
 window.AjaxDatatableViewUtils = (function() {
@@ -41385,7 +41385,7 @@ window.AjaxDatatableViewUtils = (function() {
     };
 
 })();
-
+;
 ;(function($) {
     $(function() {
         const table1 = document.getElementById("datatable_monitorings");
@@ -41459,7 +41459,7 @@ window.AjaxDatatableViewUtils = (function() {
         }
     });
 })(jQuery);
-
+;
 AjaxDatatableViewUtils.init({
     search_icon_html: '<i class="fa-solid fa-magnifying-glass"></i>',
     language: {
@@ -41571,7 +41571,7 @@ AjaxDatatableViewUtils.init({
         }
     });
 })(jQuery);
-
+;
 ;(function($) {
     $(document).ready(function() {
       $('input[name="to_assign"]').on('click', function() {

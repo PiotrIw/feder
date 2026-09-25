@@ -97,7 +97,10 @@ function images() {
 
 function js() {
   return src(config.script.input, { allowEmpty: false })
-    .pipe(concat(config.script.output.filename))
+    // Some vendor bundles (e.g. htmx.js) omit a trailing semicolon on their
+    // final statement; without a ";" join separator, ASI can misparse the
+    // next concatenated file's leading "(" as a call on the previous one.
+    .pipe(concat(config.script.output.filename, { newLine: ";\n" }))
     .pipe(dest(config.script.output.dir))
     .pipe(livereload())
     .pipe(terser())
