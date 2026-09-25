@@ -223,6 +223,23 @@ iframe.letter-quote {
 }
 
 
+/* button groups */
+
+// Same issue as .pagination: BS3's .btn-group was display:inline-block with
+// inline-block .btns, so a toolbar with many buttons reflowed onto multiple
+// lines on narrow screens. BS5's .btn-group is display:inline-flex with no
+// wrap and flex: 1 1 auto buttons, so on mobile a long toolbar (e.g. the
+// monitoring detail action buttons) is stuck in one row and either overflows
+// or requires horizontal scrolling instead of wrapping like it used to.
+.btn-group {
+  flex-wrap: wrap;
+
+  > .btn {
+    flex: 0 1 auto;
+  }
+}
+
+
 /* buttons */
 
 // Restore BS3's .btn-default look (white/bordered) for secondary buttons.

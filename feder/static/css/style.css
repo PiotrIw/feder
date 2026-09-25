@@ -24804,6 +24804,17 @@ iframe.letter-quote {
       flex-wrap: wrap;
 }
 
+/* button groups */
+.btn-group {
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+.btn-group > .btn {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 auto;
+          flex: 0 1 auto;
+}
+
 /* buttons */
 .btn-secondary {
   --bs-btn-color: #333333;
