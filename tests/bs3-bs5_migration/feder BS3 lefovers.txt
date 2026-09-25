@@ -1,0 +1,46 @@
+  Bootstrap 3 leftovers found
+
+  Templates (Django HTML) — BS3 class names/markup still present:
+
+  ┌────────────────────────┬──────────────────────────┬────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │      Class/markup      │     BS5 replacement      │                                                       Locations                                                        │
+  ├────────────────────────┼──────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │                        │ removed — use heading +  │ 17 files, e.g. feder/cases/templates/cases/_header.html:1, feder/monitorings/templates/monitorings/_header.html:2,     │
+  │ page-header            │ spacing utilities        │ feder/institutions/templates/institutions/base_object.html:39, feder/letters/templates/letters/base_object.html:79     │
+  │                        │                          │ (full list from agent scan available)                                                                                  │
+  ├────────────────────────┼──────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ form-horizontal,       │                          │                                                                                                                        │
+  │ control-group,         │ grid layout / d-flex     │ feder/users/templates/users/user_form.html:13,16,17                                                                    │
+  │ controls               │                          │                                                                                                                        │
+  ├────────────────────────┼──────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ control-label          │ form-label               │ feder/letters/templates/letters/letter_html_iframe_widget.html:8,                                                      │
+  │                        │                          │ feder/monitorings/templates/monitorings/monitoring_report.html:71                                                      │
+  ├────────────────────────┼──────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ checkbox wrapper div   │ form-check               │ feder/monitorings/templates/monitorings/monitoring_report.html:73                                                      │
+  ├────────────────────────┼──────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ navbar-header          │ removed (BS5 navbar has  │ feder/main/templates/_navbar.html:5                                                                                    │
+  │                        │ no wrapper)              │                                                                                                                        │
+  ├────────────────────────┼──────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ icon-bar (×3 spans)    │ single                   │ feder/main/templates/_navbar.html:9-11, feder/letters/templates/letters/_letter_metadata.html:11-13                    │
+  │                        │ navbar-toggler-icon span │                                                                                                                        │
+  ├────────────────────────┼──────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ sr-only                │ visually-hidden          │ 8 files, e.g. _navbar.html, monitoring_detail.html, monitoring_template.html, _letter_metadata.html                    │
+  └────────────────────────┴──────────────────────────┴────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+  Notably _navbar.html is a mixed BS3/BS5 hybrid: it correctly uses data-bs-toggle/data-bs-target (BS5) but still wraps the toggle button in a BS3 navbar-header div with 3 icon-bar
+  spans and sr-only.
+
+  SCSS (feder/assets/scss/) — dead/stale BS3 selectors (not breaking anything since no HTML uses the old classes anymore, but stale):
+  - style.scss:78 — .has-error validation selectors (BS5 uses .is-invalid)
+  - style.scss:~103-120 — .icon-bar styling (still needed, since templates above still use it)
+  - _milestones.scss:54-55,72 — .panel, .well, .glyphicon selectors
+  - _sidebar.scss:42 — .glyphicon selector
+
+  These get compiled straight into feder/static/css/style.css / staticfiles/css/style.css.
+
+  package.json / node_modules — stale unused dependencies:
+  - datatables.net-bs and datatables.net-buttons-bs (Bootstrap 3 DataTables themes) — confirmed not referenced anywhere in gulpfile.js or source; the build only pulls from
+  datatables.net-dt/datatables.net-buttons-dt. Dead weight, safe to remove.
+  - datatables.net-bs4 is also present and unused, same story (BS4-era leftover, not BS3, but same category of stale dependency).
+  - Core bootstrap package itself is correctly on ^5.3.3 / installed 5.3.8 — no BS3 there.
+  

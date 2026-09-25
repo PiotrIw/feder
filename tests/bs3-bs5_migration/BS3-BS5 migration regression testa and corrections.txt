@@ -1,0 +1,225 @@
+this feder branch was migrated from bootstrap 3 to 5. Before migration Ive made claude code preparing an automasted tests refence using instruction in tests/bs3-bs5_migration/BS3-BS5 visual regression baseline prompt.txt and summary report in tests/bs3-bs5_migration/BS3-BS5 VISUAL REGRESSION BASELINE - SUMMARY.txt.
+
+Test migration result for desktop viewport, list differences and make a plan of action to make BS3 UI looking and working as similar as possible (especialy layout, colors and) as mamuch as posibble the same it was for BS3. List differences worth to leave as they are when cost is high. 
+
+
+? What I did
+
+  The tests/bs3-bs5_migration/ snapshots (84 pages × 3 viewports, captured pre-migration on 2026-07-13) are gitignored but still on disk — those desktop PNGs are the BS3 ground
+  truth. The Playwright spec files that generated them were removed from the working tree when the folder got gitignored, so I couldn't just re-run the suite. Instead I:
+
+  1. Recovered pages.ts/viewports.ts/global-setup.ts from git history (commit 99c5f5d5) to get exact URLs/credentials.
+  2. Started the Django dev server manually (this repo's Dockerfile.web intentionally just idles with sleep infinity so VS Code can attach its own debugger — I started runserver
+     for testing and stopped it again afterward, so your VS Code debug workflow is unaffected).
+  3. Logged in and captured live desktop-viewport (2560×1440) screenshots of the current (migrated) code for ~10 representative pages (home, list/filter views, detail views, a
+     report/table view, a crispy-form view), covering the main template families.
+  4. Compared each against the same page's BS3 baseline at matching scale, and verified anything ambiguous with getComputedStyle/DOM inspection in the live browser rather than
+     trusting eyeballed screenshots (a heavily downscaled full-page baseline PNG is deceptive — I chased two false leads this way before verifying against actual computed styles).
+  5. Traced every real difference back to its template/SCSS source and git history.
+
+  Bottom line: the migration is in good shape. Layout, spacing, the red/yellow brand theme, sidebar, panels, tabs, and grid proportions are near pixel-identical to BS3 on every
+  page type I checked. There are two real, systematic style regressions and one isolated template bug — no layout/structural damage.
+
+  Differences found
+
+  1. Sitewide: links are underlined in BS5, weren't in BS3 — fix this
+
+  Every content link (list titles, user names, breadcrumbs, table rows) is now underlined. BS3 relied on the browser/Bootstrap default of text-decoration: none for a (never
+  explicitly set in this codebase); Bootstrap 5's reboot CSS sets a { text-decoration: underline } by default, and nothing overrides it.
+  - Root cause confirmed via computed style: a {color: var(--bs-link-color); text-decoration: underline}.
+  - Scope: every page, every link.
+  - Fix: in feder/assets/scss/_variables.scss, add before the bootstrap import takes effect:
+  $link-decoration: none;
+  $link-hover-decoration: underline;
+  - Cost: trivial (2-line SCSS change + make regenerate_frontend). Value: highest — fixes the most visually obvious BS3?BS5 gap across the entire site in one place.
+
+  2. Sitewide: neutral buttons are solid dark gray instead of BS3's white/outline look — needs a decision
+
+  .btn-secondary computes to background: rgb(85,85,85) (the custom $gray/#555) with white text, everywhere a BS3 .btn-default (white bg, gray border, dark text) used to be. This
+  isn't an accident — commit 7c5e2d56 ("fix: unify button group styling") deliberately dropped outline buttons in favor of solid ones and made delete actions btn-primary (hence
+  "Usun" is now brand-red instead of BS3's amber btn-warning).
+  - Scope: 22 templates using btn btn-secondary (all the toolbar/action buttons: Edytuj, Przypisz, Utwórz sprawe, etc.), 0 use btn-outline-secondary.
+  - Fix (low cost, no template changes needed): since it's driven by one class, restyle .btn-secondary itself in style.scss to match BS3's .btn-default recipe (white bg / #ccc
+    border / dark text, darkening slightly on hover) instead of editing 22 files.
+  - Cost: low (one CSS block). Value: high, but this was an intentional recent design choice by a teammate, not an overlooked leftover — worth a quick check-in with rwakulszowa
+    before reverting it, rather than just changing it.
+
+  3. Monitoring create/update page: broken breadcrumb (isolated bug) — fix this
+
+  On /monitoringi/.../~edytuj (and the create form), the breadcrumb trail renders as Monitoring sadów apelacyjnychZaktualizuj monitoring — no "/" separator, no spacing, items
+  visually merged.
+  - Root cause confirmed via DOM inspection: in feder/monitorings/templates/monitorings/monitoring_form.html:8, the active breadcrumb <li> has class="active" but is missing
+    breadcrumb-item, so Bootstrap 5's .breadcrumb-item + .breadcrumb-item::before { content: "/" } separator rule never matches it.
+  - Scope: only this one template (verified — no other template has the same bare class="active" pattern).
+  - Fix: change to class="breadcrumb-item active". One-line change.
+  - Cost: trivial. Value: medium (affects 2 of 84 pages, but it's a real, user-visible glitch, not just a color nit).
+
+  Worth leaving as-is (low value / not migration-caused)
+
+  - Report table headers wrapping to 2 lines on monitorings-report (very data-dense page, ~7 columns) — Bootstrap 5's table cell padding is marginally larger than BS3's, and this
+    is the one page with columns tight enough to notice. Chasing exact padding/font-size to prevent wrap risks affecting tables elsewhere for a purely cosmetic 1-page nit. Leave
+    it.
+  - "Usun" now red instead of amber — see #2 above; if you decide to keep the solid-button convention from commit 7c5e2d56, the color choice itself (red for destructive actions) is
+    arguably more correct than BS3's amber and not worth separately re-litigating.
+  - DataTablesTableId is not defined console error on every page — pre-existing JS bundling issue (monitoring_cases_datatables.js is concatenated into the sitewide script.js bundle
+    but only defines its variable on one specific template). This is unrelated to Bootstrap/CSS — it'd exist regardless of BS version — so it's out of scope for this migration
+    effort, just flagging it since you asked about "working," not just "looking."
+  - Action buttons (Edytuj/Usun/Dodaj) intermittently missing on first page load, then appearing on reload — this tracked back to perms.institutions.add_institution-style
+    permission checks, and reproduced inconsistently between two loads of the same URL in the same session, which points to a permissions/cache quirk (Django permission or object
+    cache), not a template/CSS issue. Separate investigation, not a BS3?BS5 regression.
+
+  Plan of action
+
+  1. Link underline — add $link-decoration: none; $link-hover-decoration: underline; to _variables.scss. Rebuild frontend, spot-check 2-3 pages.
+  2. Breadcrumb bug — add breadcrumb-item class in monitoring_form.html:8. One-line fix.
+  3. Button color — decide with the team whether to keep the Aug-16 solid-button redesign or restyle .btn-secondary back toward BS3's white/outline look; implement whichever is
+     chosen as a single SCSS block (no template edits).
+  4. Validate properly, not just by sampling: restore the Playwright regression suite (git checkout 99c5f5d5 -- playwright.config.ts tests/bs3-bs5_migration/*.ts package.json
+     package-lock.json, npm install) and run npx playwright test tests/bs3-bs5_migration/visual_baseline.spec.ts --grep desktop against the fixed code. It'll pixel-diff against the
+     real BS3 baseline for all 84 pages (not just my ~10-page sample) and should show the underline/breadcrumb fixes closing most of the remaining diffs. Re-gitignore afterward if
+     you still want it out of the tree.
+  5. Leave the four "as-is" items alone unless something above surfaces a related problem.
+
+? Cooked for 22m 21s
+
+implement the link underline and breadcrumb fixes now
+
+? Results
+
+  Breadcrumb fix on mobile: correct — wraps to two lines with the "/" separator intact, breadcrumb-item active class confirmed via computed style.
+
+  Button fix on mobile: the .btn-secondary color/border styling itself was fine, but checking against the mobile baseline surfaced a second real regression in the same family as
+  the pagination bug: .btn-group is display: inline-flex with no wrap in Bootstrap 5 (BS3's was inline-block, which reflowed naturally). On the monitoring toolbar (10 buttons),
+  this meant the row overflowed and required horizontal scrolling on mobile instead of wrapping like BS3 did.
+
+  Fixed in feder/assets/scss/style.scss:
+  .btn-group {
+    flex-wrap: wrap;
+
+    > .btn {
+      flex: 0 1 auto;
+    }
+  }
+  (the flex: 0 1 auto stops Bootstrap 5's default flex: 1 1 auto from stretching buttons unevenly across wrapped rows). Verified live at 375×812 — the toolbar now wraps onto
+  multiple rows matching the BS3 baseline almost exactly.
+
+  Also checked monitorings-details (a page the original audit already flagged as having pre-existing BS3-era mobile overflow): the button toolbar now wraps correctly there too; the
+  remaining ~105px overflow is the stats table, which is the same pre-existing issue from the original audit, unrelated to buttons/breadcrumbs.
+
+  One methodology note: I hit stale browser caching mid-investigation (Playwright's browser was serving an old cached style.css across navigations despite the file being rebuilt) —
+  worth knowing if you ever see a fix "not work" in a long-lived manual testing session; a hard-cache-bypass reload resolved it.
+
+  This fix is staged but not committed — want me to commit and push it like the others?
+
+? Worked for 7m 34s
+
+
+
+? Both fixes confirmed visually: the breadcrumb now reads "Monitoring sadów apelacyjnych / Zaktualizuj monitoring" with a proper separator and gray background bar, and no links
+  anywhere on the page are underlined anymore (matching BS3's look, now correctly matching the baseline). Let me clean up the dev server and run the linter on the changed files.
+
+run the full playwright suite against desktop
+
+? Results
+
+  Setup: Restored the archived Playwright suite from git history (99c5f5d5), installed @playwright/test + Chromium, started the dev server, and ran visual_baseline.spec.ts +
+  layout_assertions.spec.ts filtered to desktop (169 tests total) against the BS3 baseline snapshots.
+
+  First run (parallel, default workers): 85 failed / 84 passed — but 58 of those failures were ERR_SOCKET_NOT_CONNECTED/ERR_CONNECTION_RESET, i.e. Django's single-threaded dev
+  server buckling under concurrent Playwright workers, not real test failures. Re-ran serially (--workers=1) to get a clean signal:
+
+  +----------------------------------------------------------------------------------------------------------------------------------------+
+  ¦                          Suite                          ¦    Result    ¦                       What it measures                        ¦
+  +---------------------------------------------------------+--------------+---------------------------------------------------------------¦
+  ¦ layout_assertions (structural, DOM-based)               ¦ 85/85 passed ¦ horizontal overflow, nav structure — immune to font rendering ¦
+  +---------------------------------------------------------+--------------+---------------------------------------------------------------¦
+  ¦ visual_baseline (pixel screenshot diff, 0.1% threshold) ¦ 0/84 passed  ¦ exact pixel match against the July baseline                   ¦
+  +----------------------------------------------------------------------------------------------------------------------------------------+
+
+  The pixel-diff failures are not real regressions. All 84 pages fail in a narrow, uniform 2–17% band regardless of content, and the diff images show a "ghosting" pattern — text
+  and shapes duplicated with a slight offset — with table borders/columns/rows aligning perfectly and only glyph antialiasing differing. That's the signature of comparing against a
+  baseline captured with a different Chromium build than the one just installed (two months apart), not a CSS/layout change. This confirms the tool's own original caveat about not
+  casually re-running the baseline.
+
+  But the structural check did catch something real, once I stopped it from being masked by connection flakiness: institutions-list had 82,510px of horizontal overflow. Traced it
+  to <ul class="pagination"> — BS3's pagination was display: inline-block with inline <li>s, so it wrapped naturally; BS5's is display: flex with no flex-wrap, so a paginator with
+  thousands of page links (institutions has ~38k records) ran off-screen in one unbroken row instead of wrapping.
+
+  Fixed in feder/assets/scss/style.scss:
+  .pagination {
+    flex-wrap: wrap;
+  }
+  Verified live (scrollWidth now equals clientWidth) and via the automated suite (that overflow test now passes). This is staged but not committed — let me know if you want it
+  committed/pushed like the others.
+
+  Housekeeping
+
+  - make regenerate_frontend stops your whole dev stack as a side effect of its docker compose up --exit-code-from gulp step (happened twice) — I brought db/maildump/web back up
+    each time; final state is clean and idle, same as your normal workflow.
+  - The restored playwright.config.ts and tests/bs3-bs5_migration/*.ts spec files are left in your working tree (gitignored except playwright.config.ts, which is just untracked) so
+    the suite can be re-run easily — say the word if you'd rather I remove them to match the "temporary infra" convention from commit 2e4d27f4.
+
+? Churned for 19m 20s
+
+? is it worth to keep the restored test infra files?
+
+? Worth keeping locally, with a caveat: they're gitignored so there's no repo cost, and layout_assertions.spec.ts just proved genuinely useful (it caught the real pagination bug
+  and is immune to browser-version drift, unlike the pixel comparisons). The pixel-diff suite (visual_baseline.spec.ts) is the weaker half, though — it's inherently fragile once
+  Chromium drifts from whenever the baseline was captured, so treat it as spent for anything beyond this initial migration push rather than something to keep re-running.
+
+  If you want a durable regression check for future Bootstrap-adjacent changes, I'd lean on just layout_assertions.spec.ts going forward and not worry about re-establishing pixel
+  baselines. Turning this into permanent CI infra (un-gitignoring it, pinning a Playwright version in package.json) would be a separate, bigger call than what's been decided so far
+  — say so if that's actually where you want to take it.
+
+leave it for now
+
+? re-run the playwright suite on desktop and mobile
+
+? Results — desktop + mobile, 338 tests, run serially (zero connection flakiness)
+
+  +--------------------------------------------------------------------------------------------------------------+
+  ¦             Suite              ¦  Desktop   ¦                             Mobile                             ¦
+  +--------------------------------+------------+----------------------------------------------------------------¦
+  ¦ layout_assertions (structural) ¦ 84/84 pass ¦ 83/84 pass (1 new issue, see below) + nav check passes on both ¦
+  +--------------------------------+------------+----------------------------------------------------------------¦
+  ¦ visual_baseline (pixel diff)   ¦ 0/84 pass  ¦ 0/84 pass                                                      ¦
+  +--------------------------------------------------------------------------------------------------------------+
+
+  Pixel-diff failures (168 total): still all browser-rendering-drift noise, same as the desktop-only run — not real regressions. No further action needed there.
+
+  Mobile overflow, comparing against the original 23 pre-existing BS3-era mobile issues:
+  - 7 pages fixed by the pagination/button-group wrap fixes: institutions-list, letters-logs-detail, alerts-details, alerts-update, alerts-delete, alerts-status,
+    parcels-outgoing-update.
+  - 16 pages still overflow, same as before (e.g. monitorings-report at 773px — a 9-column data table that was never going to fit 375px regardless of Bootstrap version) — all
+    pre-existing, unrelated to Bootstrap version, already documented in the original audit.
+  - 1 new item: users-list (44px overflow, not in the original list).
+
+  The users-list overflow is real, but unrelated to the button/breadcrumb fixes. Root cause: some users have full email addresses as usernames (e.g.
+  joanna.gucman@siecobywatelska.pl), and the <h4 class="mb-1"> heading that displays them has overflow-wrap: normal — an unbroken string like an email has no natural break point, so
+  it can't wrap and pushes ~70px past its 298px column. This is a plain CSS/data issue (long unbreakable strings), not something Bootstrap-version-specific — I didn't chase why it
+  wasn't in the original list (possibly grid-gutter width shifted a few px during the migration, tipping it from "just fits" to "just doesn't"), since it's outside what you asked me
+  to check today.
+
+  Bottom line on what you asked: both the button-group and breadcrumb fixes hold up correctly on mobile, confirmed by the automated suite as well as my manual checks. Want me to fix
+  the users-list email-wrapping issue too (a one-line overflow-wrap: anywhere on that heading), or leave it for later?
+
+? Worked for 3m 15s
+
+
+? fix:  - DataTablesTableId is not defined console error on every page — pre-existing JS bundling issue (monitoring_cases_datatables.js is concatenated into the sitewide script.js
+  bundle
+      but only defines its variable on one specific template). This is unrelated to Bootstrap/CSS — it'd exist regardless of BS version — so it's out of scope for this migration
+      effort, just flagging it since you asked about "working," not just "looking."
+
+  One methodology note worth flagging: mid-verification, Chromium served a stale cached script.js even with CDP's Network.setCacheDisabled set — I had to also call
+  Network.clearBrowserCache to force a real fetch. Worth remembering if a fix ever appears "not to work" during manual browser testing in this environment.
+
+  Along the way I also spotted 10 unrelated console errors (jQuery is not defined, DAL function "select2" has already been registered) on the monitoring_cases_table page
+  specifically — a separate, pre-existing script-loading-order issue unrelated to what you asked about. Flagging it in case you want it looked at separately; didn't touch it here.
+
+? Cogitated for 4m 39s
+
+Resume this session with:
+claude --resume ca038905-afcd-46f4-b804-4d2b5f48d034
+
+

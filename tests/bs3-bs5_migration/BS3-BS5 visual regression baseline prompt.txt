@@ -1,24 +1,3 @@
-I have django app with UI dependent on bootstrap3 and jquery, which needs to be migrated to bootstrap5, htmx and vanilla js without breaking UI. Below is the audit instruction for claude code:
-```
-You are performing a read-only audit of a Django project. Do not modify any files. Use the explore agent to scan the codebase and produce a structured report.
-Audit targets (run all of these):
-
-1) BS3 class fingerprints — scan all *.html files under templates/ for Bootstrap 3 patterns: col-(xs|sm|md|lg)-[0-9]+, panel, well, glyphicon, btn-default, navbar-default, data-toggle, data-target, data-dismiss. Report frequency per pattern and which templates contain the most hits.
-2) Template inheritance map — find every {% extends %} tag across all templates. List which base templates exist and how many child templates extend each one.
-3) Inclusion tags and custom template tags — find every {% load %} and {% include %} across all templates. List which tag libraries are loaded most frequently and which partials are included most.
-4) Crispy-forms usage — check settings.py (and any split settings files) for CRISPY_TEMPLATE_PACK. Count how many templates use {% crispy %} or {% crispy_forms_tags %}. Report whether the pack is currently bootstrap3.
-5) jQuery and JS interaction surface — scan all *.html and *.js files under templates/ and static/ for: $(, $.ajax, .modal(, .tooltip(, .popover(, data-toggle, data-target. Report total count and which files have the highest concentration.
-6) Removed BS3 components — specifically flag any usage of: panel, well, thumbnail, glyphicon, navbar-default, navbar-inverse, btn-default, label (BS3 label badge), page-header, dl-horizontal. These have no direct BS5 equivalent and need manual substitution.
-
-Output format: produce a single markdown report with one section per audit target. Each section should include a frequency table (count ? pattern or file), a total count, and a short plain-English summary of what it means for the migration effort. End with an overall effort estimate: number of templates affected, whether crispy-forms covers most form work, and a rough Track A vs Track B split.
-```
-
-Result of the audit attached. 
-
-
-
-
-
 
 Ive also made claude code preparing an automasted tests refence using instruction:
 ```
