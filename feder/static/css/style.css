@@ -24798,6 +24798,23 @@ iframe.letter-quote {
 }
 
 /* generic padding and margin classes replaced by standard Bootstrap 5 utility classes */
+/* buttons */
+.btn-secondary {
+  --bs-btn-color: #333333;
+  --bs-btn-bg: #fff;
+  --bs-btn-border-color: #ccc;
+  --bs-btn-hover-color: #333333;
+  --bs-btn-hover-bg: #e6e6e6;
+  --bs-btn-hover-border-color: #adadad;
+  --bs-btn-focus-shadow-rgb: 130, 130, 130;
+  --bs-btn-active-color: #333333;
+  --bs-btn-active-bg: #e6e6e6;
+  --bs-btn-active-border-color: #adadad;
+  --bs-btn-disabled-color: #333333;
+  --bs-btn-disabled-bg: #fff;
+  --bs-btn-disabled-border-color: #ccc;
+}
+
 /* breadcrumbs */
 .breadcrumb {
   background-color: #f5f5f5;

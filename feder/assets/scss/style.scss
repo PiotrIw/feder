@@ -211,6 +211,27 @@ iframe.letter-quote {
 /* generic padding and margin classes replaced by standard Bootstrap 5 utility classes */
 
 
+/* buttons */
+
+// Restore BS3's .btn-default look (white/bordered) for secondary buttons.
+// .btn-primary (red) is left untouched, keeping red as the danger/emphasis color.
+.btn-secondary {
+  --bs-btn-color: #{$gray-dark};
+  --bs-btn-bg: #fff;
+  --bs-btn-border-color: #ccc;
+  --bs-btn-hover-color: #{$gray-dark};
+  --bs-btn-hover-bg: #e6e6e6;
+  --bs-btn-hover-border-color: #adadad;
+  --bs-btn-focus-shadow-rgb: 130, 130, 130;
+  --bs-btn-active-color: #{$gray-dark};
+  --bs-btn-active-bg: #e6e6e6;
+  --bs-btn-active-border-color: #adadad;
+  --bs-btn-disabled-color: #{$gray-dark};
+  --bs-btn-disabled-bg: #fff;
+  --bs-btn-disabled-border-color: #ccc;
+}
+
+
 /* breadcrumbs */
 
 .breadcrumb {
