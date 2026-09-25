@@ -41,6 +41,10 @@ $border-radius: $border-radius-base !default;
 $border-radius-sm: $border-radius-small !default;
 $border-radius-lg: $border-radius-large !default;
 
+// Match BS3 link behavior: no underline until hover.
+$link-decoration: none !default;
+$link-hover-decoration: underline !default;
+
 // Gray color mappings for Bootstrap 5
 $gray-100: color.scale($gray-base, $lightness: 96.5%) !default;
 $gray-200: $gray-lighter !default;
