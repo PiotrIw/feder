@@ -24798,6 +24798,12 @@ iframe.letter-quote {
 }
 
 /* generic padding and margin classes replaced by standard Bootstrap 5 utility classes */
+/* pagination */
+.pagination {
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
 /* buttons */
 .btn-secondary {
   --bs-btn-color: #333333;

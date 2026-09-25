@@ -211,6 +211,18 @@ iframe.letter-quote {
 /* generic padding and margin classes replaced by standard Bootstrap 5 utility classes */
 
 
+/* pagination */
+
+// BS3's .pagination was display:inline-block with inline <li>s, so it wrapped
+// onto multiple lines naturally. BS5's .pagination is display:flex with no
+// wrap, so paginators with many page-number links (e.g. institutions list
+// with thousands of pages) overflow the viewport in one unbroken row instead
+// of wrapping like they used to.
+.pagination {
+  flex-wrap: wrap;
+}
+
+
 /* buttons */
 
 // Restore BS3's .btn-default look (white/bordered) for secondary buttons.
