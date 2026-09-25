@@ -1,0 +1,627 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: visual_baseline.spec.ts >> mobile (375px) >> monitorings-list - visual baseline
+- Location: tests/bs3-bs5_migration/visual_baseline.spec.ts:10:11
+
+# Error details
+
+```
+Error: expect(page).toHaveScreenshot(expected) failed
+
+  Expected an image 386px by 9608px, received 383px by 9168px. 548876 pixels (ratio 0.15 of all image pixels) are different.
+
+  Snapshot: monitorings-list-mobile.png
+
+Call log:
+  - Expect "toHaveScreenshot(monitorings-list-mobile.png)" with timeout 5000ms
+    - verifying given screenshot expectation
+  - taking page screenshot
+    - disabled all CSS animations
+  - waiting for fonts to load...
+  - fonts loaded
+  - Expected an image 386px by 9608px, received 383px by 9168px. 548876 pixels (ratio 0.15 of all image pixels) are different.
+  - waiting 100ms before taking screenshot
+  - taking page screenshot
+    - disabled all CSS animations
+  - waiting for fonts to load...
+  - fonts loaded
+  - captured a stable screenshot
+  - Expected an image 386px by 9608px, received 383px by 9168px. 548876 pixels (ratio 0.15 of all image pixels) are different.
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e3]:
+      - button "Przełącz nawigacje" [ref=e4] [cursor=pointer]
+      - link [ref=e7] [cursor=pointer]:
+        - /url: /
+        - img "Fedrowanie" [ref=e8]
+      - heading "Obywatelskie fedrowanie danych" [level=1] [ref=e9]
+  - generic [ref=e10]:
+    - text: )
+    - generic [ref=e11]:
+      - generic [ref=e12]:
+        - heading "DEV" [level=1] [ref=e13]
+        - link [ref=e14] [cursor=pointer]:
+          - /url: /
+          - img "Fedrowanie" [ref=e16]
+          - paragraph [ref=e17]: Fedrowanie
+        - paragraph [ref=e18]:
+          - link "Sieci Watchdog" [ref=e19] [cursor=pointer]:
+            - /url: http://siecobywatelska.pl
+        - paragraph [ref=e20]:
+          - link "Klauzula RODO" [ref=e21] [cursor=pointer]:
+            - /url: https://fedrowanie.siecobywatelska.pl/media_internal/tinycontent/uploads/11_KLAUZULA.-.dane.z.udip.na.stronach.www.i.w.mediach.spol.pdf
+      - list [ref=e23]:
+        - listitem [ref=e24]:
+          - paragraph [ref=e25]
+        - listitem [ref=e26]:
+          - link "Strona główna" [ref=e27] [cursor=pointer]:
+            - /url: /
+        - listitem [ref=e29]:
+          - link "O stronie" [ref=e30] [cursor=pointer]:
+            - /url: /o-stronie/
+        - listitem [ref=e32]:
+          - paragraph [ref=e33]
+        - generic [ref=e34]: Szukaj
+        - listitem [ref=e36]:
+          - link "Sprawy" [ref=e37] [cursor=pointer]:
+            - /url: /sprawy/
+        - listitem [ref=e39]:
+          - link "Monitoringi" [ref=e40] [cursor=pointer]:
+            - /url: /monitoringi/
+        - listitem [ref=e42]:
+          - link "Tabela monitoringów" [ref=e43] [cursor=pointer]:
+            - /url: /monitoringi/table/
+        - listitem [ref=e45]:
+          - link "Listy przypisane do spraw" [ref=e46] [cursor=pointer]:
+            - /url: /listy/
+        - listitem [ref=e48]:
+          - link "Listy nieprzypisane do spraw" [ref=e49] [cursor=pointer]:
+            - /url: /listy/przypisz
+        - listitem [ref=e51]:
+          - link "Instytucje" [ref=e52] [cursor=pointer]:
+            - /url: /instytucje/
+        - listitem [ref=e54]:
+          - paragraph [ref=e55]
+      - generic [ref=e56]:
+        - generic [ref=e57]: Użytkownik / użytkowniczka
+        - listitem [ref=e58]:
+          - link "Mój profil" [ref=e59] [cursor=pointer]:
+            - /url: /uzytkownik/claude_ai/
+        - listitem [ref=e61]:
+          - link "Panel administracyjny" [ref=e62] [cursor=pointer]:
+            - /url: /admin/
+        - listitem [ref=e64]:
+          - link "Wyloguj" [ref=e65] [cursor=pointer]:
+            - /url: /accounts/logout/
+    - generic [ref=e68]:
+      - link "Dodaj monitoring" [ref=e71] [cursor=pointer]:
+        - /url: /monitoringi/~utworz
+      - heading "Wykaz monitoringów" [level=2] [ref=e73]
+      - generic [ref=e74]:
+        - generic [ref=e77]:
+          - generic [ref=e78]:
+            - generic [ref=e79]: Nazwa
+            - textbox "Nazwa" [ref=e80]
+          - generic [ref=e81]:
+            - generic [ref=e82]: Data utworzenia
+            - combobox "Data utworzenia" [ref=e83]:
+              - option "---------" [selected]
+              - option "Dzisiaj"
+              - option "Wczoraj"
+              - option "Ostatnie 7 dni"
+              - option "Ten miesiąc"
+              - option "Ten rok"
+          - generic [ref=e84]:
+            - generic [ref=e85]: Województwa
+            - combobox [aria-hidden] [ref=e86]
+            - combobox [ref=e89] [cursor=pointer]:
+              - textbox
+          - generic [ref=e90]:
+            - generic [ref=e91]: Powiat
+            - combobox [aria-hidden] [ref=e92]
+            - combobox [ref=e95] [cursor=pointer]:
+              - textbox
+          - generic [ref=e96]:
+            - generic [ref=e97]: Gmina
+            - combobox [aria-hidden] [ref=e98]
+            - combobox [ref=e101] [cursor=pointer]:
+              - textbox
+          - button "Filtruj" [ref=e102] [cursor=pointer]
+        - generic [ref=e104]:
+          - generic [ref=e105]:
+            - heading [level=2] [ref=e106]:
+              - link "Kontrole punktów gastronomicznych" [ref=e108] [cursor=pointer]:
+                - /url: /monitoringi/kontrole-punktow-gastronomicznych
+            - paragraph [ref=e109]:
+              - text: "Użytkownik / użytkowniczka:"
+              - link "AgnieszkaZdanowicz" [ref=e110] [cursor=pointer]:
+                - /url: /uzytkownik/AgnieszkaZdanowicz/
+            - paragraph [ref=e111]:
+              - text: Data utworzenia
+              - time [ref=e112]: 18 lipca 2024 10:32
+            - paragraph [ref=e113]:
+              - text: "Liczba spraw:"
+              - time [ref=e114]: "9"
+          - generic [ref=e115]:
+            - heading [level=2] [ref=e116]:
+              - link "Zespoły w ministerstwach" [ref=e118] [cursor=pointer]:
+                - /url: /monitoringi/zespoly-w-ministerstwach
+            - paragraph [ref=e119]:
+              - text: "Użytkownik / użytkowniczka:"
+              - link "SOWP" [ref=e120] [cursor=pointer]:
+                - /url: /uzytkownik/SOWP/
+            - paragraph [ref=e121]:
+              - text: Data utworzenia
+              - time [ref=e122]: 11 lipca 2024 11:54
+            - paragraph [ref=e123]:
+              - text: "Liczba spraw:"
+              - time [ref=e124]: "20"
+          - generic [ref=e125]:
+            - heading [level=2] [ref=e126]:
+              - link "Ministerstwa - baza danych umów cywilnoprawnych" [ref=e128] [cursor=pointer]:
+                - /url: /monitoringi/ministerstwa-baza-danych-umow-cywilnoprawnych
+            - paragraph [ref=e129]:
+              - text: "Użytkownik / użytkowniczka:"
+              - link "SOWP" [ref=e130] [cursor=pointer]:
+                - /url: /uzytkownik/SOWP/
+            - paragraph [ref=e131]:
+              - text: Data utworzenia
+              - time [ref=e132]: 3 lipca 2024 10:14
+            - paragraph [ref=e133]:
+              - text: "Liczba spraw:"
+              - time [ref=e134]: "19"
+          - generic [ref=e135]:
+            - heading [level=2] [ref=e136]:
+              - link "Nagrody w ministerstwach 2024" [ref=e138] [cursor=pointer]:
+                - /url: /monitoringi/nagrody-w-ministerstwach-2
+            - paragraph [ref=e139]:
+              - text: "Użytkownik / użytkowniczka:"
+              - link "SOWP" [ref=e140] [cursor=pointer]:
+                - /url: /uzytkownik/SOWP/
+            - paragraph [ref=e141]:
+              - text: Data utworzenia
+              - time [ref=e142]: 3 lipca 2024 10:07
+            - paragraph [ref=e143]:
+              - text: "Liczba spraw:"
+              - time [ref=e144]: "20"
+          - generic [ref=e145]:
+            - heading [level=2] [ref=e146]:
+              - link "Lasy Państwowe a SLAPPy" [ref=e148] [cursor=pointer]:
+                - /url: /monitoringi/lasy-panstwowe-a-slappy
+            - paragraph [ref=e149]:
+              - text: "Użytkownik / użytkowniczka:"
+              - link "SOWP" [ref=e150] [cursor=pointer]:
+                - /url: /uzytkownik/SOWP/
+            - paragraph [ref=e151]:
+              - text: Data utworzenia
+              - time [ref=e152]: 2 lipca 2024 10:12
+            - paragraph [ref=e153]:
+              - text: "Liczba spraw:"
+              - time [ref=e154]: "18"
+          - generic [ref=e155]:
+            - heading [level=2] [ref=e156]:
+              - link "Wnioski o informację o środowisku w 2023 - RDOŚ-ie" [ref=e158] [cursor=pointer]:
+                - /url: /monitoringi/wnioski-o-informacje-o-srodowisku-w-2023-rdos-ie-gdos-parki-narodowe
+            - paragraph [ref=e159]:
+              - text: "Użytkownik / użytkowniczka:"
+              - link "SOWP" [ref=e160] [cursor=pointer]:
+                - /url: /uzytkownik/SOWP/
+            - paragraph [ref=e161]:
+              - text: Data utworzenia
+              - time [ref=e162]: 25 czerwca 2024 13:58
+            - paragraph [ref=e163]:
+              - text: "Liczba spraw:"
+              - time [ref=e164]: "18"
+          - generic [ref=e165]:
+            - heading [level=2] [ref=e166]:
+              - link "Wnioski o informację o środowisku w 2023 - gminy, starostwa, urzędy marszałkowskie, GDOŚ, parki" [ref=e168] [cursor=pointer]:
+                - /url: /monitoringi/wnioski-o-informacje-o-srodowisku-w-2023-gminy-starostwa-urzedy-marszalkowskie
+            - paragraph [ref=e169]:
+              - text: "Użytkownik / użytkowniczka:"
+              - link "SOWP" [ref=e170] [cursor=pointer]:
+                - /url: /uzytkownik/SOWP/
+            - paragraph [ref=e171]:
+              - text: Data utworzenia
+              - time [ref=e172]: 25 czerwca 2024 08:59
+            - paragraph [ref=e173]:
+              - text: "Liczba spraw:"
+              - time [ref=e174]: "818"
+          - generic [ref=e175]:
+            - heading [level=2] [ref=e176]:
+              - link "Wnioski o informację w 2023 - Komendanci Wojewódzcy i Stołeczny Policji" [ref=e178] [cursor=pointer]:
+                - /url: /monitoringi/wnioski-o-informacje-w-2023-komendanci-wojewodzcy-i-stoleczny-policji
+            - paragraph [ref=e179]:
+              - text: "Użytkownik / użytkowniczka:"
+              - link "SOWP" [ref=e180] [cursor=pointer]:
+                - /url: /uzytkownik/SOWP/
+            - paragraph [ref=e181]:
+              - text: Data utworzenia
+              - time [ref=e182]: 19 czerwca 2024 09:51
+            - paragraph [ref=e183]:
+              - text: "Liczba spraw:"
+              - time [ref=e184]: "17"
+          - generic [ref=e185]:
+            - heading [level=2] [ref=e186]:
+              - link "Wnioski o informację w 2023 - pytamy wojewodów o straże gminne (miejskie)" [ref=e188] [cursor=pointer]:
+                - /url: /monitoringi/wnioski-o-informacje-w-2023-pytamy-wojewodow-o-straze-gminne-miejskie
+            - paragraph [ref=e189]:
+              - text: "Użytkownik / użytkowniczka:"
+              - link "SOWP" [ref=e190] [cursor=pointer]:
+                - /url: /uzytkownik/SOWP/
+            - paragraph [ref=e191]:
+              - text: Data utworzenia
+              - time [ref=e192]: 19 czerwca 2024 09:22
+            - paragraph [ref=e193]:
+              - text: "Liczba spraw:"
+              - time [ref=e194]: "16"
+          - generic [ref=e195]:
+            - heading [level=2] [ref=e196]:
+              - link "Doradcy Marszałków Sejmu i Senatu" [ref=e198] [cursor=pointer]:
+                - /url: /monitoringi/doradcy-marszalkow-sejmu-i-senatu
+            - paragraph [ref=e199]:
+              - text: "Użytkownik / użytkowniczka:"
+              - link "SOWP" [ref=e200] [cursor=pointer]:
+                - /url: /uzytkownik/SOWP/
+            - paragraph [ref=e201]:
+              - text: Data utworzenia
+              - time [ref=e202]: 18 czerwca 2024 14:48
+            - paragraph [ref=e203]:
+              - text: "Liczba spraw:"
+              - time [ref=e204]: "2"
+          - generic [ref=e205]:
+            - heading [level=2] [ref=e206]:
+              - link "Karty płatnicze w ministerstwach" [ref=e208] [cursor=pointer]:
+                - /url: /monitoringi/karty-platnicze-w-ministerstwach
+            - paragraph [ref=e209]:
+              - text: "Użytkownik / użytkowniczka:"
+              - link "SOWP" [ref=e210] [cursor=pointer]:
+                - /url: /uzytkownik/SOWP/
+            - paragraph [ref=e211]:
+              - text: Data utworzenia
+              - time [ref=e212]: 18 czerwca 2024 14:41
+            - paragraph [ref=e213]:
+              - text: "Liczba spraw:"
+              - time [ref=e214]: "20"
+          - generic [ref=e215]:
+            - heading [level=2] [ref=e216]:
+              - link "Wnioski o informację w 2023 - samorządowe kolegia odwoławcze" [ref=e218] [cursor=pointer]:
+                - /url: /monitoringi/wnioski-o-informacje-w-2023-samorzadowe-kolegia-odwolawcze
+            - paragraph [ref=e219]:
+              - text: "Użytkownik / użytkowniczka:"
+              - link "SOWP" [ref=e220] [cursor=pointer]:
+                - /url: /uzytkownik/SOWP/
+            - paragraph [ref=e221]:
+              - text: Data utworzenia
+              - time [ref=e222]: 18 czerwca 2024 09:06
+            - paragraph [ref=e223]:
+              - text: "Liczba spraw:"
+              - time [ref=e224]: "49"
+          - generic [ref=e225]:
+            - heading [level=2] [ref=e226]:
+              - link "Wnioski o informację w 2023 - Akademia Wymiaru Sprawiedliwości" [ref=e228] [cursor=pointer]:
+                - /url: /monitoringi/wnioski-o-informacje-w-2023-akademia-wymiaru-sprawiedliwosci
+            - paragraph [ref=e229]:
+              - text: "Użytkownik / użytkowniczka:"
+              - link "SOWP" [ref=e230] [cursor=pointer]:
+                - /url: /uzytkownik/SOWP/
+            - paragraph [ref=e231]:
+              - text: Data utworzenia
+              - time [ref=e232]: 25 kwietnia 2024 13:55
+            - paragraph [ref=e233]:
+              - text: "Liczba spraw:"
+              - time [ref=e234]: "1"
+          - generic [ref=e235]:
+            - heading [level=2] [ref=e236]:
+              - link "Wnioski o informację w 2023 - Komendanci Ośrodków Szkolenia Służby Więziennej" [ref=e238] [cursor=pointer]:
+                - /url: /monitoringi/wnioski-o-informacje-w-2023-komendanci-osrodkow-szkolenia-sluzby-wieziennej
+            - paragraph [ref=e239]:
+              - text: "Użytkownik / użytkowniczka:"
+              - link "SOWP" [ref=e240] [cursor=pointer]:
+                - /url: /uzytkownik/SOWP/
+            - paragraph [ref=e241]:
+              - text: Data utworzenia
+              - time [ref=e242]: 25 kwietnia 2024 13:51
+            - paragraph [ref=e243]:
+              - text: "Liczba spraw:"
+              - time [ref=e244]: "4"
+          - generic [ref=e245]:
+            - heading [level=2] [ref=e246]:
+              - link "Wnioski o informację w 2023 - Dyrektorzy Okręgowi Służby Więziennej" [ref=e248] [cursor=pointer]:
+                - /url: /monitoringi/wnioski-o-informacje-w-2023-dyrektorzy-okregowi-sluzby-wieziennej
+            - paragraph [ref=e249]:
+              - text: "Użytkownik / użytkowniczka:"
+              - link "SOWP" [ref=e250] [cursor=pointer]:
+                - /url: /uzytkownik/SOWP/
+            - paragraph [ref=e251]:
+              - text: Data utworzenia
+              - time [ref=e252]: 25 kwietnia 2024 12:53
+            - paragraph [ref=e253]:
+              - text: "Liczba spraw:"
+              - time [ref=e254]: "11"
+          - generic [ref=e255]:
+            - heading [level=2] [ref=e256]:
+              - link "Wnioski o informację w 2023 - Dyrektor Generalny Służby Więziennej" [ref=e258] [cursor=pointer]:
+                - /url: /monitoringi/wnioski-o-informacje-w-2023-dyrektor-generalny-sluzby-wieziennej
+            - paragraph [ref=e259]:
+              - text: "Użytkownik / użytkowniczka:"
+              - link "SOWP" [ref=e260] [cursor=pointer]:
+                - /url: /uzytkownik/SOWP/
+            - paragraph [ref=e261]:
+              - text: Data utworzenia
+              - time [ref=e262]: 25 kwietnia 2024 12:47
+            - paragraph [ref=e263]:
+              - text: "Liczba spraw:"
+              - time [ref=e264]: "1"
+          - generic [ref=e265]:
+            - heading [level=2] [ref=e266]:
+              - link "Wnioski o informację w 2023 - areszty śledcze" [ref=e268] [cursor=pointer]:
+                - /url: /monitoringi/wnioski-o-informacje-w-2023-areszty-sledcze
+            - paragraph [ref=e269]:
+              - text: "Użytkownik / użytkowniczka:"
+              - link "SOWP" [ref=e270] [cursor=pointer]:
+                - /url: /uzytkownik/SOWP/
+            - paragraph [ref=e271]:
+              - text: Data utworzenia
+              - time [ref=e272]: 25 kwietnia 2024 12:41
+            - paragraph [ref=e273]:
+              - text: "Liczba spraw:"
+              - time [ref=e274]: "37"
+          - generic [ref=e275]:
+            - heading [level=2] [ref=e276]:
+              - link "Wnioski o informację w 2023 - zakłady karne" [ref=e278] [cursor=pointer]:
+                - /url: /monitoringi/wnioski-o-informacje-w-2023-zaklady-karne
+            - paragraph [ref=e279]:
+              - text: "Użytkownik / użytkowniczka:"
+              - link "SOWP" [ref=e280] [cursor=pointer]:
+                - /url: /uzytkownik/SOWP/
+            - paragraph [ref=e281]:
+              - text: Data utworzenia
+              - time [ref=e282]: 25 kwietnia 2024 12:30
+            - paragraph [ref=e283]:
+              - text: "Liczba spraw:"
+              - time [ref=e284]: "64"
+          - generic [ref=e285]:
+            - heading [level=2] [ref=e286]:
+              - link "Wnioski o informację w 2023 - sądy rejonowe" [ref=e288] [cursor=pointer]:
+                - /url: /monitoringi/wnioski-o-informacje-w-2023-sady-rejonowe
+            - paragraph [ref=e289]:
+              - text: "Użytkownik / użytkowniczka:"
+              - link "SOWP" [ref=e290] [cursor=pointer]:
+                - /url: /uzytkownik/SOWP/
+            - paragraph [ref=e291]:
+              - text: Data utworzenia
+              - time [ref=e292]: 17 kwietnia 2024 10:33
+            - paragraph [ref=e293]:
+              - text: "Liczba spraw:"
+              - time [ref=e294]: "319"
+          - generic [ref=e295]:
+            - heading [level=2] [ref=e296]:
+              - link "Wnioski o informację w 2023 - sądy okręgowe" [ref=e298] [cursor=pointer]:
+                - /url: /monitoringi/wnioski-o-informacje-w-2023-sady-okregowe
+            - paragraph [ref=e299]:
+              - text: "Użytkownik / użytkowniczka:"
+              - link "SOWP" [ref=e300] [cursor=pointer]:
+                - /url: /uzytkownik/SOWP/
+            - paragraph [ref=e301]:
+              - text: Data utworzenia
+              - time [ref=e302]: 17 kwietnia 2024 10:31
+            - paragraph [ref=e303]:
+              - text: "Liczba spraw:"
+              - time [ref=e304]: "47"
+          - generic [ref=e305]:
+            - heading [level=2] [ref=e306]:
+              - link "Wnioski o informację w 2023 - sądy apelacyjne" [ref=e308] [cursor=pointer]:
+                - /url: /monitoringi/wnioski-o-informacje-w-2023-sady-apelacyjne
+            - paragraph [ref=e309]:
+              - text: "Użytkownik / użytkowniczka:"
+              - link "SOWP" [ref=e310] [cursor=pointer]:
+                - /url: /uzytkownik/SOWP/
+            - paragraph [ref=e311]:
+              - text: Data utworzenia
+              - time [ref=e312]: 17 kwietnia 2024 10:04
+            - paragraph [ref=e313]:
+              - text: "Liczba spraw:"
+              - time [ref=e314]: "11"
+          - generic [ref=e315]:
+            - heading [level=2] [ref=e316]:
+              - link "Działalność Zarządów Okręgowych Polskiego Związku Łowieckiego" [ref=e318] [cursor=pointer]:
+                - /url: /monitoringi/dzialalnosc-zarzadow-okregowych-polskiego-zwiazku-lowieckiego
+            - paragraph [ref=e319]:
+              - text: "Użytkownik / użytkowniczka:"
+              - link "SOWP" [ref=e320] [cursor=pointer]:
+                - /url: /uzytkownik/SOWP/
+            - paragraph [ref=e321]:
+              - text: Data utworzenia
+              - time [ref=e322]: 27 marca 2024 09:21
+            - paragraph [ref=e323]:
+              - text: "Liczba spraw:"
+              - time [ref=e324]: "53"
+          - generic [ref=e325]:
+            - heading [level=2] [ref=e326]:
+              - link "Wniosek o zaprzestanie blokowania korespondencji" [ref=e328] [cursor=pointer]:
+                - /url: /monitoringi/wniosek-o-zaprzestanie-blokowania-korespondencji
+            - paragraph [ref=e329]:
+              - text: "Użytkownik / użytkowniczka:"
+              - link "SOWP" [ref=e330] [cursor=pointer]:
+                - /url: /uzytkownik/SOWP/
+            - paragraph [ref=e331]:
+              - text: Data utworzenia
+              - time [ref=e332]: 12 marca 2024 08:29
+            - paragraph [ref=e333]:
+              - text: "Liczba spraw:"
+              - time [ref=e334]: "25"
+          - generic [ref=e335]:
+            - heading [level=2] [ref=e336]:
+              - link "Informacja w sprawie wyborów samorządowych" [ref=e338] [cursor=pointer]:
+                - /url: /monitoringi/apel-dot-wyborow-samorzadowych
+            - paragraph [ref=e339]:
+              - text: "Użytkownik / użytkowniczka:"
+              - link "SOWP" [ref=e340] [cursor=pointer]:
+                - /url: /uzytkownik/SOWP/
+            - paragraph [ref=e341]:
+              - text: Data utworzenia
+              - time [ref=e342]: 7 marca 2024 19:26
+            - paragraph [ref=e343]:
+              - text: "Liczba spraw:"
+              - time [ref=e344]: "2807"
+          - generic [ref=e345]:
+            - heading [level=2] [ref=e346]:
+              - link "Zaproszenie na kurs (Bez)Nadzieja małej i dużej gminy" [ref=e348] [cursor=pointer]:
+                - /url: /monitoringi/zaproszenie-na-kurs-beznadzieja-malej-i-duzej-gminy
+            - paragraph [ref=e349]:
+              - text: "Użytkownik / użytkowniczka:"
+              - link "SOWP" [ref=e350] [cursor=pointer]:
+                - /url: /uzytkownik/SOWP/
+            - paragraph [ref=e351]:
+              - text: Data utworzenia
+              - time [ref=e352]: 4 marca 2024 20:11
+            - paragraph [ref=e353]:
+              - text: "Liczba spraw:"
+              - time [ref=e354]: "2477"
+          - list [ref=e355]:
+            - listitem [ref=e356]:
+              - generic [aria-hidden]: ←
+            - listitem [ref=e357]:
+              - generic "Current Page" [ref=e358]: "1"
+            - listitem [ref=e359]:
+              - link "Page 2 of 4" [ref=e360] [cursor=pointer]:
+                - /url: "?page=2"
+                - text: "2"
+            - listitem [ref=e361]:
+              - link "Page 3 of 4" [ref=e362] [cursor=pointer]:
+                - /url: "?page=3"
+                - text: "3"
+            - listitem [ref=e363]:
+              - link "Page 4 of 4" [ref=e364] [cursor=pointer]:
+                - /url: "?page=4"
+                - text: "4"
+            - listitem [ref=e365]:
+              - link "Next Page" [ref=e366] [cursor=pointer]:
+                - /url: "?page=2"
+                - text: →
+      - generic [ref=e367]:
+        - generic [ref=e368]:
+          - text: Sieć Obywatelska - Watchdog Polska ul. Szpitalna 5/5 00-031 Warszawa
+          - paragraph [ref=e369]:
+            - link "Klauzula RODO" [ref=e370] [cursor=pointer]:
+              - /url: https://fedrowanie.siecobywatelska.pl/media_internal/tinycontent/uploads/11_KLAUZULA.-.dane.z.udip.na.stronach.www.i.w.mediach.spol.pdf
+        - generic [ref=e371]:
+          - text: "silnik:"
+          - link "jawne.info.pl" [ref=e372] [cursor=pointer]:
+            - /url: http://jawne.info.pl
+          - text: "| v1.5.77.deps |"
+          - link "GitHub" [ref=e373] [cursor=pointer]:
+            - /url: https://github.com/watchdogpolska/feder
+          - text: –
+          - link "efd8a3b" [ref=e375] [cursor=pointer]:
+            - /url: https://github.com/watchdogpolska/feder/compare/efd8a3b2...master
+          - text: "|"
+          - link "API" [ref=e376] [cursor=pointer]:
+            - /url: /api/
+        - generic [ref=e378]: Ta strona wykorzystuje cookies.
+  - list [ref=e380]:
+    - listitem [ref=e381]:
+      - link "Ukryj »" [ref=e382] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e383]:
+      - link "Toggle Theme" [ref=e384] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e387]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e388]
+      - link "Historia /monitoringi/" [ref=e389] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e390]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e391]
+      - link "Wersje Django 5.2.17" [ref=e392] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e393]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e394]
+      - 'link "Czas CPU: 146.43ms (819.47ms)" [ref=e395] [cursor=pointer]':
+        - /url: "#"
+    - listitem [ref=e396]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e397]
+      - link "Ustawienia" [ref=e398] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e399]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e400]
+      - link "Nagłówki" [ref=e401] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e402]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e403]
+      - link "Zapytania MonitoringListView" [ref=e404] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e405]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e406]
+      - link "SQL 6 queries in 673.89ms" [ref=e407] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e408]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e409]
+      - link "Pliki statyczne 10 użytych plików" [ref=e410] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e411]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e412]
+      - link "Templatki monitorings/monitoring_filter.html" [ref=e413] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e414]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e415]
+      - link "Alerty" [ref=e416] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e417]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e418]
+      - link "Cache 2 wywołania w 0.12ms" [ref=e419] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e420]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e421]
+      - link "Sygnały 88 odbiorców 15 sygnałów" [ref=e422] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e423]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e424]
+      - link "Gmina" [ref=e425] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e426]:
+      - checkbox "Enable for next and successive requests" [ref=e427]
+      - generic [ref=e428]: Przechwycone przekierowania
+    - listitem [ref=e429]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e430]
+      - link "Profilowanie" [ref=e431] [cursor=pointer]:
+        - /url: "#"
+```
+
+# Test source
+
+```ts
+  1  | import { test, expect } from '@playwright/test';
+  2  | import { PAGES } from './pages';
+  3  | import { VIEWPORTS } from './viewports';
+  4  | 
+  5  | for (const [name, size] of Object.entries(VIEWPORTS)) {
+  6  |   test.describe(`${name} (${size.width}px)`, () => {
+  7  |     test.use({ viewport: size });
+  8  | 
+  9  |     for (const page of PAGES) {
+  10 |       test(`${page.name} - visual baseline`, async ({ page: pw }) => {
+  11 |         await pw.goto(page.path);
+  12 |         await pw.waitForLoadState('networkidle');
+> 13 |         await expect(pw).toHaveScreenshot(`${page.name}-${name}.png`, {
+     |                          ^ Error: expect(page).toHaveScreenshot(expected) failed
+  14 |           maxDiffPixelRatio: 0.001,
+  15 |           fullPage: true,
+  16 |         });
+  17 |       });
+  18 |     }
+  19 |   });
+  20 | }
+  21 | 
+```

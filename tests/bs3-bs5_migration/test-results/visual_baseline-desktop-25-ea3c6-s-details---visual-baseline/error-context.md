@@ -1,0 +1,862 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: visual_baseline.spec.ts >> desktop (2560px) >> monitorings-details - visual baseline
+- Location: tests/bs3-bs5_migration/visual_baseline.spec.ts:10:11
+
+# Error details
+
+```
+Error: expect(page).toHaveScreenshot(expected) failed
+
+  Expected an image 2560px by 4943px, received 2560px by 4868px. 597748 pixels (ratio 0.05 of all image pixels) are different.
+
+  Snapshot: monitorings-details-desktop.png
+
+Call log:
+  - Expect "toHaveScreenshot(monitorings-details-desktop.png)" with timeout 5000ms
+    - verifying given screenshot expectation
+  - taking page screenshot
+    - disabled all CSS animations
+  - waiting for fonts to load...
+  - fonts loaded
+  - Expected an image 2560px by 4943px, received 2560px by 4868px. 597748 pixels (ratio 0.05 of all image pixels) are different.
+  - waiting 100ms before taking screenshot
+  - taking page screenshot
+    - disabled all CSS animations
+  - waiting for fonts to load...
+  - fonts loaded
+  - captured a stable screenshot
+  - Expected an image 2560px by 4943px, received 2560px by 4868px. 597748 pixels (ratio 0.05 of all image pixels) are different.
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - text: )
+    - generic [ref=e3]:
+      - generic [ref=e4]:
+        - heading "DEV" [level=1] [ref=e5]
+        - link [ref=e6] [cursor=pointer]:
+          - /url: /
+          - img "Fedrowanie" [ref=e8]
+          - paragraph [ref=e9]: Fedrowanie
+        - paragraph [ref=e10]:
+          - link "Sieci Watchdog" [ref=e11] [cursor=pointer]:
+            - /url: http://siecobywatelska.pl
+        - paragraph [ref=e12]:
+          - link "Klauzula RODO" [ref=e13] [cursor=pointer]:
+            - /url: https://fedrowanie.siecobywatelska.pl/media_internal/tinycontent/uploads/11_KLAUZULA.-.dane.z.udip.na.stronach.www.i.w.mediach.spol.pdf
+      - list [ref=e15]:
+        - listitem [ref=e16]:
+          - paragraph [ref=e17]
+        - listitem [ref=e18]:
+          - link "Strona główna" [ref=e19] [cursor=pointer]:
+            - /url: /
+        - listitem [ref=e21]:
+          - link "O stronie" [ref=e22] [cursor=pointer]:
+            - /url: /o-stronie/
+        - listitem [ref=e24]:
+          - paragraph [ref=e25]
+        - generic [ref=e26]: Szukaj
+        - listitem [ref=e28]:
+          - link "Sprawy" [ref=e29] [cursor=pointer]:
+            - /url: /sprawy/
+        - listitem [ref=e31]:
+          - link "Monitoringi" [ref=e32] [cursor=pointer]:
+            - /url: /monitoringi/
+        - listitem [ref=e34]:
+          - link "Tabela monitoringów" [ref=e35] [cursor=pointer]:
+            - /url: /monitoringi/table/
+        - listitem [ref=e37]:
+          - link "Listy przypisane do spraw" [ref=e38] [cursor=pointer]:
+            - /url: /listy/
+        - listitem [ref=e40]:
+          - link "Listy nieprzypisane do spraw" [ref=e41] [cursor=pointer]:
+            - /url: /listy/przypisz
+        - listitem [ref=e43]:
+          - link "Instytucje" [ref=e44] [cursor=pointer]:
+            - /url: /instytucje/
+        - listitem [ref=e46]:
+          - paragraph [ref=e47]
+      - generic [ref=e48]:
+        - generic [ref=e49]: Użytkownik / użytkowniczka
+        - listitem [ref=e50]:
+          - link "Mój profil" [ref=e51] [cursor=pointer]:
+            - /url: /uzytkownik/claude_ai/
+        - listitem [ref=e53]:
+          - link "Panel administracyjny" [ref=e54] [cursor=pointer]:
+            - /url: /admin/
+        - listitem [ref=e56]:
+          - link "Wyloguj" [ref=e57] [cursor=pointer]:
+            - /url: /accounts/logout/
+    - generic [ref=e60]:
+      - list [ref=e61]:
+        - listitem [ref=e62]: Monitoring sądów apelacyjnych
+      - generic [ref=e64]:
+        - link "Edytuj" [ref=e65] [cursor=pointer]:
+          - /url: /monitoringi/monitoring-sadow-apelacyjnych/~edytuj
+        - link "Aktualizuj wyniki" [ref=e66] [cursor=pointer]:
+          - /url: /monitoringi/monitoring-sadow-apelacyjnych/~results-update
+        - link "Przypisz" [ref=e67] [cursor=pointer]:
+          - /url: /monitoringi/monitoring-sadow-apelacyjnych/~przypisz
+        - link "Usuń" [ref=e68] [cursor=pointer]:
+          - /url: /monitoringi/monitoring-sadow-apelacyjnych/~usun
+        - link "Utwórz sprawę" [ref=e69] [cursor=pointer]:
+          - /url: /sprawy/~utworz-5
+        - link "Wiadomość masowa" [ref=e70] [cursor=pointer]:
+          - /url: /monitoringi/monitoring-sadow-apelacyjnych/~wiadomosc-masowa
+        - link "Uprawnienia" [ref=e71] [cursor=pointer]:
+          - /url: /monitoringi/monitoring-sadow-apelacyjnych/~uprawnienia
+        - link "Lista alertów" [ref=e72] [cursor=pointer]:
+          - /url: /alerty/monitoring-5
+        - link "Zobacz dzienniki" [ref=e73] [cursor=pointer]:
+          - /url: /listy/logi/monitoring-5
+        - link "Zobacz tagi" [ref=e75] [cursor=pointer]:
+          - /url: /sprawy/tagi/monitoring-5
+        - link "Zobacz raport" [ref=e77] [cursor=pointer]:
+          - /url: /monitoringi/monitoring-sadow-apelacyjnych/raport
+        - link "Zobacz tabelę spraw" [ref=e79] [cursor=pointer]:
+          - /url: /monitoringi/monitoring-sadow-apelacyjnych/monitoring_cases_table
+      - heading [level=2] [ref=e82]:
+        - text: Monitoring sądów apelacyjnych
+        - generic [ref=e84]:
+          - text: przez
+          - link "adobrawy" [ref=e85] [cursor=pointer]:
+            - /url: /uzytkownik/adobrawy/
+          - time [ref=e86]: 11 sierpnia 2017 02:47
+      - generic [ref=e87]:
+        - table [ref=e90]:
+          - rowgroup [ref=e91]:
+            - row [ref=e92]:
+              - columnheader "Województwo" [ref=e93]
+              - columnheader "Liczba spraw" [ref=e94]
+              - columnheader "Liczba spraw z potw. odbioru" [ref=e95]
+              - columnheader "Liczba spraw z odpowiedzią" [ref=e96]
+            - row [ref=e97]:
+              - cell "Dolnośląskie" [ref=e98]
+              - cell "1" [ref=e99]
+              - cell "0" [ref=e100]
+              - cell "1" [ref=e101]
+            - row [ref=e102]:
+              - cell "Kujawsko-Pomorskie" [ref=e103]
+              - cell "0" [ref=e104]
+              - cell "0" [ref=e105]
+              - cell "0" [ref=e106]
+            - row [ref=e107]:
+              - cell "Lubelskie" [ref=e108]
+              - cell "1" [ref=e109]
+              - cell "0" [ref=e110]
+              - cell "1" [ref=e111]
+            - row [ref=e112]:
+              - cell "Lubuskie" [ref=e113]
+              - cell "0" [ref=e114]
+              - cell "0" [ref=e115]
+              - cell "0" [ref=e116]
+            - row [ref=e117]:
+              - cell "Łódzkie" [ref=e118]
+              - cell "1" [ref=e119]
+              - cell "0" [ref=e120]
+              - cell "1" [ref=e121]
+            - row [ref=e122]:
+              - cell "Małopolskie" [ref=e123]
+              - cell "1" [ref=e124]
+              - cell "0" [ref=e125]
+              - cell "1" [ref=e126]
+            - row [ref=e127]:
+              - cell "Mazowieckie" [ref=e128]
+              - cell "1" [ref=e129]
+              - cell "0" [ref=e130]
+              - cell "1" [ref=e131]
+            - row [ref=e132]:
+              - cell "Opolskie" [ref=e133]
+              - cell "0" [ref=e134]
+              - cell "0" [ref=e135]
+              - cell "0" [ref=e136]
+            - row [ref=e137]:
+              - cell "Podkarpackie" [ref=e138]
+              - cell "1" [ref=e139]
+              - cell "0" [ref=e140]
+              - cell "1" [ref=e141]
+            - row [ref=e142]:
+              - cell "Podlaskie" [ref=e143]
+              - cell "1" [ref=e144]
+              - cell "0" [ref=e145]
+              - cell "1" [ref=e146]
+            - row [ref=e147]:
+              - cell "Pomorskie" [ref=e148]
+              - cell "1" [ref=e149]
+              - cell "0" [ref=e150]
+              - cell "1" [ref=e151]
+            - row [ref=e152]:
+              - cell "Śląskie" [ref=e153]
+              - cell "1" [ref=e154]
+              - cell "0" [ref=e155]
+              - cell "1" [ref=e156]
+            - row [ref=e157]:
+              - cell "Świętokrzyskie" [ref=e158]
+              - cell "0" [ref=e159]
+              - cell "0" [ref=e160]
+              - cell "0" [ref=e161]
+            - row [ref=e162]:
+              - cell "Warmińsko-Mazurskie" [ref=e163]
+              - cell "0" [ref=e164]
+              - cell "0" [ref=e165]
+              - cell "0" [ref=e166]
+            - row [ref=e167]:
+              - cell "Wielkopolskie" [ref=e168]
+              - cell "1" [ref=e169]
+              - cell "0" [ref=e170]
+              - cell "1" [ref=e171]
+            - row [ref=e172]:
+              - cell "Zachodniopomorskie" [ref=e173]
+              - cell "1" [ref=e174]
+              - cell "0" [ref=e175]
+              - cell "1" [ref=e176]
+            - row [ref=e177]:
+              - cell "Wszystkie" [ref=e178]
+              - cell "11" [ref=e179]
+              - cell "0" [ref=e180]
+              - cell "11" [ref=e181]
+        - generic [ref=e182]:
+          - list [ref=e183]:
+            - listitem [ref=e184]:
+              - generic [ref=e185]: Instytucje i sprawy
+            - listitem [ref=e186]:
+              - link "Listy" [ref=e187] [cursor=pointer]:
+                - /url: /monitoringi/monitoring-sadow-apelacyjnych/listy
+            - listitem [ref=e188]:
+              - link "Projekty" [ref=e189] [cursor=pointer]:
+                - /url: /monitoringi/monitoring-sadow-apelacyjnych/projekty
+            - listitem [ref=e190]:
+              - link "Szablon" [ref=e191] [cursor=pointer]:
+                - /url: /monitoringi/monitoring-sadow-apelacyjnych/template
+            - listitem [ref=e192]:
+              - link "Wyniki" [ref=e193] [cursor=pointer]:
+                - /url: /monitoringi/monitoring-sadow-apelacyjnych/results
+          - heading "Instytucje i sprawy" [level=3] [ref=e194]
+          - generic [ref=e195]:
+            - heading [level=4] [ref=e196]:
+              - link "Sąd Apelacyjny w Katowicach" [ref=e198] [cursor=pointer]:
+                - /url: /sprawy/monitoring-sadow-apelacyjnych-3
+              - text: "Status ostatniego wniosku: nieznany"
+            - generic [ref=e199]:
+              - generic [ref=e200]: Zawartość
+              - table [ref=e201]:
+                - rowgroup [ref=e202]:
+                  - row [ref=e203]:
+                    - cell [ref=e204]:
+                      - link "Wniosek o udostępnienie informacji publicznej" [ref=e206] [cursor=pointer]:
+                        - /url: /listy/7304
+                    - cell [ref=e207]:
+                      - link "adobrawy" [ref=e209] [cursor=pointer]:
+                        - /url: /uzytkownik/adobrawy/
+                      - time [ref=e210]: 11 sierpnia 2017 02:48
+                  - row [ref=e211]:
+                    - cell [ref=e212]:
+                      - link "pismo O.Adm-010-117/17" [ref=e214] [cursor=pointer]:
+                        - /url: /listy/7940
+                    - cell [ref=e215]:
+                      - link "Sąd Apelacyjny w Katowicach" [ref=e217] [cursor=pointer]:
+                        - /url: /instytucje/sad-apelacyjny-w-katowicach
+                      - time [ref=e218]: 18 sierpnia 2017 15:30
+                      - paragraph [ref=e219]: ": 1"
+                  - row [ref=e221]:
+                    - cell [ref=e222]:
+                      - 'link "Not read: Wniosek o udostępnienie informacji publicznej" [ref=e224] [cursor=pointer]':
+                        - /url: /listy/16862
+                    - cell [ref=e225]:
+                      - link "Sąd Apelacyjny w Katowicach" [ref=e227] [cursor=pointer]:
+                        - /url: /instytucje/sad-apelacyjny-w-katowicach
+                      - time [ref=e228]: 16 lipca 2018 08:58
+          - generic [ref=e229]:
+            - heading [level=4] [ref=e230]:
+              - link "Sąd Apelacyjny w Białymstoku" [ref=e232] [cursor=pointer]:
+                - /url: /sprawy/monitoring-sadow-apelacyjnych-1
+              - text: "Status ostatniego wniosku: nieznany"
+            - generic [ref=e233]:
+              - generic [ref=e234]: Zawartość
+              - table [ref=e235]:
+                - rowgroup [ref=e236]:
+                  - row [ref=e237]:
+                    - cell [ref=e238]:
+                      - link "Wniosek o udostępnienie informacji publicznej" [ref=e240] [cursor=pointer]:
+                        - /url: /listy/7302
+                    - cell [ref=e241]:
+                      - link "adobrawy" [ref=e243] [cursor=pointer]:
+                        - /url: /uzytkownik/adobrawy/
+                      - time [ref=e244]: 11 sierpnia 2017 02:48
+                  - row [ref=e245]:
+                    - cell [ref=e246]:
+                      - 'link "Read: Wniosek o udostępnienie informacji publicznej" [ref=e248] [cursor=pointer]':
+                        - /url: /listy/7680
+                    - cell [ref=e249]:
+                      - link "Sąd Apelacyjny w Białymstoku" [ref=e251] [cursor=pointer]:
+                        - /url: /instytucje/sad-apelacyjny-w-bialymstoku
+                      - time [ref=e252]: 11 sierpnia 2017 07:15
+                  - row [ref=e253]:
+                    - cell [ref=e254]:
+                      - link "A-061-79/17 dot. wniosku o udostępnienie informacji publicznej" [ref=e256] [cursor=pointer]:
+                        - /url: /listy/8927
+                    - cell [ref=e257]:
+                      - link "Sąd Apelacyjny w Białymstoku" [ref=e259] [cursor=pointer]:
+                        - /url: /instytucje/sad-apelacyjny-w-bialymstoku
+                      - time [ref=e260]: 25 sierpnia 2017 12:15
+                      - paragraph [ref=e261]: ": 2"
+                  - row [ref=e263]:
+                    - cell [ref=e264]:
+                      - 'link "Nieprzeczytane: Wniosek o udostępnienie informacji publicznej" [ref=e266] [cursor=pointer]':
+                        - /url: /listy/16858
+                    - cell [ref=e267]:
+                      - link "Sąd Apelacyjny w Białymstoku" [ref=e269] [cursor=pointer]:
+                        - /url: /instytucje/sad-apelacyjny-w-bialymstoku
+                      - time [ref=e270]: 16 lipca 2018 08:58
+          - generic [ref=e271]:
+            - heading [level=4] [ref=e272]:
+              - link "Sąd Apelacyjny w Krakowie" [ref=e274] [cursor=pointer]:
+                - /url: /sprawy/monitoring-sadow-apelacyjnych-4
+              - text: "Status ostatniego wniosku: nieznany"
+            - generic [ref=e275]:
+              - generic [ref=e276]: Zawartość
+              - table [ref=e277]:
+                - rowgroup [ref=e278]:
+                  - row [ref=e279]:
+                    - cell [ref=e280]:
+                      - link "Wniosek o udostępnienie informacji publicznej" [ref=e282] [cursor=pointer]:
+                        - /url: /listy/7305
+                    - cell [ref=e283]:
+                      - link "adobrawy" [ref=e285] [cursor=pointer]:
+                        - /url: /uzytkownik/adobrawy/
+                      - time [ref=e286]: 11 sierpnia 2017 02:48
+                  - row [ref=e287]:
+                    - cell [ref=e288]:
+                      - 'link "Przeczytano: Wniosek o udostępnienie informacji publicznej" [ref=e290] [cursor=pointer]':
+                        - /url: /listy/7687
+                    - cell [ref=e291]:
+                      - link "Sąd Apelacyjny w Krakowie" [ref=e293] [cursor=pointer]:
+                        - /url: /instytucje/sad-apelacyjny-w-krakowie
+                      - time [ref=e294]: 11 sierpnia 2017 07:30
+                  - row [ref=e295]:
+                    - cell [ref=e296]:
+                      - 'link "Przeczytano: Wniosek o udostępnienie informacji publicznej" [ref=e298] [cursor=pointer]':
+                        - /url: /listy/7739
+                    - cell [ref=e299]:
+                      - link "Sąd Apelacyjny w Krakowie" [ref=e301] [cursor=pointer]:
+                        - /url: /instytucje/sad-apelacyjny-w-krakowie
+                      - time [ref=e302]: 11 sierpnia 2017 07:45
+                  - row [ref=e303]:
+                    - cell [ref=e304]:
+                      - 'link "Przeczytano: Wniosek o udostępnienie informacji publicznej" [ref=e306] [cursor=pointer]':
+                        - /url: /listy/7780
+                    - cell [ref=e307]:
+                      - link "Sąd Apelacyjny w Krakowie" [ref=e309] [cursor=pointer]:
+                        - /url: /instytucje/sad-apelacyjny-w-krakowie
+                      - time [ref=e310]: 11 sierpnia 2017 08:15
+                  - row [ref=e311]:
+                    - cell [ref=e312]:
+                      - link "informacja publiczna (Adm.-0143-176/17)" [ref=e314] [cursor=pointer]:
+                        - /url: /listy/8014
+                    - cell [ref=e315]:
+                      - link "Sąd Apelacyjny w Krakowie" [ref=e317] [cursor=pointer]:
+                        - /url: /instytucje/sad-apelacyjny-w-krakowie
+                      - time [ref=e318]: 22 sierpnia 2017 15:15
+                      - paragraph [ref=e319]: ": 6"
+                  - row [ref=e321]:
+                    - cell [ref=e322]:
+                      - 'link "Przeczytano: Wniosek o udostępnienie informacji publicznej" [ref=e324] [cursor=pointer]':
+                        - /url: /listy/16559
+                    - cell [ref=e325]:
+                      - link "Sąd Apelacyjny w Krakowie" [ref=e327] [cursor=pointer]:
+                        - /url: /instytucje/sad-apelacyjny-w-krakowie
+                      - time [ref=e328]: 21 lutego 2018 10:00
+          - generic [ref=e329]:
+            - heading [level=4] [ref=e330]:
+              - link "Sąd Apelacyjny w Warszawie" [ref=e332] [cursor=pointer]:
+                - /url: /sprawy/monitoring-sadow-apelacyjnych-10
+              - text: "Status ostatniego wniosku: nieznany"
+            - generic [ref=e333]:
+              - generic [ref=e334]: Zawartość
+              - table [ref=e335]:
+                - rowgroup [ref=e336]:
+                  - row [ref=e337]:
+                    - cell [ref=e338]:
+                      - link "Wniosek o udostępnienie informacji publicznej" [ref=e340] [cursor=pointer]:
+                        - /url: /listy/7311
+                    - cell [ref=e341]:
+                      - link "adobrawy" [ref=e343] [cursor=pointer]:
+                        - /url: /uzytkownik/adobrawy/
+                      - time [ref=e344]: 11 sierpnia 2017 02:48
+                  - row [ref=e345]:
+                    - cell [ref=e346]:
+                      - 'link "Przeczytane: Wniosek o udostępnienie informacji publicznej" [ref=e348] [cursor=pointer]':
+                        - /url: /listy/7756
+                    - cell [ref=e349]:
+                      - link "Sąd Apelacyjny w Warszawie" [ref=e351] [cursor=pointer]:
+                        - /url: /instytucje/sad-apelacyjny-w-warszawie
+                      - time [ref=e352]: 11 sierpnia 2017 08:00
+                  - row [ref=e353]:
+                    - cell [ref=e354]:
+                      - 'link "RE: Wniosek o udostępnienie informacji publicznej" [ref=e356] [cursor=pointer]':
+                        - /url: /listy/7759
+                    - cell [ref=e357]:
+                      - link "Sąd Apelacyjny w Warszawie" [ref=e359] [cursor=pointer]:
+                        - /url: /instytucje/sad-apelacyjny-w-warszawie
+                      - time [ref=e360]: 11 sierpnia 2017 08:00
+                  - row [ref=e361]:
+                    - cell [ref=e362]:
+                      - link "przedłużenie terminu na rozpatrzenie wniosku" [ref=e364] [cursor=pointer]:
+                        - /url: /listy/8990
+                    - cell [ref=e365]:
+                      - link "Sąd Apelacyjny w Warszawie" [ref=e367] [cursor=pointer]:
+                        - /url: /instytucje/sad-apelacyjny-w-warszawie
+                      - time [ref=e368]: 25 sierpnia 2017 16:00
+                  - row [ref=e369]:
+                    - cell [ref=e370]:
+                      - link "odpowiedź na wniosek o udostepnienie inf.publicznej" [ref=e372] [cursor=pointer]:
+                        - /url: /listy/9490
+                    - cell [ref=e373]:
+                      - link "Sąd Apelacyjny w Warszawie" [ref=e375] [cursor=pointer]:
+                        - /url: /instytucje/sad-apelacyjny-w-warszawie
+                      - time [ref=e376]: 14 września 2017 12:45
+                      - paragraph [ref=e377]: ": 1"
+          - generic [ref=e379]:
+            - heading [level=4] [ref=e380]:
+              - link "Sąd Apelacyjny w Poznaniu" [ref=e382] [cursor=pointer]:
+                - /url: /sprawy/monitoring-sadow-apelacyjnych-7
+              - text: "Status ostatniego wniosku: nieznany"
+            - generic [ref=e383]:
+              - generic [ref=e384]: Zawartość
+              - table [ref=e385]:
+                - rowgroup [ref=e386]:
+                  - row [ref=e387]:
+                    - cell [ref=e388]:
+                      - link "Wniosek o udostępnienie informacji publicznej" [ref=e390] [cursor=pointer]:
+                        - /url: /listy/7308
+                    - cell [ref=e391]:
+                      - link "adobrawy" [ref=e393] [cursor=pointer]:
+                        - /url: /uzytkownik/adobrawy/
+                      - time [ref=e394]: 11 sierpnia 2017 02:48
+                  - row [ref=e395]:
+                    - cell [ref=e396]:
+                      - 'link "Re: Wniosek o udostępnienie informacji publicznej" [ref=e398] [cursor=pointer]':
+                        - /url: /listy/7784
+                    - cell [ref=e399]:
+                      - link "Sąd Apelacyjny w Poznaniu" [ref=e401] [cursor=pointer]:
+                        - /url: /instytucje/sad-apelacyjny-w-poznaniu
+                      - time [ref=e402]: 11 sierpnia 2017 08:15
+                  - row [ref=e403]:
+                    - cell [ref=e404]:
+                      - link "dot. informacji publicznej" [ref=e406] [cursor=pointer]:
+                        - /url: /listy/7984
+                    - cell [ref=e407]:
+                      - link "Sąd Apelacyjny w Poznaniu" [ref=e409] [cursor=pointer]:
+                        - /url: /instytucje/sad-apelacyjny-w-poznaniu
+                      - time [ref=e410]: 22 sierpnia 2017 10:45
+                  - row [ref=e411]:
+                    - cell [ref=e412]:
+                      - link "Częściowa odpowiedź na wniosek" [ref=e414] [cursor=pointer]:
+                        - /url: /listy/8030
+                    - cell [ref=e415]:
+                      - link "Sąd Apelacyjny w Poznaniu" [ref=e417] [cursor=pointer]:
+                        - /url: /instytucje/sad-apelacyjny-w-poznaniu
+                      - time [ref=e418]: 23 sierpnia 2017 13:15
+                  - row [ref=e419]:
+                    - cell [ref=e420]:
+                      - link "odpowiedź na wniosek o informację publiczną" [ref=e422] [cursor=pointer]:
+                        - /url: /listy/8903
+                    - cell [ref=e423]:
+                      - link "Sąd Apelacyjny w Poznaniu" [ref=e425] [cursor=pointer]:
+                        - /url: /instytucje/sad-apelacyjny-w-poznaniu
+                      - time [ref=e426]: 25 sierpnia 2017 10:00
+                      - paragraph [ref=e427]: ": 1"
+                  - row [ref=e429]:
+                    - cell [ref=e430]:
+                      - link "[Brak tematu]" [ref=e432] [cursor=pointer]:
+                        - /url: /listy/8979
+                    - cell [ref=e433]:
+                      - link "Sąd Apelacyjny w Poznaniu" [ref=e435] [cursor=pointer]:
+                        - /url: /instytucje/sad-apelacyjny-w-poznaniu
+                      - time [ref=e436]: 25 sierpnia 2017 15:00
+                  - row [ref=e437]:
+                    - cell [ref=e438]:
+                      - link "[Brak tematu]" [ref=e440] [cursor=pointer]:
+                        - /url: /listy/8981
+                    - cell [ref=e441]:
+                      - link "Sąd Apelacyjny w Poznaniu" [ref=e443] [cursor=pointer]:
+                        - /url: /instytucje/sad-apelacyjny-w-poznaniu
+                      - time [ref=e444]: 25 sierpnia 2017 15:15
+                  - row [ref=e445]:
+                    - cell [ref=e446]:
+                      - link "odp.na wniosek dot. Informacji publicznej" [ref=e448] [cursor=pointer]:
+                        - /url: /listy/9488
+                    - cell [ref=e449]:
+                      - link "Sąd Apelacyjny w Poznaniu" [ref=e451] [cursor=pointer]:
+                        - /url: /instytucje/sad-apelacyjny-w-poznaniu
+                      - time [ref=e452]: 14 września 2017 12:15
+                      - paragraph [ref=e453]: ": 1"
+          - generic [ref=e455]:
+            - heading [level=4] [ref=e456]:
+              - link "Sąd Apelacyjny w Gdańsku" [ref=e458] [cursor=pointer]:
+                - /url: /sprawy/monitoring-sadow-apelacyjnych-2
+              - text: "Status ostatniego wniosku: nieznany"
+            - generic [ref=e459]:
+              - generic [ref=e460]: Zawartość
+              - table [ref=e461]:
+                - rowgroup [ref=e462]:
+                  - row [ref=e463]:
+                    - cell [ref=e464]:
+                      - link "Wniosek o udostępnienie informacji publicznej" [ref=e466] [cursor=pointer]:
+                        - /url: /listy/7303
+                    - cell [ref=e467]:
+                      - link "adobrawy" [ref=e469] [cursor=pointer]:
+                        - /url: /uzytkownik/adobrawy/
+                      - time [ref=e470]: 11 sierpnia 2017 02:48
+                  - row [ref=e471]:
+                    - cell [ref=e472]:
+                      - 'link "Wysyłanie wiadomości e-mail: Adm.105.154.2017.pdf" [ref=e474] [cursor=pointer]':
+                        - /url: /listy/8983
+                    - cell [ref=e475]:
+                      - link "Sąd Apelacyjny w Gdańsku" [ref=e477] [cursor=pointer]:
+                        - /url: /instytucje/sad-apelacyjny-w-gdansku
+                      - time [ref=e478]: 25 sierpnia 2017 15:15
+                      - paragraph [ref=e479]: ": 1"
+                  - row [ref=e481]:
+                    - cell [ref=e482]:
+                      - 'link "Re: Wysyłanie wiadomości e-mail: Adm.105.154.2017.pdf" [ref=e484] [cursor=pointer]':
+                        - /url: /listy/8995
+                    - cell [ref=e485]:
+                      - link "Szymon_Osowski" [ref=e487] [cursor=pointer]:
+                        - /url: /uzytkownik/Szymon_Osowski/
+                      - time [ref=e488]: 26 sierpnia 2017 09:46
+                  - row [ref=e489]:
+                    - cell [ref=e490]:
+                      - 'link "Przeczytane: Wniosek o udostępnienie informacji publicznej" [ref=e492] [cursor=pointer]':
+                        - /url: /listy/9013
+                    - cell [ref=e493]:
+                      - link "Sąd Apelacyjny w Gdańsku" [ref=e495] [cursor=pointer]:
+                        - /url: /instytucje/sad-apelacyjny-w-gdansku
+                      - time [ref=e496]: 28 sierpnia 2017 07:45
+                  - row [ref=e497]:
+                    - cell [ref=e498]:
+                      - link "rejestr umów SA Gdańsk" [ref=e500] [cursor=pointer]:
+                        - /url: /listy/9049
+                    - cell [ref=e501]:
+                      - link "Sąd Apelacyjny w Gdańsku" [ref=e503] [cursor=pointer]:
+                        - /url: /instytucje/sad-apelacyjny-w-gdansku
+                      - time [ref=e504]: 30 sierpnia 2017 08:45
+                      - paragraph [ref=e505]: ": 1"
+                  - row [ref=e507]:
+                    - cell [ref=e508]:
+                      - link "decyzja odmowa SA Gdańsk" [ref=e510] [cursor=pointer]:
+                        - /url: /listy/9444
+                    - cell [ref=e511]:
+                      - link "Sąd Apelacyjny w Gdańsku" [ref=e513] [cursor=pointer]:
+                        - /url: /instytucje/sad-apelacyjny-w-gdansku
+                      - time [ref=e514]: 7 września 2017 11:45
+                      - paragraph [ref=e515]: ": 1"
+          - generic [ref=e517]:
+            - heading [level=4] [ref=e518]:
+              - link "Sąd Apelacyjny w Łodzi" [ref=e520] [cursor=pointer]:
+                - /url: /sprawy/monitoring-sadow-apelacyjnych-6
+              - text: "Status ostatniego wniosku: nieznany"
+            - generic [ref=e521]:
+              - generic [ref=e522]: Zawartość
+              - table [ref=e523]:
+                - rowgroup [ref=e524]:
+                  - row [ref=e525]:
+                    - cell [ref=e526]:
+                      - link "Wniosek o udostępnienie informacji publicznej" [ref=e528] [cursor=pointer]:
+                        - /url: /listy/7307
+                    - cell [ref=e529]:
+                      - link "adobrawy" [ref=e531] [cursor=pointer]:
+                        - /url: /uzytkownik/adobrawy/
+                      - time [ref=e532]: 11 sierpnia 2017 02:48
+                  - row [ref=e533]:
+                    - cell [ref=e534]:
+                      - 'link "Przeczytane: Wniosek o udostępnienie informacji publicznej" [ref=e536] [cursor=pointer]':
+                        - /url: /listy/7737
+                    - cell [ref=e537]:
+                      - link "Sąd Apelacyjny w Łodzi" [ref=e539] [cursor=pointer]:
+                        - /url: /instytucje/sad-apelacyjny-w-lodzi
+                      - time [ref=e540]: 11 sierpnia 2017 07:45
+                  - row [ref=e541]:
+                    - cell [ref=e542]:
+                      - 'link "Przeczytane: Wniosek o udostępnienie informacji publicznej" [ref=e544] [cursor=pointer]':
+                        - /url: /listy/7766
+                    - cell [ref=e545]:
+                      - link "Sąd Apelacyjny w Łodzi" [ref=e547] [cursor=pointer]:
+                        - /url: /instytucje/sad-apelacyjny-w-lodzi
+                      - time [ref=e548]: 11 sierpnia 2017 08:00
+                  - row [ref=e549]:
+                    - cell [ref=e550]:
+                      - 'link "Przeczytane: Wniosek o udostępnienie informacji publicznej" [ref=e552] [cursor=pointer]':
+                        - /url: /listy/7839
+                    - cell [ref=e553]:
+                      - link "Sąd Apelacyjny w Łodzi" [ref=e555] [cursor=pointer]:
+                        - /url: /instytucje/sad-apelacyjny-w-lodzi
+                      - time [ref=e556]: 11 sierpnia 2017 09:30
+                  - row [ref=e557]:
+                    - cell [ref=e558]:
+                      - link "Pismo Prezesa SA w Łodzi AV-0164-105/17 dotyczące wniosku z dnia 11.08.17 r. o udostępnienie informacji publicznej" [ref=e560] [cursor=pointer]:
+                        - /url: /listy/8102
+                    - cell [ref=e561]:
+                      - link "Sąd Apelacyjny w Łodzi" [ref=e563] [cursor=pointer]:
+                        - /url: /instytucje/sad-apelacyjny-w-lodzi
+                      - time [ref=e564]: 24 sierpnia 2017 15:00
+                      - paragraph [ref=e565]: ": 4"
+                  - row [ref=e567]:
+                    - cell [ref=e568]:
+                      - 'link "Nieprzeczytane: Wniosek o udostępnienie informacji publicznej" [ref=e570] [cursor=pointer]':
+                        - /url: /listy/9210
+                    - cell [ref=e571]:
+                      - link "Sąd Apelacyjny w Łodzi" [ref=e573] [cursor=pointer]:
+                        - /url: /instytucje/sad-apelacyjny-w-lodzi
+                      - time [ref=e574]: 1 września 2017 13:45
+          - generic [ref=e575]:
+            - heading [level=4] [ref=e576]:
+              - link "Sąd Apelacyjny w Lublinie" [ref=e578] [cursor=pointer]:
+                - /url: /sprawy/monitoring-sadow-apelacyjnych-5
+              - text: "Status ostatniego wniosku: nieznany"
+            - generic [ref=e579]:
+              - generic [ref=e580]: Zawartość
+              - table [ref=e581]:
+                - rowgroup [ref=e582]:
+                  - row [ref=e583]:
+                    - cell [ref=e584]:
+                      - link "Wniosek o udostępnienie informacji publicznej" [ref=e586] [cursor=pointer]:
+                        - /url: /listy/7306
+                    - cell [ref=e587]:
+                      - link "adobrawy" [ref=e589] [cursor=pointer]:
+                        - /url: /uzytkownik/adobrawy/
+                      - time [ref=e590]: 11 sierpnia 2017 02:48
+                  - row [ref=e591]:
+                    - cell [ref=e592]:
+                      - 'link "Read: Wniosek o udostępnienie informacji publicznej" [ref=e594] [cursor=pointer]':
+                        - /url: /listy/7888
+                    - cell [ref=e595]:
+                      - link "Sąd Apelacyjny w Lublinie" [ref=e597] [cursor=pointer]:
+                        - /url: /instytucje/sad-apelacyjny-w-lublinie
+                      - time [ref=e598]: 16 sierpnia 2017 08:00
+                  - row [ref=e599]:
+                    - cell [ref=e600]:
+                      - link "Adm-063-85/17 informacja publiczna" [ref=e602] [cursor=pointer]:
+                        - /url: /listy/8105
+                    - cell [ref=e603]:
+                      - link "Sąd Apelacyjny w Lublinie" [ref=e605] [cursor=pointer]:
+                        - /url: /instytucje/sad-apelacyjny-w-lublinie
+                      - time [ref=e606]: 24 sierpnia 2017 15:00
+                      - paragraph [ref=e607]: ": 1"
+          - generic [ref=e609]:
+            - heading [level=4] [ref=e610]:
+              - link "Sąd Apelacyjny w Szczecinie" [ref=e612] [cursor=pointer]:
+                - /url: /sprawy/monitoring-sadow-apelacyjnych-9
+              - text: "Status ostatniego wniosku: nieznany"
+            - generic [ref=e613]:
+              - generic [ref=e614]: Zawartość
+              - table [ref=e615]:
+                - rowgroup [ref=e616]:
+                  - row [ref=e617]:
+                    - cell [ref=e618]:
+                      - link "Wniosek o udostępnienie informacji publicznej" [ref=e620] [cursor=pointer]:
+                        - /url: /listy/7310
+                    - cell [ref=e621]:
+                      - link "adobrawy" [ref=e623] [cursor=pointer]:
+                        - /url: /uzytkownik/adobrawy/
+                      - time [ref=e624]: 11 sierpnia 2017 02:48
+                  - row [ref=e625]:
+                    - cell [ref=e626]:
+                      - link "informacja publiczna" [ref=e628] [cursor=pointer]:
+                        - /url: /listy/8043
+                    - cell [ref=e629]:
+                      - link "Sąd Apelacyjny w Szczecinie" [ref=e631] [cursor=pointer]:
+                        - /url: /instytucje/sad-apelacyjny-w-szczecinie
+                      - time [ref=e632]: 23 sierpnia 2017 15:00
+                      - paragraph [ref=e633]: ": 1"
+          - generic [ref=e635]:
+            - heading [level=4] [ref=e636]:
+              - link "Sąd Apelacyjny we Wrocławiu" [ref=e638] [cursor=pointer]:
+                - /url: /sprawy/monitoring-sadow-apelacyjnych-11
+              - text: "Status ostatniego wniosku: nieznany"
+            - generic [ref=e639]:
+              - generic [ref=e640]: Zawartość
+              - table [ref=e641]:
+                - rowgroup [ref=e642]:
+                  - row [ref=e643]:
+                    - cell [ref=e644]:
+                      - link "Wniosek o udostępnienie informacji publicznej" [ref=e646] [cursor=pointer]:
+                        - /url: /listy/7312
+                    - cell [ref=e647]:
+                      - link "adobrawy" [ref=e649] [cursor=pointer]:
+                        - /url: /uzytkownik/adobrawy/
+                      - time [ref=e650]: 11 sierpnia 2017 02:48
+                  - row [ref=e651]:
+                    - cell [ref=e652]:
+                      - 'link "Read: Wniosek o udostępnienie informacji publicznej" [ref=e654] [cursor=pointer]':
+                        - /url: /listy/7716
+                    - cell [ref=e655]:
+                      - link "Sąd Apelacyjny we Wrocławiu" [ref=e657] [cursor=pointer]:
+                        - /url: /instytucje/sad-apelacyjny-we-wroclawiu
+                      - time [ref=e658]: 11 sierpnia 2017 07:45
+                  - row [ref=e659]:
+                    - cell [ref=e660]:
+                      - link "dot. wniosku o udostępnienie informacji publicznej" [ref=e662] [cursor=pointer]:
+                        - /url: /listy/8002
+                    - cell [ref=e663]:
+                      - link "Sąd Apelacyjny we Wrocławiu" [ref=e665] [cursor=pointer]:
+                        - /url: /instytucje/sad-apelacyjny-we-wroclawiu
+                      - time [ref=e666]: 22 sierpnia 2017 14:30
+                      - paragraph [ref=e667]: ": 2"
+          - generic [ref=e669]:
+            - heading [level=4] [ref=e670]:
+              - link "Sąd Apelacyjny w Rzeszowie" [ref=e672] [cursor=pointer]:
+                - /url: /sprawy/monitoring-sadow-apelacyjnych-8
+              - text: "Status ostatniego wniosku: nieznany"
+            - generic [ref=e673]:
+              - generic [ref=e674]: Zawartość
+              - table [ref=e675]:
+                - rowgroup [ref=e676]:
+                  - row [ref=e677]:
+                    - cell [ref=e678]:
+                      - link "Wniosek o udostępnienie informacji publicznej" [ref=e680] [cursor=pointer]:
+                        - /url: /listy/7309
+                    - cell [ref=e681]:
+                      - link "adobrawy" [ref=e683] [cursor=pointer]:
+                        - /url: /uzytkownik/adobrawy/
+                      - time [ref=e684]: 11 sierpnia 2017 02:48
+                  - row [ref=e685]:
+                    - cell [ref=e686]:
+                      - 'link "Przeczytane: Wniosek o udostępnienie informacji publicznej" [ref=e688] [cursor=pointer]':
+                        - /url: /listy/7946
+                    - cell [ref=e689]:
+                      - link "Sąd Apelacyjny w Rzeszowie" [ref=e691] [cursor=pointer]:
+                        - /url: /instytucje/sad-apelacyjny-w-rzeszowie
+                      - time [ref=e692]: 21 sierpnia 2017 09:15
+          - list [ref=e694]:
+            - listitem [ref=e695]:
+              - generic [aria-hidden]: ←
+            - listitem [ref=e696]:
+              - generic "Current Page" [ref=e697]: "1"
+            - listitem [ref=e698]:
+              - generic [aria-hidden]: →
+      - generic [ref=e699]:
+        - generic [ref=e700]:
+          - text: Sieć Obywatelska - Watchdog Polska ul. Szpitalna 5/5 00-031 Warszawa
+          - paragraph [ref=e701]:
+            - link "Klauzula RODO" [ref=e702] [cursor=pointer]:
+              - /url: https://fedrowanie.siecobywatelska.pl/media_internal/tinycontent/uploads/11_KLAUZULA.-.dane.z.udip.na.stronach.www.i.w.mediach.spol.pdf
+        - generic [ref=e703]:
+          - text: "silnik:"
+          - link "jawne.info.pl" [ref=e704] [cursor=pointer]:
+            - /url: http://jawne.info.pl
+          - text: "| v1.5.77.deps |"
+          - link "GitHub" [ref=e705] [cursor=pointer]:
+            - /url: https://github.com/watchdogpolska/feder
+          - text: –
+          - link "efd8a3b" [ref=e707] [cursor=pointer]:
+            - /url: https://github.com/watchdogpolska/feder/compare/efd8a3b2...master
+          - text: "|"
+          - link "API" [ref=e708] [cursor=pointer]:
+            - /url: /api/
+        - generic [ref=e710]: Ta strona wykorzystuje cookies.
+  - list [ref=e712]:
+    - listitem [ref=e713]:
+      - link "Ukryj »" [ref=e714] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e715]:
+      - link "Toggle Theme" [ref=e716] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e719]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e720]
+      - link "Historia /monitoringi/monitoring-sadow-apelacyjnych" [ref=e721] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e722]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e723]
+      - link "Wersje Django 5.2.17" [ref=e724] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e725]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e726]
+      - 'link "Czas CPU: 621.46ms (660.03ms)" [ref=e727] [cursor=pointer]':
+        - /url: "#"
+    - listitem [ref=e728]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e729]
+      - link "Ustawienia" [ref=e730] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e731]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e732]
+      - link "Nagłówki" [ref=e733] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e734]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e735]
+      - link "Zapytania MonitoringDetailView" [ref=e736] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e737]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e738]
+      - link "SQL 93 queries in 55.47ms" [ref=e739] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e740]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e741]
+      - link "Pliki statyczne 3 użyte plików" [ref=e742] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e743]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e744]
+      - link "Templatki monitorings/monitoring_detail.html" [ref=e745] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e746]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e747]
+      - link "Alerty" [ref=e748] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e749]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e750]
+      - link "Cache 3 wywołania w 0.18ms" [ref=e751] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e752]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e753]
+      - link "Sygnały 88 odbiorców 15 sygnałów" [ref=e754] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e755]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e756]
+      - link "Gmina" [ref=e757] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e758]:
+      - checkbox "Enable for next and successive requests" [ref=e759]
+      - generic [ref=e760]: Przechwycone przekierowania
+    - listitem [ref=e761]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e762]
+      - link "Profilowanie" [ref=e763] [cursor=pointer]:
+        - /url: "#"
+```
+
+# Test source
+
+```ts
+  1  | import { test, expect } from '@playwright/test';
+  2  | import { PAGES } from './pages';
+  3  | import { VIEWPORTS } from './viewports';
+  4  | 
+  5  | for (const [name, size] of Object.entries(VIEWPORTS)) {
+  6  |   test.describe(`${name} (${size.width}px)`, () => {
+  7  |     test.use({ viewport: size });
+  8  | 
+  9  |     for (const page of PAGES) {
+  10 |       test(`${page.name} - visual baseline`, async ({ page: pw }) => {
+  11 |         await pw.goto(page.path);
+  12 |         await pw.waitForLoadState('networkidle');
+> 13 |         await expect(pw).toHaveScreenshot(`${page.name}-${name}.png`, {
+     |                          ^ Error: expect(page).toHaveScreenshot(expected) failed
+  14 |           maxDiffPixelRatio: 0.001,
+  15 |           fullPage: true,
+  16 |         });
+  17 |       });
+  18 |     }
+  19 |   });
+  20 | }
+  21 | 
+```

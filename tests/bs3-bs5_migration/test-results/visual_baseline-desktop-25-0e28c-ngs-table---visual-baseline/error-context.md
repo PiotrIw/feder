@@ -1,0 +1,2366 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: visual_baseline.spec.ts >> desktop (2560px) >> monitorings-table - visual baseline
+- Location: tests/bs3-bs5_migration/visual_baseline.spec.ts:10:11
+
+# Error details
+
+```
+Error: expect(page).toHaveScreenshot(expected) failed
+
+  Expected an image 2560px by 1545px, received 2560px by 1553px. 546596 pixels (ratio 0.14 of all image pixels) are different.
+
+  Snapshot: monitorings-table-desktop.png
+
+Call log:
+  - Expect "toHaveScreenshot(monitorings-table-desktop.png)" with timeout 5000ms
+    - verifying given screenshot expectation
+  - taking page screenshot
+    - disabled all CSS animations
+  - waiting for fonts to load...
+  - fonts loaded
+  - Expected an image 2560px by 1545px, received 2560px by 1553px. 546816 pixels (ratio 0.14 of all image pixels) are different.
+  - waiting 100ms before taking screenshot
+  - taking page screenshot
+    - disabled all CSS animations
+  - waiting for fonts to load...
+  - fonts loaded
+  - 62432 pixels (ratio 0.02 of all image pixels) are different.
+  - waiting 250ms before taking screenshot
+  - taking page screenshot
+    - disabled all CSS animations
+  - waiting for fonts to load...
+  - fonts loaded
+  - 62839 pixels (ratio 0.02 of all image pixels) are different.
+  - waiting 500ms before taking screenshot
+  - taking page screenshot
+    - disabled all CSS animations
+  - waiting for fonts to load...
+  - fonts loaded
+  - captured a stable screenshot
+  - Expected an image 2560px by 1545px, received 2560px by 1553px. 546596 pixels (ratio 0.14 of all image pixels) are different.
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - text: )
+    - generic [ref=e3]:
+      - generic [ref=e4]:
+        - heading "DEV" [level=1] [ref=e5]
+        - link [ref=e6] [cursor=pointer]:
+          - /url: /
+          - img "Fedrowanie" [ref=e8]
+          - paragraph [ref=e9]: Fedrowanie
+        - paragraph [ref=e10]:
+          - link "Sieci Watchdog" [ref=e11] [cursor=pointer]:
+            - /url: http://siecobywatelska.pl
+        - paragraph [ref=e12]:
+          - link "Klauzula RODO" [ref=e13] [cursor=pointer]:
+            - /url: https://fedrowanie.siecobywatelska.pl/media_internal/tinycontent/uploads/11_KLAUZULA.-.dane.z.udip.na.stronach.www.i.w.mediach.spol.pdf
+      - list [ref=e15]:
+        - listitem [ref=e16]:
+          - paragraph [ref=e17]
+        - listitem [ref=e18]:
+          - link "Strona główna" [ref=e19] [cursor=pointer]:
+            - /url: /
+        - listitem [ref=e21]:
+          - link "O stronie" [ref=e22] [cursor=pointer]:
+            - /url: /o-stronie/
+        - listitem [ref=e24]:
+          - paragraph [ref=e25]
+        - generic [ref=e26]: Szukaj
+        - listitem [ref=e28]:
+          - link "Sprawy" [ref=e29] [cursor=pointer]:
+            - /url: /sprawy/
+        - listitem [ref=e31]:
+          - link "Monitoringi" [ref=e32] [cursor=pointer]:
+            - /url: /monitoringi/
+        - listitem [ref=e34]:
+          - link "Tabela monitoringów" [ref=e35] [cursor=pointer]:
+            - /url: /monitoringi/table/
+        - listitem [ref=e37]:
+          - link "Listy przypisane do spraw" [ref=e38] [cursor=pointer]:
+            - /url: /listy/
+        - listitem [ref=e40]:
+          - link "Listy nieprzypisane do spraw" [ref=e41] [cursor=pointer]:
+            - /url: /listy/przypisz
+        - listitem [ref=e43]:
+          - link "Instytucje" [ref=e44] [cursor=pointer]:
+            - /url: /instytucje/
+        - listitem [ref=e46]:
+          - paragraph [ref=e47]
+      - generic [ref=e48]:
+        - generic [ref=e49]: Użytkownik / użytkowniczka
+        - listitem [ref=e50]:
+          - link "Mój profil" [ref=e51] [cursor=pointer]:
+            - /url: /uzytkownik/claude_ai/
+        - listitem [ref=e53]:
+          - link "Panel administracyjny" [ref=e54] [cursor=pointer]:
+            - /url: /admin/
+        - listitem [ref=e56]:
+          - link "Wyloguj" [ref=e57] [cursor=pointer]:
+            - /url: /accounts/logout/
+    - generic [ref=e60]:
+      - heading "Tabela monitoringów:" [level=3] [ref=e61]
+      - generic [ref=e64]:
+        - generic [ref=e66]:
+          - text: Pokaż
+          - combobox "Pokaż pozycji" [ref=e67]:
+            - option "200" [selected]
+            - option "20"
+            - option "50"
+            - option "100"
+          - text: pozycji
+        - generic [ref=e69]:
+          - text: "Szukaj:"
+          - searchbox "Szukaj:" [ref=e70]
+        - generic [ref=e71]:
+          - table [ref=e74]:
+            - rowgroup [ref=e75]:
+              - row [ref=e76]:
+                - columnheader [ref=e77]
+                - 'columnheader "Id: aktywuj, by posortować kolumnę rosnąco" [ref=e78] [cursor=pointer]': Id
+                - 'columnheader "Utworzono: aktywuj, by posortować kolumnę rosnąco" [ref=e79] [cursor=pointer]': Utworzono
+                - 'columnheader "Nazwa: aktywuj, by posortować kolumnę rosnąco" [ref=e80] [cursor=pointer]': Nazwa
+                - 'columnheader "Opis: aktywuj, by posortować kolumnę rosnąco" [ref=e81] [cursor=pointer]': Opis
+                - 'columnheader "Użytkownik / użytkowniczka: aktywuj, by posortować kolumnę rosnąco" [ref=e82] [cursor=pointer]': Użytkownik / użytkowniczka
+                - 'columnheader "Liczba spraw: aktywuj, by posortować kolumnę rosnąco" [ref=e83] [cursor=pointer]': Liczba spraw
+                - 'columnheader "Licznik spraw poddanych kwarantannie: aktywuj, by posortować kolumnę rosnąco" [ref=e84] [cursor=pointer]': Licznik spraw poddanych kwarantannie
+                - 'columnheader "Liczba otrzymanych potwierdzeń: aktywuj, by posortować kolumnę rosnąco" [ref=e85] [cursor=pointer]': Liczba otrzymanych potwierdzeń
+                - 'columnheader "Liczba otrzymanych odpowiedzi: aktywuj, by posortować kolumnę rosnąco" [ref=e86] [cursor=pointer]': Liczba otrzymanych odpowiedzi
+                - 'columnheader "Czy ukrywać nowe sprawy przy przypisywaniu?: aktywuj, by posortować kolumnę rosnąco" [ref=e87] [cursor=pointer]': Czy ukrywać nowe sprawy przy przypisywaniu?
+                - 'columnheader "Czy publicznie widoczny?: aktywuj, by posortować kolumnę rosnąco" [ref=e88] [cursor=pointer]': Czy publicznie widoczny?
+                - 'columnheader "Powiadamiaj o alertach: aktywuj, by posortować kolumnę rosnąco" [ref=e89] [cursor=pointer]': Powiadamiaj o alertach
+              - row [ref=e90]:
+                - columnheader [ref=e91]
+                - columnheader [ref=e93]:
+                  - textbox "..." [ref=e94]
+                - columnheader [ref=e95]:
+                  - textbox "..." [ref=e96]
+                - columnheader [ref=e97]:
+                  - textbox "..." [ref=e98]
+                - columnheader [ref=e99]:
+                  - textbox "..." [ref=e100]
+                - columnheader [ref=e101]:
+                  - textbox "..." [ref=e102]
+                - columnheader [ref=e103]
+                - columnheader [ref=e104]
+                - columnheader [ref=e105]
+                - columnheader [ref=e106]
+                - columnheader [ref=e107]
+                - columnheader [ref=e108]
+                - columnheader [ref=e109]
+          - table [ref=e111]:
+            - rowgroup:
+              - 'row "Id: aktywuj, by posortować kolumnę rosnąco Utworzono: aktywuj, by posortować kolumnę rosnąco Nazwa: aktywuj, by posortować kolumnę rosnąco Opis: aktywuj, by posortować kolumnę rosnąco Użytkownik / użytkowniczka: aktywuj, by posortować kolumnę rosnąco Liczba spraw: aktywuj, by posortować kolumnę rosnąco Licznik spraw poddanych kwarantannie: aktywuj, by posortować kolumnę rosnąco Liczba otrzymanych potwierdzeń: aktywuj, by posortować kolumnę rosnąco Liczba otrzymanych odpowiedzi: aktywuj, by posortować kolumnę rosnąco Czy ukrywać nowe sprawy przy przypisywaniu?: aktywuj, by posortować kolumnę rosnąco Czy publicznie widoczny?: aktywuj, by posortować kolumnę rosnąco Powiadamiaj o alertach: aktywuj, by posortować kolumnę rosnąco"':
+                - columnheader
+                - 'columnheader "Id: aktywuj, by posortować kolumnę rosnąco"':
+                  - generic: Id
+                - 'columnheader "Utworzono: aktywuj, by posortować kolumnę rosnąco"':
+                  - generic: Utworzono
+                - 'columnheader "Nazwa: aktywuj, by posortować kolumnę rosnąco"':
+                  - generic: Nazwa
+                - 'columnheader "Opis: aktywuj, by posortować kolumnę rosnąco"':
+                  - generic: Opis
+                - 'columnheader "Użytkownik / użytkowniczka: aktywuj, by posortować kolumnę rosnąco"':
+                  - generic: Użytkownik / użytkowniczka
+                - 'columnheader "Liczba spraw: aktywuj, by posortować kolumnę rosnąco"':
+                  - generic: Liczba spraw
+                - 'columnheader "Licznik spraw poddanych kwarantannie: aktywuj, by posortować kolumnę rosnąco"':
+                  - generic: Licznik spraw poddanych kwarantannie
+                - 'columnheader "Liczba otrzymanych potwierdzeń: aktywuj, by posortować kolumnę rosnąco"':
+                  - generic: Liczba otrzymanych potwierdzeń
+                - 'columnheader "Liczba otrzymanych odpowiedzi: aktywuj, by posortować kolumnę rosnąco"':
+                  - generic: Liczba otrzymanych odpowiedzi
+                - 'columnheader "Czy ukrywać nowe sprawy przy przypisywaniu?: aktywuj, by posortować kolumnę rosnąco"':
+                  - generic: Czy ukrywać nowe sprawy przy przypisywaniu?
+                - 'columnheader "Czy publicznie widoczny?: aktywuj, by posortować kolumnę rosnąco"':
+                  - generic: Czy publicznie widoczny?
+                - 'columnheader "Powiadamiaj o alertach: aktywuj, by posortować kolumnę rosnąco"':
+                  - generic: Powiadamiaj o alertach
+              - row:
+                - columnheader
+                - columnheader:
+                  - textbox "..." [ref=e113]
+                - columnheader:
+                  - textbox "..." [ref=e114]
+                - columnheader:
+                  - textbox "..." [ref=e115]
+                - columnheader:
+                  - textbox "..." [ref=e116]
+                - columnheader:
+                  - textbox "..." [ref=e117]
+                - columnheader
+                - columnheader
+                - columnheader
+                - columnheader
+                - columnheader
+                - columnheader
+                - columnheader
+            - rowgroup [ref=e118]:
+              - row [ref=e119]:
+                - cell [ref=e120]:
+                  - generic [ref=e121]:
+                    - link "Show details" [ref=e122] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e124] [cursor=pointer]:
+                      - /url: "#"
+                - cell "109" [ref=e126]
+                - cell "2024-07-18 10:32:21" [ref=e127]
+                - cell [ref=e128]:
+                  - link "Kontrole punktów gastronomicznych" [ref=e130] [cursor=pointer]:
+                    - /url: /monitoringi/kontrole-punktow-gastronomicznych/monitoring_cases_table
+                - cell [ref=e131]
+                - cell "AgnieszkaZdanowicz" [ref=e132]
+                - cell "9" [ref=e133]
+                - cell "0" [ref=e134]
+                - cell "3" [ref=e135]
+                - cell "0" [ref=e136]
+                - cell [ref=e137]
+                - cell [ref=e139]
+                - cell [ref=e141]
+              - row [ref=e143]:
+                - cell [ref=e144]:
+                  - generic [ref=e145]:
+                    - link "Show details" [ref=e146] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e148] [cursor=pointer]:
+                      - /url: "#"
+                - cell "108" [ref=e150]
+                - cell "2024-07-11 11:54:18" [ref=e151]
+                - cell [ref=e152]:
+                  - link "Zespoły w ministerstwach" [ref=e154] [cursor=pointer]:
+                    - /url: /monitoringi/zespoly-w-ministerstwach/monitoring_cases_table
+                - cell "W związku z kontrowersjami dookoła zespołów ministerialnych chcemy wiedzieć więcej." [ref=e155]
+                - cell "SOWP" [ref=e156]
+                - cell "20" [ref=e157]
+                - cell "0" [ref=e158]
+                - cell "7" [ref=e159]
+                - cell "8" [ref=e160]
+                - cell [ref=e161]
+                - cell [ref=e163]
+                - cell [ref=e165]
+              - row [ref=e167]:
+                - cell [ref=e168]:
+                  - generic [ref=e169]:
+                    - link "Show details" [ref=e170] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e172] [cursor=pointer]:
+                      - /url: "#"
+                - cell "107" [ref=e174]
+                - cell "2024-07-03 10:14:57" [ref=e175]
+                - cell [ref=e176]:
+                  - link "Ministerstwa - baza danych umów cywilnoprawnych" [ref=e178] [cursor=pointer]:
+                    - /url: /monitoringi/ministerstwa-baza-danych-umow-cywilnoprawnych/monitoring_cases_table
+                - cell "Sprawdzamy, czy ministerstwa prowadzą elektroniczną bazę danych umów cywilnoprawnych." [ref=e179]
+                - cell "SOWP" [ref=e180]
+                - cell "19" [ref=e181]
+                - cell "0" [ref=e182]
+                - cell "5" [ref=e183]
+                - cell "15" [ref=e184]
+                - cell [ref=e185]
+                - cell [ref=e187]
+                - cell [ref=e189]
+              - row [ref=e191]:
+                - cell [ref=e192]:
+                  - generic [ref=e193]:
+                    - link "Show details" [ref=e194] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e196] [cursor=pointer]:
+                      - /url: "#"
+                - cell "106" [ref=e198]
+                - cell "2024-07-03 10:07:10" [ref=e199]
+                - cell [ref=e200]:
+                  - link "Nagrody w ministerstwach 2024" [ref=e202] [cursor=pointer]:
+                    - /url: /monitoringi/nagrody-w-ministerstwach-2/monitoring_cases_table
+                - cell "Sprawdzamy nagrody wypłacane w ministerstwach w pierwszym półroczu 2024." [ref=e203]
+                - cell "SOWP" [ref=e204]
+                - cell "20" [ref=e205]
+                - cell "0" [ref=e206]
+                - cell "4" [ref=e207]
+                - cell "16" [ref=e208]
+                - cell [ref=e209]
+                - cell [ref=e211]
+                - cell [ref=e213]
+              - row [ref=e215]:
+                - cell [ref=e216]:
+                  - generic [ref=e217]:
+                    - link "Show details" [ref=e218] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e220] [cursor=pointer]:
+                      - /url: "#"
+                - cell "105" [ref=e222]
+                - cell "2024-07-02 10:12:35" [ref=e223]
+                - cell [ref=e224]:
+                  - link "Lasy Państwowe a SLAPPy" [ref=e226] [cursor=pointer]:
+                    - /url: /monitoringi/lasy-panstwowe-a-slappy/monitoring_cases_table
+                - cell "Wiosną 2024 Ministerstwo Klimatu i Środowiska poprosiło Lasy Państwowe o wycofanie spraw typu SLAPP. Sprawdzamy, na ile to się zadziało." [ref=e227]
+                - cell "SOWP" [ref=e228]
+                - cell "18" [ref=e229]
+                - cell "0" [ref=e230]
+                - cell "12" [ref=e231]
+                - cell "15" [ref=e232]
+                - cell [ref=e233]
+                - cell [ref=e235]
+                - cell [ref=e237]
+              - row [ref=e239]:
+                - cell [ref=e240]:
+                  - generic [ref=e241]:
+                    - link "Show details" [ref=e242] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e244] [cursor=pointer]:
+                      - /url: "#"
+                - cell "104" [ref=e246]
+                - cell "2024-06-25 13:58:34" [ref=e247]
+                - cell [ref=e248]:
+                  - link "Wnioski o informację o środowisku w 2023 - RDOŚ-ie" [ref=e250] [cursor=pointer]:
+                    - /url: /monitoringi/wnioski-o-informacje-o-srodowisku-w-2023-rdos-ie-gdos-parki-narodowe/monitoring_cases_table
+                - cell "Sprawdzamy, jak RDOŚ-ie obsługiwały wnioski o informację o środowisku w roku 2023. Monitoring należy do serii monitoringów, służących zebraniu danych do kolejnej edycji \"Raportu o stanie jawności w Polsce\"." [ref=e251]
+                - cell "SOWP" [ref=e252]
+                - cell "18" [ref=e253]
+                - cell "0" [ref=e254]
+                - cell "10" [ref=e255]
+                - cell "16" [ref=e256]
+                - cell [ref=e257]
+                - cell [ref=e259]
+                - cell [ref=e261]
+              - row [ref=e263]:
+                - cell [ref=e264]:
+                  - generic [ref=e265]:
+                    - link "Show details" [ref=e266] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e268] [cursor=pointer]:
+                      - /url: "#"
+                - cell "103" [ref=e270]
+                - cell "2024-06-25 08:59:58" [ref=e271]
+                - cell [ref=e272]:
+                  - link "Wnioski o informację o środowisku w 2023 - gminy, starostwa, urzędy marszałkowskie, GDOŚ, parki" [ref=e274] [cursor=pointer]:
+                    - /url: /monitoringi/wnioski-o-informacje-o-srodowisku-w-2023-gminy-starostwa-urzedy-marszalkowskie/monitoring_cases_table
+                - cell "Sprawdzamy, jak gminy, starostwa, urzędy marszałkowskie, GDOŚ i parki narodowe obsługiwały wnioski o informację o środowisku w roku 2023. Monitoring należy do serii monitoringów, służących zebraniu danych do kolejnej edycji \"Raportu o stanie jawności w Polsce\"." [ref=e275]
+                - cell "SOWP" [ref=e276]
+                - cell "818" [ref=e277]
+                - cell "0" [ref=e278]
+                - cell "384" [ref=e279]
+                - cell "686" [ref=e280]
+                - cell [ref=e281]
+                - cell [ref=e283]
+                - cell [ref=e285]
+              - row [ref=e287]:
+                - cell [ref=e288]:
+                  - generic [ref=e289]:
+                    - link "Show details" [ref=e290] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e292] [cursor=pointer]:
+                      - /url: "#"
+                - cell "102" [ref=e294]
+                - cell "2024-06-19 09:51:20" [ref=e295]
+                - cell [ref=e296]:
+                  - link "Wnioski o informację w 2023 - Komendanci Wojewódzcy i Stołeczny Policji" [ref=e298] [cursor=pointer]:
+                    - /url: /monitoringi/wnioski-o-informacje-w-2023-komendanci-wojewodzcy-i-stoleczny-policji/monitoring_cases_table
+                - cell "Sprawdzamy, jak Komendanci Wojewódzcy i Komendant Stołeczny Policji obsługiwali wnioski o informację w roku 2023. Monitoring należy do serii monitoringów, służących zebraniu danych do kolejnej edycji \"Raportu o stanie jawności w Polsce\"." [ref=e299]
+                - cell "SOWP" [ref=e300]
+                - cell "17" [ref=e301]
+                - cell "0" [ref=e302]
+                - cell "0" [ref=e303]
+                - cell "17" [ref=e304]
+                - cell [ref=e305]
+                - cell [ref=e307]
+                - cell [ref=e309]
+              - row [ref=e311]:
+                - cell [ref=e312]:
+                  - generic [ref=e313]:
+                    - link "Show details" [ref=e314] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e316] [cursor=pointer]:
+                      - /url: "#"
+                - cell "101" [ref=e318]
+                - cell "2024-06-19 09:22:29" [ref=e319]
+                - cell [ref=e320]:
+                  - link "Wnioski o informację w 2023 - pytamy wojewodów o straże gminne (miejskie)" [ref=e322] [cursor=pointer]:
+                    - /url: /monitoringi/wnioski-o-informacje-w-2023-pytamy-wojewodow-o-straze-gminne-miejskie/monitoring_cases_table
+                - cell "Wojewodowie w oparciu o stosowne przepisy są zobligowani do prowadzenia nadzoru nad strażami gminnymi (miejskimi). W związku z tym powinni mieć jakiś rodzaj rejestru, o który wnioskujemy, by w przyszłości móc monitorować również straże gminne (miejskie). Monitoring należy do serii monitoringów, służących zebraniu danych do kolejnej edycji \"Raportu o stanie jawności w Polsce\"." [ref=e323]
+                - cell "SOWP" [ref=e324]
+                - cell "16" [ref=e325]
+                - cell "0" [ref=e326]
+                - cell "6" [ref=e327]
+                - cell "13" [ref=e328]
+                - cell [ref=e329]
+                - cell [ref=e331]
+                - cell [ref=e333]
+              - row [ref=e335]:
+                - cell [ref=e336]:
+                  - generic [ref=e337]:
+                    - link "Show details" [ref=e338] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e340] [cursor=pointer]:
+                      - /url: "#"
+                - cell "100" [ref=e342]
+                - cell "2024-06-18 14:48:10" [ref=e343]
+                - cell [ref=e344]:
+                  - link "Doradcy Marszałków Sejmu i Senatu" [ref=e346] [cursor=pointer]:
+                    - /url: /monitoringi/doradcy-marszalkow-sejmu-i-senatu/monitoring_cases_table
+                - cell [ref=e347]
+                - cell "SOWP" [ref=e348]
+                - cell "2" [ref=e349]
+                - cell "0" [ref=e350]
+                - cell "0" [ref=e351]
+                - cell "2" [ref=e352]
+                - cell [ref=e353]
+                - cell [ref=e355]
+                - cell [ref=e357]
+              - row [ref=e359]:
+                - cell [ref=e360]:
+                  - generic [ref=e361]:
+                    - link "Show details" [ref=e362] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e364] [cursor=pointer]:
+                      - /url: "#"
+                - cell "99" [ref=e366]
+                - cell "2024-06-18 14:41:11" [ref=e367]
+                - cell [ref=e368]:
+                  - link "Karty płatnicze w ministerstwach" [ref=e370] [cursor=pointer]:
+                    - /url: /monitoringi/karty-platnicze-w-ministerstwach/monitoring_cases_table
+                - cell [ref=e371]
+                - cell "SOWP" [ref=e372]
+                - cell "20" [ref=e373]
+                - cell "0" [ref=e374]
+                - cell "6" [ref=e375]
+                - cell "17" [ref=e376]
+                - cell [ref=e377]
+                - cell [ref=e379]
+                - cell [ref=e381]
+              - row [ref=e383]:
+                - cell [ref=e384]:
+                  - generic [ref=e385]:
+                    - link "Show details" [ref=e386] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e388] [cursor=pointer]:
+                      - /url: "#"
+                - cell "98" [ref=e390]
+                - cell "2024-06-18 09:06:22" [ref=e391]
+                - cell [ref=e392]:
+                  - link "Wnioski o informację w 2023 - samorządowe kolegia odwoławcze" [ref=e394] [cursor=pointer]:
+                    - /url: /monitoringi/wnioski-o-informacje-w-2023-samorzadowe-kolegia-odwolawcze/monitoring_cases_table
+                - cell "Sprawdzamy, jak samorządowe kolegia odwoławcze obsługiwały wnioski o informację w roku 2023. Monitoring należy do serii monitoringów, służących zebraniu danych do kolejnej edycji \"Raportu o stanie jawności w Polsce\"." [ref=e395]
+                - cell "SOWP" [ref=e396]
+                - cell "49" [ref=e397]
+                - cell "0" [ref=e398]
+                - cell "25" [ref=e399]
+                - cell "37" [ref=e400]
+                - cell [ref=e401]
+                - cell [ref=e403]
+                - cell [ref=e405]
+              - row [ref=e407]:
+                - cell [ref=e408]:
+                  - generic [ref=e409]:
+                    - link "Show details" [ref=e410] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e412] [cursor=pointer]:
+                      - /url: "#"
+                - cell "97" [ref=e414]
+                - cell "2024-04-25 13:55:12" [ref=e415]
+                - cell [ref=e416]:
+                  - link "Wnioski o informację w 2023 - Akademia Wymiaru Sprawiedliwości" [ref=e418] [cursor=pointer]:
+                    - /url: /monitoringi/wnioski-o-informacje-w-2023-akademia-wymiaru-sprawiedliwosci/monitoring_cases_table
+                - cell "Sprawdzamy, czy w programie studiów oferowanych w Akademii Wymiaru Sprawiedliwości znajduje się przedmiot poświęcony wolności słowa, prawu do informacji i dostępowi do informacji publicznej. Monitoring należy do serii monitoringów, służących zebraniu danych do kolejnej edycji \"Raportu o stanie jawności w Polsce\"." [ref=e419]
+                - cell "SOWP" [ref=e420]
+                - cell "1" [ref=e421]
+                - cell "0" [ref=e422]
+                - cell "1" [ref=e423]
+                - cell "1" [ref=e424]
+                - cell [ref=e425]
+                - cell [ref=e427]
+                - cell [ref=e429]
+              - row [ref=e431]:
+                - cell [ref=e432]:
+                  - generic [ref=e433]:
+                    - link "Show details" [ref=e434] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e436] [cursor=pointer]:
+                      - /url: "#"
+                - cell "96" [ref=e438]
+                - cell "2024-04-25 13:51:42" [ref=e439]
+                - cell [ref=e440]:
+                  - link "Wnioski o informację w 2023 - Komendanci Ośrodków Szkolenia Służby Więziennej" [ref=e442] [cursor=pointer]:
+                    - /url: /monitoringi/wnioski-o-informacje-w-2023-komendanci-osrodkow-szkolenia-sluzby-wieziennej/monitoring_cases_table
+                - cell "Sprawdzamy, czy komendanci Ośrodków Szkolenia Służby Więziennej organizowali szkolenia z zakresu wolności słowa, prawa do informacji i dostępu do informacji publicznej w roku 2023. Monitoring należy do serii monitoringów, służących zebraniu danych do kolejnej edycji \"Raportu o stanie jawności w Polsce\"." [ref=e443]
+                - cell "SOWP" [ref=e444]
+                - cell "4" [ref=e445]
+                - cell "0" [ref=e446]
+                - cell "4" [ref=e447]
+                - cell "2" [ref=e448]
+                - cell [ref=e449]
+                - cell [ref=e451]
+                - cell [ref=e453]
+              - row [ref=e455]:
+                - cell [ref=e456]:
+                  - generic [ref=e457]:
+                    - link "Show details" [ref=e458] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e460] [cursor=pointer]:
+                      - /url: "#"
+                - cell "95" [ref=e462]
+                - cell "2024-04-25 12:53:18" [ref=e463]
+                - cell [ref=e464]:
+                  - link "Wnioski o informację w 2023 - Dyrektorzy Okręgowi Służby Więziennej" [ref=e466] [cursor=pointer]:
+                    - /url: /monitoringi/wnioski-o-informacje-w-2023-dyrektorzy-okregowi-sluzby-wieziennej/monitoring_cases_table
+                - cell "Sprawdzamy, jak dyrektorzy okręgowi służby więziennej obsługiwali wnioski o informację w roku 2023. Monitoring należy do serii monitoringów, służących zebraniu danych do kolejnej edycji \"Raportu o stanie jawności w Polsce\"." [ref=e467]
+                - cell "SOWP" [ref=e468]
+                - cell "11" [ref=e469]
+                - cell "0" [ref=e470]
+                - cell "10" [ref=e471]
+                - cell "9" [ref=e472]
+                - cell [ref=e473]
+                - cell [ref=e475]
+                - cell [ref=e477]
+              - row [ref=e479]:
+                - cell [ref=e480]:
+                  - generic [ref=e481]:
+                    - link "Show details" [ref=e482] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e484] [cursor=pointer]:
+                      - /url: "#"
+                - cell "94" [ref=e486]
+                - cell "2024-04-25 12:47:06" [ref=e487]
+                - cell [ref=e488]:
+                  - link "Wnioski o informację w 2023 - Dyrektor Generalny Służby Więziennej" [ref=e490] [cursor=pointer]:
+                    - /url: /monitoringi/wnioski-o-informacje-w-2023-dyrektor-generalny-sluzby-wieziennej/monitoring_cases_table
+                - cell "Sprawdzamy, jak dyrektor generalny służby więziennej obsługiwał wnioski o informację w roku 2023. Monitoring należy do serii monitoringów, służących zebraniu danych do kolejnej edycji \"Raportu o stanie jawności w Polsce\"." [ref=e491]
+                - cell "SOWP" [ref=e492]
+                - cell "1" [ref=e493]
+                - cell "0" [ref=e494]
+                - cell "1" [ref=e495]
+                - cell "1" [ref=e496]
+                - cell [ref=e497]
+                - cell [ref=e499]
+                - cell [ref=e501]
+              - row [ref=e503]:
+                - cell [ref=e504]:
+                  - generic [ref=e505]:
+                    - link "Show details" [ref=e506] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e508] [cursor=pointer]:
+                      - /url: "#"
+                - cell "93" [ref=e510]
+                - cell "2024-04-25 12:41:05" [ref=e511]
+                - cell [ref=e512]:
+                  - link "Wnioski o informację w 2023 - areszty śledcze" [ref=e514] [cursor=pointer]:
+                    - /url: /monitoringi/wnioski-o-informacje-w-2023-areszty-sledcze/monitoring_cases_table
+                - cell "Sprawdzamy, jak areszty śledcze obsługiwały wnioski o informację w roku 2023. Monitoring należy do serii monitoringów, służących zebraniu danych do kolejnej edycji \"Raportu o stanie jawności w Polsce\"." [ref=e515]
+                - cell "SOWP" [ref=e516]
+                - cell "37" [ref=e517]
+                - cell "0" [ref=e518]
+                - cell "30" [ref=e519]
+                - cell "27" [ref=e520]
+                - cell [ref=e521]
+                - cell [ref=e523]
+                - cell [ref=e525]
+              - row [ref=e527]:
+                - cell [ref=e528]:
+                  - generic [ref=e529]:
+                    - link "Show details" [ref=e530] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e532] [cursor=pointer]:
+                      - /url: "#"
+                - cell "92" [ref=e534]
+                - cell "2024-04-25 12:30:58" [ref=e535]
+                - cell [ref=e536]:
+                  - link "Wnioski o informację w 2023 - zakłady karne" [ref=e538] [cursor=pointer]:
+                    - /url: /monitoringi/wnioski-o-informacje-w-2023-zaklady-karne/monitoring_cases_table
+                - cell "Sprawdzamy, jak zakłady karne obsługiwały wnioski o informację w roku 2023. Monitoring należy do serii monitoringów, służących zebraniu danych do kolejnej edycji \"Raportu o stanie jawności w Polsce\"." [ref=e539]
+                - cell "SOWP" [ref=e540]
+                - cell "64" [ref=e541]
+                - cell "0" [ref=e542]
+                - cell "52" [ref=e543]
+                - cell "53" [ref=e544]
+                - cell [ref=e545]
+                - cell [ref=e547]
+                - cell [ref=e549]
+              - row [ref=e551]:
+                - cell [ref=e552]:
+                  - generic [ref=e553]:
+                    - link "Show details" [ref=e554] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e556] [cursor=pointer]:
+                      - /url: "#"
+                - cell "91" [ref=e558]
+                - cell "2024-04-17 10:33:04" [ref=e559]
+                - cell [ref=e560]:
+                  - link "Wnioski o informację w 2023 - sądy rejonowe" [ref=e562] [cursor=pointer]:
+                    - /url: /monitoringi/wnioski-o-informacje-w-2023-sady-rejonowe/monitoring_cases_table
+                - cell "Sprawdzamy, jak sądy rejonowe obsługiwały wnioski o informację w roku 2023. Monitoring należy do serii monitoringów, służących zebraniu danych do kolejnej edycji \"Raportu o stanie jawności w Polsce\"." [ref=e563]
+                - cell "SOWP" [ref=e564]
+                - cell "319" [ref=e565]
+                - cell "0" [ref=e566]
+                - cell "145" [ref=e567]
+                - cell "296" [ref=e568]
+                - cell [ref=e569]
+                - cell [ref=e571]
+                - cell [ref=e573]
+              - row [ref=e575]:
+                - cell [ref=e576]:
+                  - generic [ref=e577]:
+                    - link "Show details" [ref=e578] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e580] [cursor=pointer]:
+                      - /url: "#"
+                - cell "90" [ref=e582]
+                - cell "2024-04-17 10:31:12" [ref=e583]
+                - cell [ref=e584]:
+                  - link "Wnioski o informację w 2023 - sądy okręgowe" [ref=e586] [cursor=pointer]:
+                    - /url: /monitoringi/wnioski-o-informacje-w-2023-sady-okregowe/monitoring_cases_table
+                - cell "Sprawdzamy, jak sądy okręgowe obsługiwały wnioski o informację w roku 2023. Monitoring należy do serii monitoringów, służących zebraniu danych do kolejnej edycji \"Raportu o stanie jawności w Polsce\"." [ref=e587]
+                - cell "SOWP" [ref=e588]
+                - cell "47" [ref=e589]
+                - cell "0" [ref=e590]
+                - cell "16" [ref=e591]
+                - cell "45" [ref=e592]
+                - cell [ref=e593]
+                - cell [ref=e595]
+                - cell [ref=e597]
+              - row [ref=e599]:
+                - cell [ref=e600]:
+                  - generic [ref=e601]:
+                    - link "Show details" [ref=e602] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e604] [cursor=pointer]:
+                      - /url: "#"
+                - cell "89" [ref=e606]
+                - cell "2024-04-17 10:04:08" [ref=e607]
+                - cell [ref=e608]:
+                  - link "Wnioski o informację w 2023 - sądy apelacyjne" [ref=e610] [cursor=pointer]:
+                    - /url: /monitoringi/wnioski-o-informacje-w-2023-sady-apelacyjne/monitoring_cases_table
+                - cell "Sprawdzamy, jak sądy apelacyjne obsługiwały wnioski o informację w roku 2023. Monitoring należy do serii monitoringów, służących zebraniu danych do kolejnej edycji \"Raportu o stanie jawności w Polsce\"." [ref=e611]
+                - cell "SOWP" [ref=e612]
+                - cell "11" [ref=e613]
+                - cell "0" [ref=e614]
+                - cell "8" [ref=e615]
+                - cell "11" [ref=e616]
+                - cell [ref=e617]
+                - cell [ref=e619]
+                - cell [ref=e621]
+              - row [ref=e623]:
+                - cell [ref=e624]:
+                  - generic [ref=e625]:
+                    - link "Show details" [ref=e626] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e628] [cursor=pointer]:
+                      - /url: "#"
+                - cell "88" [ref=e630]
+                - cell "2024-03-27 09:21:25" [ref=e631]
+                - cell [ref=e632]:
+                  - link "Działalność Zarządów Okręgowych Polskiego Związku Łowieckiego" [ref=e634] [cursor=pointer]:
+                    - /url: /monitoringi/dzialalnosc-zarzadow-okregowych-polskiego-zwiazku-lowieckiego/monitoring_cases_table
+                - cell "We współpracy z Fundacją Niech Żyją! przyglądamy się działalności Zarządów Okręgowych Polskiego Związku Łowieckiego." [ref=e635]
+                - cell "SOWP" [ref=e636]
+                - cell "53" [ref=e637]
+                - cell "0" [ref=e638]
+                - cell "2" [ref=e639]
+                - cell "37" [ref=e640]
+                - cell [ref=e641]
+                - cell [ref=e643]
+                - cell [ref=e645]
+              - row [ref=e647]:
+                - cell [ref=e648]:
+                  - generic [ref=e649]:
+                    - link "Show details" [ref=e650] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e652] [cursor=pointer]:
+                      - /url: "#"
+                - cell "87" [ref=e654]
+                - cell "2024-03-12 08:29:28" [ref=e655]
+                - cell [ref=e656]:
+                  - link "Wniosek o zaprzestanie blokowania korespondencji" [ref=e658] [cursor=pointer]:
+                    - /url: /monitoringi/wniosek-o-zaprzestanie-blokowania-korespondencji/monitoring_cases_table
+                - cell "Korespondencja z urzędami, które blokują wiadomości z Fedrowania. Inicjalnie dostarczona mejlem na podstawie pełnomocnictwa udzielonego przez Zarząd." [ref=e659]
+                - cell "SOWP" [ref=e660]
+                - cell "25" [ref=e661]
+                - cell "0" [ref=e662]
+                - cell "5" [ref=e663]
+                - cell "8" [ref=e664]
+                - cell [ref=e665]
+                - cell [ref=e667]
+                - cell [ref=e669]
+              - row [ref=e671]:
+                - cell [ref=e672]:
+                  - generic [ref=e673]:
+                    - link "Show details" [ref=e674] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e676] [cursor=pointer]:
+                      - /url: "#"
+                - cell "86" [ref=e678]
+                - cell "2024-03-07 19:26:53" [ref=e679]
+                - cell [ref=e680]:
+                  - link "Informacja w sprawie wyborów samorządowych" [ref=e681] [cursor=pointer]:
+                    - /url: /monitoringi/apel-dot-wyborow-samorzadowych/monitoring_cases_table
+                - cell "Informacja w sprawie wyborów samorządowych" [ref=e682]
+                - cell "SOWP" [ref=e683]
+                - cell "2807" [ref=e684]
+                - cell "0" [ref=e685]
+                - cell "946" [ref=e686]
+                - cell "47" [ref=e687]
+                - cell [ref=e688]
+                - cell [ref=e690]
+                - cell [ref=e692]
+              - row [ref=e694]:
+                - cell [ref=e695]:
+                  - generic [ref=e696]:
+                    - link "Show details" [ref=e697] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e699] [cursor=pointer]:
+                      - /url: "#"
+                - cell "85" [ref=e701]
+                - cell "2024-03-04 20:11:59" [ref=e702]
+                - cell [ref=e703]:
+                  - link "Zaproszenie na kurs (Bez)Nadzieja małej i dużej gminy" [ref=e704] [cursor=pointer]:
+                    - /url: /monitoringi/zaproszenie-na-kurs-beznadzieja-malej-i-duzej-gminy/monitoring_cases_table
+                - cell "Zaproszenie na kurs (Bez)Nadzieja małej i dużej gminy" [ref=e705]
+                - cell "SOWP" [ref=e706]
+                - cell "2477" [ref=e707]
+                - cell "0" [ref=e708]
+                - cell "830" [ref=e709]
+                - cell "49" [ref=e710]
+                - cell [ref=e711]
+                - cell [ref=e713]
+                - cell [ref=e715]
+              - row [ref=e717]:
+                - cell [ref=e718]:
+                  - generic [ref=e719]:
+                    - link "Show details" [ref=e720] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e722] [cursor=pointer]:
+                      - /url: "#"
+                - cell "84" [ref=e724]
+                - cell "2024-01-22 13:40:17" [ref=e725]
+                - cell [ref=e726]:
+                  - link "Praworządność szkół" [ref=e728] [cursor=pointer]:
+                    - /url: /monitoringi/praworzadnosc-szkol/monitoring_cases_table
+                - cell "Celem naszego monitoringu jest zdiagnozowanie i dookreślenie tych obszarów życia szkolnego, w których identyfikujemy nieprawidłowości i wyzwania i które wymagają wsparcia, naprawy i wspólnego działania oraz na tej podstawie opracowanie raportu i publikacji pt. Szkolna Karta Praw – jako narzędziownika zawierającego ustandaryzowaną i usystematyzowaną wiedzę (w tym prawną) oraz kompendium dobrych praktyk, w tym dydaktyczno-wychowawczych organizujących inkluzywną i zdrową szkołę jako miejsce zorientowane na dobro dzieci i młodzieży, realizujące i rozumiejące prawa dzieci i prawa człowieka, oparte na wartościach demokratycznych." [ref=e729]
+                - cell "Ania_De" [ref=e730]
+                - cell "180" [ref=e731]
+                - cell "0" [ref=e732]
+                - cell "62" [ref=e733]
+                - cell "144" [ref=e734]
+                - cell [ref=e735]
+                - cell [ref=e737]
+                - cell [ref=e739]
+              - row [ref=e741]:
+                - cell [ref=e742]:
+                  - generic [ref=e743]:
+                    - link "Show details" [ref=e744] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e746] [cursor=pointer]:
+                      - /url: "#"
+                - cell "83" [ref=e748]
+                - cell "2023-12-13 08:53:18" [ref=e749]
+                - cell [ref=e750]:
+                  - link "Zaproszenie na szkolenia z przeciwdziałania SLAPP" [ref=e751] [cursor=pointer]:
+                    - /url: /monitoringi/zaproszenie-na-szkolenia-z-przeciwdzialania-slapp/monitoring_cases_table
+                - cell "Sieć Obywatelska Watchdog Polska zaprasza do udziału w bezpłatnych szkoleniach dla prawniczek i prawników dotyczących ochrony wolności słowa i informacji ze szczególnym uwzględnieniem przeciwdziałania SLAPPom - strategicznym działaniom przeciw partycypacji publicznej." [ref=e752]
+                - cell "SOWP" [ref=e753]
+                - cell "61" [ref=e754]
+                - cell "0" [ref=e755]
+                - cell "22" [ref=e756]
+                - cell "1" [ref=e757]
+                - cell [ref=e758]
+                - cell [ref=e760]
+                - cell [ref=e762]
+              - row [ref=e764]:
+                - cell [ref=e765]:
+                  - generic [ref=e766]:
+                    - link "Show details" [ref=e767] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e769] [cursor=pointer]:
+                      - /url: "#"
+                - cell "82" [ref=e771]
+                - cell "2023-12-05 14:22:10" [ref=e772]
+                - cell [ref=e773]:
+                  - link "Concertina" [ref=e775] [cursor=pointer]:
+                    - /url: /monitoringi/concertina/monitoring_cases_table
+                - cell "We współpracy z Fundacją Niech Żyją! ustalamy, co się działo i dzieje ze zwierzętami, które giną w związku z rozłożeniem drutu na granicy Polski." [ref=e776]
+                - cell "SOWP" [ref=e777]
+                - cell "116" [ref=e778]
+                - cell "0" [ref=e779]
+                - cell "53" [ref=e780]
+                - cell "98" [ref=e781]
+                - cell [ref=e782]
+                - cell [ref=e784]
+                - cell [ref=e786]
+              - row [ref=e788]:
+                - cell [ref=e789]:
+                  - generic [ref=e790]:
+                    - link "Show details" [ref=e791] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e793] [cursor=pointer]:
+                      - /url: "#"
+                - cell "81" [ref=e795]
+                - cell "2023-11-30 13:43:37" [ref=e796]
+                - cell [ref=e797]:
+                  - link "Asesorzy w KAS" [ref=e799] [cursor=pointer]:
+                    - /url: /monitoringi/asesorzy-w-kas/monitoring_cases_table
+                - cell "Dotyczy utworzonej przez Ministra Finansów bez ustawowej podstawy prawnej nowej funkcji asesora, którego zadaniem jest badanie kompetencji posiadanych przez osoby zatrudnione na stanowiskach kierowniczych w KAS." [ref=e800]
+                - cell "SOWP" [ref=e801]
+                - cell "18" [ref=e802]
+                - cell "0" [ref=e803]
+                - cell "10" [ref=e804]
+                - cell "18" [ref=e805]
+                - cell [ref=e806]
+                - cell [ref=e808]
+                - cell [ref=e810]
+              - row [ref=e812]:
+                - cell [ref=e813]:
+                  - generic [ref=e814]:
+                    - link "Show details" [ref=e815] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e817] [cursor=pointer]:
+                      - /url: "#"
+                - cell "80" [ref=e819]
+                - cell "2023-11-16 12:43:10" [ref=e820]
+                - cell [ref=e821]:
+                  - link "Zaproszenie na live \"Jakie mamy rejestry umów w Europie?\"" [ref=e822] [cursor=pointer]:
+                    - /url: /monitoringi/zaproszenie-na-live-jakie-mamy-rejestry-umow-w-europie/monitoring_cases_table
+                - cell [ref=e823]
+                - cell "SOWP" [ref=e824]
+                - cell "2477" [ref=e825]
+                - cell "0" [ref=e826]
+                - cell "701" [ref=e827]
+                - cell "53" [ref=e828]
+                - cell [ref=e829]
+                - cell [ref=e831]
+                - cell [ref=e833]
+              - row [ref=e835]:
+                - cell [ref=e836]:
+                  - generic [ref=e837]:
+                    - link "Show details" [ref=e838] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e840] [cursor=pointer]:
+                      - /url: "#"
+                - cell "79" [ref=e842]
+                - cell "2023-10-26 08:16:25" [ref=e843]
+                - cell [ref=e844]:
+                  - link "Zaproszenie na SIS VIII" [ref=e845] [cursor=pointer]:
+                    - /url: /monitoringi/zaproszenie-na-sis-viii/monitoring_cases_table
+                - cell "Zaproszenie na SIS VIII" [ref=e846]
+                - cell "SOWP" [ref=e847]
+                - cell "2796" [ref=e848]
+                - cell "0" [ref=e849]
+                - cell "783" [ref=e850]
+                - cell "73" [ref=e851]
+                - cell [ref=e852]
+                - cell [ref=e854]
+                - cell [ref=e856]
+              - row [ref=e858]:
+                - cell [ref=e859]:
+                  - generic [ref=e860]:
+                    - link "Show details" [ref=e861] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e863] [cursor=pointer]:
+                      - /url: "#"
+                - cell "78" [ref=e865]
+                - cell "2023-10-10 11:59:43" [ref=e866]
+                - cell [ref=e867]:
+                  - link "Polowania zbiorowe 2023" [ref=e869] [cursor=pointer]:
+                    - /url: /monitoringi/polowania-zbiorowe-2023/monitoring_cases_table
+                - cell [ref=e870]
+                - cell "krzysztof" [ref=e871]
+                - cell "314" [ref=e872]
+                - cell "0" [ref=e873]
+                - cell "154" [ref=e874]
+                - cell "287" [ref=e875]
+                - cell [ref=e876]
+                - cell [ref=e878]
+                - cell [ref=e880]
+              - row [ref=e882]:
+                - cell [ref=e883]:
+                  - generic [ref=e884]:
+                    - link "Show details" [ref=e885] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e887] [cursor=pointer]:
+                      - /url: "#"
+                - cell "77" [ref=e889]
+                - cell "2023-09-12 14:08:04" [ref=e890]
+                - cell [ref=e891]:
+                  - link "Oświadczenia o zakazie polowania 2023" [ref=e893] [cursor=pointer]:
+                    - /url: /monitoringi/oswiadczenia-o-zakazie-polowania-2023-2/monitoring_cases_table
+                - cell [ref=e894]
+                - cell "SOWP" [ref=e895]
+                - cell "380" [ref=e896]
+                - cell "0" [ref=e897]
+                - cell "160" [ref=e898]
+                - cell "359" [ref=e899]
+                - cell [ref=e900]
+                - cell [ref=e902]
+                - cell [ref=e904]
+              - row [ref=e906]:
+                - cell [ref=e907]:
+                  - generic [ref=e908]:
+                    - link "Show details" [ref=e909] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e911] [cursor=pointer]:
+                      - /url: "#"
+                - cell "75" [ref=e913]
+                - cell "2023-08-29 14:42:07" [ref=e914]
+                - cell [ref=e915]:
+                  - link "Odmowa nadania statusu osoby bezrobotnej" [ref=e917] [cursor=pointer]:
+                    - /url: /monitoringi/odmowa-nadania-statusu-osoby-bezrobotnej/monitoring_cases_table
+                - cell "Monitoring sprawdzający skalę i praktykę odmów nadania statusu osoby bezrobotnej ze względu na fakt nieodpłatnego pełnienia funkcji w zarządzie organizacji pozarządowej." [ref=e918]
+                - cell "lukaszgorczynski" [ref=e919]
+                - cell "341" [ref=e920]
+                - cell "0" [ref=e921]
+                - cell "158" [ref=e922]
+                - cell "315" [ref=e923]
+                - cell [ref=e924]
+                - cell [ref=e926]
+                - cell [ref=e928]
+              - row [ref=e930]:
+                - cell [ref=e931]:
+                  - generic [ref=e932]:
+                    - link "Show details" [ref=e933] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e935] [cursor=pointer]:
+                      - /url: "#"
+                - cell "74" [ref=e937]
+                - cell "2023-08-24 14:32:15" [ref=e938]
+                - cell [ref=e939]:
+                  - link "Śmierć na granicy" [ref=e941] [cursor=pointer]:
+                    - /url: /monitoringi/smierc-na-granicy/monitoring_cases_table
+                - cell "We współpracy z Fundacją Ocalenie ustalamy liczbę osób zmarłych na granicy polsko-białoruskiej podczas kryzysu humanitarnego." [ref=e942]
+                - cell "SOWP" [ref=e943]
+                - cell "140" [ref=e944]
+                - cell "2" [ref=e945]
+                - cell "76" [ref=e946]
+                - cell "128" [ref=e947]
+                - cell [ref=e948]
+                - cell [ref=e950]
+                - cell [ref=e952]
+              - row [ref=e954]:
+                - cell [ref=e955]:
+                  - generic [ref=e956]:
+                    - link "Show details" [ref=e957] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e959] [cursor=pointer]:
+                      - /url: "#"
+                - cell "73" [ref=e961]
+                - cell "2023-08-14 15:34:44" [ref=e962]
+                - cell [ref=e963]:
+                  - link "Informacyjnie o sesjach zdalnych po końcu pandemii" [ref=e964] [cursor=pointer]:
+                    - /url: /monitoringi/informacyjnie-o-sesjach-zdalnych-po-koncu-pandemii/monitoring_cases_table
+                - cell "Zachęcamy gminy do zapoznania się z opinią naszego prawnika dot. zgodności z prawem prowadzenia sesji zdalnych rady gminy mimo końca pandemii." [ref=e965]
+                - cell "SOWP" [ref=e966]
+                - cell "2477" [ref=e967]
+                - cell "0" [ref=e968]
+                - cell "651" [ref=e969]
+                - cell "41" [ref=e970]
+                - cell [ref=e971]
+                - cell [ref=e973]
+                - cell [ref=e975]
+              - row [ref=e977]:
+                - cell [ref=e978]:
+                  - generic [ref=e979]:
+                    - link "Show details" [ref=e980] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e982] [cursor=pointer]:
+                      - /url: "#"
+                - cell "72" [ref=e984]
+                - cell "2023-07-11 10:26:47" [ref=e985]
+                - cell [ref=e986]:
+                  - link "Wnioski o informację w 2022" [ref=e988] [cursor=pointer]:
+                    - /url: /monitoringi/wnioski-o-informacje-w-2022/monitoring_cases_table
+                - 'cell "Sprawdzamy, jak wnioski o informację w roku 2022 przetwarzały takie urzędy jak: Prezydent, Sejm, Senat, Ministerstwa i inne wybrane organy centralne a także Wojewodowie, Marszałkowie, Starostwa i Gminy. W dwóch ostatnich przypadkach badanie przeprowadzono na próbach dobranych metodą losowania systematycznego." [ref=e989]'
+                - cell "SOWP" [ref=e990]
+                - cell "2724" [ref=e991]
+                - cell "0" [ref=e992]
+                - cell "994" [ref=e993]
+                - cell "648" [ref=e994]
+                - cell [ref=e995]
+                - cell [ref=e997]
+                - cell [ref=e999]
+              - row [ref=e1001]:
+                - cell [ref=e1002]:
+                  - generic [ref=e1003]:
+                    - link "Show details" [ref=e1004] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e1006] [cursor=pointer]:
+                      - /url: "#"
+                - cell "71" [ref=e1008]
+                - cell "2023-05-07 09:36:28" [ref=e1009]
+                - cell [ref=e1010]:
+                  - link "Cyfryzacja urzędów 2023 - pilotaż" [ref=e1012] [cursor=pointer]:
+                    - /url: /monitoringi/cyfryzacja-urzedow-2023-pilotaz/monitoring_cases_table
+                - cell [ref=e1013]
+                - cell "KatarzynaBatkoToluc" [ref=e1014]
+                - cell "42" [ref=e1015]
+                - cell "0" [ref=e1016]
+                - cell "18" [ref=e1017]
+                - cell "35" [ref=e1018]
+                - cell [ref=e1019]
+                - cell [ref=e1021]
+                - cell [ref=e1023]
+              - row [ref=e1025]:
+                - cell [ref=e1026]:
+                  - generic [ref=e1027]:
+                    - link "Show details" [ref=e1028] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e1030] [cursor=pointer]:
+                      - /url: "#"
+                - cell "70" [ref=e1032]
+                - cell "2023-05-04 12:41:16" [ref=e1033]
+                - cell [ref=e1034]:
+                  - link "Informacja o raporcie dotyczącym raportów o stanie gminy" [ref=e1035] [cursor=pointer]:
+                    - /url: /monitoringi/informacja-o-raporcie-dotyczacym-raportow-o-stanie-gminy/monitoring_cases_table
+                - cell [ref=e1036]
+                - cell "KatarzynaBatkoToluc" [ref=e1037]
+                - cell "2477" [ref=e1038]
+                - cell "0" [ref=e1039]
+                - cell "853" [ref=e1040]
+                - cell "83" [ref=e1041]
+                - cell [ref=e1042]
+                - cell [ref=e1044]
+                - cell [ref=e1046]
+              - row [ref=e1048]:
+                - cell [ref=e1049]:
+                  - generic [ref=e1050]:
+                    - link "Show details" [ref=e1051] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e1053] [cursor=pointer]:
+                      - /url: "#"
+                - cell "69" [ref=e1055]
+                - cell "2023-02-24 13:54:05" [ref=e1056]
+                - cell [ref=e1057]:
+                  - link "Sesje zdalne - dogrywka" [ref=e1059] [cursor=pointer]:
+                    - /url: /monitoringi/sesje-zdalne-dogrywka/monitoring_cases_table
+                - cell "Kontynuacja monitoringu \"Sesje zdalne\". Próba gmin wybrana do tego badania została wylosowana z pominięciem gmin, które pytano poprzednio. Ponadto pytamy teraz wszystkie miasta na prawach powiatu (bo jest ich za mało, żeby robić próbę) oraz dzielnice Warszawy (z tego samego powodu)." [ref=e1060]
+                - cell "KatarzynaBatkoToluc" [ref=e1061]
+                - cell "441" [ref=e1062]
+                - cell "0" [ref=e1063]
+                - cell "207" [ref=e1064]
+                - cell "440" [ref=e1065]
+                - cell [ref=e1066]
+                - cell [ref=e1068]
+                - cell [ref=e1070]
+              - row [ref=e1072]:
+                - cell [ref=e1073]:
+                  - generic [ref=e1074]:
+                    - link "Show details" [ref=e1075] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e1077] [cursor=pointer]:
+                      - /url: "#"
+                - cell "68" [ref=e1079]
+                - cell "2022-11-15 09:56:48" [ref=e1080]
+                - cell [ref=e1081]:
+                  - link "Prośba o umieszczenie informacji o spotkaniu \"Problemy lokalne? Nie wiesz co robić?\"" [ref=e1082] [cursor=pointer]:
+                    - /url: /monitoringi/prosba-o-umieszczenie-informacji-o-spotkaniu-problemy-lokalne-nie-wiesz-co-robic/monitoring_cases_table
+                - cell "Prośba o umieszczenie informacji o spotkaniu \"Problemy lokalne? Nie wiesz co robić?\" - spotkanie z Szymonem Osowskim." [ref=e1083]
+                - cell "SOWP" [ref=e1084]
+                - cell "16" [ref=e1085]
+                - cell "0" [ref=e1086]
+                - cell "7" [ref=e1087]
+                - cell "2" [ref=e1088]
+                - cell [ref=e1089]
+                - cell [ref=e1091]
+                - cell [ref=e1093]
+              - row [ref=e1095]:
+                - cell [ref=e1096]:
+                  - generic [ref=e1097]:
+                    - link "Show details" [ref=e1098] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e1100] [cursor=pointer]:
+                      - /url: "#"
+                - cell "67" [ref=e1102]
+                - cell "2022-10-12 13:14:08" [ref=e1103]
+                - cell [ref=e1104]:
+                  - link "Prośba o umieszczenie informacji o rekrutacji do Szkoły Inicjatyw Strażniczych" [ref=e1105] [cursor=pointer]:
+                    - /url: /monitoringi/prosba-o-umieszczenie-informacji-o-rekrutacji-do-szkoly-inicjatyw-strazniczych/monitoring_cases_table
+                - cell "Maila z prośbą o zamieszczenie informacji o rekrtuacji do Szkoły Inicjatyw Strażniczych" [ref=e1106]
+                - cell "AgnieszkaP" [ref=e1107]
+                - cell "1087" [ref=e1108]
+                - cell "0" [ref=e1109]
+                - cell "353" [ref=e1110]
+                - cell "88" [ref=e1111]
+                - cell [ref=e1112]
+                - cell [ref=e1114]
+                - cell [ref=e1116]
+              - row [ref=e1118]:
+                - cell [ref=e1119]:
+                  - generic [ref=e1120]:
+                    - link "Show details" [ref=e1121] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e1123] [cursor=pointer]:
+                      - /url: "#"
+                - cell "66" [ref=e1125]
+                - cell "2022-06-17 14:43:40" [ref=e1126]
+                - cell [ref=e1127]:
+                  - link "Zaproszenie na dyskusję o niezależności mediów" [ref=e1128] [cursor=pointer]:
+                    - /url: /monitoringi/zaproszenie-na-dyskusje-o-niezaleznosci-mediow/monitoring_cases_table
+                - cell [ref=e1129]
+                - cell "KatarzynaBatkoToluc" [ref=e1130]
+                - cell "823" [ref=e1131]
+                - cell "0" [ref=e1132]
+                - cell "171" [ref=e1133]
+                - cell "11" [ref=e1134]
+                - cell [ref=e1135]
+                - cell [ref=e1137]
+                - cell [ref=e1139]
+              - row [ref=e1141]:
+                - cell [ref=e1142]:
+                  - generic [ref=e1143]:
+                    - link "Show details" [ref=e1144] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e1146] [cursor=pointer]:
+                      - /url: "#"
+                - cell "65" [ref=e1148]
+                - cell "2022-05-19 10:33:03" [ref=e1149]
+                - cell [ref=e1150]:
+                  - link "Przychody z reklam w gazetach władzy" [ref=e1152] [cursor=pointer]:
+                    - /url: /monitoringi/przychody-z-reklam-w-gazetach-wladzy/monitoring_cases_table
+                - cell [ref=e1153]
+                - cell "KatarzynaBatkoToluc" [ref=e1154]
+                - cell "116" [ref=e1155]
+                - cell "0" [ref=e1156]
+                - cell "38" [ref=e1157]
+                - cell "90" [ref=e1158]
+                - cell [ref=e1159]
+                - cell [ref=e1161]
+                - cell [ref=e1163]
+              - row [ref=e1165]:
+                - cell [ref=e1166]:
+                  - generic [ref=e1167]:
+                    - link "Show details" [ref=e1168] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e1170] [cursor=pointer]:
+                      - /url: "#"
+                - cell "64" [ref=e1172]
+                - cell "2022-04-08 14:53:10" [ref=e1173]
+                - cell [ref=e1174]:
+                  - link "Urzędy Wojewódzkie - polecenia i porozumienia (pomoc związana z atakiem zbrojnym na Ukrainę) KPA" [ref=e1176] [cursor=pointer]:
+                    - /url: /monitoringi/urzedy-wojewodzkie-polecenia-i-porozumienia-pomoc-zwiazana-z-atakiem-zbrojnym-na-ukraine-kpa/monitoring_cases_table
+                - cell [ref=e1177]
+                - cell "KatarzynaBatkoToluc" [ref=e1178]
+                - cell "16" [ref=e1179]
+                - cell "0" [ref=e1180]
+                - cell "8" [ref=e1181]
+                - cell "9" [ref=e1182]
+                - cell [ref=e1183]
+                - cell [ref=e1185]
+                - cell [ref=e1187]
+              - row [ref=e1189]:
+                - cell [ref=e1190]:
+                  - generic [ref=e1191]:
+                    - link "Show details" [ref=e1192] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e1194] [cursor=pointer]:
+                      - /url: "#"
+                - cell "63" [ref=e1196]
+                - cell "2022-03-25 10:36:56" [ref=e1197]
+                - cell [ref=e1198]:
+                  - link "Sesje zdalne" [ref=e1200] [cursor=pointer]:
+                    - /url: /monitoringi/sesje-zdalne/monitoring_cases_table
+                - cell [ref=e1201]
+                - cell "KatarzynaBatkoToluc" [ref=e1202]
+                - cell "350" [ref=e1203]
+                - cell "0" [ref=e1204]
+                - cell "126" [ref=e1205]
+                - cell "271" [ref=e1206]
+                - cell [ref=e1207]
+                - cell [ref=e1209]
+                - cell [ref=e1211]
+              - row [ref=e1213]:
+                - cell [ref=e1214]:
+                  - generic [ref=e1215]:
+                    - link "Show details" [ref=e1216] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e1218] [cursor=pointer]:
+                      - /url: "#"
+                - cell "62" [ref=e1220]
+                - cell "2022-02-21 06:25:36" [ref=e1221]
+                - cell [ref=e1222]:
+                  - link "Udział gmin w ochronie lasów" [ref=e1224] [cursor=pointer]:
+                    - /url: /monitoringi/udzial-gmin-w-ochronie-lasow-2/monitoring_cases_table
+                - cell [ref=e1225]
+                - cell "KatarzynaBatkoToluc" [ref=e1226]
+                - cell "2477" [ref=e1227]
+                - cell "0" [ref=e1228]
+                - cell "1150" [ref=e1229]
+                - cell "2152" [ref=e1230]
+                - cell [ref=e1231]
+                - cell [ref=e1233]
+                - cell [ref=e1235]
+              - row [ref=e1237]:
+                - cell [ref=e1238]:
+                  - generic [ref=e1239]:
+                    - link "Show details" [ref=e1240] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e1242] [cursor=pointer]:
+                      - /url: "#"
+                - cell "61" [ref=e1244]
+                - cell "2022-02-18 14:38:30" [ref=e1245]
+                - cell [ref=e1246]:
+                  - link "Kuratoria - skargi i wnioski" [ref=e1248] [cursor=pointer]:
+                    - /url: /monitoringi/kuratoria-skargi-i-wnioski/monitoring_cases_table
+                - cell [ref=e1249]
+                - cell "SOWP" [ref=e1250]
+                - cell "16" [ref=e1251]
+                - cell "0" [ref=e1252]
+                - cell "11" [ref=e1253]
+                - cell "16" [ref=e1254]
+                - cell [ref=e1255]
+                - cell [ref=e1257]
+                - cell [ref=e1259]
+              - row [ref=e1261]:
+                - cell [ref=e1262]:
+                  - generic [ref=e1263]:
+                    - link "Show details" [ref=e1264] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e1266] [cursor=pointer]:
+                      - /url: "#"
+                - cell "60" [ref=e1268]
+                - cell "2022-02-13 21:59:52" [ref=e1269]
+                - cell [ref=e1270]:
+                  - link "Konsultacje społeczne w nadleśnictwach - ponowienie" [ref=e1272] [cursor=pointer]:
+                    - /url: /monitoringi/konsultacje-spoleczne-w-nadlesnictwach-ponowienie/monitoring_cases_table
+                - cell [ref=e1273]
+                - cell "KatarzynaBatkoToluc" [ref=e1274]
+                - cell "321" [ref=e1275]
+                - cell "0" [ref=e1276]
+                - cell "292" [ref=e1277]
+                - cell "321" [ref=e1278]
+                - cell [ref=e1279]
+                - cell [ref=e1281]
+                - cell [ref=e1283]
+              - row [ref=e1285]:
+                - cell [ref=e1286]:
+                  - generic [ref=e1287]:
+                    - link "Show details" [ref=e1288] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e1290] [cursor=pointer]:
+                      - /url: "#"
+                - cell "58" [ref=e1292]
+                - cell "2021-11-08 10:58:40" [ref=e1293]
+                - cell [ref=e1294]:
+                  - link "Zapraszamy do bezpłatnej Szkoły Inicjatyw Strażniczych" [ref=e1295] [cursor=pointer]:
+                    - /url: /monitoringi/zapraszamy-do-bezplatnej-szkoly-inicjatyw-strazniczych/monitoring_cases_table
+                - cell "Zaproszenie do Szkoły Inicjatyw Strażniczych" [ref=e1296]
+                - cell "AgnieszkaP" [ref=e1297]
+                - cell "1272" [ref=e1298]
+                - cell "0" [ref=e1299]
+                - cell "371" [ref=e1300]
+                - cell "61" [ref=e1301]
+                - cell [ref=e1302]
+                - cell [ref=e1304]
+                - cell [ref=e1306]
+              - row [ref=e1308]:
+                - cell [ref=e1309]:
+                  - generic [ref=e1310]:
+                    - link "Show details" [ref=e1311] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e1313] [cursor=pointer]:
+                      - /url: "#"
+                - cell "57" [ref=e1315]
+                - cell "2021-10-22 09:26:14" [ref=e1316]
+                - cell [ref=e1317]:
+                  - link "Raport o stanie gminy - jak jest tworzony?" [ref=e1319] [cursor=pointer]:
+                    - /url: /monitoringi/raport-o-stanie-gminny-jak-jest-tworzony/monitoring_cases_table
+                - cell [ref=e1320]
+                - cell "AgnieszkaZdanowicz" [ref=e1321]
+                - cell "2477" [ref=e1322]
+                - cell "0" [ref=e1323]
+                - cell "1011" [ref=e1324]
+                - cell "2100" [ref=e1325]
+                - cell [ref=e1326]
+                - cell [ref=e1328]
+                - cell [ref=e1330]
+              - row [ref=e1332]:
+                - cell [ref=e1333]:
+                  - generic [ref=e1334]:
+                    - link "Show details" [ref=e1335] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e1337] [cursor=pointer]:
+                      - /url: "#"
+                - cell "56" [ref=e1339]
+                - cell "2021-10-13 16:54:28" [ref=e1340]
+                - cell [ref=e1341]:
+                  - link "Oświadczenia o zakazie polowania na nieruchomości" [ref=e1343] [cursor=pointer]:
+                    - /url: /monitoringi/statystyki-zgloszen-polowan/monitoring_cases_table
+                - cell [ref=e1344]
+                - cell "krzysztof" [ref=e1345]
+                - cell "380" [ref=e1346]
+                - cell "0" [ref=e1347]
+                - cell "153" [ref=e1348]
+                - cell "366" [ref=e1349]
+                - cell [ref=e1350]
+                - cell [ref=e1352]
+                - cell [ref=e1354]
+              - row [ref=e1356]:
+                - cell [ref=e1357]:
+                  - generic [ref=e1358]:
+                    - link "Show details" [ref=e1359] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e1361] [cursor=pointer]:
+                      - /url: "#"
+                - cell "54" [ref=e1363]
+                - cell "2021-07-24 19:08:05" [ref=e1364]
+                - cell [ref=e1365]:
+                  - link "Rębnie i trzebieże - stan na 31 grudnia 2021" [ref=e1367] [cursor=pointer]:
+                    - /url: /monitoringi/rebnie-i-trzebieze-stan-na-31-grudnia-2020/monitoring_cases_table
+                - 'cell "W dobie katastrofy klimatycznej coraz częściej zdajemy sobie sprawę, że musimy lasy chronić, by one mogły chronić nas. Zainteresowanie społeczeństwa lasami i gospodarką leśną szybko wzrasta. Stworzona przez Fundację Lasy i Obywatele w marcu 2021 mapa #ZanimWytnąTwójLas, ilustrująca skalę wycinek w polskich lasach, wzbudziła szerokie zainteresowanie i wywołała debatę na temat zasadności obecnego sposobu gospodarowania lasami publicznymi i intensywności rębni. Mapa opiera się o dane na temat rębni udostępniane przez Lasy Państwowe. Jednak są to dane zbiorcze, obrazujące wycinki planowane na 10 lat. Lasy Państwowe posiadają o wiele dokładniejsze dane, ale na razie nie udostępniają ich społeczeństwu. Przez ten monitoring Fudacja Lasy i Obywatele pyta więc Lasy Państwowe o dokładniejsze dane, by móc je udostępnić wszystkim zainteresowanym w przystępnej formie." [ref=e1368]'
+                - cell "KatarzynaBatkoToluc" [ref=e1369]
+                - cell "430" [ref=e1370]
+                - cell "0" [ref=e1371]
+                - cell "366" [ref=e1372]
+                - cell "382" [ref=e1373]
+                - cell [ref=e1374]
+                - cell [ref=e1376]
+                - cell [ref=e1378]
+              - row [ref=e1380]:
+                - cell [ref=e1381]:
+                  - generic [ref=e1382]:
+                    - link "Show details" [ref=e1383] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e1385] [cursor=pointer]:
+                      - /url: "#"
+                - cell "52" [ref=e1387]
+                - cell "2021-06-16 14:30:45" [ref=e1388]
+                - cell [ref=e1389]:
+                  - link "Korzystanie ze skrzynek mailowych przez ministrów" [ref=e1391] [cursor=pointer]:
+                    - /url: /monitoringi/korzystanie-ze-skrzynek-mailowych-przez-ministrow/monitoring_cases_table
+                - cell "W czerwcu 2021 r. pojawiły się w mediach informacje o włamaniu na skrzynkę mailową szefa kancelarii premiera Michała Dworczyka. Z doniesień wynika, że wysocy urzędnicy państwowi korzystają z prywatnych skrzynek, założonych na publicznych serwisach, w celu przesyłania sobie informacji związanych z zarządzaniem państwem. Dziennikarze nie otrzymali jasnej odpowiedzi na swoje pytania, czy ta sytuacja dotyczy na przykład premiera Mateusza Morawieckiego. Żeby uniknąć niejasności, zapytaliśmy wszystkie ministerstwa oraz KPRM o to, czy premier i ministrowie korzystają jedynie ze służbowych czy również z prywatnych skrzynek email w celu wysyłania korespondencji służbowej." [ref=e1392]
+                - cell "AgnieszkaZdanowicz" [ref=e1393]
+                - cell "15" [ref=e1394]
+                - cell "0" [ref=e1395]
+                - cell "6" [ref=e1396]
+                - cell "14" [ref=e1397]
+                - cell [ref=e1398]
+                - cell [ref=e1400]
+                - cell [ref=e1402]
+              - row [ref=e1404]:
+                - cell [ref=e1405]:
+                  - generic [ref=e1406]:
+                    - link "Show details" [ref=e1407] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e1409] [cursor=pointer]:
+                      - /url: "#"
+                - cell "51" [ref=e1411]
+                - cell "2021-06-11 12:37:05" [ref=e1412]
+                - cell [ref=e1413]:
+                  - link "Regionalne Izby Obrachunkowe - fundusz sołecki 2018-2021" [ref=e1415] [cursor=pointer]:
+                    - /url: /monitoringi/regionalne-izby-obrachunkowe-fundusz-solecki-2018-2021/monitoring_cases_table
+                - cell [ref=e1416]
+                - cell "AgnieszkaZdanowicz" [ref=e1417]
+                - cell "16" [ref=e1418]
+                - cell "0" [ref=e1419]
+                - cell "11" [ref=e1420]
+                - cell "15" [ref=e1421]
+                - cell [ref=e1422]
+                - cell [ref=e1424]
+                - cell [ref=e1426]
+              - row [ref=e1428]:
+                - cell [ref=e1429]:
+                  - generic [ref=e1430]:
+                    - link "Show details" [ref=e1431] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e1433] [cursor=pointer]:
+                      - /url: "#"
+                - cell "50" [ref=e1435]
+                - cell "2021-06-10 12:17:13" [ref=e1436]
+                - cell [ref=e1437]:
+                  - link "Perły Samorządu 2021" [ref=e1439] [cursor=pointer]:
+                    - /url: /monitoringi/perly-samorzadu-2021/monitoring_cases_table
+                - cell [ref=e1440]
+                - cell "AgnieszkaZdanowicz" [ref=e1441]
+                - cell "21" [ref=e1442]
+                - cell "0" [ref=e1443]
+                - cell "8" [ref=e1444]
+                - cell "21" [ref=e1445]
+                - cell [ref=e1446]
+                - cell [ref=e1448]
+                - cell [ref=e1450]
+              - row [ref=e1452]:
+                - cell [ref=e1453]:
+                  - generic [ref=e1454]:
+                    - link "Show details" [ref=e1455] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e1457] [cursor=pointer]:
+                      - /url: "#"
+                - cell "49" [ref=e1459]
+                - cell "2021-06-10 12:05:46" [ref=e1460]
+                - cell [ref=e1461]:
+                  - link "Miejsca parkingowe urzędów miast wojewódzkich" [ref=e1463] [cursor=pointer]:
+                    - /url: /monitoringi/miejsca-parkingowe-urzedow-miast-wojewodzkich/monitoring_cases_table
+                - cell "Chcemy sprawdzić, czy urzędy miast wojewódzkich dysponują miejscami parkingowymi na specjalnych warunkach, komu je udostępniają i na jakich zasadach. Czy można mówić o sprawiedliwym podziale miejsc między urzędników, czy miejsca są przeznaczone dla osób pracujących w urzędzie jedynie w wyjątkowych przypadkach, czy po prostu są przypisywane do konkretnej osoby. Bez jawności możemy się tylko zastanawiać. Dodatkowo wiemy, że według niektórych urzędów nie jest to informacja publiczna - a przecież za te miejsca ostatecznie płacimy my, czyli podatnicy i podatniczki." [ref=e1464]
+                - cell "AgnieszkaZdanowicz" [ref=e1465]
+                - cell "16" [ref=e1466]
+                - cell "0" [ref=e1467]
+                - cell "6" [ref=e1468]
+                - cell "12" [ref=e1469]
+                - cell [ref=e1470]
+                - cell [ref=e1472]
+                - cell [ref=e1474]
+              - row [ref=e1476]:
+                - cell [ref=e1477]:
+                  - generic [ref=e1478]:
+                    - link "Show details" [ref=e1479] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e1481] [cursor=pointer]:
+                      - /url: "#"
+                - cell "48" [ref=e1483]
+                - cell "2021-05-28 08:32:42" [ref=e1484]
+                - cell [ref=e1485]:
+                  - link "Bitwa o wozy (strażackie)" [ref=e1487] [cursor=pointer]:
+                    - /url: /monitoringi/bitwa-o-wozy-strazackie/monitoring_cases_table
+                - cell "Gminy z najwyższą frekwencją w poszczególnych województwach w głosowaniu w wyborach Prezydenta Rzeczypospolitej Polskiej miały otrzymać od MSWiA po jednym wozie strażackim - sprawdzamy, jak skończyła się ta akcja." [ref=e1488]
+                - cell "AgnieszkaZdanowicz" [ref=e1489]
+                - cell "66" [ref=e1490]
+                - cell "0" [ref=e1491]
+                - cell "21" [ref=e1492]
+                - cell "57" [ref=e1493]
+                - cell [ref=e1494]
+                - cell [ref=e1496]
+                - cell [ref=e1498]
+              - row [ref=e1500]:
+                - cell [ref=e1501]:
+                  - generic [ref=e1502]:
+                    - link "Show details" [ref=e1503] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e1505] [cursor=pointer]:
+                      - /url: "#"
+                - cell "47" [ref=e1507]
+                - cell "2021-05-09 09:45:53" [ref=e1508]
+                - cell [ref=e1509]:
+                  - link "Kto zabiera głos na Facebooku?" [ref=e1511] [cursor=pointer]:
+                    - /url: /monitoringi/kto-zabiera-glos-na-facebooku/monitoring_cases_table
+                - cell "Pytania, które wysyłamy stanowią kontynuację monitoringu dotyczącego blokowania użytkowników i użytkowniczek mediów społecznościowych (tamten monitoring dotyczył czterech województw - dolnośląskiego, lubuskiego, lubelskiego i kujawsko-pomorskiego). O ile poprzednio chcieliśmy dowiedzieć się jakie media społecznościowe są prowadzone w gminach i jakie zasady nimi rządzą, teraz skupiamy się głównie na Facebooku i pogłębiamy wiedzę o tym, jaką rolę wyznaczają mu władze gminne." [ref=e1512]
+                - cell "KatarzynaBatkoToluc" [ref=e1513]
+                - cell "2477" [ref=e1514]
+                - cell "0" [ref=e1515]
+                - cell "854" [ref=e1516]
+                - cell "2035" [ref=e1517]
+                - cell [ref=e1518]
+                - cell [ref=e1520]
+                - cell [ref=e1522]
+              - row [ref=e1524]:
+                - cell [ref=e1525]:
+                  - generic [ref=e1526]:
+                    - link "Show details" [ref=e1527] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e1529] [cursor=pointer]:
+                      - /url: "#"
+                - cell "46" [ref=e1531]
+                - cell "2021-02-02 20:29:23" [ref=e1532]
+                - cell [ref=e1533]:
+                  - link "Media społecznościowe w ministerstwach" [ref=e1535] [cursor=pointer]:
+                    - /url: /monitoringi/media-spolecznosciowe-w-ministerstwach/monitoring_cases_table
+                - cell [ref=e1536]
+                - cell "KatarzynaBatkoToluc" [ref=e1537]
+                - cell "16" [ref=e1538]
+                - cell "0" [ref=e1539]
+                - cell "0" [ref=e1540]
+                - cell "15" [ref=e1541]
+                - cell [ref=e1542]
+                - cell [ref=e1544]
+                - cell [ref=e1546]
+              - row [ref=e1548]:
+                - cell [ref=e1549]:
+                  - generic [ref=e1550]:
+                    - link "Show details" [ref=e1551] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e1553] [cursor=pointer]:
+                      - /url: "#"
+                - cell "45" [ref=e1555]
+                - cell "2021-02-02 20:06:48" [ref=e1556]
+                - cell [ref=e1557]:
+                  - link "Nagrody w ministerstwach" [ref=e1559] [cursor=pointer]:
+                    - /url: /monitoringi/nagrody-w-ministerstwach/monitoring_cases_table
+                - cell [ref=e1560]
+                - cell "KatarzynaBatkoToluc" [ref=e1561]
+                - cell "16" [ref=e1562]
+                - cell "0" [ref=e1563]
+                - cell "0" [ref=e1564]
+                - cell "13" [ref=e1565]
+                - cell [ref=e1566]
+                - cell [ref=e1568]
+                - cell [ref=e1570]
+              - row [ref=e1572]:
+                - cell [ref=e1573]:
+                  - generic [ref=e1574]:
+                    - link "Show details" [ref=e1575] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e1577] [cursor=pointer]:
+                      - /url: "#"
+                - cell "44" [ref=e1579]
+                - cell "2021-01-19 09:02:15" [ref=e1580]
+                - cell [ref=e1581]:
+                  - link "Jawność w spółkach komunalnych" [ref=e1583] [cursor=pointer]:
+                    - /url: /monitoringi/jawnosc-w-spolkach-komunalnych/monitoring_cases_table
+                - cell [ref=e1584]
+                - cell "KatarzynaBatkoToluc" [ref=e1585]
+                - cell "1912" [ref=e1586]
+                - cell "0" [ref=e1587]
+                - cell "44" [ref=e1588]
+                - cell "1148" [ref=e1589]
+                - cell [ref=e1590]
+                - cell [ref=e1592]
+                - cell [ref=e1594]
+              - row [ref=e1596]:
+                - cell [ref=e1597]:
+                  - generic [ref=e1598]:
+                    - link "Show details" [ref=e1599] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e1601] [cursor=pointer]:
+                      - /url: "#"
+                - cell "42" [ref=e1603]
+                - cell "2020-11-16 22:10:57" [ref=e1604]
+                - cell [ref=e1605]:
+                  - link "Zasady działania gazet władzy" [ref=e1607] [cursor=pointer]:
+                    - /url: /monitoringi/zasady-dzialania-gazet-wladzy/monitoring_cases_table
+                - cell [ref=e1608]
+                - cell "KatarzynaBatkoToluc" [ref=e1609]
+                - cell "823" [ref=e1610]
+                - cell "0" [ref=e1611]
+                - cell "8" [ref=e1612]
+                - cell "668" [ref=e1613]
+                - cell [ref=e1614]
+                - cell [ref=e1616]
+                - cell [ref=e1618]
+              - row [ref=e1620]:
+                - cell [ref=e1621]:
+                  - generic [ref=e1622]:
+                    - link "Show details" [ref=e1623] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e1625] [cursor=pointer]:
+                      - /url: "#"
+                - cell "41" [ref=e1627]
+                - cell "2020-11-03 20:39:30" [ref=e1628]
+                - cell [ref=e1629]:
+                  - link "Konsultacje społeczne w Nadleśnictwach" [ref=e1631] [cursor=pointer]:
+                    - /url: /monitoringi/konsultacje-spoleczne-w-nadlesnictwach/monitoring_cases_table
+                - cell [ref=e1632]
+                - cell "KatarzynaBatkoToluc" [ref=e1633]
+                - cell "430" [ref=e1634]
+                - cell "0" [ref=e1635]
+                - cell "24" [ref=e1636]
+                - cell "426" [ref=e1637]
+                - cell [ref=e1638]
+                - cell [ref=e1640]
+                - cell [ref=e1642]
+              - row [ref=e1644]:
+                - cell [ref=e1645]:
+                  - generic [ref=e1646]:
+                    - link "Show details" [ref=e1647] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e1649] [cursor=pointer]:
+                      - /url: "#"
+                - cell "40" [ref=e1651]
+                - cell "2020-11-03 20:02:27" [ref=e1652]
+                - cell [ref=e1653]:
+                  - link "Konsultacje Planów Urządzenia Lasu" [ref=e1655] [cursor=pointer]:
+                    - /url: /monitoringi/konsultacje-planow-urzadzenia-lasu/monitoring_cases_table
+                - cell [ref=e1656]
+                - cell "KatarzynaBatkoToluc" [ref=e1657]
+                - cell "17" [ref=e1658]
+                - cell "5" [ref=e1659]
+                - cell "0" [ref=e1660]
+                - cell "17" [ref=e1661]
+                - cell [ref=e1662]
+                - cell [ref=e1664]
+                - cell [ref=e1666]
+              - row [ref=e1668]:
+                - cell [ref=e1669]:
+                  - generic [ref=e1670]:
+                    - link "Show details" [ref=e1671] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e1673] [cursor=pointer]:
+                      - /url: "#"
+                - cell "39" [ref=e1675]
+                - cell "2020-09-30 09:21:02" [ref=e1676]
+                - cell [ref=e1677]:
+                  - link "Projekt o raportach o stanie gminy" [ref=e1679] [cursor=pointer]:
+                    - /url: /monitoringi/projekt-o-raportach-o-stanie-gminy/monitoring_cases_table
+                - cell [ref=e1680]
+                - cell "AgnieszkaP" [ref=e1681]
+                - cell "2465" [ref=e1682]
+                - cell "0" [ref=e1683]
+                - cell "2" [ref=e1684]
+                - cell "622" [ref=e1685]
+                - cell [ref=e1686]
+                - cell [ref=e1688]
+                - cell [ref=e1690]
+              - row [ref=e1692]:
+                - cell [ref=e1693]:
+                  - generic [ref=e1694]:
+                    - link "Show details" [ref=e1695] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e1697] [cursor=pointer]:
+                      - /url: "#"
+                - cell "38" [ref=e1699]
+                - cell "2020-09-28 13:42:29" [ref=e1700]
+                - cell [ref=e1701]:
+                  - link "Urzędy wojewódzkie - rozstrzygnięcia nadzorcze dotyczące funduszu sołeckiego" [ref=e1703] [cursor=pointer]:
+                    - /url: /monitoringi/urzedy-wojewodzkie-rozstrzygniecia-nadzorcze-dotyczace-funduszu-soleckiego/monitoring_cases_table
+                - cell [ref=e1704]
+                - cell "AgnieszkaZdanowicz" [ref=e1705]
+                - cell "16" [ref=e1706]
+                - cell "0" [ref=e1707]
+                - cell "11" [ref=e1708]
+                - cell "16" [ref=e1709]
+                - cell [ref=e1710]
+                - cell [ref=e1712]
+                - cell [ref=e1714]
+              - row [ref=e1716]:
+                - cell [ref=e1717]:
+                  - generic [ref=e1718]:
+                    - link "Show details" [ref=e1719] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e1721] [cursor=pointer]:
+                      - /url: "#"
+                - cell "37" [ref=e1723]
+                - cell "2020-09-14 07:56:39" [ref=e1724]
+                - cell [ref=e1725]:
+                  - link "Cyfryzacja urzędów" [ref=e1727] [cursor=pointer]:
+                    - /url: /monitoringi/cyfryzacja-urzedow/monitoring_cases_table
+                - cell "Pandemia COVID-19 na nowo wywołała temat cyfryzacji usług. Mieszkańcy obawiali się wchodzić do urzędów, wiele urzędów zamknęło się dla mieszkańców. Czasem jedyną możliwością złożenia wniosku było wrzucenie go do skrzynki przed urzędem. Ta nowa sytuacja spowodowała, że możliwość cyfrowego \"załatwiania spraw\" okazała się zrozumiała dla szerszej grupy odbiorców, niż dotychczas. Sprawdzamy na jakim etapie cyfryzacji są polskie gminy. Zdajemy sobie sprawę z tego, że cyfryzacja nie jest panaceum na wszystko. Ale bardzo pomaga rozładować zatłoczenie w urzędach, w środkach komunikacji (wszak do urzędu czasem trzeba dojechać), zaoszczędzić czas, zadbać o środowisko. A zatem sprawdzamy, jak funkcjonuje ta sfera w polskich gminach." [ref=e1728]
+                - cell "KatarzynaBatkoToluc" [ref=e1729]
+                - cell "2465" [ref=e1730]
+                - cell "0" [ref=e1731]
+                - cell "4" [ref=e1732]
+                - cell "1723" [ref=e1733]
+                - cell [ref=e1734]
+                - cell [ref=e1736]
+                - cell [ref=e1738]
+              - row [ref=e1740]:
+                - cell [ref=e1741]:
+                  - generic [ref=e1742]:
+                    - link "Show details" [ref=e1743] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e1745] [cursor=pointer]:
+                      - /url: "#"
+                - cell "36" [ref=e1747]
+                - cell "2020-08-21 08:25:08" [ref=e1748]
+                - cell [ref=e1749]:
+                  - link "Próba przyjmowania korespondencji" [ref=e1750] [cursor=pointer]:
+                    - /url: /monitoringi/proba-przyjmowania-korespondencji/monitoring_cases_table
+                - cell [ref=e1751]
+                - cell "KatarzynaBatkoToluc" [ref=e1752]
+                - cell "3" [ref=e1753]
+                - cell "0" [ref=e1754]
+                - cell "0" [ref=e1755]
+                - cell "1" [ref=e1756]
+                - cell [ref=e1757]
+                - cell [ref=e1759]
+                - cell [ref=e1761]
+              - row [ref=e1763]:
+                - cell [ref=e1764]:
+                  - generic [ref=e1765]:
+                    - link "Show details" [ref=e1766] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e1768] [cursor=pointer]:
+                      - /url: "#"
+                - cell "35" [ref=e1770]
+                - cell "2020-06-10 06:34:50" [ref=e1771]
+                - cell [ref=e1772]:
+                  - link "Publikacja wyroków dotyczących dostępu do informacji - art. 23 UDIP" [ref=e1774] [cursor=pointer]:
+                    - /url: /monitoringi/publikacja-wyrokow-dotyczacych-dostepu-do-informacji-art-23-kk/monitoring_cases_table
+                - cell [ref=e1775]
+                - cell "KatarzynaBatkoToluc" [ref=e1776]
+                - cell "362" [ref=e1777]
+                - cell "0" [ref=e1778]
+                - cell "3" [ref=e1779]
+                - cell "309" [ref=e1780]
+                - cell [ref=e1781]
+                - cell [ref=e1783]
+                - cell [ref=e1785]
+              - row [ref=e1787]:
+                - cell [ref=e1788]:
+                  - generic [ref=e1789]:
+                    - link "Show details" [ref=e1790] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e1792] [cursor=pointer]:
+                      - /url: "#"
+                - cell "34" [ref=e1794]
+                - cell "2020-04-29 14:35:50" [ref=e1795]
+                - cell [ref=e1796]:
+                  - link "Webinarium - samorząd po COVID-19" [ref=e1797] [cursor=pointer]:
+                    - /url: /monitoringi/webinarium-samorzad-po-covid-19/monitoring_cases_table
+                - cell [ref=e1798]
+                - cell "KatarzynaBatkoToluc" [ref=e1799]
+                - cell "2465" [ref=e1800]
+                - cell "0" [ref=e1801]
+                - cell "3" [ref=e1802]
+                - cell "570" [ref=e1803]
+                - cell [ref=e1804]
+                - cell [ref=e1806]
+                - cell [ref=e1808]
+              - row [ref=e1810]:
+                - cell [ref=e1811]:
+                  - generic [ref=e1812]:
+                    - link "Show details" [ref=e1813] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e1815] [cursor=pointer]:
+                      - /url: "#"
+                - cell "33" [ref=e1817]
+                - cell "2020-04-25 12:15:41" [ref=e1818]
+                - cell [ref=e1819]:
+                  - link "Czy urzędy gmin przekazują bez podstawy prawnej listy wyborców?" [ref=e1821] [cursor=pointer]:
+                    - /url: /monitoringi/czy-urzedy-gmin-przekazuja-bez-podstawy-prawnej-listy-wyborcow/monitoring_cases_table
+                - cell [ref=e1822]
+                - cell "KatarzynaBatkoToluc" [ref=e1823]
+                - cell "2477" [ref=e1824]
+                - cell "0" [ref=e1825]
+                - cell "31" [ref=e1826]
+                - cell "2474" [ref=e1827]
+                - cell [ref=e1828]
+                - cell [ref=e1830]
+                - cell [ref=e1832]
+              - row [ref=e1834]:
+                - cell [ref=e1835]:
+                  - generic [ref=e1836]:
+                    - link "Show details" [ref=e1837] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e1839] [cursor=pointer]:
+                      - /url: "#"
+                - cell "32" [ref=e1841]
+                - cell "2020-04-23 16:05:00" [ref=e1842]
+                - cell [ref=e1843]:
+                  - link "Przekazywanie danych wyborców Poczcie Polskiej - na 23.04.20 brak podstawy prawnej" [ref=e1845] [cursor=pointer]:
+                    - /url: /monitoringi/przekazywanie-danych-wyborcow-poczcie-polskiej-na-23-kwietnia-2020-brak-podstawy-prawnej/monitoring_cases_table
+                - cell [ref=e1846]
+                - cell "KatarzynaBatkoToluc" [ref=e1847]
+                - cell "2465" [ref=e1848]
+                - cell "0" [ref=e1849]
+                - cell "4" [ref=e1850]
+                - cell "740" [ref=e1851]
+                - cell [ref=e1852]
+                - cell [ref=e1854]
+                - cell [ref=e1856]
+              - row [ref=e1858]:
+                - cell [ref=e1859]:
+                  - generic [ref=e1860]:
+                    - link "Show details" [ref=e1861] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e1863] [cursor=pointer]:
+                      - /url: "#"
+                - cell "27" [ref=e1865]
+                - cell "2020-03-26 13:34:25" [ref=e1866]
+                - cell [ref=e1867]:
+                  - link "Warunki pracy w szpitalach w związku z SARS-CoV-2" [ref=e1869] [cursor=pointer]:
+                    - /url: /monitoringi/warunki-pracy-w-szpitalach-w-zwiazku-z-sars-cov-2/monitoring_cases_table
+                - cell [ref=e1870]
+                - cell "KatarzynaBatkoToluc" [ref=e1871]
+                - cell "661" [ref=e1872]
+                - cell "0" [ref=e1873]
+                - cell "1" [ref=e1874]
+                - cell "409" [ref=e1875]
+                - cell [ref=e1876]
+                - cell [ref=e1878]
+                - cell [ref=e1880]
+              - row [ref=e1882]:
+                - cell [ref=e1883]:
+                  - generic [ref=e1884]:
+                    - link "Show details" [ref=e1885] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e1887] [cursor=pointer]:
+                      - /url: "#"
+                - cell "26" [ref=e1889]
+                - cell "2020-03-26 07:03:45" [ref=e1890]
+                - cell [ref=e1891]:
+                  - link "Działania wojewodów w związku z COVID-19" [ref=e1893] [cursor=pointer]:
+                    - /url: /monitoringi/dzialania-wojewodow-w-zwiazku-z-covid-19/monitoring_cases_table
+                - cell "Art.11.1. Ustawy z dnia 2 marca 2020 r.o szczególnych rozwiązaniach związanych z zapobieganiem, przeciwdziałaniem i zwalczaniem COVID-19, innych chorób zakaźnych oraz wywołanych nimi sytuacji kryzysowych (Dz. U. 2020 poz. 374) stanowi, iż wojewoda może wydawać polecenia obowiązujące wszystkie organy administracji rządowej działające w województwie i państwowe osoby prawne, organy samorządu terytorialnego, samorządowe osoby prawne oraz samorządowe jednostki organizacyjne nieposiadające osobowości prawnej w związku z przeciwdziałaniem COVID-19. Polecenia podlegają natychmiastowemu wykonaniu. O wydanych poleceniach wojewoda niezwłocznie informuje właściwego ministra. Sprawdzamy jak ten przepis działa w praktyce i czy dokumentujemy na przyszłość. Link do ustawy http://prawo.sejm.gov.pl/isap.nsf/download.xsp/WDU20200000374/T/D20200374L.pdf" [ref=e1894]
+                - cell "KatarzynaBatkoToluc" [ref=e1895]
+                - cell "16" [ref=e1896]
+                - cell "0" [ref=e1897]
+                - cell "0" [ref=e1898]
+                - cell "16" [ref=e1899]
+                - cell [ref=e1900]
+                - cell [ref=e1902]
+                - cell [ref=e1904]
+              - row [ref=e1906]:
+                - cell [ref=e1907]:
+                  - generic [ref=e1908]:
+                    - link "Show details" [ref=e1909] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e1911] [cursor=pointer]:
+                      - /url: "#"
+                - cell "24" [ref=e1913]
+                - cell "2020-02-18 14:56:13" [ref=e1914]
+                - cell [ref=e1915]:
+                  - link "Wnioski o informację publiczną w ministerstwach" [ref=e1917] [cursor=pointer]:
+                    - /url: /monitoringi/wnioski-o-informacje-publiczna-w-ministerstwach-2/monitoring_cases_table
+                - cell "Stowarzyszenie szykuje analizę wyroków sądów administracyjnych w zakresie postępowań, w których stroną skarżoną są ministerstwa. Te dane warto zestawić z informacją o liczbie wniosków, które trafiają do ministerstw." [ref=e1918]
+                - cell "AgnieszkaZdanowicz" [ref=e1919]
+                - cell "19" [ref=e1920]
+                - cell "0" [ref=e1921]
+                - cell "0" [ref=e1922]
+                - cell "18" [ref=e1923]
+                - cell [ref=e1924]
+                - cell [ref=e1926]
+                - cell [ref=e1928]
+              - row [ref=e1930]:
+                - cell [ref=e1931]:
+                  - generic [ref=e1932]:
+                    - link "Show details" [ref=e1933] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e1935] [cursor=pointer]:
+                      - /url: "#"
+                - cell "22" [ref=e1937]
+                - cell "2020-01-20 09:40:43" [ref=e1938]
+                - cell [ref=e1939]:
+                  - link "Mieszkańcy i radni wobec raportu o stanie gminy" [ref=e1941] [cursor=pointer]:
+                    - /url: /monitoringi/mieszkancy-i-radni-wobec-raportu-o-stanie-gminy/monitoring_cases_table
+                - cell [ref=e1942]
+                - cell "KatarzynaBatkoToluc" [ref=e1943]
+                - cell "2254" [ref=e1944]
+                - cell "0" [ref=e1945]
+                - cell "2" [ref=e1946]
+                - cell "1630" [ref=e1947]
+                - cell [ref=e1948]
+                - cell [ref=e1950]
+                - cell [ref=e1952]
+              - row [ref=e1954]:
+                - cell [ref=e1955]:
+                  - generic [ref=e1956]:
+                    - link "Show details" [ref=e1957] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e1959] [cursor=pointer]:
+                      - /url: "#"
+                - cell "21" [ref=e1961]
+                - cell "2019-10-15 21:59:34" [ref=e1962]
+                - cell [ref=e1963]:
+                  - link "Żywienie w szpitalach" [ref=e1965] [cursor=pointer]:
+                    - /url: /monitoringi/zywienie-w-szpitalach/monitoring_cases_table
+                - cell [ref=e1966]
+                - cell "KatarzynaBatkoToluc" [ref=e1967]
+                - cell "1060" [ref=e1968]
+                - cell "0" [ref=e1969]
+                - cell "2" [ref=e1970]
+                - cell "746" [ref=e1971]
+                - cell [ref=e1972]
+                - cell [ref=e1974]
+                - cell [ref=e1976]
+              - row [ref=e1978]:
+                - cell [ref=e1979]:
+                  - generic [ref=e1980]:
+                    - link "Show details" [ref=e1981] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e1983] [cursor=pointer]:
+                      - /url: "#"
+                - cell "20" [ref=e1985]
+                - cell "2019-10-02 19:01:40" [ref=e1986]
+                - cell [ref=e1987]:
+                  - link "Posłowie w PZŁ" [ref=e1989] [cursor=pointer]:
+                    - /url: /monitoringi/poslowie-w-pzl/monitoring_cases_table
+                - cell [ref=e1990]
+                - cell "KatarzynaBatkoToluc" [ref=e1991]
+                - cell "459" [ref=e1992]
+                - cell "0" [ref=e1993]
+                - cell "0" [ref=e1994]
+                - cell "4" [ref=e1995]
+                - cell [ref=e1996]
+                - cell [ref=e1998]
+                - cell [ref=e2000]
+              - row [ref=e2002]:
+                - cell [ref=e2003]:
+                  - generic [ref=e2004]:
+                    - link "Show details" [ref=e2005] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e2007] [cursor=pointer]:
+                      - /url: "#"
+                - cell "19" [ref=e2009]
+                - cell "2019-09-30 11:04:37" [ref=e2010]
+                - cell [ref=e2011]:
+                  - link "Rekrutacja do Szkoły Inicjatyw Strażniczych'2020" [ref=e2012] [cursor=pointer]:
+                    - /url: /monitoringi/rekrutacja-do-szkoly-inicjatyw-strazniczych_edycja/monitoring_cases_table
+                - cell "Informacja o rekrutacji do Szkoły Inicjatyw Strażniczych w edycji jesiennej." [ref=e2013]
+                - cell "KatarzynaBatkoToluc" [ref=e2014]
+                - cell "241" [ref=e2015]
+                - cell "0" [ref=e2016]
+                - cell "0" [ref=e2017]
+                - cell "70" [ref=e2018]
+                - cell [ref=e2019]
+                - cell [ref=e2021]
+                - cell [ref=e2023]
+              - row [ref=e2025]:
+                - cell [ref=e2026]:
+                  - generic [ref=e2027]:
+                    - link "Show details" [ref=e2028] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e2030] [cursor=pointer]:
+                      - /url: "#"
+                - cell "18" [ref=e2032]
+                - cell "2019-09-01 22:26:40" [ref=e2033]
+                - cell [ref=e2034]:
+                  - link "Sędziowie w sądach powszechnych" [ref=e2036] [cursor=pointer]:
+                    - /url: /monitoringi/sedziowie-w-sadach-powszechnych/monitoring_cases_table
+                - cell [ref=e2037]
+                - cell "KatarzynaBatkoToluc" [ref=e2038]
+                - cell "373" [ref=e2039]
+                - cell "0" [ref=e2040]
+                - cell "4" [ref=e2041]
+                - cell "350" [ref=e2042]
+                - cell [ref=e2043]
+                - cell [ref=e2045]
+                - cell [ref=e2047]
+              - row [ref=e2049]:
+                - cell [ref=e2050]:
+                  - generic [ref=e2051]:
+                    - link "Show details" [ref=e2052] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e2054] [cursor=pointer]:
+                      - /url: "#"
+                - cell "17" [ref=e2056]
+                - cell "2019-07-16 06:33:09" [ref=e2057]
+                - cell [ref=e2058]:
+                  - link "Raport o stanie gminy" [ref=e2060] [cursor=pointer]:
+                    - /url: /monitoringi/raport-o-stanie-gminy/monitoring_cases_table
+                - cell [ref=e2061]
+                - cell "KatarzynaBatkoToluc" [ref=e2062]
+                - cell "212" [ref=e2063]
+                - cell "0" [ref=e2064]
+                - cell "1" [ref=e2065]
+                - cell "174" [ref=e2066]
+                - cell [ref=e2067]
+                - cell [ref=e2069]
+                - cell [ref=e2071]
+              - row [ref=e2073]:
+                - cell [ref=e2074]:
+                  - generic [ref=e2075]:
+                    - link "Show details" [ref=e2076] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e2078] [cursor=pointer]:
+                      - /url: "#"
+                - cell "16" [ref=e2080]
+                - cell "2019-07-08 06:40:04" [ref=e2081]
+                - cell [ref=e2082]:
+                  - link "Dostępne instytucje kultury" [ref=e2084] [cursor=pointer]:
+                    - /url: /monitoringi/dostepne-instytucje-kultury/monitoring_cases_table
+                - cell [ref=e2085]
+                - cell "KatarzynaBatkoToluc" [ref=e2086]
+                - cell "233" [ref=e2087]
+                - cell "0" [ref=e2088]
+                - cell "1" [ref=e2089]
+                - cell "146" [ref=e2090]
+                - cell [ref=e2091]
+                - cell [ref=e2093]
+                - cell [ref=e2095]
+              - row [ref=e2097]:
+                - cell [ref=e2098]:
+                  - generic [ref=e2099]:
+                    - link "Show details" [ref=e2100] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e2102] [cursor=pointer]:
+                      - /url: "#"
+                - cell "15" [ref=e2104]
+                - cell "2019-06-13 15:02:13" [ref=e2105]
+                - cell [ref=e2106]:
+                  - link "Lekarze specjaliści geriatrii w 2019 r." [ref=e2108] [cursor=pointer]:
+                    - /url: /monitoringi/lekarze-specjalisci-geriatrii-w-2019-r/monitoring_cases_table
+                - cell [ref=e2109]
+                - cell "AgnieszkaZdanowicz" [ref=e2110]
+                - cell "16" [ref=e2111]
+                - cell "0" [ref=e2112]
+                - cell "0" [ref=e2113]
+                - cell "0" [ref=e2114]
+                - cell [ref=e2115]
+                - cell [ref=e2117]
+                - cell [ref=e2119]
+              - row [ref=e2121]:
+                - cell [ref=e2122]:
+                  - generic [ref=e2123]:
+                    - link "Show details" [ref=e2124] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e2126] [cursor=pointer]:
+                      - /url: "#"
+                - cell "14" [ref=e2128]
+                - cell "2019-04-04 22:36:29" [ref=e2129]
+                - cell [ref=e2130]:
+                  - link "Media społecznościowe w gminach 2019" [ref=e2132] [cursor=pointer]:
+                    - /url: /monitoringi/media-spolecznosciowe-w-gminach-2019/monitoring_cases_table
+                - cell "Aktywni obywatele/lki często narzekają na jakość debaty w mediach społecznościowych gminy. Po pierwsze zwracają uwagę, że niektóre informacje pojawiają się tylko tam. Po drugie krytykują blokowanie pytań i głosów krytycznych. Postanowiliśmy sprawdzić jak często gminy prowadzą media społecznościowe i czy jakoś tę kwestię regulują." [ref=e2133]
+                - cell "KatarzynaBatkoToluc" [ref=e2134]
+                - cell "607" [ref=e2135]
+                - cell "0" [ref=e2136]
+                - cell "1" [ref=e2137]
+                - cell "434" [ref=e2138]
+                - cell [ref=e2139]
+                - cell [ref=e2141]
+                - cell [ref=e2143]
+              - row [ref=e2145]:
+                - cell [ref=e2146]:
+                  - generic [ref=e2147]:
+                    - link "Show details" [ref=e2148] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e2150] [cursor=pointer]:
+                      - /url: "#"
+                - cell "13" [ref=e2152]
+                - cell "2019-02-05 13:09:42" [ref=e2153]
+                - cell [ref=e2154]:
+                  - link "Rekrutacja do Szkoły Inicjatyw Strażniczych" [ref=e2155] [cursor=pointer]:
+                    - /url: /monitoringi/rekrutacja-do-szkoly-inicjatyw-strazniczych/monitoring_cases_table
+                - 'cell "Prośba do urzędów gmin wysłana w związku z rozpoczęciem rekrutacji do Szkoły Inicjatyw Strażniczych. Więcej informacji o rekrutacji: https://siecobywatelska.pl/sis/" [ref=e2156]'
+                - cell "KatarzynaBatkoToluc" [ref=e2157]
+                - cell "2465" [ref=e2158]
+                - cell "0" [ref=e2159]
+                - cell "3" [ref=e2160]
+                - cell "636" [ref=e2161]
+                - cell [ref=e2162]
+                - cell [ref=e2164]
+                - cell [ref=e2166]
+              - row [ref=e2168]:
+                - cell [ref=e2169]:
+                  - generic [ref=e2170]:
+                    - link "Show details" [ref=e2171] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e2173] [cursor=pointer]:
+                      - /url: "#"
+                - cell "12" [ref=e2175]
+                - cell "2018-09-09 22:06:14" [ref=e2176]
+                - cell [ref=e2177]:
+                  - link "elektroniczny obieg dokumentów w powiatach" [ref=e2179] [cursor=pointer]:
+                    - /url: /monitoringi/elektroniczny-obieg-dokumentow-w-powiatach/monitoring_cases_table
+                - cell [ref=e2180]
+                - cell "KatarzynaBatkoToluc" [ref=e2181]
+                - cell "314" [ref=e2182]
+                - cell "0" [ref=e2183]
+                - cell "1" [ref=e2184]
+                - cell "227" [ref=e2185]
+                - cell [ref=e2186]
+                - cell [ref=e2188]
+                - cell [ref=e2190]
+              - row [ref=e2192]:
+                - cell [ref=e2193]:
+                  - generic [ref=e2194]:
+                    - link "Show details" [ref=e2195] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e2197] [cursor=pointer]:
+                      - /url: "#"
+                - cell "11" [ref=e2199]
+                - cell "2018-08-31 09:32:59" [ref=e2200]
+                - cell [ref=e2201]:
+                  - link "Polowania zbiorowe 2018" [ref=e2203] [cursor=pointer]:
+                    - /url: /monitoringi/polowania-zbiorowe-2018/monitoring_cases_table
+                - cell "Celem monitoringu jest zebranie od gmin informacji określonych w art. 42ab ustawy Prawo łowieckie, to jest o terminach i miejscach polowań zbiorowych." [ref=e2204]
+                - cell "krzysztof" [ref=e2205]
+                - cell "719" [ref=e2206]
+                - cell "0" [ref=e2207]
+                - cell "2" [ref=e2208]
+                - cell "582" [ref=e2209]
+                - cell [ref=e2210]
+                - cell [ref=e2212]
+                - cell [ref=e2214]
+              - row [ref=e2216]:
+                - cell [ref=e2217]:
+                  - generic [ref=e2218]:
+                    - link "Show details" [ref=e2219] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e2221] [cursor=pointer]:
+                      - /url: "#"
+                - cell "10" [ref=e2223]
+                - cell "2018-07-16 09:02:00" [ref=e2224]
+                - cell [ref=e2225]:
+                  - link "Monitoring mediów samorządowych" [ref=e2227] [cursor=pointer]:
+                    - /url: /monitoringi/monitoring-mediow-samorzadowych/monitoring_cases_table
+                - cell [ref=e2228]
+                - cell "adobrawy" [ref=e2229]
+                - cell "2466" [ref=e2230]
+                - cell "0" [ref=e2231]
+                - cell "7" [ref=e2232]
+                - cell "2108" [ref=e2233]
+                - cell [ref=e2234]
+                - cell [ref=e2236]
+                - cell [ref=e2238]
+              - row [ref=e2240]:
+                - cell [ref=e2241]:
+                  - generic [ref=e2242]:
+                    - link "Show details" [ref=e2243] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e2245] [cursor=pointer]:
+                      - /url: "#"
+                - cell "9" [ref=e2247]
+                - cell "2017-11-30 20:37:39" [ref=e2248]
+                - cell [ref=e2249]:
+                  - link "Monitoring samorządy" [ref=e2251] [cursor=pointer]:
+                    - /url: /monitoringi/monitoring-samorzady/monitoring_cases_table
+                - cell [ref=e2252]
+                - cell "kamil.bregula" [ref=e2253]
+                - cell "2466" [ref=e2254]
+                - cell "0" [ref=e2255]
+                - cell "5" [ref=e2256]
+                - cell "2097" [ref=e2257]
+                - cell [ref=e2258]
+                - cell [ref=e2260]
+                - cell [ref=e2262]
+              - row [ref=e2264]:
+                - cell [ref=e2265]:
+                  - generic [ref=e2266]:
+                    - link "Show details" [ref=e2267] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e2269] [cursor=pointer]:
+                      - /url: "#"
+                - cell "8" [ref=e2271]
+                - cell "2017-08-24 17:24:49" [ref=e2272]
+                - cell [ref=e2273]:
+                  - link "Monitoring nadleśnictw" [ref=e2275] [cursor=pointer]:
+                    - /url: /monitoringi/monitoring-nadlesnictw/monitoring_cases_table
+                - cell [ref=e2276]
+                - cell "adobrawy" [ref=e2277]
+                - cell "429" [ref=e2278]
+                - cell "0" [ref=e2279]
+                - cell "1" [ref=e2280]
+                - cell "424" [ref=e2281]
+                - cell [ref=e2282]
+                - cell [ref=e2284]
+                - cell [ref=e2286]
+              - row [ref=e2288]:
+                - cell [ref=e2289]:
+                  - generic [ref=e2290]:
+                    - link "Show details" [ref=e2291] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e2293] [cursor=pointer]:
+                      - /url: "#"
+                - cell "7" [ref=e2295]
+                - cell "2017-08-11 03:22:36" [ref=e2296]
+                - cell [ref=e2297]:
+                  - link "Monitoring sądów rejonowych" [ref=e2299] [cursor=pointer]:
+                    - /url: /monitoringi/monitoring-sadow-rejonowych/monitoring_cases_table
+                - cell [ref=e2300]
+                - cell "adobrawy" [ref=e2301]
+                - cell "317" [ref=e2302]
+                - cell "1" [ref=e2303]
+                - cell "3" [ref=e2304]
+                - cell "280" [ref=e2305]
+                - cell [ref=e2306]
+                - cell [ref=e2308]
+                - cell [ref=e2310]
+              - row [ref=e2312]:
+                - cell [ref=e2313]:
+                  - generic [ref=e2314]:
+                    - link "Show details" [ref=e2315] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e2317] [cursor=pointer]:
+                      - /url: "#"
+                - cell "6" [ref=e2319]
+                - cell "2017-08-11 02:49:50" [ref=e2320]
+                - cell [ref=e2321]:
+                  - link "Monitoring sądów okręgowych" [ref=e2323] [cursor=pointer]:
+                    - /url: /monitoringi/monitoring-sadow-okregowych/monitoring_cases_table
+                - cell [ref=e2324]
+                - cell "adobrawy" [ref=e2325]
+                - cell "45" [ref=e2326]
+                - cell "0" [ref=e2327]
+                - cell "0" [ref=e2328]
+                - cell "43" [ref=e2329]
+                - cell [ref=e2330]
+                - cell [ref=e2332]
+                - cell [ref=e2334]
+              - row [ref=e2336]:
+                - cell [ref=e2337]:
+                  - generic [ref=e2338]:
+                    - link "Show details" [ref=e2339] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e2341] [cursor=pointer]:
+                      - /url: "#"
+                - cell "5" [ref=e2343]
+                - cell "2017-08-11 02:47:20" [ref=e2344]
+                - cell [ref=e2345]:
+                  - link "Monitoring sądów apelacyjnych" [ref=e2347] [cursor=pointer]:
+                    - /url: /monitoringi/monitoring-sadow-apelacyjnych/monitoring_cases_table
+                - cell [ref=e2348]
+                - cell "adobrawy" [ref=e2349]
+                - cell "11" [ref=e2350]
+                - cell "0" [ref=e2351]
+                - cell "0" [ref=e2352]
+                - cell "11" [ref=e2353]
+                - cell [ref=e2354]
+                - cell [ref=e2356]
+                - cell [ref=e2358]
+              - row [ref=e2360]:
+                - cell [ref=e2361]:
+                  - generic [ref=e2362]:
+                    - link "Show details" [ref=e2363] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e2365] [cursor=pointer]:
+                      - /url: "#"
+                - cell "4" [ref=e2367]
+                - cell "2017-02-21 20:06:32" [ref=e2368]
+                - cell [ref=e2369]:
+                  - link "Samorządy o liczbę wniosków 2017" [ref=e2371] [cursor=pointer]:
+                    - /url: /monitoringi/o-liczbe-wnioskow-2017/monitoring_cases_table
+                - cell "Piąty rok przerabiamy ten sam temat – zdaniem władzy i specjalistów obywatele za bardzo interesują się działaniami władzy. Uwierzylibyście? Toż to mamy chyba demokrację doskonałą. Jest też kilka nowych argumentów – „większość tych, którzy pytają ma złe intencje, albo chce zrobić biznes”. Zanim się oburzycie na tych „innych”, pomyślcie o tym, że sami łatwo możecie zostać tak ocenieni, a tenże biznes płaci w naszym kraju podatki." [ref=e2372]
+                - cell "adobrawy" [ref=e2373]
+                - cell "2466" [ref=e2374]
+                - cell "2466" [ref=e2375]
+                - cell "10" [ref=e2376]
+                - cell "1912" [ref=e2377]
+                - cell [ref=e2378]
+                - cell [ref=e2380]
+                - cell [ref=e2382]
+              - row [ref=e2384]:
+                - cell [ref=e2385]:
+                  - generic [ref=e2386]:
+                    - link "Show details" [ref=e2387] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e2389] [cursor=pointer]:
+                      - /url: "#"
+                - cell "2" [ref=e2391]
+                - cell "2016-09-13 04:26:36" [ref=e2392]
+                - cell [ref=e2393]:
+                  - link "Marszałkowie o liczbę wniosków 2017" [ref=e2395] [cursor=pointer]:
+                    - /url: /monitoringi/monitoring-dostepu-do-informacji-publicznej/monitoring_cases_table
+                - cell "Niniejszy monitoring ma na celu badanie aktywności społeczeństwa pod względem poziomu wnioskowania o informacje publiczną, a także trendów w tym zakresie." [ref=e2396]
+                - cell "adobrawy" [ref=e2397]
+                - cell "33" [ref=e2398]
+                - cell "33" [ref=e2399]
+                - cell "0" [ref=e2400]
+                - cell "30" [ref=e2401]
+                - cell [ref=e2402]
+                - cell [ref=e2404]
+                - cell [ref=e2406]
+              - row [ref=e2408]:
+                - cell [ref=e2409]:
+                  - generic [ref=e2410]:
+                    - link "Show details" [ref=e2411] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Hide details" [ref=e2413] [cursor=pointer]:
+                      - /url: "#"
+                - cell "1" [ref=e2415]
+                - cell "2016-09-13 03:56:09" [ref=e2416]
+                - cell [ref=e2417]:
+                  - link "Przykładowy monitoring" [ref=e2418] [cursor=pointer]:
+                    - /url: /monitoringi/przykladowy-monitoring/monitoring_cases_table
+                - cell "Morbi blandit euismod mi, ac vehicula ex. Donec sed tristique lorem. Vestibulum hendrerit neque et massa tincidunt, ut congue nisl rhoncus! Aenean varius erat vitae est faucibus, ut tincidunt lectus tempor. Nulla facilisi. In augue velit, placerat sit amet mauris nec, posuere fermentum nisi. Morbi fermentum sodales libero, quis accumsan nibh ullamcorper eget. Lorem ipsum dolor sit amet massa nunc." [ref=e2419]
+                - cell "SOWP" [ref=e2420]
+                - cell "2" [ref=e2421]
+                - cell "0" [ref=e2422]
+                - cell "0" [ref=e2423]
+                - cell "2" [ref=e2424]
+                - cell [ref=e2425]
+                - cell [ref=e2427]
+                - cell [ref=e2429]
+        - status [ref=e2431]: Pozycje od 1 do 97 z 97 łącznie
+        - generic [ref=e2432]:
+          - link "Poprzednia" [disabled] [ref=e2433]
+          - link "1" [ref=e2435] [cursor=pointer]
+          - link "Następna" [disabled] [ref=e2436]
+      - generic [ref=e2437]:
+        - generic [ref=e2438]:
+          - text: Sieć Obywatelska - Watchdog Polska ul. Szpitalna 5/5 00-031 Warszawa
+          - paragraph [ref=e2439]:
+            - link "Klauzula RODO" [ref=e2440] [cursor=pointer]:
+              - /url: https://fedrowanie.siecobywatelska.pl/media_internal/tinycontent/uploads/11_KLAUZULA.-.dane.z.udip.na.stronach.www.i.w.mediach.spol.pdf
+        - generic [ref=e2441]:
+          - text: "silnik:"
+          - link "jawne.info.pl" [ref=e2442] [cursor=pointer]:
+            - /url: http://jawne.info.pl
+          - text: "| v1.5.77.deps |"
+          - link "GitHub" [ref=e2443] [cursor=pointer]:
+            - /url: https://github.com/watchdogpolska/feder
+          - text: –
+          - link "efd8a3b" [ref=e2445] [cursor=pointer]:
+            - /url: https://github.com/watchdogpolska/feder/compare/efd8a3b2...master
+          - text: "|"
+          - link "API" [ref=e2446] [cursor=pointer]:
+            - /url: /api/
+        - generic [ref=e2448]: Ta strona wykorzystuje cookies.
+  - list [ref=e2450]:
+    - listitem [ref=e2451]:
+      - link "Ukryj »" [ref=e2452] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e2453]:
+      - link "Toggle Theme" [ref=e2454] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e2457]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e2458]
+      - link "Historia /monitoringi/table/" [ref=e2459] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e2460]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e2461]
+      - link "Wersje Django 5.2.17" [ref=e2462] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e2463]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e2464]
+      - 'link "Czas CPU: 58.38ms (59.65ms)" [ref=e2465] [cursor=pointer]':
+        - /url: "#"
+    - listitem [ref=e2466]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e2467]
+      - link "Ustawienia" [ref=e2468] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e2469]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e2470]
+      - link "Nagłówki" [ref=e2471] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e2472]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e2473]
+      - link "Zapytania MonitoringsTableView" [ref=e2474] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e2475]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e2476]
+      - link "SQL 4 queries in 1.04ms" [ref=e2477] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e2478]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e2479]
+      - link "Pliki statyczne 3 użyte plików" [ref=e2480] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e2481]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e2482]
+      - link "Templatki monitorings/monitorings_table.html" [ref=e2483] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e2484]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e2485]
+      - link "Alerty" [ref=e2486] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e2487]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e2488]
+      - link "Cache 2 wywołania w 0.14ms" [ref=e2489] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e2490]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e2491]
+      - link "Sygnały 88 odbiorców 15 sygnałów" [ref=e2492] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e2493]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e2494]
+      - link "Gmina" [ref=e2495] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e2496]:
+      - checkbox "Enable for next and successive requests" [ref=e2497]
+      - generic [ref=e2498]: Przechwycone przekierowania
+    - listitem [ref=e2499]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e2500]
+      - link "Profilowanie" [ref=e2501] [cursor=pointer]:
+        - /url: "#"
+```
+
+# Test source
+
+```ts
+  1  | import { test, expect } from '@playwright/test';
+  2  | import { PAGES } from './pages';
+  3  | import { VIEWPORTS } from './viewports';
+  4  | 
+  5  | for (const [name, size] of Object.entries(VIEWPORTS)) {
+  6  |   test.describe(`${name} (${size.width}px)`, () => {
+  7  |     test.use({ viewport: size });
+  8  | 
+  9  |     for (const page of PAGES) {
+  10 |       test(`${page.name} - visual baseline`, async ({ page: pw }) => {
+  11 |         await pw.goto(page.path);
+  12 |         await pw.waitForLoadState('networkidle');
+> 13 |         await expect(pw).toHaveScreenshot(`${page.name}-${name}.png`, {
+     |                          ^ Error: expect(page).toHaveScreenshot(expected) failed
+  14 |           maxDiffPixelRatio: 0.001,
+  15 |           fullPage: true,
+  16 |         });
+  17 |       });
+  18 |     }
+  19 |   });
+  20 | }
+  21 | 
+```

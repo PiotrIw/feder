@@ -1,0 +1,1209 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: layout_assertions.spec.ts >> Layout sanity - mobile >> monitorings-responses-report - no horizontal overflow on mobile
+- Location: tests/bs3-bs5_migration/layout_assertions.spec.ts:30:9
+
+# Error details
+
+```
+Error: Mobile layout has horizontal scroll
+
+expect(received).toBeLessThanOrEqual(expected)
+
+Expected: <= 20
+Received:    161
+```
+
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - heading "AssertionError at /monitoringi/monitoring-sadow-apelacyjnych/responses-report" [level=1] [ref=e3]
+    - generic [ref=e4]: .accepted_renderer not set on Response
+    - table [ref=e5]:
+      - rowgroup [ref=e6]:
+        - row [ref=e7]:
+          - rowheader "Request Method:" [ref=e8]
+          - cell "GET" [ref=e9]
+        - row [ref=e10]:
+          - rowheader "Request URL:" [ref=e11]
+          - cell "http://localhost:8000/monitoringi/monitoring-sadow-apelacyjnych/responses-report" [ref=e12]
+        - row [ref=e13]:
+          - rowheader "Django Version:" [ref=e14]
+          - cell "5.2.17" [ref=e15]
+        - row [ref=e16]:
+          - rowheader "Exception Type:" [ref=e17]
+          - cell "AssertionError" [ref=e18]
+        - row [ref=e19]:
+          - rowheader "Exception Value:" [ref=e20]
+          - cell ".accepted_renderer not set on Response" [ref=e21]
+        - row [ref=e23]:
+          - rowheader "Exception Location:" [ref=e24]
+          - cell "/usr/local/lib/python3.12/site-packages/rest_framework/response.py, line 59, in rendered_content" [ref=e25]
+        - row [ref=e26]:
+          - rowheader "Raised during:" [ref=e27]
+          - cell "feder.monitorings.views.MonitoringResponsesReportView" [ref=e28]
+        - row [ref=e29]:
+          - rowheader "Python Executable:" [ref=e30]
+          - cell "/usr/local/bin/python" [ref=e31]
+        - row [ref=e32]:
+          - rowheader "Python Version:" [ref=e33]
+          - cell "3.12.13" [ref=e34]
+        - row [ref=e35]:
+          - rowheader "Python Path:" [ref=e36]
+          - cell [ref=e37]:
+            - code [ref=e39]: "['/code', '/usr/local/lib/python312.zip', '/usr/local/lib/python3.12', '/usr/local/lib/python3.12/lib-dynload', '/usr/local/lib/python3.12/site-packages', '/code']"
+        - row [ref=e40]:
+          - rowheader "Server time:" [ref=e41]
+          - cell "Fri, 25 Sep 2026 16:06:43 +0200" [ref=e42]
+  - main [ref=e43]:
+    - generic [ref=e44]:
+      - heading [level=2] [ref=e45]:
+        - text: Traceback
+        - button "Switch to copy-and-paste view" [ref=e47] [cursor=pointer]
+      - list [ref=e49]:
+        - listitem [ref=e50]:
+          - code [ref=e51]: /usr/local/lib/python3.12/site-packages/django/core/handlers/exception.py
+          - text: ", line 55, in inner"
+          - list [ref=e53]:
+            - listitem [ref=e54] [cursor=pointer]:
+              - text: response = get_response(request) ^^^^^^^^^^^^^^^^^^^^^
+              - generic [ref=e55]: …
+          - group [ref=e56]:
+            - generic "Local vars" [ref=e57] [cursor=pointer]
+        - listitem [ref=e58]:
+          - code [ref=e59]: /usr/local/lib/python3.12/site-packages/django/core/handlers/base.py
+          - text: ", line 220, in _get_response"
+          - list [ref=e61]:
+            - listitem [ref=e62] [cursor=pointer]:
+              - text: response = response.render() ^^^^^^^^^^^^^^^^^
+              - generic [ref=e63]: …
+          - group [ref=e64]:
+            - generic "Local vars" [ref=e65] [cursor=pointer]
+        - listitem [ref=e66]:
+          - code [ref=e67]: /usr/local/lib/python3.12/site-packages/django/template/response.py
+          - text: ", line 114, in render"
+          - list [ref=e69]:
+            - listitem [ref=e70] [cursor=pointer]:
+              - text: self.content = self.rendered_content ^^^^^^^^^^^^^^^^^^^^^
+              - generic [ref=e71]: …
+          - group [ref=e72]:
+            - generic "Local vars" [ref=e73] [cursor=pointer]
+        - listitem [ref=e74]:
+          - code [ref=e75]: /usr/local/lib/python3.12/site-packages/rest_framework/response.py
+          - text: ", line 59, in rendered_content"
+          - list [ref=e77]:
+            - listitem [ref=e78] [cursor=pointer]:
+              - text: assert renderer, ".accepted_renderer not set on Response" ^^^^^^^^
+              - generic [ref=e79]: …
+          - group [ref=e80]:
+            - generic "Local vars" [ref=e81] [cursor=pointer]
+    - generic [ref=e82]:
+      - heading "Request information" [level=2] [ref=e83]
+      - heading "USER" [level=3] [ref=e84]
+      - paragraph [ref=e85]: claude_ai
+      - heading "GET" [level=3] [ref=e86]
+      - paragraph [ref=e87]: No GET data
+      - heading "POST" [level=3] [ref=e88]
+      - paragraph [ref=e89]: No POST data
+      - heading "FILES" [level=3] [ref=e90]
+      - paragraph [ref=e91]: No FILES data
+      - heading "COOKIES" [level=3] [ref=e92]
+      - table [ref=e93]:
+        - rowgroup [ref=e94]:
+          - row [ref=e95]:
+            - columnheader "Variable" [ref=e96]
+            - columnheader "Value" [ref=e97]
+        - rowgroup [ref=e98]:
+          - row [ref=e99]:
+            - cell "csrftoken" [ref=e100]
+            - cell "'********************'" [ref=e101]
+          - row [ref=e103]:
+            - cell "sessionid" [ref=e104]
+            - cell "'********************'" [ref=e105]
+      - heading "META" [level=3] [ref=e107]
+      - table [ref=e108]:
+        - rowgroup [ref=e109]:
+          - row [ref=e110]:
+            - columnheader "Variable" [ref=e111]
+            - columnheader "Value" [ref=e112]
+        - rowgroup [ref=e113]:
+          - row [ref=e114]:
+            - cell "APP_MODE" [ref=e115]
+            - cell "'DEV'" [ref=e116]
+          - row [ref=e118]:
+            - cell "ATTACHMENTSCANNER_API_KEY" [ref=e119]
+            - cell "'********************'" [ref=e120]
+          - row [ref=e122]:
+            - cell "ATTACHMENTSCANNER_API_URL" [ref=e123]
+            - cell "'********************'" [ref=e124]
+          - row [ref=e126]:
+            - cell "AZURE_ENDPOINT" [ref=e127]
+            - cell "'https://so-sw-cent-openai.openai.azure.com/'" [ref=e128]
+          - row [ref=e130]:
+            - cell "CONTENT_LENGTH" [ref=e131]
+            - cell "''" [ref=e132]
+          - row [ref=e134]:
+            - cell "CONTENT_TYPE" [ref=e135]
+            - cell "'text/plain'" [ref=e136]
+          - row [ref=e138]:
+            - cell "CSRF_COOKIE" [ref=e139]
+            - cell "'4af49XIpRri8q1AX3ocJ2UIqF5VTGz8g'" [ref=e140]
+          - row [ref=e142]:
+            - cell "DATABASE_URL" [ref=e143]
+            - cell "'mysql://root:password@db/feder3_copy_mb4'" [ref=e144]
+          - row [ref=e146]:
+            - cell "DJANGO_DEFAULT_FROM_EMAIL" [ref=e147]
+            - cell "'feder_dev <noreply@dev.fedrowanie.siecobywatelska.pl>'" [ref=e148]
+          - row [ref=e150]:
+            - cell "DJANGO_EMAIL_BACKEND" [ref=e151]
+            - cell "'django.core.mail.backends.smtp.EmailBackend'" [ref=e152]
+          - row [ref=e154]:
+            - cell "DJANGO_EMAIL_HOST" [ref=e155]
+            - cell "'maildump'" [ref=e156]
+          - row [ref=e158]:
+            - cell "DJANGO_EMAIL_HOST_PASSWORD" [ref=e159]
+            - cell "'********************'" [ref=e160]
+          - row [ref=e162]:
+            - cell "DJANGO_EMAIL_HOST_USER" [ref=e163]
+            - cell "'feder_dev@dev.fedrowanie.siecobywatelska.pl'" [ref=e164]
+          - row [ref=e166]:
+            - cell "DJANGO_EMAIL_NOTIFICATION" [ref=e167]
+            - cell "'no-reply@siecobywatelska.pl'" [ref=e168]
+          - row [ref=e170]:
+            - cell "DJANGO_EMAIL_PORT" [ref=e171]
+            - cell "'1025'" [ref=e172]
+          - row [ref=e174]:
+            - cell "DJANGO_EMAIL_SUBJECT_PREFIX" [ref=e175]
+            - cell "'[feder_dev] '" [ref=e176]
+          - row [ref=e178]:
+            - cell "DJANGO_EMAIL_USE_TLS" [ref=e179]
+            - cell "'False'" [ref=e180]
+          - row [ref=e182]:
+            - cell "DJANGO_SETTINGS_MODULE" [ref=e183]
+            - cell "'config.settings.local'" [ref=e184]
+          - row [ref=e186]:
+            - cell "EMAILLABS_APP_KEY" [ref=e187]
+            - cell "'********************'" [ref=e188]
+          - row [ref=e190]:
+            - cell "EMAILLABS_SECRET_KEY" [ref=e191]
+            - cell "'********************'" [ref=e192]
+          - row [ref=e194]:
+            - cell "FILE_TO_TEXT_TOKEN" [ref=e195]
+            - cell "'********************'" [ref=e196]
+          - row [ref=e198]:
+            - cell "FILE_TO_TEXT_URL" [ref=e199]
+            - cell "'http://192.168.100.120:9980/'" [ref=e200]
+          - row [ref=e202]:
+            - cell "GATEWAY_INTERFACE" [ref=e203]
+            - cell "'CGI/1.1'" [ref=e204]
+          - row [ref=e206]:
+            - cell "GPG_KEY" [ref=e207]
+            - cell "'********************'" [ref=e208]
+          - row [ref=e210]:
+            - cell "HOME" [ref=e211]
+            - cell "'/root'" [ref=e212]
+          - row [ref=e214]:
+            - cell "HOSTNAME" [ref=e215]
+            - cell "'43fc48c5f504'" [ref=e216]
+          - row [ref=e218]:
+            - cell "HTTP_ACCEPT" [ref=e219]
+            - cell "'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7'" [ref=e220]
+          - row [ref=e222]:
+            - cell "HTTP_ACCEPT_ENCODING" [ref=e223]
+            - cell "'gzip, deflate, br, zstd'" [ref=e224]
+          - row [ref=e226]:
+            - cell "HTTP_ACCEPT_LANGUAGE" [ref=e227]
+            - cell "'en-US'" [ref=e228]
+          - row [ref=e230]:
+            - cell "HTTP_CONNECTION" [ref=e231]
+            - cell "'keep-alive'" [ref=e232]
+          - row [ref=e234]:
+            - cell "HTTP_COOKIE" [ref=e235]
+            - cell "'********************'" [ref=e236]
+          - row [ref=e238]:
+            - cell "HTTP_HOST" [ref=e239]
+            - cell "'localhost:8000'" [ref=e240]
+          - row [ref=e242]:
+            - cell "HTTP_SEC_CH_UA" [ref=e243]
+            - cell "'\"HeadlessChrome\";v=\"153\", \"Not_A Brand\";v=\"8\", \"Chromium\";v=\"153\"'" [ref=e244]
+          - row [ref=e246]:
+            - cell "HTTP_SEC_CH_UA_MOBILE" [ref=e247]
+            - cell "'?0'" [ref=e248]
+          - row [ref=e250]:
+            - cell "HTTP_SEC_CH_UA_PLATFORM" [ref=e251]
+            - cell "'\"Linux\"'" [ref=e252]
+          - row [ref=e254]:
+            - cell "HTTP_SEC_FETCH_DEST" [ref=e255]
+            - cell "'document'" [ref=e256]
+          - row [ref=e258]:
+            - cell "HTTP_SEC_FETCH_MODE" [ref=e259]
+            - cell "'navigate'" [ref=e260]
+          - row [ref=e262]:
+            - cell "HTTP_SEC_FETCH_SITE" [ref=e263]
+            - cell "'none'" [ref=e264]
+          - row [ref=e266]:
+            - cell "HTTP_SEC_FETCH_USER" [ref=e267]
+            - cell "'?1'" [ref=e268]
+          - row [ref=e270]:
+            - cell "HTTP_UPGRADE_INSECURE_REQUESTS" [ref=e271]
+            - cell "'1'" [ref=e272]
+          - row [ref=e274]:
+            - cell "HTTP_USER_AGENT" [ref=e275]
+            - cell "('Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) ' 'HeadlessChrome/153.0.8010.12 Safari/537.36')" [ref=e276]
+          - row [ref=e278]:
+            - cell "LANG" [ref=e279]
+            - cell "'C.UTF-8'" [ref=e280]
+          - row [ref=e282]:
+            - cell "LETTER_RECEIVE_SECRET" [ref=e283]
+            - cell "'********************'" [ref=e284]
+          - row [ref=e286]:
+            - cell "MEDIA_ROOT_ENV" [ref=e287]
+            - cell "'media_prod'" [ref=e288]
+          - row [ref=e290]:
+            - cell "METADEFENDER_API_KEY" [ref=e291]
+            - cell "'********************'" [ref=e292]
+          - row [ref=e294]:
+            - cell "MY_INTERNAL_IP" [ref=e295]
+            - cell "'192.168.100.112'" [ref=e296]
+          - row [ref=e298]:
+            - cell "OPENAI_API_ENGINE_35" [ref=e299]
+            - cell "'********************'" [ref=e300]
+          - row [ref=e302]:
+            - cell "OPENAI_API_ENGINE_35_MAX_TOKENS" [ref=e303]
+            - cell "'********************'" [ref=e304]
+          - row [ref=e306]:
+            - cell "OPENAI_API_ENGINE_4" [ref=e307]
+            - cell "'********************'" [ref=e308]
+          - row [ref=e310]:
+            - cell "OPENAI_API_ENGINE_4_MAX_TOKENS" [ref=e311]
+            - cell "'********************'" [ref=e312]
+          - row [ref=e314]:
+            - cell "OPENAI_API_KEY" [ref=e315]
+            - cell "'********************'" [ref=e316]
+          - row [ref=e318]:
+            - cell "OPENAI_API_TEMPERATURE" [ref=e319]
+            - cell "'********************'" [ref=e320]
+          - row [ref=e322]:
+            - cell "OPENAI_API_TYPE" [ref=e323]
+            - cell "'********************'" [ref=e324]
+          - row [ref=e326]:
+            - cell "OPENAI_API_VERSION" [ref=e327]
+            - cell "'********************'" [ref=e328]
+          - row [ref=e330]:
+            - cell "PATH" [ref=e331]
+            - cell "'/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'" [ref=e332]
+          - row [ref=e334]:
+            - cell "PATH_INFO" [ref=e335]
+            - cell "'/monitoringi/monitoring-sadow-apelacyjnych/responses-report'" [ref=e336]
+          - row [ref=e338]:
+            - cell "PYTHONUNBUFFERED" [ref=e339]
+            - cell "'1'" [ref=e340]
+          - row [ref=e342]:
+            - cell "PYTHON_SHA256" [ref=e343]
+            - cell "'c08bc65a81971c1dd5783182826503369466c7e67374d1646519adf05207b684'" [ref=e344]
+          - row [ref=e346]:
+            - cell "PYTHON_VERSION" [ref=e347]
+            - cell "'3.12.13'" [ref=e348]
+          - row [ref=e350]:
+            - cell "QUERY_STRING" [ref=e351]
+            - cell "''" [ref=e352]
+          - row [ref=e354]:
+            - cell "REMOTE_ADDR" [ref=e355]
+            - cell "'172.20.0.1'" [ref=e356]
+          - row [ref=e358]:
+            - cell "REMOTE_HOST" [ref=e359]
+            - cell "''" [ref=e360]
+          - row [ref=e362]:
+            - cell "REQUEST_METHOD" [ref=e363]
+            - cell "'GET'" [ref=e364]
+          - row [ref=e366]:
+            - cell "ROSETTA_AZURE_CLIENT_SECRET" [ref=e367]
+            - cell "'********************'" [ref=e368]
+          - row [ref=e370]:
+            - cell "RUN_MAIN" [ref=e371]
+            - cell "'true'" [ref=e372]
+          - row [ref=e374]:
+            - cell "SCRIPT_NAME" [ref=e375]
+            - cell "''" [ref=e376]
+          - row [ref=e378]:
+            - cell "SERVER_NAME" [ref=e379]
+            - cell "'43fc48c5f504'" [ref=e380]
+          - row [ref=e382]:
+            - cell "SERVER_PORT" [ref=e383]
+            - cell "'8000'" [ref=e384]
+          - row [ref=e386]:
+            - cell "SERVER_PROTOCOL" [ref=e387]
+            - cell "'HTTP/1.1'" [ref=e388]
+          - row [ref=e390]:
+            - cell "SERVER_SOFTWARE" [ref=e391]
+            - cell "'WSGIServer/0.2'" [ref=e392]
+          - row [ref=e394]:
+            - cell "TZ" [ref=e395]
+            - cell "'Europe/Warsaw'" [ref=e396]
+          - row [ref=e398]:
+            - cell "VIRUSTOTAL_API_KEY" [ref=e399]
+            - cell "'********************'" [ref=e400]
+          - row [ref=e402]:
+            - cell "wsgi.errors" [ref=e403]
+            - cell "<_io.TextIOWrapper name='<stderr>' mode='w' encoding='utf-8'>" [ref=e404]
+          - row [ref=e406]:
+            - cell "wsgi.file_wrapper" [ref=e407]
+            - cell "<class 'wsgiref.util.FileWrapper'>" [ref=e408]
+          - row [ref=e410]:
+            - cell "wsgi.input" [ref=e411]
+            - cell "<django.core.handlers.wsgi.LimitedStream object at 0x7f8eaf226920>" [ref=e412]
+          - row [ref=e414]:
+            - cell "wsgi.multiprocess" [ref=e415]
+            - cell "False" [ref=e416]
+          - row [ref=e418]:
+            - cell "wsgi.multithread" [ref=e419]
+            - cell "True" [ref=e420]
+          - row [ref=e422]:
+            - cell "wsgi.run_once" [ref=e423]
+            - cell "False" [ref=e424]
+          - row [ref=e426]:
+            - cell "wsgi.url_scheme" [ref=e427]
+            - cell "'http'" [ref=e428]
+          - row [ref=e430]:
+            - cell "wsgi.version" [ref=e431]
+            - cell "(1, 0)" [ref=e432]
+      - heading "Settings" [level=3] [ref=e434]
+      - heading [level=4] [ref=e435]:
+        - text: Using settings module
+        - code [ref=e436]: config.settings.local
+      - table [ref=e437]:
+        - rowgroup [ref=e438]:
+          - row [ref=e439]:
+            - columnheader "Setting" [ref=e440]
+            - columnheader "Value" [ref=e441]
+        - rowgroup [ref=e442]:
+          - row [ref=e443]:
+            - cell "ABSOLUTE_URL_OVERRIDES" [ref=e444]
+            - 'cell "{}" [ref=e445]'
+          - row [ref=e447]:
+            - cell "ACCOUNT_ADAPTER" [ref=e448]
+            - cell "'feder.main.adapters.NoSignupAdapter'" [ref=e449]
+          - row [ref=e451]:
+            - cell "ACCOUNT_EMAIL_VERIFICATION" [ref=e452]
+            - cell "'mandatory'" [ref=e453]
+          - row [ref=e455]:
+            - cell "ACCOUNT_LOGIN_METHODS" [ref=e456]
+            - 'cell "{''username'', ''email''}" [ref=e457]'
+          - row [ref=e459]:
+            - cell "ACCOUNT_SIGNUP_FIELDS" [ref=e460]
+            - cell "['email*', 'username*', 'password1*', 'password2*']" [ref=e461]
+          - row [ref=e463]:
+            - cell "ADMINS" [ref=e464]
+            - cell "()" [ref=e465]
+          - row [ref=e467]:
+            - cell "ALLAUTH_PROVIDERS_APPS" [ref=e468]
+            - cell "'********************'" [ref=e469]
+          - row [ref=e471]:
+            - cell "ALLOWED_ATTRIBUTES" [ref=e472]
+            - 'cell "{''a'': [''href'', ''title''], ''abbr'': [''title''], ''acronym'': [''title''], ''img'': [''alt'', ''src'', ''title'']}" [ref=e473]'
+          - row [ref=e475]:
+            - cell "ALLOWED_HOSTS" [ref=e476]
+            - cell "['*']" [ref=e477]
+          - row [ref=e479]:
+            - cell "ANONYMOUS_USER_ID" [ref=e480]
+            - cell "-1" [ref=e481]
+          - row [ref=e483]:
+            - cell "ANSWERS_CATEGORIZATION_MAX_TOKENS" [ref=e484]
+            - cell "'********************'" [ref=e485]
+          - row [ref=e487]:
+            - cell "APPEND_SLASH" [ref=e488]
+            - cell "True" [ref=e489]
+          - row [ref=e491]:
+            - cell "APPS_DIR" [ref=e492]
+            - cell "<Path:/code/feder>" [ref=e493]
+          - row [ref=e495]:
+            - cell "APP_MODE" [ref=e496]
+            - cell "'DEV'" [ref=e497]
+          - row [ref=e499]:
+            - cell "ATTACHMENTSCANNER_API_KEY" [ref=e500]
+            - cell "'********************'" [ref=e501]
+          - row [ref=e503]:
+            - cell "ATTACHMENTSCANNER_API_URL" [ref=e504]
+            - cell "'********************'" [ref=e505]
+          - row [ref=e507]:
+            - cell "AUTHENTICATION_BACKENDS" [ref=e508]
+            - cell "'********************'" [ref=e509]
+          - row [ref=e511]:
+            - cell "AUTH_PASSWORD_VALIDATORS" [ref=e512]
+            - cell "'********************'" [ref=e513]
+          - row [ref=e515]:
+            - cell "AUTH_USER_MODEL" [ref=e516]
+            - cell "'********************'" [ref=e517]
+          - row [ref=e519]:
+            - cell "AUTOSLUG_SLUGIFY_FUNCTION" [ref=e520]
+            - cell "'feder.main.slugifier.ascii_slugify'" [ref=e521]
+          - row [ref=e523]:
+            - cell "AZURE_CLIENT_SECRET" [ref=e524]
+            - cell "'********************'" [ref=e525]
+          - row [ref=e527]:
+            - cell "AZURE_ENDPOINT" [ref=e528]
+            - cell "'https://so-sw-cent-openai.openai.azure.com/'" [ref=e529]
+          - row [ref=e531]:
+            - cell "BLEACH_ALLOWED_ATTRIBUTES" [ref=e532]
+            - 'cell "{''a'': [''href'', ''title''], ''abbr'': [''title''], ''acronym'': [''title''], ''img'': [''alt'', ''src'', ''title'']}" [ref=e533]'
+          - row [ref=e535]:
+            - cell "BLEACH_ALLOWED_TAGS" [ref=e536]
+            - 'cell "{''a'', ''abbr'', ''acronym'', ''b'', ''blockquote'', ''br'', ''code'', ''em'', ''h1'', ''h2'', ''h3'', ''h4'', ''h5'', ''h6'', ''hr'', ''i'', ''img'', ''li'', ''ol'', ''p'', ''pre'', ''strong'', ''sub'', ''sup'', ''ul''}" [ref=e537]'
+          - row [ref=e539]:
+            - cell "CACHES" [ref=e540]
+            - 'cell "{''default'': {''BACKEND'': ''django.core.cache.backends.locmem.LocMemCache'', ''LOCATION'': ''''}}" [ref=e541]'
+          - row [ref=e543]:
+            - cell "CACHE_MIDDLEWARE_ALIAS" [ref=e544]
+            - cell "'default'" [ref=e545]
+          - row [ref=e547]:
+            - cell "CACHE_MIDDLEWARE_KEY_PREFIX" [ref=e548]
+            - cell "'********************'" [ref=e549]
+          - row [ref=e551]:
+            - cell "CACHE_MIDDLEWARE_SECONDS" [ref=e552]
+            - cell "600" [ref=e553]
+          - row [ref=e555]:
+            - cell "CASE_EMAIL_TEMPLATE" [ref=e556]
+            - 'cell "''sprawa-{pk}@{domain}''" [ref=e557]'
+          - row [ref=e559]:
+            - cell "CORS_ALLOWED_ORIGINS" [ref=e560]
+            - cell "['https://sprawdzamyjakjest.pl', 'https://demo.sprawdzamyjakjest.pl', 'https://sjj.127.0.0.1.nip.io']" [ref=e561]
+          - row [ref=e563]:
+            - cell "CORS_URLS_REGEX" [ref=e564]
+            - cell "'^/api/.*$'" [ref=e565]
+          - row [ref=e567]:
+            - cell "CRISPY_ALLOWED_TEMPLATE_PACKS" [ref=e568]
+            - cell "['bootstrap5']" [ref=e569]
+          - row [ref=e571]:
+            - cell "CRISPY_FAIL_SILENTLY" [ref=e572]
+            - cell "False" [ref=e573]
+          - row [ref=e575]:
+            - cell "CRISPY_TEMPLATE_PACK" [ref=e576]
+            - cell "'bootstrap5'" [ref=e577]
+          - row [ref=e579]:
+            - cell "CSRF_COOKIE_AGE" [ref=e580]
+            - cell "31449600" [ref=e581]
+          - row [ref=e583]:
+            - cell "CSRF_COOKIE_DOMAIN" [ref=e584]
+            - cell "None" [ref=e585]
+          - row [ref=e587]:
+            - cell "CSRF_COOKIE_HTTPONLY" [ref=e588]
+            - cell "False" [ref=e589]
+          - row [ref=e591]:
+            - cell "CSRF_COOKIE_NAME" [ref=e592]
+            - cell "'csrftoken'" [ref=e593]
+          - row [ref=e595]:
+            - cell "CSRF_COOKIE_PATH" [ref=e596]
+            - cell "'/'" [ref=e597]
+          - row [ref=e599]:
+            - cell "CSRF_COOKIE_SAMESITE" [ref=e600]
+            - cell "'Lax'" [ref=e601]
+          - row [ref=e603]:
+            - cell "CSRF_COOKIE_SECURE" [ref=e604]
+            - cell "False" [ref=e605]
+          - row [ref=e607]:
+            - cell "CSRF_FAILURE_VIEW" [ref=e608]
+            - cell "'django.views.csrf.csrf_failure'" [ref=e609]
+          - row [ref=e611]:
+            - cell "CSRF_HEADER_NAME" [ref=e612]
+            - cell "'HTTP_X_CSRFTOKEN'" [ref=e613]
+          - row [ref=e615]:
+            - cell "CSRF_TRUSTED_ORIGINS" [ref=e616]
+            - cell "[]" [ref=e617]
+          - row [ref=e619]:
+            - cell "CSRF_USE_SESSIONS" [ref=e620]
+            - cell "False" [ref=e621]
+          - row [ref=e623]:
+            - cell "DATABASES" [ref=e624]
+            - 'cell "{''default'': {''ATOMIC_REQUESTS'': True, ''AUTOCOMMIT'': True, ''CONN_HEALTH_CHECKS'': False, ''CONN_MAX_AGE'': 0, ''ENGINE'': ''django.db.backends.mysql'', ''HOST'': ''db'', ''NAME'': ''feder3_copy_mb4'', ''OPTIONS'': {''charset'': ''utf8mb4'', ''init_command'': \"SET NAMES ''utf8mb4'' COLLATE \" \"''utf8mb4_polish_ci''\"}, ''PASSWORD'': ''********************'', ''PORT'': '''', ''TEST'': {''CHARSET'': None, ''COLLATION'': None, ''MIGRATE'': True, ''MIRROR'': None, ''NAME'': ''test_feder'', ''OPTIONS'': {''charset'': ''utf8mb4'', ''init_command'': \"SET NAMES ''utf8mb4'' COLLATE \" \"''utf8mb4_polish_ci''\"}}, ''TIME_ZONE'': None, ''USER'': ''root''}}" [ref=e625]'
+          - row [ref=e627]:
+            - cell "DATABASE_ROUTERS" [ref=e628]
+            - cell "[]" [ref=e629]
+          - row [ref=e631]:
+            - cell "DATA_UPLOAD_MAX_MEMORY_SIZE" [ref=e632]
+            - cell "200000000" [ref=e633]
+          - row [ref=e635]:
+            - cell "DATA_UPLOAD_MAX_NUMBER_FIELDS" [ref=e636]
+            - cell "1000" [ref=e637]
+          - row [ref=e639]:
+            - cell "DATA_UPLOAD_MAX_NUMBER_FILES" [ref=e640]
+            - cell "100" [ref=e641]
+          - row [ref=e643]:
+            - cell "DATETIME_FORMAT" [ref=e644]
+            - cell "'Y-m-d H:i:s'" [ref=e645]
+          - row [ref=e647]:
+            - cell "DATETIME_INPUT_FORMATS" [ref=e648]
+            - cell "['%Y-%m-%d %H:%M:%S', '%Y-%m-%d %H:%M:%S.%f', '%Y-%m-%d %H:%M', '%m/%d/%Y %H:%M:%S', '%m/%d/%Y %H:%M:%S.%f', '%m/%d/%Y %H:%M', '%m/%d/%y %H:%M:%S', '%m/%d/%y %H:%M:%S.%f', '%m/%d/%y %H:%M']" [ref=e649]
+          - row [ref=e651]:
+            - cell "DATE_FORMAT" [ref=e652]
+            - cell "'Y-m-d'" [ref=e653]
+          - row [ref=e655]:
+            - cell "DATE_INPUT_FORMATS" [ref=e656]
+            - cell "['%Y-%m-%d', '%m/%d/%Y', '%m/%d/%y', '%b %d %Y', '%b %d, %Y', '%d %b %Y', '%d %b, %Y', '%B %d %Y', '%B %d, %Y', '%d %B %Y', '%d %B, %Y']" [ref=e657]
+          - row [ref=e659]:
+            - cell "DEBUG" [ref=e660]
+            - cell "True" [ref=e661]
+          - row [ref=e663]:
+            - cell "DEBUG_PROPAGATE_EXCEPTIONS" [ref=e664]
+            - cell "False" [ref=e665]
+          - row [ref=e667]:
+            - cell "DEBUG_TOOLBAR_CONFIG" [ref=e668]
+            - 'cell "{''DISABLE_PANELS'': [''debug_toolbar.panels.redirects.RedirectsPanel''], ''SHOW_TEMPLATE_CONTEXT'': True, ''SHOW_TOOLBAR_CALLBACK'': <function <lambda> at 0x7f8ed1881760>}" [ref=e669]'
+          - row [ref=e671]:
+            - cell "DECIMAL_SEPARATOR" [ref=e672]
+            - cell "'.'" [ref=e673]
+          - row [ref=e675]:
+            - cell "DEFAULT_AUTO_FIELD" [ref=e676]
+            - cell "'django.db.models.AutoField'" [ref=e677]
+          - row [ref=e679]:
+            - cell "DEFAULT_CHARSET" [ref=e680]
+            - cell "'utf-8'" [ref=e681]
+          - row [ref=e683]:
+            - cell "DEFAULT_EXCEPTION_REPORTER" [ref=e684]
+            - cell "'django.views.debug.ExceptionReporter'" [ref=e685]
+          - row [ref=e687]:
+            - cell "DEFAULT_EXCEPTION_REPORTER_FILTER" [ref=e688]
+            - cell "'django.views.debug.SafeExceptionReporterFilter'" [ref=e689]
+          - row [ref=e691]:
+            - cell "DEFAULT_FROM_EMAIL" [ref=e692]
+            - cell "'feder_dev <noreply@dev.fedrowanie.siecobywatelska.pl>'" [ref=e693]
+          - row [ref=e695]:
+            - cell "DEFAULT_INDEX_TABLESPACE" [ref=e696]
+            - cell "''" [ref=e697]
+          - row [ref=e699]:
+            - cell "DEFAULT_TABLESPACE" [ref=e700]
+            - cell "''" [ref=e701]
+          - row [ref=e703]:
+            - cell "DISALLOWED_USER_AGENTS" [ref=e704]
+            - cell "[]" [ref=e705]
+          - row [ref=e707]:
+            - cell "DJANGO_APPS" [ref=e708]
+            - cell "('django.contrib.auth', 'django.contrib.contenttypes', 'django.contrib.sessions', 'django.contrib.sites', 'django.contrib.messages', 'django.contrib.staticfiles', 'django.contrib.sitemaps', 'django.contrib.humanize', 'django.contrib.admin')" [ref=e709]
+          - row [ref=e711]:
+            - cell "DJANGO_MAILBOX_COMPRESS_ORIGINAL_MESSAGE" [ref=e712]
+            - cell "True" [ref=e713]
+          - row [ref=e715]:
+            - cell "DJANGO_MAILBOX_STORE_ORIGINAL_MESSAGE" [ref=e716]
+            - cell "True" [ref=e717]
+          - row [ref=e719]:
+            - cell "EMAILLABS_APP_KEY" [ref=e720]
+            - cell "'********************'" [ref=e721]
+          - row [ref=e723]:
+            - cell "EMAILLABS_SECRET_KEY" [ref=e724]
+            - cell "'********************'" [ref=e725]
+          - row [ref=e727]:
+            - cell "EMAIL_BACKEND" [ref=e728]
+            - cell "'django.core.mail.backends.smtp.EmailBackend'" [ref=e729]
+          - row [ref=e731]:
+            - cell "EMAIL_HOST" [ref=e732]
+            - cell "'maildump'" [ref=e733]
+          - row [ref=e735]:
+            - cell "EMAIL_HOST_PASSWORD" [ref=e736]
+            - cell "'********************'" [ref=e737]
+          - row [ref=e739]:
+            - cell "EMAIL_HOST_USER" [ref=e740]
+            - cell "'feder_dev@dev.fedrowanie.siecobywatelska.pl'" [ref=e741]
+          - row [ref=e743]:
+            - cell "EMAIL_NOTIFICATION" [ref=e744]
+            - cell "'no-reply@siecobywatelska.pl'" [ref=e745]
+          - row [ref=e747]:
+            - cell "EMAIL_PORT" [ref=e748]
+            - cell "'1025'" [ref=e749]
+          - row [ref=e751]:
+            - cell "EMAIL_SSL_CERTFILE" [ref=e752]
+            - cell "None" [ref=e753]
+          - row [ref=e755]:
+            - cell "EMAIL_SSL_KEYFILE" [ref=e756]
+            - cell "'********************'" [ref=e757]
+          - row [ref=e759]:
+            - cell "EMAIL_SUBJECT_PREFIX" [ref=e760]
+            - cell "'[feder_dev] '" [ref=e761]
+          - row [ref=e763]:
+            - cell "EMAIL_TIMEOUT" [ref=e764]
+            - cell "None" [ref=e765]
+          - row [ref=e767]:
+            - cell "EMAIL_USE_LOCALTIME" [ref=e768]
+            - cell "False" [ref=e769]
+          - row [ref=e771]:
+            - cell "EMAIL_USE_SSL" [ref=e772]
+            - cell "False" [ref=e773]
+          - row [ref=e775]:
+            - cell "EMAIL_USE_TLS" [ref=e776]
+            - cell "False" [ref=e777]
+          - row [ref=e779]:
+            - cell "FILE_TO_TEXT_REQUEST_TIMEOUTS" [ref=e780]
+            - cell "[30, 300]" [ref=e781]
+          - row [ref=e783]:
+            - cell "FILE_TO_TEXT_TOKEN" [ref=e784]
+            - cell "'********************'" [ref=e785]
+          - row [ref=e787]:
+            - cell "FILE_TO_TEXT_URL" [ref=e788]
+            - cell "'http://192.168.100.120:9980/'" [ref=e789]
+          - row [ref=e791]:
+            - cell "FILE_UPLOAD_DIRECTORY_PERMISSIONS" [ref=e792]
+            - cell "None" [ref=e793]
+          - row [ref=e795]:
+            - cell "FILE_UPLOAD_HANDLERS" [ref=e796]
+            - cell "['django.core.files.uploadhandler.MemoryFileUploadHandler', 'django.core.files.uploadhandler.TemporaryFileUploadHandler']" [ref=e797]
+          - row [ref=e799]:
+            - cell "FILE_UPLOAD_MAX_MEMORY_SIZE" [ref=e800]
+            - cell "2621440" [ref=e801]
+          - row [ref=e803]:
+            - cell "FILE_UPLOAD_PERMISSIONS" [ref=e804]
+            - cell "420" [ref=e805]
+          - row [ref=e807]:
+            - cell "FILE_UPLOAD_TEMP_DIR" [ref=e808]
+            - cell "None" [ref=e809]
+          - row [ref=e811]:
+            - cell "FILTERS_HELP_TEXT_FILTER" [ref=e812]
+            - cell "False" [ref=e813]
+          - row [ref=e815]:
+            - cell "FIRST_DAY_OF_WEEK" [ref=e816]
+            - cell "0" [ref=e817]
+          - row [ref=e819]:
+            - cell "FIXTURE_DIRS" [ref=e820]
+            - cell "('/code/feder/fixtures',)" [ref=e821]
+          - row [ref=e823]:
+            - cell "FORCE_SCRIPT_NAME" [ref=e824]
+            - cell "None" [ref=e825]
+          - row [ref=e827]:
+            - cell "FORMAT_MODULE_PATH" [ref=e828]
+            - cell "None" [ref=e829]
+          - row [ref=e831]:
+            - cell "FORMS_URLFIELD_ASSUME_HTTPS" [ref=e832]
+            - cell "False" [ref=e833]
+          - row [ref=e835]:
+            - cell "FORM_RENDERER" [ref=e836]
+            - cell "'django.forms.renderers.DjangoTemplates'" [ref=e837]
+          - row [ref=e839]:
+            - cell "GITHUB_REVISION_REPO_URL" [ref=e840]
+            - cell "'https://github.com/watchdogpolska/feder'" [ref=e841]
+          - row [ref=e843]:
+            - cell "GUARDIAN_MONKEY_PATCH_GROUP" [ref=e844]
+            - cell "'********************'" [ref=e845]
+          - row [ref=e847]:
+            - cell "GUARDIAN_MONKEY_PATCH_USER" [ref=e848]
+            - cell "'********************'" [ref=e849]
+          - row [ref=e851]:
+            - cell "GUARDIAN_RAISE_403" [ref=e852]
+            - cell "True" [ref=e853]
+          - row [ref=e855]:
+            - cell "IGNORABLE_404_URLS" [ref=e856]
+            - cell "[]" [ref=e857]
+          - row [ref=e859]:
+            - cell "INSTALLED_APPS" [ref=e860]
+            - cell [ref=e861]
+          - row [ref=e863]:
+            - cell "INTERNAL_IPS" [ref=e864]
+            - cell "('127.0.0.1', '10.0.2.2', '192.168.100.112')" [ref=e865]
+          - row [ref=e867]:
+            - cell "LANGUAGES" [ref=e868]
+            - cell "(('pl', 'Polski'), ('en', 'Angielski'))" [ref=e869]
+          - row [ref=e871]:
+            - cell "LANGUAGES_BIDI" [ref=e872]
+            - cell "['he', 'ar', 'ar-dz', 'ckb', 'fa', 'ug', 'ur']" [ref=e873]
+          - row [ref=e875]:
+            - cell "LANGUAGE_CODE" [ref=e876]
+            - cell "'pl'" [ref=e877]
+          - row [ref=e879]:
+            - cell "LANGUAGE_COOKIE_AGE" [ref=e880]
+            - cell "None" [ref=e881]
+          - row [ref=e883]:
+            - cell "LANGUAGE_COOKIE_DOMAIN" [ref=e884]
+            - cell "None" [ref=e885]
+          - row [ref=e887]:
+            - cell "LANGUAGE_COOKIE_HTTPONLY" [ref=e888]
+            - cell "False" [ref=e889]
+          - row [ref=e891]:
+            - cell "LANGUAGE_COOKIE_NAME" [ref=e892]
+            - cell "'django_language'" [ref=e893]
+          - row [ref=e895]:
+            - cell "LANGUAGE_COOKIE_PATH" [ref=e896]
+            - cell "'/'" [ref=e897]
+          - row [ref=e899]:
+            - cell "LANGUAGE_COOKIE_SAMESITE" [ref=e900]
+            - cell "None" [ref=e901]
+          - row [ref=e903]:
+            - cell "LANGUAGE_COOKIE_SECURE" [ref=e904]
+            - cell "False" [ref=e905]
+          - row [ref=e907]:
+            - cell "LETTER_CATEGORIZATION_MAX_TOKENS" [ref=e908]
+            - cell "'********************'" [ref=e909]
+          - row [ref=e911]:
+            - cell "LETTER_NORMALIZATION_MAX_TOKENS" [ref=e912]
+            - cell "'********************'" [ref=e913]
+          - row [ref=e915]:
+            - cell "LETTER_RECEIVE_SECRET" [ref=e916]
+            - cell "'********************'" [ref=e917]
+          - row [ref=e919]:
+            - cell "LOCALE_PATHS" [ref=e920]
+            - cell "('/code/feder/main/locale',)" [ref=e921]
+          - row [ref=e923]:
+            - cell "LOCAL_APPS" [ref=e924]
+            - cell "('feder.teryt', 'feder.users', 'feder.institutions', 'feder.monitorings', 'feder.cases', 'feder.cases_tags', 'feder.letters', 'feder.alerts', 'feder.letters.logs', 'feder.domains', 'feder.records.apps.RecordsConfig', 'feder.parcels.apps.ParcelsConfig', 'feder.virus_scan', 'feder.organisations', 'feder.llm_evaluation')" [ref=e925]
+          - row [ref=e927]:
+            - cell "LOGGING" [ref=e928]
+            - 'cell "{''disable_existing_loggers'': False, ''formatters'': {''app'': {''datefmt'': ''%Y-%m-%d %H:%M:%S'', ''format'': ''%(asctime)s [%(levelname)-7s] '' ''(%(pathname)s:%(lineno)s) %(message)s''}}, ''handlers'': {''console'': {''class'': ''logging.StreamHandler'', ''formatter'': ''app''}, ''file'': {''class'': ''logging.FileHandler'', ''filename'': ''/code/logs/feder.log'', ''formatter'': ''app''}}, ''loggers'': {'''': {''handlers'': [''file'', ''console''], ''level'': ''INFO'', ''propagate'': True}, ''feder.letters.models'': {''handlers'': [''console''], ''level'': ''INFO''}}, ''version'': 1}" [ref=e929]'
+          - row [ref=e931]:
+            - cell "LOGGING_CONFIG" [ref=e932]
+            - cell "'logging.config.dictConfig'" [ref=e933]
+          - row [ref=e935]:
+            - cell "LOGIN_REDIRECT_URL" [ref=e936]
+            - cell "'users:redirect'" [ref=e937]
+          - row [ref=e939]:
+            - cell "LOGIN_URL" [ref=e940]
+            - cell "'account_login'" [ref=e941]
+          - row [ref=e943]:
+            - cell "LOGOUT_REDIRECT_URL" [ref=e944]
+            - cell "None" [ref=e945]
+          - row [ref=e947]:
+            - cell "LOG_FILE" [ref=e948]
+            - cell "'/code/logs/feder.log'" [ref=e949]
+          - row [ref=e951]:
+            - cell "LOG_FILE_ENV" [ref=e952]
+            - cell "'logs/feder.log'" [ref=e953]
+          - row [ref=e955]:
+            - cell "MANAGERS" [ref=e956]
+            - cell "()" [ref=e957]
+          - row [ref=e959]:
+            - cell "MEDIA_ROOT" [ref=e960]
+            - cell "'/code/feder/media_prod'" [ref=e961]
+          - row [ref=e963]:
+            - cell "MEDIA_ROOT_ENV" [ref=e964]
+            - cell "'media_prod'" [ref=e965]
+          - row [ref=e967]:
+            - cell "MEDIA_URL" [ref=e968]
+            - cell "'/media/'" [ref=e969]
+          - row [ref=e971]:
+            - cell "MESSAGE_STORAGE" [ref=e972]
+            - cell "'django.contrib.messages.storage.fallback.FallbackStorage'" [ref=e973]
+          - row [ref=e975]:
+            - cell "METADEFENDER_API_KEY" [ref=e976]
+            - cell "'********************'" [ref=e977]
+          - row [ref=e979]:
+            - cell "METADEFENDER_API_URL" [ref=e980]
+            - cell "'********************'" [ref=e981]
+          - row [ref=e983]:
+            - cell "MIDDLEWARE" [ref=e984]
+            - cell "('django.contrib.sessions.middleware.SessionMiddleware', 'corsheaders.middleware.CorsMiddleware', 'django.middleware.common.CommonMiddleware', 'django.middleware.csrf.CsrfViewMiddleware', 'django.contrib.auth.middleware.AuthenticationMiddleware', 'django.contrib.messages.middleware.MessageMiddleware', 'django.middleware.clickjacking.XFrameOptionsMiddleware', 'reversion.middleware.RevisionMiddleware', 'allauth.account.middleware.AccountMiddleware', 'debug_toolbar.middleware.DebugToolbarMiddleware')" [ref=e985]
+          - row [ref=e987]:
+            - cell "MIGRATION_MODULES" [ref=e988]
+            - 'cell "{''debug_toolbar'': None, ''sites'': ''feder.contrib.sites.migrations''}" [ref=e989]'
+          - row [ref=e991]:
+            - cell "MIN_FILTER_YEAR" [ref=e992]
+            - cell "2016" [ref=e993]
+          - row [ref=e995]:
+            - cell "MONITORING_NORMALIZATION_MAX_TOKENS" [ref=e996]
+            - cell "'********************'" [ref=e997]
+          - row [ref=e999]:
+            - cell "MONTH_DAY_FORMAT" [ref=e1000]
+            - cell "'F j'" [ref=e1001]
+          - row [ref=e1003]:
+            - cell "MY_INTERNAL_IP" [ref=e1004]
+            - cell "'192.168.100.112'" [ref=e1005]
+          - row [ref=e1007]:
+            - cell "NECESSARY_FILES" [ref=e1008]
+            - 'cell "{''letters.Attachment'': {''fields'': [''attachment''], ''path'': ''letter__record__case__monitoring''}, ''letters.Letter'': {''fields'': [''eml''], ''path'': ''record__case__monitoring''}, ''parcels.IncomingParcelPost'': {''fields'': [''content''], ''path'': ''record__case__monitoring''}, ''parcels.OutgoingParcelPost'': {''fields'': [''content''], ''path'': ''record__case__monitoring''}}" [ref=e1009]'
+          - row [ref=e1011]:
+            - cell "NUMBER_GROUPING" [ref=e1012]
+            - cell "0" [ref=e1013]
+          - row [ref=e1015]:
+            - cell "OPENAI_API_ENGINE_35" [ref=e1016]
+            - cell "'********************'" [ref=e1017]
+          - row [ref=e1019]:
+            - cell "OPENAI_API_ENGINE_35_MAX_COMPLETION_TOKENS" [ref=e1020]
+            - cell "'********************'" [ref=e1021]
+          - row [ref=e1023]:
+            - cell "OPENAI_API_ENGINE_35_MAX_TOKENS" [ref=e1024]
+            - cell "'********************'" [ref=e1025]
+          - row [ref=e1027]:
+            - cell "OPENAI_API_ENGINE_4" [ref=e1028]
+            - cell "'********************'" [ref=e1029]
+          - row [ref=e1031]:
+            - cell "OPENAI_API_ENGINE_4_MAX_COMPLETION_TOKENS" [ref=e1032]
+            - cell "'********************'" [ref=e1033]
+          - row [ref=e1035]:
+            - cell "OPENAI_API_ENGINE_4_MAX_TOKENS" [ref=e1036]
+            - cell "'********************'" [ref=e1037]
+          - row [ref=e1039]:
+            - cell "OPENAI_API_KEY" [ref=e1040]
+            - cell "'********************'" [ref=e1041]
+          - row [ref=e1043]:
+            - cell "OPENAI_API_TEMPERATURE" [ref=e1044]
+            - cell "'********************'" [ref=e1045]
+          - row [ref=e1047]:
+            - cell "OPENAI_API_TYPE" [ref=e1048]
+            - cell "'********************'" [ref=e1049]
+          - row [ref=e1051]:
+            - cell "OPENAI_API_VERSION" [ref=e1052]
+            - cell "'********************'" [ref=e1053]
+          - row [ref=e1055]:
+            - cell "PASSWORD_HASHERS" [ref=e1056]
+            - cell "'********************'" [ref=e1057]
+          - row [ref=e1059]:
+            - cell "PASSWORD_RESET_TIMEOUT" [ref=e1060]
+            - cell "'********************'" [ref=e1061]
+          - row [ref=e1063]:
+            - cell "PREPEND_WWW" [ref=e1064]
+            - cell "False" [ref=e1065]
+          - row [ref=e1067]:
+            - cell "PRIORITY_LOCAL_APPS" [ref=e1068]
+            - cell "('feder.main',)" [ref=e1069]
+          - row [ref=e1071]:
+            - cell "REST_FRAMEWORK" [ref=e1072]
+            - 'cell "{''DEFAULT_AUTHENTICATION_CLASSES'': ''********************'', ''DEFAULT_FILTER_BACKENDS'': (''django_filters.rest_framework.DjangoFilterBackend'',), ''DEFAULT_PAGINATION_CLASS'': ''feder.main.paginator.DefaultPagination'', ''DEFAULT_PERMISSION_CLASSES'': [''rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly''], ''PAGE_SIZE'': 100}" [ref=e1073]'
+          - row [ref=e1075]:
+            - cell "ROOT_DIR" [ref=e1076]
+            - cell "<Path:/code>" [ref=e1077]
+          - row [ref=e1079]:
+            - cell "ROOT_URLCONF" [ref=e1080]
+            - cell "'feder.main.urls'" [ref=e1081]
+          - row [ref=e1083]:
+            - cell "ROSETTA_ENABLE_TRANSLATION_SUGGESTIONS" [ref=e1084]
+            - cell "True" [ref=e1085]
+          - row [ref=e1087]:
+            - cell "ROSETTA_EXCLUDED_APPLICATIONS" [ref=e1088]
+            - cell "('django.contrib.admin', 'django.contrib.auth', 'crispy_forms', 'allauth', 'allauth.account', 'allauth.socialaccount', 'dal', 'dal_select2', 'tinymce', 'ajax_datatable', 'formtools', 'mptt', 'atom', 'guardian', 'teryt_tree', 'bootstrap_pagination', 'rest_framework', 'reversion', 'django_filters', 'background_task', 'corsheaders', 'rosetta', 'debug_toolbar')" [ref=e1089]
+          - row [ref=e1091]:
+            - cell "ROSETTA_SHOW_AT_ADMIN_PANEL" [ref=e1092]
+            - cell "True" [ref=e1093]
+          - row [ref=e1095]:
+            - cell "SECRET_KEY" [ref=e1096]
+            - cell "'********************'" [ref=e1097]
+          - row [ref=e1099]:
+            - cell "SECRET_KEY_FALLBACKS" [ref=e1100]
+            - cell "'********************'" [ref=e1101]
+          - row [ref=e1103]:
+            - cell "SECURE_CONTENT_TYPE_NOSNIFF" [ref=e1104]
+            - cell "True" [ref=e1105]
+          - row [ref=e1107]:
+            - cell "SECURE_CROSS_ORIGIN_OPENER_POLICY" [ref=e1108]
+            - cell "'same-origin'" [ref=e1109]
+          - row [ref=e1111]:
+            - cell "SECURE_HSTS_INCLUDE_SUBDOMAINS" [ref=e1112]
+            - cell "False" [ref=e1113]
+          - row [ref=e1115]:
+            - cell "SECURE_HSTS_PRELOAD" [ref=e1116]
+            - cell "False" [ref=e1117]
+          - row [ref=e1119]:
+            - cell "SECURE_HSTS_SECONDS" [ref=e1120]
+            - cell "0" [ref=e1121]
+          - row [ref=e1123]:
+            - cell "SECURE_PROXY_SSL_HEADER" [ref=e1124]
+            - cell "None" [ref=e1125]
+          - row [ref=e1127]:
+            - cell "SECURE_REDIRECT_EXEMPT" [ref=e1128]
+            - cell "[]" [ref=e1129]
+          - row [ref=e1131]:
+            - cell "SECURE_REFERRER_POLICY" [ref=e1132]
+            - cell "'same-origin'" [ref=e1133]
+          - row [ref=e1135]:
+            - cell "SECURE_SSL_HOST" [ref=e1136]
+            - cell "None" [ref=e1137]
+          - row [ref=e1139]:
+            - cell "SECURE_SSL_REDIRECT" [ref=e1140]
+            - cell "False" [ref=e1141]
+          - row [ref=e1143]:
+            - cell "SENDFILE_BACKEND" [ref=e1144]
+            - cell "'django_sendfile.backends.development'" [ref=e1145]
+          - row [ref=e1147]:
+            - cell "SENDFILE_ROOT" [ref=e1148]
+            - cell "'/code/feder/media_prod'" [ref=e1149]
+          - row [ref=e1151]:
+            - cell "SERVER_EMAIL" [ref=e1152]
+            - cell "'feder <<noreply@dane.siecobywatelska.pl>'" [ref=e1153]
+          - row [ref=e1155]:
+            - cell "SESSION_CACHE_ALIAS" [ref=e1156]
+            - cell "'default'" [ref=e1157]
+          - row [ref=e1159]:
+            - cell "SESSION_COOKIE_AGE" [ref=e1160]
+            - cell "1209600" [ref=e1161]
+          - row [ref=e1163]:
+            - cell "SESSION_COOKIE_DOMAIN" [ref=e1164]
+            - cell "None" [ref=e1165]
+          - row [ref=e1167]:
+            - cell "SESSION_COOKIE_HTTPONLY" [ref=e1168]
+            - cell "True" [ref=e1169]
+          - row [ref=e1171]:
+            - cell "SESSION_COOKIE_NAME" [ref=e1172]
+            - cell "'sessionid'" [ref=e1173]
+          - row [ref=e1175]:
+            - cell "SESSION_COOKIE_PATH" [ref=e1176]
+            - cell "'/'" [ref=e1177]
+          - row [ref=e1179]:
+            - cell "SESSION_COOKIE_SAMESITE" [ref=e1180]
+            - cell "'Lax'" [ref=e1181]
+          - row [ref=e1183]:
+            - cell "SESSION_COOKIE_SECURE" [ref=e1184]
+            - cell "False" [ref=e1185]
+          - row [ref=e1187]:
+            - cell "SESSION_ENGINE" [ref=e1188]
+            - cell "'django.contrib.sessions.backends.db'" [ref=e1189]
+          - row [ref=e1191]:
+            - cell "SESSION_EXPIRE_AT_BROWSER_CLOSE" [ref=e1192]
+            - cell "False" [ref=e1193]
+          - row [ref=e1195]:
+            - cell "SESSION_FILE_PATH" [ref=e1196]
+            - cell "None" [ref=e1197]
+          - row [ref=e1199]:
+            - cell "SESSION_SAVE_EVERY_REQUEST" [ref=e1200]
+            - cell "False" [ref=e1201]
+          - row [ref=e1203]:
+            - cell "SESSION_SERIALIZER" [ref=e1204]
+            - cell "'django.contrib.sessions.serializers.JSONSerializer'" [ref=e1205]
+          - row [ref=e1207]:
+            - cell "SETTINGS_MODULE" [ref=e1208]
+            - cell "'config.settings.local'" [ref=e1209]
+          - row [ref=e1211]:
+            - cell "SHORT_DATETIME_FORMAT" [ref=e1212]
+            - cell "'m/d/Y P'" [ref=e1213]
+          - row [ref=e1215]:
+            - cell "SHORT_DATE_FORMAT" [ref=e1216]
+            - cell "'m/d/Y'" [ref=e1217]
+          - row [ref=e1219]:
+            - cell "SIGNED_COOKIE_LEGACY_SALT_FALLBACK" [ref=e1220]
+            - cell "True" [ref=e1221]
+          - row [ref=e1223]:
+            - cell "SIGNING_BACKEND" [ref=e1224]
+            - cell "'django.core.signing.TimestampSigner'" [ref=e1225]
+          - row [ref=e1227]:
+            - cell "SILENCED_SYSTEM_CHECKS" [ref=e1228]
+            - cell "[]" [ref=e1229]
+          - row [ref=e1231]:
+            - cell "SITE_ID" [ref=e1232]
+            - cell "1" [ref=e1233]
+          - row [ref=e1235]:
+            - cell "SOCIALACCOUNT_EMAIL_VERIFICATION" [ref=e1236]
+            - cell "'optional'" [ref=e1237]
+          - row [ref=e1239]:
+            - cell "SOCIALACCOUNT_PROVIDERS" [ref=e1240]
+            - 'cell "{''github'': {''SCOPE'': [''user'']}, ''gitlab'': {''SCOPE'': [''read_user'', ''openid'']}}" [ref=e1241]'
+          - row [ref=e1243]:
+            - cell "STATICFILES_DIRS" [ref=e1244]
+            - cell "('/code/feder/static',)" [ref=e1245]
+          - row [ref=e1247]:
+            - cell "STATICFILES_FINDERS" [ref=e1248]
+            - cell "('django.contrib.staticfiles.finders.FileSystemFinder', 'django.contrib.staticfiles.finders.AppDirectoriesFinder')" [ref=e1249]
+          - row [ref=e1251]:
+            - cell "STATIC_ROOT" [ref=e1252]
+            - cell "'/code/staticfiles'" [ref=e1253]
+          - row [ref=e1255]:
+            - cell "STATIC_URL" [ref=e1256]
+            - cell "'/static/'" [ref=e1257]
+          - row [ref=e1259]:
+            - cell "STORAGES" [ref=e1260]
+            - 'cell "{''default'': {''BACKEND'': ''django.core.files.storage.FileSystemStorage''}, ''staticfiles'': {''BACKEND'': ''django.contrib.staticfiles.storage.StaticFilesStorage''}}" [ref=e1261]'
+          - row [ref=e1263]:
+            - cell "STRFTIME_DATE_FORMAT" [ref=e1264]
+            - cell "'%Y-%m-%d'" [ref=e1265]
+          - row [ref=e1267]:
+            - cell "STRFTIME_FORMAT" [ref=e1268]
+            - cell "'%Y-%m-%d %H:%M:%S'" [ref=e1269]
+          - row [ref=e1271]:
+            - cell "TEMPLATES" [ref=e1272]
+            - 'cell "[{''BACKEND'': ''django.template.backends.django.DjangoTemplates'', ''OPTIONS'': {''context_processors'': [''django.template.context_processors.debug'', ''django.template.context_processors.request'', ''django.contrib.auth.context_processors.auth'', ''django.template.context_processors.i18n'', ''django.template.context_processors.media'', ''django.template.context_processors.static'', ''django.template.context_processors.tz'', ''django.contrib.messages.context_processors.messages''], ''debug'': True, ''loaders'': [''django.template.loaders.filesystem.Loader'', ''django.template.loaders.app_directories.Loader'']}}]" [ref=e1273]'
+          - row [ref=e1275]:
+            - cell "TEST_NON_SERIALIZED_APPS" [ref=e1276]
+            - cell "[]" [ref=e1277]
+          - row [ref=e1279]:
+            - cell "TEST_RUNNER" [ref=e1280]
+            - cell "'django.test.runner.DiscoverRunner'" [ref=e1281]
+          - row [ref=e1283]:
+            - cell "THIRD_PARTY_APPS" [ref=e1284]
+            - cell "('crispy_forms', 'crispy_bootstrap5', 'allauth', 'allauth.account', 'allauth.socialaccount', 'dal', 'dal_select2', 'tinycontent', 'django_extensions', 'tinymce', 'ajax_datatable', 'formtools', 'mptt', 'atom', 'guardian', 'teryt_tree', 'bootstrap_pagination', 'rest_framework', 'reversion', 'django_filters', 'background_task', 'corsheaders', 'rosetta')" [ref=e1285]
+          - row [ref=e1287]:
+            - cell "THOUSAND_SEPARATOR" [ref=e1288]
+            - cell "','" [ref=e1289]
+          - row [ref=e1291]:
+            - cell "TIME_FORMAT" [ref=e1292]
+            - cell "'P'" [ref=e1293]
+          - row [ref=e1295]:
+            - cell "TIME_INPUT_FORMATS" [ref=e1296]
+            - cell "['%H:%M:%S', '%H:%M:%S.%f', '%H:%M']" [ref=e1297]
+          - row [ref=e1299]:
+            - cell "TIME_ZONE" [ref=e1300]
+            - cell "'Europe/Warsaw'" [ref=e1301]
+          - row [ref=e1303]:
+            - cell "TINYMCE_DEFAULT_CONFIG" [ref=e1304]
+            - 'cell "{''lineheight'': 1, ''menubar'': True, ''plugins'': ''autolink,lists,link,image,charmap,preview,anchor,searchreplace,visualblocks,code,fullscreen,insertdatetime,media,table,code,help,wordcount'', ''promotion'': False, ''theme'': ''silver'', ''toolbar'': ''undo redo | formatselect | lineheight | fontsizeselect |bold '' ''italic backcolor | alignleft aligncenter alignright alignjustify '' ''| bullist numlist outdent indent | charmap | removeformat | help''}" [ref=e1305]'
+          - row [ref=e1307]:
+            - cell "USE_I18N" [ref=e1308]
+            - cell "True" [ref=e1309]
+          - row [ref=e1311]:
+            - cell "USE_THOUSAND_SEPARATOR" [ref=e1312]
+            - cell "False" [ref=e1313]
+          - row [ref=e1315]:
+            - cell "USE_TZ" [ref=e1316]
+            - cell "True" [ref=e1317]
+          - row [ref=e1319]:
+            - cell "USE_X_FORWARDED_HOST" [ref=e1320]
+            - cell "False" [ref=e1321]
+          - row [ref=e1323]:
+            - cell "USE_X_FORWARDED_PORT" [ref=e1324]
+            - cell "False" [ref=e1325]
+          - row [ref=e1327]:
+            - cell "VIRUSTOTAL_API_KEY" [ref=e1328]
+            - cell "'********************'" [ref=e1329]
+          - row [ref=e1331]:
+            - cell "WSGI_APPLICATION" [ref=e1332]
+            - cell "'config.wsgi.application'" [ref=e1333]
+          - row [ref=e1335]:
+            - cell "X_FRAME_OPTIONS" [ref=e1336]
+            - cell "'DENY'" [ref=e1337]
+          - row [ref=e1339]:
+            - cell "YEAR_MONTH_FORMAT" [ref=e1340]
+            - cell "'F Y'" [ref=e1341]
+  - contentinfo [ref=e1343]:
+    - paragraph [ref=e1344]:
+      - text: You’re seeing this error because you have
+      - code [ref=e1345]: DEBUG = True
+      - text: in your Django settings file. Change that to
+      - code [ref=e1346]: "False"
+      - text: ", and Django will display a standard page generated by the handler for this status code."
+  - list [ref=e1349]:
+    - listitem [ref=e1350]:
+      - link "Ukryj »" [ref=e1351] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e1352]:
+      - link "Toggle Theme" [ref=e1353] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e1356]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e1357]
+      - link "Historia /monitoringi/monitoring-sadow-apelacyjnych/responses-report" [ref=e1358] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e1359]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e1360]
+      - link "Wersje Django 5.2.17" [ref=e1361] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e1362]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e1363]
+      - 'link "Czas CPU: 102.88ms (104.79ms)" [ref=e1364] [cursor=pointer]':
+        - /url: "#"
+    - listitem [ref=e1365]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e1366]
+      - link "Ustawienia" [ref=e1367] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e1368]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e1369]
+      - link "Nagłówki" [ref=e1370] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e1371]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e1372]
+      - link "Zapytania MonitoringResponsesReportView" [ref=e1373] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e1374]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e1375]
+      - link "SQL 6 queries in 1.87ms" [ref=e1376] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e1377]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e1378]
+      - link "Pliki statyczne 0 użytych plików" [ref=e1379] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e1380]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e1381]
+      - link "Templatki" [ref=e1382] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e1383]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e1384]
+      - link "Alerty" [ref=e1385] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e1386]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e1387]
+      - link "Cache 0 wywołań w 0.00ms" [ref=e1388] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e1389]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e1390]
+      - link "Sygnały 88 odbiorców 15 sygnałów" [ref=e1391] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e1392]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e1393]
+      - link "Gmina" [ref=e1394] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e1395]:
+      - checkbox "Enable for next and successive requests" [ref=e1396]
+      - generic [ref=e1397]: Przechwycone przekierowania
+    - listitem [ref=e1398]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e1399]
+      - link "Profilowanie" [ref=e1400] [cursor=pointer]:
+        - /url: "#"
+```
+
+# Test source
+
+```ts
+  1  | import { test, expect } from '@playwright/test';
+  2  | import { PAGES } from './pages';
+  3  | import { VIEWPORTS } from './viewports';
+  4  | 
+  5  | // Bootstrap 3's `.row` negative margins (-15px) routinely push scrollWidth ~4px past
+  6  | // clientWidth on every page even with no visible scrollbar - that's cosmetic BS3 grid
+  7  | // noise, not real overflow. A genuinely overflowing wide table measured ~278px over.
+  8  | // This tolerance separates the two instead of flagging every single page.
+  9  | const OVERFLOW_TOLERANCE_PX = 20;
+  10 | 
+  11 | test.describe('Layout sanity - desktop', () => {
+  12 |   test.use({ viewport: VIEWPORTS.desktop });
+  13 | 
+  14 |   for (const page of PAGES) {
+  15 |     test(`${page.name} - no horizontal overflow`, async ({ page: pw }) => {
+  16 |       await pw.goto(page.path);
+  17 |       await pw.waitForLoadState('networkidle');
+  18 |       const overflowPx = await pw.evaluate(() =>
+  19 |         document.documentElement.scrollWidth - document.documentElement.clientWidth
+  20 |       );
+  21 |       expect(overflowPx, 'Page has horizontal scroll').toBeLessThanOrEqual(OVERFLOW_TOLERANCE_PX);
+  22 |     });
+  23 |   }
+  24 | });
+  25 | 
+  26 | test.describe('Layout sanity - mobile', () => {
+  27 |   test.use({ viewport: VIEWPORTS.mobile });
+  28 | 
+  29 |   for (const page of PAGES) {
+  30 |     test(`${page.name} - no horizontal overflow on mobile`, async ({ page: pw }) => {
+  31 |       await pw.goto(page.path);
+  32 |       await pw.waitForLoadState('networkidle');
+  33 |       const overflowPx = await pw.evaluate(() =>
+  34 |         document.documentElement.scrollWidth - document.documentElement.clientWidth
+  35 |       );
+> 36 |       expect(overflowPx, 'Mobile layout has horizontal scroll').toBeLessThanOrEqual(OVERFLOW_TOLERANCE_PX);
+     |                                                                 ^ Error: Mobile layout has horizontal scroll
+  37 |     });
+  38 |   }
+  39 | });
+  40 | 
+  41 | // This app's desktop layout (feder/main/templates/base.html) is a permanent left
+  42 | // `.sidebar` next to `.content`, not a top navbar - `.navbar` is `display: none` above
+  43 | // the mobile breakpoint (it only reappears, with `.navbar-toggle`, on small screens).
+  44 | // So "nav above content" doesn't apply on desktop; the real desktop invariant is
+  45 | // "sidebar sits to the left of content", checked below instead.
+  46 | test.describe('Navigation structure', () => {
+  47 |   test.use({ viewport: VIEWPORTS.desktop });
+  48 | 
+  49 |   test('sidebar is left of main content on desktop', async ({ page: pw }) => {
+  50 |     await pw.goto('/');
+  51 |     await pw.waitForLoadState('networkidle');
+  52 |     const sidebarBox = await pw.locator('.sidebar').first().boundingBox();
+  53 |     const contentBox = await pw.locator('.content').first().boundingBox();
+  54 |     expect(sidebarBox).toBeTruthy();
+  55 |     expect(contentBox).toBeTruthy();
+  56 |     expect(sidebarBox!.x + sidebarBox!.width).toBeLessThanOrEqual(contentBox!.x + 5);
+  57 |   });
+  58 | 
+  59 |   test('navbar collapses on mobile', async ({ page: pw }) => {
+  60 |     await pw.setViewportSize(VIEWPORTS.mobile);
+  61 |     await pw.goto('/');
+  62 |     await pw.waitForLoadState('networkidle');
+  63 |     const toggle = pw.locator('.navbar-toggle, .navbar-toggler');
+  64 |     await expect(toggle).toBeVisible();
+  65 |   });
+  66 | });
+  67 | 
+```

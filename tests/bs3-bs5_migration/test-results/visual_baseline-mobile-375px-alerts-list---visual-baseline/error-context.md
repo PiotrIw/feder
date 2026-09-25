@@ -1,0 +1,792 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: visual_baseline.spec.ts >> mobile (375px) >> alerts-list - visual baseline
+- Location: tests/bs3-bs5_migration/visual_baseline.spec.ts:10:11
+
+# Error details
+
+```
+Error: expect(page).toHaveScreenshot(expected) failed
+
+  Expected an image 386px by 8522px, received 383px by 8421px. 405816 pixels (ratio 0.13 of all image pixels) are different.
+
+  Snapshot: alerts-list-mobile.png
+
+Call log:
+  - Expect "toHaveScreenshot(alerts-list-mobile.png)" with timeout 5000ms
+    - verifying given screenshot expectation
+  - taking page screenshot
+    - disabled all CSS animations
+  - waiting for fonts to load...
+  - fonts loaded
+  - Expected an image 386px by 8522px, received 383px by 8421px. 405816 pixels (ratio 0.13 of all image pixels) are different.
+  - waiting 100ms before taking screenshot
+  - taking page screenshot
+    - disabled all CSS animations
+  - waiting for fonts to load...
+  - fonts loaded
+  - captured a stable screenshot
+  - Expected an image 386px by 8522px, received 383px by 8421px. 405816 pixels (ratio 0.13 of all image pixels) are different.
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e3]:
+      - button "Przełącz nawigacje" [ref=e4] [cursor=pointer]
+      - link [ref=e7] [cursor=pointer]:
+        - /url: /
+        - img "Fedrowanie" [ref=e8]
+      - heading "Obywatelskie fedrowanie danych" [level=1] [ref=e9]
+  - generic [ref=e10]:
+    - text: )
+    - generic [ref=e11]:
+      - generic [ref=e12]:
+        - heading "DEV" [level=1] [ref=e13]
+        - link [ref=e14] [cursor=pointer]:
+          - /url: /
+          - img "Fedrowanie" [ref=e16]
+          - paragraph [ref=e17]: Fedrowanie
+        - paragraph [ref=e18]:
+          - link "Sieci Watchdog" [ref=e19] [cursor=pointer]:
+            - /url: http://siecobywatelska.pl
+        - paragraph [ref=e20]:
+          - link "Klauzula RODO" [ref=e21] [cursor=pointer]:
+            - /url: https://fedrowanie.siecobywatelska.pl/media_internal/tinycontent/uploads/11_KLAUZULA.-.dane.z.udip.na.stronach.www.i.w.mediach.spol.pdf
+      - list [ref=e23]:
+        - listitem [ref=e24]:
+          - paragraph [ref=e25]
+        - listitem [ref=e26]:
+          - link "Strona główna" [ref=e27] [cursor=pointer]:
+            - /url: /
+        - listitem [ref=e29]:
+          - link "O stronie" [ref=e30] [cursor=pointer]:
+            - /url: /o-stronie/
+        - listitem [ref=e32]:
+          - paragraph [ref=e33]
+        - generic [ref=e34]: Szukaj
+        - listitem [ref=e36]:
+          - link "Sprawy" [ref=e37] [cursor=pointer]:
+            - /url: /sprawy/
+        - listitem [ref=e39]:
+          - link "Monitoringi" [ref=e40] [cursor=pointer]:
+            - /url: /monitoringi/
+        - listitem [ref=e42]:
+          - link "Tabela monitoringów" [ref=e43] [cursor=pointer]:
+            - /url: /monitoringi/table/
+        - listitem [ref=e45]:
+          - link "Listy przypisane do spraw" [ref=e46] [cursor=pointer]:
+            - /url: /listy/
+        - listitem [ref=e48]:
+          - link "Listy nieprzypisane do spraw" [ref=e49] [cursor=pointer]:
+            - /url: /listy/przypisz
+        - listitem [ref=e51]:
+          - link "Instytucje" [ref=e52] [cursor=pointer]:
+            - /url: /instytucje/
+        - listitem [ref=e54]:
+          - paragraph [ref=e55]
+      - generic [ref=e56]:
+        - generic [ref=e57]: Użytkownik / użytkowniczka
+        - listitem [ref=e58]:
+          - link "Mój profil" [ref=e59] [cursor=pointer]:
+            - /url: /uzytkownik/claude_ai/
+        - listitem [ref=e61]:
+          - link "Panel administracyjny" [ref=e62] [cursor=pointer]:
+            - /url: /admin/
+        - listitem [ref=e64]:
+          - link "Wyloguj" [ref=e65] [cursor=pointer]:
+            - /url: /accounts/logout/
+    - generic [ref=e68]:
+      - heading "Wykaz alertów" [level=2] [ref=e70]
+      - generic [ref=e71]:
+        - generic [ref=e74]:
+          - generic [ref=e75]:
+            - generic [ref=e76]: Przyczyna zawiera
+            - textbox "Przyczyna zawiera" [ref=e77]
+          - generic [ref=e78]:
+            - generic [ref=e79]: Autor
+            - combobox "Autor" [ref=e80]:
+              - option "---------" [selected]
+              - option "AnonymousUser"
+              - option "adobrawy"
+              - option "TymonR"
+              - option "Szymon_Osowski"
+              - option "KatarzynaBatkoToluc"
+              - option "martyna_b"
+              - option "MichalHenzler"
+              - option "kamil.bregula"
+              - option "karoleks"
+              - option "m.meyer"
+              - option "BartoszWilk"
+              - option "AgnieszkaZdanowicz"
+              - option "pawe"
+              - option "kbiernat"
+              - option "rafalg"
+              - option "PatrykWachowiec"
+              - option "joanna.gucman@siecobywatelska.pl"
+              - option "katarzyna"
+              - option "lvk11"
+              - option "krzysztof"
+              - option "AgnieszkaP"
+              - option "adam"
+              - option "dzezi"
+              - option "kacper"
+              - option "grzesiu"
+              - option "pawe04"
+              - option "grzegorz"
+              - option "jan"
+              - option "Tomek"
+              - option "ela"
+              - option "elzbieta.rzezniczek"
+              - option "mario"
+              - option "Kot_Ocelot"
+              - option "filczyk"
+              - option "bartosz"
+              - option "Busola"
+              - option "scorpano11"
+              - option "Sylwia"
+              - option "majkelwatch"
+              - option "Michal"
+              - option "andtud"
+              - option "falco"
+              - option "Wustenfuchs"
+              - option "katarzyna.witek@siecobywatelska.pl"
+              - option "Gonzilez"
+              - option "Koliber2"
+              - option "Czarna"
+              - option "reAKCJA"
+              - option "quina"
+              - option "krzysztof5"
+              - option "paulinamalczyk.fe@gmail.com"
+              - option "bartoszkopec"
+              - option "adam4"
+              - option "Kecaj1984"
+              - option "Turgon88"
+              - option "Ozi123"
+              - option "wlodek"
+              - option "psobczak"
+              - option "Tomek_Trela"
+              - option "ukasz"
+              - option "Paula"
+              - option "bfbednarczyk@gmail.com"
+              - option "robak59"
+              - option "Cysioland"
+              - option "wojzwo"
+              - option "tomasz.serwin"
+              - option "Sebgat"
+              - option "KrystianGraba"
+              - option "dawid"
+              - option "Jakub.S"
+              - option "michal5"
+              - option "mrbojko"
+              - option "Jarek_Kant"
+              - option "MarzenaBlaszczyk"
+              - option "m_kokoszkiewicz"
+              - option "gierwiatowska.natalia@gmail.com"
+              - option "agn.zdanowicz@gmail.com"
+              - option "jan4"
+              - option "dariusz"
+              - option "fedr"
+              - option "RobWlo"
+              - option "Monika27"
+              - option "rena2ekiel@interia.eu"
+              - option "jari"
+              - option "rdzawian1"
+              - option "piotr.grudzien@pfr.pl"
+              - option "nina"
+              - option "jakub"
+              - option "majka63@gmail.com"
+              - option "Oliwia"
+              - option "Roksana"
+              - option "ArturR"
+              - option "monika"
+              - option "gminne.sprawy"
+              - option "dawid7"
+              - option "KKowalewski"
+              - option "stowarzyszenie"
+              - option "jakacki@lasyiobywatele.pl"
+              - option "marta@lasyiobywatele.pl"
+              - option "paulina@lasyiobywatele.pl"
+              - option "rafa"
+              - option "ohana"
+              - option "micha"
+              - option "redakcja@ntvsadecka.pl"
+              - option "52edc"
+              - option "Zbucki"
+              - option "dawid8"
+              - option "d.gruchala@dygowo.pl"
+              - option "rad.ram@wp.pl"
+              - option "k.noga@swidnica.zgora.pl"
+              - option "KarlaM2"
+              - option "krzysiek"
+              - option "mjendryczka"
+              - option "pracownik"
+              - option "artur"
+              - option "HotIce"
+              - option "jerzy"
+              - option "Kszychu"
+              - option "jakub1"
+              - option "ela_i_mirek"
+              - option "adam7"
+              - option "nikol"
+              - option "Bartek"
+              - option "paulina"
+              - option "leon"
+              - option "tetiana"
+              - option "ryszardek"
+              - option "fundacjapoledialogu"
+              - option "lpawlikowski"
+              - option "jolka"
+              - option "olek"
+              - option "transparentne"
+              - option "SOWP"
+              - option "midland"
+              - option "tomek_11"
+              - option "lipigorskiarek@gmail.com"
+              - option "arkadiusz"
+              - option "kamil"
+              - option "Szymon_Dubiel"
+              - option "JAN49"
+              - option "mkaczmarczyk"
+              - option "inspektor"
+              - option "dariusz5"
+              - option "tomek4"
+              - option "jolanta"
+              - option "grzegorz8"
+              - option "jan3"
+              - option "kacper0"
+              - option "piotriw"
+              - option "marcinbojko"
+              - option "zbigniew"
+              - option "pawe0"
+              - option "jacek"
+              - option "pawe3"
+              - option "michalina"
+              - option "zapka"
+              - option "arturfrautschi"
+              - option "kancelaria_doradcow"
+              - option "przemek"
+              - option "jarzar"
+              - option "agnzdanowicz"
+              - option "piotr"
+              - option "lukaszgorczynski"
+              - option "konradzukowski"
+              - option "JanR"
+              - option "APalecka"
+              - option "kacper_daniel"
+              - option "anna"
+              - option "pawel"
+              - option "tuujgqdetw"
+              - option "katarzyna8"
+              - option "Ania_De"
+              - option "micha5"
+              - option "andrzej9"
+              - option "andrzej7"
+              - option "sylwester"
+              - option "joannagrzelinska"
+              - option "bartlomiej"
+              - option "gerard"
+              - option "WilczyGon"
+              - option "Krzaczek"
+              - option "alina.czyzewska@gmail.com"
+              - option "mary91"
+              - option "maverick"
+              - option "adam.iwanczuk@siecobywatelska.pl"
+              - option "tginpxehsb"
+              - option "PiIw"
+              - option "IOD"
+              - option "claude_ai"
+          - generic [ref=e81]:
+            - generic [ref=e82]: Status
+            - combobox "Status" [ref=e83]:
+              - option "Nieznany" [selected]
+              - option "Tak"
+              - option "Nie"
+          - button "Filtruj" [ref=e84] [cursor=pointer]
+        - generic [ref=e86]:
+          - generic [ref=e87]:
+            - heading [level=3] [ref=e88]:
+              - link "2017-10-18 20:41:18.641909+00:00" [ref=e90] [cursor=pointer]:
+                - /url: /alerty/1
+            - table [ref=e91]:
+              - rowgroup [ref=e92]:
+                - row [ref=e93]:
+                  - cell "Data utworzenia" [ref=e94]
+                  - cell "18 października 2017 22:41" [ref=e95]
+                - row [ref=e96]:
+                  - cell "Autor" [ref=e97]
+                  - cell "None" [ref=e98]
+                - row [ref=e99]:
+                  - cell "Status" [ref=e100]
+                  - cell "Zamknięte" [ref=e101]
+            - paragraph [ref=e102]: SPAM
+          - generic [ref=e103]:
+            - heading [level=3] [ref=e104]:
+              - link "2018-02-03 16:26:47.808326+00:00" [ref=e106] [cursor=pointer]:
+                - /url: /alerty/2
+            - table [ref=e107]:
+              - rowgroup [ref=e108]:
+                - row [ref=e109]:
+                  - cell "Data utworzenia" [ref=e110]
+                  - cell "3 lutego 2018 17:26" [ref=e111]
+                - row [ref=e112]:
+                  - cell "Autor" [ref=e113]
+                  - cell "None" [ref=e114]
+                - row [ref=e115]:
+                  - cell "Status" [ref=e116]
+                  - cell "Zamknięte" [ref=e117]
+            - paragraph [ref=e118]: SPAM
+          - generic [ref=e119]:
+            - heading [level=3] [ref=e120]:
+              - link "2018-02-03 16:27:06.439377+00:00" [ref=e122] [cursor=pointer]:
+                - /url: /alerty/3
+            - table [ref=e123]:
+              - rowgroup [ref=e124]:
+                - row [ref=e125]:
+                  - cell "Data utworzenia" [ref=e126]
+                  - cell "3 lutego 2018 17:27" [ref=e127]
+                - row [ref=e128]:
+                  - cell "Autor" [ref=e129]
+                  - cell "None" [ref=e130]
+                - row [ref=e131]:
+                  - cell "Status" [ref=e132]
+                  - cell "Zamknięte" [ref=e133]
+            - paragraph [ref=e134]: SPAM
+          - generic [ref=e135]:
+            - heading [level=3] [ref=e136]:
+              - link "2018-02-03 16:39:07.103579+00:00" [ref=e138] [cursor=pointer]:
+                - /url: /alerty/4
+            - table [ref=e139]:
+              - rowgroup [ref=e140]:
+                - row [ref=e141]:
+                  - cell "Data utworzenia" [ref=e142]
+                  - cell "3 lutego 2018 17:39" [ref=e143]
+                - row [ref=e144]:
+                  - cell "Autor" [ref=e145]
+                  - cell "None" [ref=e146]
+                - row [ref=e147]:
+                  - cell "Status" [ref=e148]
+                  - cell "Zamknięte" [ref=e149]
+            - paragraph [ref=e150]: SPAM
+          - generic [ref=e151]:
+            - heading [level=3] [ref=e152]:
+              - link "2018-02-03 16:41:32.202668+00:00" [ref=e154] [cursor=pointer]:
+                - /url: /alerty/5
+            - table [ref=e155]:
+              - rowgroup [ref=e156]:
+                - row [ref=e157]:
+                  - cell "Data utworzenia" [ref=e158]
+                  - cell "3 lutego 2018 17:41" [ref=e159]
+                - row [ref=e160]:
+                  - cell "Autor" [ref=e161]
+                  - cell "None" [ref=e162]
+                - row [ref=e163]:
+                  - cell "Status" [ref=e164]
+                  - cell "Zamknięte" [ref=e165]
+            - paragraph [ref=e166]: SPAM
+          - generic [ref=e167]:
+            - heading [level=3] [ref=e168]:
+              - link "2018-02-03 16:41:50.881654+00:00" [ref=e170] [cursor=pointer]:
+                - /url: /alerty/6
+            - table [ref=e171]:
+              - rowgroup [ref=e172]:
+                - row [ref=e173]:
+                  - cell "Data utworzenia" [ref=e174]
+                  - cell "3 lutego 2018 17:41" [ref=e175]
+                - row [ref=e176]:
+                  - cell "Autor" [ref=e177]
+                  - cell "None" [ref=e178]
+                - row [ref=e179]:
+                  - cell "Status" [ref=e180]
+                  - cell "Zamknięte" [ref=e181]
+            - paragraph [ref=e182]: SPAM
+          - generic [ref=e183]:
+            - heading [level=3] [ref=e184]:
+              - link "2018-02-03 16:41:55.870066+00:00" [ref=e186] [cursor=pointer]:
+                - /url: /alerty/7
+            - table [ref=e187]:
+              - rowgroup [ref=e188]:
+                - row [ref=e189]:
+                  - cell "Data utworzenia" [ref=e190]
+                  - cell "3 lutego 2018 17:41" [ref=e191]
+                - row [ref=e192]:
+                  - cell "Autor" [ref=e193]
+                  - cell "None" [ref=e194]
+                - row [ref=e195]:
+                  - cell "Status" [ref=e196]
+                  - cell "Zamknięte" [ref=e197]
+            - paragraph [ref=e198]: SPAM
+          - generic [ref=e199]:
+            - heading [level=3] [ref=e200]:
+              - link "2018-02-03 16:42:50.584432+00:00" [ref=e202] [cursor=pointer]:
+                - /url: /alerty/8
+            - table [ref=e203]:
+              - rowgroup [ref=e204]:
+                - row [ref=e205]:
+                  - cell "Data utworzenia" [ref=e206]
+                  - cell "3 lutego 2018 17:42" [ref=e207]
+                - row [ref=e208]:
+                  - cell "Autor" [ref=e209]
+                  - cell "None" [ref=e210]
+                - row [ref=e211]:
+                  - cell "Status" [ref=e212]
+                  - cell "Zamknięte" [ref=e213]
+            - paragraph [ref=e214]: SPAM
+          - generic [ref=e215]:
+            - heading [level=3] [ref=e216]:
+              - link "2018-02-03 23:03:43.352273+00:00" [ref=e218] [cursor=pointer]:
+                - /url: /alerty/9
+            - table [ref=e219]:
+              - rowgroup [ref=e220]:
+                - row [ref=e221]:
+                  - cell "Data utworzenia" [ref=e222]
+                  - cell "4 lutego 2018 00:03" [ref=e223]
+                - row [ref=e224]:
+                  - cell "Autor" [ref=e225]
+                  - cell "None" [ref=e226]
+                - row [ref=e227]:
+                  - cell "Status" [ref=e228]
+                  - cell "Zamknięte" [ref=e229]
+            - paragraph [ref=e230]: SPAM
+          - generic [ref=e231]:
+            - heading [level=3] [ref=e232]:
+              - link "2018-02-03 23:03:59.023043+00:00" [ref=e234] [cursor=pointer]:
+                - /url: /alerty/10
+            - table [ref=e235]:
+              - rowgroup [ref=e236]:
+                - row [ref=e237]:
+                  - cell "Data utworzenia" [ref=e238]
+                  - cell "4 lutego 2018 00:03" [ref=e239]
+                - row [ref=e240]:
+                  - cell "Autor" [ref=e241]
+                  - cell "None" [ref=e242]
+                - row [ref=e243]:
+                  - cell "Status" [ref=e244]
+                  - cell "Zamknięte" [ref=e245]
+            - paragraph [ref=e246]: SPAM
+          - generic [ref=e247]:
+            - heading [level=3] [ref=e248]:
+              - link "2018-02-03 23:14:41.088828+00:00" [ref=e250] [cursor=pointer]:
+                - /url: /alerty/11
+            - table [ref=e251]:
+              - rowgroup [ref=e252]:
+                - row [ref=e253]:
+                  - cell "Data utworzenia" [ref=e254]
+                  - cell "4 lutego 2018 00:14" [ref=e255]
+                - row [ref=e256]:
+                  - cell "Autor" [ref=e257]
+                  - cell "None" [ref=e258]
+                - row [ref=e259]:
+                  - cell "Status" [ref=e260]
+                  - cell "Zamknięte" [ref=e261]
+            - paragraph [ref=e262]: SPAM
+          - generic [ref=e263]:
+            - heading [level=3] [ref=e264]:
+              - link "2018-02-03 23:14:57.557177+00:00" [ref=e266] [cursor=pointer]:
+                - /url: /alerty/12
+            - table [ref=e267]:
+              - rowgroup [ref=e268]:
+                - row [ref=e269]:
+                  - cell "Data utworzenia" [ref=e270]
+                  - cell "4 lutego 2018 00:14" [ref=e271]
+                - row [ref=e272]:
+                  - cell "Autor" [ref=e273]
+                  - cell "None" [ref=e274]
+                - row [ref=e275]:
+                  - cell "Status" [ref=e276]
+                  - cell "Zamknięte" [ref=e277]
+            - paragraph [ref=e278]: SPAM
+          - generic [ref=e279]:
+            - heading [level=3] [ref=e280]:
+              - link "2018-02-03 23:15:01.193196+00:00" [ref=e282] [cursor=pointer]:
+                - /url: /alerty/13
+            - table [ref=e283]:
+              - rowgroup [ref=e284]:
+                - row [ref=e285]:
+                  - cell "Data utworzenia" [ref=e286]
+                  - cell "4 lutego 2018 00:15" [ref=e287]
+                - row [ref=e288]:
+                  - cell "Autor" [ref=e289]
+                  - cell "None" [ref=e290]
+                - row [ref=e291]:
+                  - cell "Status" [ref=e292]
+                  - cell "Zamknięte" [ref=e293]
+            - paragraph [ref=e294]: SPAM
+          - generic [ref=e295]:
+            - heading [level=3] [ref=e296]:
+              - link "2018-02-10 17:00:31.150134+00:00" [ref=e298] [cursor=pointer]:
+                - /url: /alerty/14
+            - table [ref=e299]:
+              - rowgroup [ref=e300]:
+                - row [ref=e301]:
+                  - cell "Data utworzenia" [ref=e302]
+                  - cell "10 lutego 2018 18:00" [ref=e303]
+                - row [ref=e304]:
+                  - cell "Autor" [ref=e305]
+                  - cell "None" [ref=e306]
+                - row [ref=e307]:
+                  - cell "Status" [ref=e308]
+                  - cell "Zamknięte" [ref=e309]
+                - row [ref=e310]:
+                  - cell "Obiekt" [ref=e311]
+                  - cell [ref=e312]:
+                    - link "Status przesylki DHL" [ref=e313] [cursor=pointer]:
+                      - /url: /listy/5771
+            - paragraph [ref=e314]: SPAM
+          - generic [ref=e315]:
+            - heading [level=3] [ref=e316]:
+              - link "2018-02-10 17:00:51.962680+00:00" [ref=e318] [cursor=pointer]:
+                - /url: /alerty/15
+            - table [ref=e319]:
+              - rowgroup [ref=e320]:
+                - row [ref=e321]:
+                  - cell "Data utworzenia" [ref=e322]
+                  - cell "10 lutego 2018 18:00" [ref=e323]
+                - row [ref=e324]:
+                  - cell "Autor" [ref=e325]
+                  - cell "None" [ref=e326]
+                - row [ref=e327]:
+                  - cell "Status" [ref=e328]
+                  - cell "Zamknięte" [ref=e329]
+                - row [ref=e330]:
+                  - cell "Obiekt" [ref=e331]
+                  - cell [ref=e332]:
+                    - link "Monitorowanie dostawy przesylki DHL" [ref=e333] [cursor=pointer]:
+                      - /url: /listy/5040
+            - paragraph [ref=e334]: SPAM
+          - generic [ref=e335]:
+            - heading [level=3] [ref=e336]:
+              - link "2018-02-28 14:56:52.852000+00:00" [ref=e338] [cursor=pointer]:
+                - /url: /alerty/16
+            - table [ref=e339]:
+              - rowgroup [ref=e340]:
+                - row [ref=e341]:
+                  - cell "Data utworzenia" [ref=e342]
+                  - cell "28 lutego 2018 15:56" [ref=e343]
+                - row [ref=e344]:
+                  - cell "Autor" [ref=e345]
+                  - cell "AgnieszkaZdanowicz" [ref=e346]
+                - row [ref=e347]:
+                  - cell "Status" [ref=e348]
+                  - cell "Zamknięte" [ref=e349]
+            - paragraph [ref=e350]: SPAM
+          - generic [ref=e351]:
+            - heading [level=3] [ref=e352]:
+              - link "2020-04-19 15:07:07.039480+00:00" [ref=e354] [cursor=pointer]:
+                - /url: /alerty/54
+            - table [ref=e355]:
+              - rowgroup [ref=e356]:
+                - row [ref=e357]:
+                  - cell "Data utworzenia" [ref=e358]
+                  - cell "19 kwietnia 2020 17:07" [ref=e359]
+                - row [ref=e360]:
+                  - cell "Autor" [ref=e361]
+                  - cell "adobrawy" [ref=e362]
+                - row [ref=e363]:
+                  - cell "Status" [ref=e364]
+                  - cell "Otwarte" [ref=e365]
+            - paragraph [ref=e366]: SPAM
+          - generic [ref=e367]:
+            - heading [level=3] [ref=e368]:
+              - link "2020-04-19 15:29:30.349512+00:00" [ref=e370] [cursor=pointer]:
+                - /url: /alerty/55
+            - table [ref=e371]:
+              - rowgroup [ref=e372]:
+                - row [ref=e373]:
+                  - cell "Data utworzenia" [ref=e374]
+                  - cell "19 kwietnia 2020 17:29" [ref=e375]
+                - row [ref=e376]:
+                  - cell "Autor" [ref=e377]
+                  - cell "adobrawy" [ref=e378]
+                - row [ref=e379]:
+                  - cell "Status" [ref=e380]
+                  - cell "Otwarte" [ref=e381]
+            - paragraph [ref=e382]: SPAM
+          - generic [ref=e383]:
+            - heading [level=3] [ref=e384]:
+              - link "2020-04-19 21:13:48.195922+00:00" [ref=e386] [cursor=pointer]:
+                - /url: /alerty/56
+            - table [ref=e387]:
+              - rowgroup [ref=e388]:
+                - row [ref=e389]:
+                  - cell "Data utworzenia" [ref=e390]
+                  - cell "19 kwietnia 2020 23:13" [ref=e391]
+                - row [ref=e392]:
+                  - cell "Autor" [ref=e393]
+                  - cell "adobrawy" [ref=e394]
+                - row [ref=e395]:
+                  - cell "Status" [ref=e396]
+                  - cell "Otwarte" [ref=e397]
+            - paragraph [ref=e398]: SPAM
+          - generic [ref=e399]:
+            - heading [level=3] [ref=e400]:
+              - link "2021-03-14 11:34:37.872180+00:00" [ref=e402] [cursor=pointer]:
+                - /url: /alerty/102
+            - table [ref=e403]:
+              - rowgroup [ref=e404]:
+                - row [ref=e405]:
+                  - cell "Data utworzenia" [ref=e406]
+                  - cell "14 marca 2021 12:34" [ref=e407]
+                - row [ref=e408]:
+                  - cell "Autor" [ref=e409]
+                  - cell "None" [ref=e410]
+                - row [ref=e411]:
+                  - cell "Status" [ref=e412]
+                  - cell "Zamknięte" [ref=e413]
+                - row [ref=e414]:
+                  - cell "Obiekt" [ref=e415]
+                  - cell [ref=e416]:
+                    - link "Undelivered Mail Returned to Sender" [ref=e417] [cursor=pointer]:
+                      - /url: /listy/103141
+            - paragraph [ref=e418]: SPAM
+          - generic [ref=e419]:
+            - heading [level=3] [ref=e420]:
+              - link "2021-09-21 11:54:27.313875+00:00" [ref=e422] [cursor=pointer]:
+                - /url: /alerty/116
+            - table [ref=e423]:
+              - rowgroup [ref=e424]:
+                - row [ref=e425]:
+                  - cell "Data utworzenia" [ref=e426]
+                  - cell "21 września 2021 13:54" [ref=e427]
+                - row [ref=e428]:
+                  - cell "Autor" [ref=e429]
+                  - cell "None" [ref=e430]
+                - row [ref=e431]:
+                  - cell "Status" [ref=e432]
+                  - cell "Otwarte" [ref=e433]
+                - row [ref=e434]:
+                  - cell "Obiekt" [ref=e435]
+                  - cell [ref=e436]:
+                    - 'link "Re: Wniosek o udostępnienie informacji publicznej - WO.1431.4.2017" [ref=e437] [cursor=pointer]':
+                      - /url: /listy/6548
+            - paragraph [ref=e438]: SPAM
+          - list [ref=e439]:
+            - listitem [ref=e440]:
+              - generic [aria-hidden]: ←
+            - listitem [ref=e441]:
+              - generic "Current Page" [ref=e442]: "1"
+            - listitem [ref=e443]:
+              - generic [aria-hidden]: →
+      - generic [ref=e444]:
+        - generic [ref=e445]:
+          - text: Sieć Obywatelska - Watchdog Polska ul. Szpitalna 5/5 00-031 Warszawa
+          - paragraph [ref=e446]:
+            - link "Klauzula RODO" [ref=e447] [cursor=pointer]:
+              - /url: https://fedrowanie.siecobywatelska.pl/media_internal/tinycontent/uploads/11_KLAUZULA.-.dane.z.udip.na.stronach.www.i.w.mediach.spol.pdf
+        - generic [ref=e448]:
+          - text: "silnik:"
+          - link "jawne.info.pl" [ref=e449] [cursor=pointer]:
+            - /url: http://jawne.info.pl
+          - text: "| v1.5.77.deps |"
+          - link "GitHub" [ref=e450] [cursor=pointer]:
+            - /url: https://github.com/watchdogpolska/feder
+          - text: –
+          - link "efd8a3b" [ref=e452] [cursor=pointer]:
+            - /url: https://github.com/watchdogpolska/feder/compare/efd8a3b2...master
+          - text: "|"
+          - link "API" [ref=e453] [cursor=pointer]:
+            - /url: /api/
+        - generic [ref=e455]: Ta strona wykorzystuje cookies.
+  - list [ref=e457]:
+    - listitem [ref=e458]:
+      - link "Ukryj »" [ref=e459] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e460]:
+      - link "Toggle Theme" [ref=e461] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e464]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e465]
+      - link "Historia /alerty/monitoring-4" [ref=e466] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e467]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e468]
+      - link "Wersje Django 5.2.17" [ref=e469] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e470]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e471]
+      - 'link "Czas CPU: 192.70ms (198.03ms)" [ref=e472] [cursor=pointer]':
+        - /url: "#"
+    - listitem [ref=e473]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e474]
+      - link "Ustawienia" [ref=e475] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e476]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e477]
+      - link "Nagłówki" [ref=e478] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e479]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e480]
+      - link "Zapytania AlertListView" [ref=e481] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e482]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e483]
+      - link "SQL 17 queries in 9.21ms" [ref=e484] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e485]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e486]
+      - link "Pliki statyczne 3 użyte plików" [ref=e487] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e488]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e489]
+      - link "Templatki alerts/alert_filter.html" [ref=e490] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e491]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e492]
+      - link "Alerty" [ref=e493] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e494]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e495]
+      - link "Cache 2 wywołania w 0.13ms" [ref=e496] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e497]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e498]
+      - link "Sygnały 88 odbiorców 15 sygnałów" [ref=e499] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e500]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e501]
+      - link "Gmina" [ref=e502] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e503]:
+      - checkbox "Enable for next and successive requests" [ref=e504]
+      - generic [ref=e505]: Przechwycone przekierowania
+    - listitem [ref=e506]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e507]
+      - link "Profilowanie" [ref=e508] [cursor=pointer]:
+        - /url: "#"
+```
+
+# Test source
+
+```ts
+  1  | import { test, expect } from '@playwright/test';
+  2  | import { PAGES } from './pages';
+  3  | import { VIEWPORTS } from './viewports';
+  4  | 
+  5  | for (const [name, size] of Object.entries(VIEWPORTS)) {
+  6  |   test.describe(`${name} (${size.width}px)`, () => {
+  7  |     test.use({ viewport: size });
+  8  | 
+  9  |     for (const page of PAGES) {
+  10 |       test(`${page.name} - visual baseline`, async ({ page: pw }) => {
+  11 |         await pw.goto(page.path);
+  12 |         await pw.waitForLoadState('networkidle');
+> 13 |         await expect(pw).toHaveScreenshot(`${page.name}-${name}.png`, {
+     |                          ^ Error: expect(page).toHaveScreenshot(expected) failed
+  14 |           maxDiffPixelRatio: 0.001,
+  15 |           fullPage: true,
+  16 |         });
+  17 |       });
+  18 |     }
+  19 |   });
+  20 | }
+  21 | 
+```

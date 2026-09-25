@@ -1,0 +1,981 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: visual_baseline.spec.ts >> mobile (375px) >> users-list - visual baseline
+- Location: tests/bs3-bs5_migration/visual_baseline.spec.ts:10:11
+
+# Error details
+
+```
+Error: expect(page).toHaveScreenshot(expected) failed
+
+  Expected an image 375px by 9046px, received 375px by 9064px. 310710 pixels (ratio 0.10 of all image pixels) are different.
+
+  Snapshot: users-list-mobile.png
+
+Call log:
+  - Expect "toHaveScreenshot(users-list-mobile.png)" with timeout 5000ms
+    - verifying given screenshot expectation
+  - taking page screenshot
+    - disabled all CSS animations
+  - waiting for fonts to load...
+  - fonts loaded
+  - Expected an image 375px by 9046px, received 375px by 9064px. 310710 pixels (ratio 0.10 of all image pixels) are different.
+  - waiting 100ms before taking screenshot
+  - taking page screenshot
+    - disabled all CSS animations
+  - waiting for fonts to load...
+  - fonts loaded
+  - captured a stable screenshot
+  - Expected an image 375px by 9046px, received 375px by 9064px. 310710 pixels (ratio 0.10 of all image pixels) are different.
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e3]:
+      - button "Przełącz nawigacje" [ref=e4] [cursor=pointer]
+      - link [ref=e7] [cursor=pointer]:
+        - /url: /
+        - img "Fedrowanie" [ref=e8]
+      - heading "Obywatelskie fedrowanie danych" [level=1] [ref=e9]
+  - generic [ref=e10]:
+    - text: )
+    - generic [ref=e11]:
+      - generic [ref=e12]:
+        - heading "DEV" [level=1] [ref=e13]
+        - link [ref=e14] [cursor=pointer]:
+          - /url: /
+          - img "Fedrowanie" [ref=e16]
+          - paragraph [ref=e17]: Fedrowanie
+        - paragraph [ref=e18]:
+          - link "Sieci Watchdog" [ref=e19] [cursor=pointer]:
+            - /url: http://siecobywatelska.pl
+        - paragraph [ref=e20]:
+          - link "Klauzula RODO" [ref=e21] [cursor=pointer]:
+            - /url: https://fedrowanie.siecobywatelska.pl/media_internal/tinycontent/uploads/11_KLAUZULA.-.dane.z.udip.na.stronach.www.i.w.mediach.spol.pdf
+      - list [ref=e23]:
+        - listitem [ref=e24]:
+          - paragraph [ref=e25]
+        - listitem [ref=e26]:
+          - link "Strona główna" [ref=e27] [cursor=pointer]:
+            - /url: /
+        - listitem [ref=e29]:
+          - link "O stronie" [ref=e30] [cursor=pointer]:
+            - /url: /o-stronie/
+        - listitem [ref=e32]:
+          - paragraph [ref=e33]
+        - generic [ref=e34]: Szukaj
+        - listitem [ref=e36]:
+          - link "Sprawy" [ref=e37] [cursor=pointer]:
+            - /url: /sprawy/
+        - listitem [ref=e39]:
+          - link "Monitoringi" [ref=e40] [cursor=pointer]:
+            - /url: /monitoringi/
+        - listitem [ref=e42]:
+          - link "Tabela monitoringów" [ref=e43] [cursor=pointer]:
+            - /url: /monitoringi/table/
+        - listitem [ref=e45]:
+          - link "Listy przypisane do spraw" [ref=e46] [cursor=pointer]:
+            - /url: /listy/
+        - listitem [ref=e48]:
+          - link "Listy nieprzypisane do spraw" [ref=e49] [cursor=pointer]:
+            - /url: /listy/przypisz
+        - listitem [ref=e51]:
+          - link "Instytucje" [ref=e52] [cursor=pointer]:
+            - /url: /instytucje/
+        - listitem [ref=e54]:
+          - paragraph [ref=e55]
+      - generic [ref=e56]:
+        - generic [ref=e57]: Użytkownik / użytkowniczka
+        - listitem [ref=e58]:
+          - link "Mój profil" [ref=e59] [cursor=pointer]:
+            - /url: /uzytkownik/claude_ai/
+        - listitem [ref=e61]:
+          - link "Panel administracyjny" [ref=e62] [cursor=pointer]:
+            - /url: /admin/
+        - listitem [ref=e64]:
+          - link "Wyloguj" [ref=e65] [cursor=pointer]:
+            - /url: /accounts/logout/
+    - generic [ref=e68]:
+      - generic [ref=e69]:
+        - heading "Użytkownicy" [level=2] [ref=e72]
+        - generic [ref=e75]:
+          - link [ref=e76] [cursor=pointer]:
+            - /url: /uzytkownik/AnonymousUser/
+            - heading "AnonymousUser" [level=4] [ref=e77]
+            - paragraph
+          - link [ref=e78] [cursor=pointer]:
+            - /url: /uzytkownik/adobrawy/
+            - heading "adobrawy" [level=4] [ref=e79]
+            - paragraph
+          - link [ref=e80] [cursor=pointer]:
+            - /url: /uzytkownik/TymonR/
+            - heading "TymonR" [level=4] [ref=e81]
+            - paragraph
+          - link [ref=e82] [cursor=pointer]:
+            - /url: /uzytkownik/Szymon_Osowski/
+            - heading "Szymon_Osowski" [level=4] [ref=e83]
+            - paragraph
+          - link [ref=e84] [cursor=pointer]:
+            - /url: /uzytkownik/KatarzynaBatkoToluc/
+            - heading "KatarzynaBatkoToluc" [level=4] [ref=e85]
+            - paragraph
+          - link [ref=e86] [cursor=pointer]:
+            - /url: /uzytkownik/martyna_b/
+            - heading "martyna_b" [level=4] [ref=e87]
+            - paragraph
+          - link [ref=e88] [cursor=pointer]:
+            - /url: /uzytkownik/MichalHenzler/
+            - heading "MichalHenzler" [level=4] [ref=e89]
+            - paragraph
+          - link [ref=e90] [cursor=pointer]:
+            - /url: /uzytkownik/kamil.bregula/
+            - heading "kamil.bregula" [level=4] [ref=e91]
+            - paragraph
+          - link [ref=e92] [cursor=pointer]:
+            - /url: /uzytkownik/karoleks/
+            - heading "karoleks" [level=4] [ref=e93]
+            - paragraph
+          - link [ref=e94] [cursor=pointer]:
+            - /url: /uzytkownik/m.meyer/
+            - heading "m.meyer" [level=4] [ref=e95]
+            - paragraph
+          - link [ref=e96] [cursor=pointer]:
+            - /url: /uzytkownik/BartoszWilk/
+            - heading "BartoszWilk" [level=4] [ref=e97]
+            - paragraph
+          - link [ref=e98] [cursor=pointer]:
+            - /url: /uzytkownik/AgnieszkaZdanowicz/
+            - heading "AgnieszkaZdanowicz" [level=4] [ref=e99]
+            - paragraph
+          - link [ref=e100] [cursor=pointer]:
+            - /url: /uzytkownik/pawe/
+            - heading "pawe" [level=4] [ref=e101]
+            - paragraph
+          - link [ref=e102] [cursor=pointer]:
+            - /url: /uzytkownik/kbiernat/
+            - heading "kbiernat" [level=4] [ref=e103]
+            - paragraph
+          - link [ref=e104] [cursor=pointer]:
+            - /url: /uzytkownik/rafalg/
+            - heading "rafalg" [level=4] [ref=e105]
+            - paragraph
+          - link [ref=e106] [cursor=pointer]:
+            - /url: /uzytkownik/PatrykWachowiec/
+            - heading "PatrykWachowiec" [level=4] [ref=e107]
+            - paragraph
+          - link [ref=e108] [cursor=pointer]:
+            - /url: /uzytkownik/joanna.gucman@siecobywatelska.pl/
+            - heading "joanna.gucman@siecobywatelska.pl" [level=4] [ref=e109]
+            - paragraph
+          - link [ref=e110] [cursor=pointer]:
+            - /url: /uzytkownik/katarzyna/
+            - heading "katarzyna" [level=4] [ref=e111]
+            - paragraph
+          - link [ref=e112] [cursor=pointer]:
+            - /url: /uzytkownik/lvk11/
+            - heading "lvk11" [level=4] [ref=e113]
+            - paragraph
+          - link [ref=e114] [cursor=pointer]:
+            - /url: /uzytkownik/krzysztof/
+            - heading "krzysztof" [level=4] [ref=e115]
+            - paragraph
+          - link [ref=e116] [cursor=pointer]:
+            - /url: /uzytkownik/AgnieszkaP/
+            - heading "AgnieszkaP" [level=4] [ref=e117]
+            - paragraph
+          - link [ref=e118] [cursor=pointer]:
+            - /url: /uzytkownik/adam/
+            - heading "adam" [level=4] [ref=e119]
+            - paragraph
+          - link [ref=e120] [cursor=pointer]:
+            - /url: /uzytkownik/dzezi/
+            - heading "dzezi" [level=4] [ref=e121]
+            - paragraph
+          - link [ref=e122] [cursor=pointer]:
+            - /url: /uzytkownik/kacper/
+            - heading "kacper" [level=4] [ref=e123]
+            - paragraph
+          - link [ref=e124] [cursor=pointer]:
+            - /url: /uzytkownik/grzesiu/
+            - heading "grzesiu" [level=4] [ref=e125]
+            - paragraph
+          - link [ref=e126] [cursor=pointer]:
+            - /url: /uzytkownik/pawe04/
+            - heading "pawe04" [level=4] [ref=e127]
+            - paragraph
+          - link [ref=e128] [cursor=pointer]:
+            - /url: /uzytkownik/grzegorz/
+            - heading "grzegorz" [level=4] [ref=e129]
+            - paragraph
+          - link [ref=e130] [cursor=pointer]:
+            - /url: /uzytkownik/jan/
+            - heading "jan" [level=4] [ref=e131]
+            - paragraph
+          - link [ref=e132] [cursor=pointer]:
+            - /url: /uzytkownik/Tomek/
+            - heading "Tomek" [level=4] [ref=e133]
+            - paragraph
+          - link [ref=e134] [cursor=pointer]:
+            - /url: /uzytkownik/ela/
+            - heading "ela" [level=4] [ref=e135]
+            - paragraph
+          - link [ref=e136] [cursor=pointer]:
+            - /url: /uzytkownik/elzbieta.rzezniczek/
+            - heading "elzbieta.rzezniczek" [level=4] [ref=e137]
+            - paragraph
+          - link [ref=e138] [cursor=pointer]:
+            - /url: /uzytkownik/mario/
+            - heading "mario" [level=4] [ref=e139]
+            - paragraph
+          - link [ref=e140] [cursor=pointer]:
+            - /url: /uzytkownik/Kot_Ocelot/
+            - heading "Kot_Ocelot" [level=4] [ref=e141]
+            - paragraph
+          - link [ref=e142] [cursor=pointer]:
+            - /url: /uzytkownik/filczyk/
+            - heading "filczyk" [level=4] [ref=e143]
+            - paragraph
+          - link [ref=e144] [cursor=pointer]:
+            - /url: /uzytkownik/bartosz/
+            - heading "bartosz" [level=4] [ref=e145]
+            - paragraph
+          - link [ref=e146] [cursor=pointer]:
+            - /url: /uzytkownik/Busola/
+            - heading "Busola" [level=4] [ref=e147]
+            - paragraph
+          - link [ref=e148] [cursor=pointer]:
+            - /url: /uzytkownik/scorpano11/
+            - heading "scorpano11" [level=4] [ref=e149]
+            - paragraph
+          - link [ref=e150] [cursor=pointer]:
+            - /url: /uzytkownik/Sylwia/
+            - heading "Sylwia" [level=4] [ref=e151]
+            - paragraph
+          - link [ref=e152] [cursor=pointer]:
+            - /url: /uzytkownik/majkelwatch/
+            - heading "majkelwatch" [level=4] [ref=e153]
+            - paragraph
+          - link [ref=e154] [cursor=pointer]:
+            - /url: /uzytkownik/Michal/
+            - heading "Michal" [level=4] [ref=e155]
+            - paragraph
+          - link [ref=e156] [cursor=pointer]:
+            - /url: /uzytkownik/andtud/
+            - heading "andtud" [level=4] [ref=e157]
+            - paragraph
+          - link [ref=e158] [cursor=pointer]:
+            - /url: /uzytkownik/falco/
+            - heading "falco" [level=4] [ref=e159]
+            - paragraph
+          - link [ref=e160] [cursor=pointer]:
+            - /url: /uzytkownik/Wustenfuchs/
+            - heading "Wustenfuchs" [level=4] [ref=e161]
+            - paragraph
+          - link [ref=e162] [cursor=pointer]:
+            - /url: /uzytkownik/katarzyna.witek@siecobywatelska.pl/
+            - heading "katarzyna.witek@siecobywatelska.pl" [level=4] [ref=e163]
+            - paragraph
+          - link [ref=e164] [cursor=pointer]:
+            - /url: /uzytkownik/Gonzilez/
+            - heading "Gonzilez" [level=4] [ref=e165]
+            - paragraph
+          - link [ref=e166] [cursor=pointer]:
+            - /url: /uzytkownik/Koliber2/
+            - heading "Koliber2" [level=4] [ref=e167]
+            - paragraph
+          - link [ref=e168] [cursor=pointer]:
+            - /url: /uzytkownik/Czarna/
+            - heading "Czarna" [level=4] [ref=e169]
+            - paragraph
+          - link [ref=e170] [cursor=pointer]:
+            - /url: /uzytkownik/reAKCJA/
+            - heading "reAKCJA" [level=4] [ref=e171]
+            - paragraph
+          - link [ref=e172] [cursor=pointer]:
+            - /url: /uzytkownik/quina/
+            - heading "quina" [level=4] [ref=e173]
+            - paragraph
+          - link [ref=e174] [cursor=pointer]:
+            - /url: /uzytkownik/krzysztof5/
+            - heading "krzysztof5" [level=4] [ref=e175]
+            - paragraph
+          - link [ref=e176] [cursor=pointer]:
+            - /url: /uzytkownik/paulinamalczyk.fe@gmail.com/
+            - heading "paulinamalczyk.fe@gmail.com" [level=4] [ref=e177]
+            - paragraph
+          - link [ref=e178] [cursor=pointer]:
+            - /url: /uzytkownik/bartoszkopec/
+            - heading "bartoszkopec" [level=4] [ref=e179]
+            - paragraph
+          - link [ref=e180] [cursor=pointer]:
+            - /url: /uzytkownik/adam4/
+            - heading "adam4" [level=4] [ref=e181]
+            - paragraph
+          - link [ref=e182] [cursor=pointer]:
+            - /url: /uzytkownik/Kecaj1984/
+            - heading "Kecaj1984" [level=4] [ref=e183]
+            - paragraph
+          - link [ref=e184] [cursor=pointer]:
+            - /url: /uzytkownik/Turgon88/
+            - heading "Turgon88" [level=4] [ref=e185]
+            - paragraph
+          - link [ref=e186] [cursor=pointer]:
+            - /url: /uzytkownik/Ozi123/
+            - heading "Ozi123" [level=4] [ref=e187]
+            - paragraph
+          - link [ref=e188] [cursor=pointer]:
+            - /url: /uzytkownik/wlodek/
+            - heading "wlodek" [level=4] [ref=e189]
+            - paragraph
+          - link [ref=e190] [cursor=pointer]:
+            - /url: /uzytkownik/psobczak/
+            - heading "psobczak" [level=4] [ref=e191]
+            - paragraph
+          - link [ref=e192] [cursor=pointer]:
+            - /url: /uzytkownik/Tomek_Trela/
+            - heading "Tomek_Trela" [level=4] [ref=e193]
+            - paragraph
+          - link [ref=e194] [cursor=pointer]:
+            - /url: /uzytkownik/ukasz/
+            - heading "ukasz" [level=4] [ref=e195]
+            - paragraph
+          - link [ref=e196] [cursor=pointer]:
+            - /url: /uzytkownik/Paula/
+            - heading "Paula" [level=4] [ref=e197]
+            - paragraph
+          - link [ref=e198] [cursor=pointer]:
+            - /url: /uzytkownik/bfbednarczyk@gmail.com/
+            - heading "bfbednarczyk@gmail.com" [level=4] [ref=e199]
+            - paragraph
+          - link [ref=e200] [cursor=pointer]:
+            - /url: /uzytkownik/robak59/
+            - heading "robak59" [level=4] [ref=e201]
+            - paragraph
+          - link [ref=e202] [cursor=pointer]:
+            - /url: /uzytkownik/Cysioland/
+            - heading "Cysioland" [level=4] [ref=e203]
+            - paragraph
+          - link [ref=e204] [cursor=pointer]:
+            - /url: /uzytkownik/wojzwo/
+            - heading "wojzwo" [level=4] [ref=e205]
+            - paragraph
+          - link [ref=e206] [cursor=pointer]:
+            - /url: /uzytkownik/tomasz.serwin/
+            - heading "tomasz.serwin" [level=4] [ref=e207]
+            - paragraph
+          - link [ref=e208] [cursor=pointer]:
+            - /url: /uzytkownik/Sebgat/
+            - heading "Sebgat" [level=4] [ref=e209]
+            - paragraph
+          - link [ref=e210] [cursor=pointer]:
+            - /url: /uzytkownik/KrystianGraba/
+            - heading "KrystianGraba" [level=4] [ref=e211]
+            - paragraph
+          - link [ref=e212] [cursor=pointer]:
+            - /url: /uzytkownik/dawid/
+            - heading "dawid" [level=4] [ref=e213]
+            - paragraph
+          - link [ref=e214] [cursor=pointer]:
+            - /url: /uzytkownik/Jakub.S/
+            - heading "Jakub.S" [level=4] [ref=e215]
+            - paragraph
+          - link [ref=e216] [cursor=pointer]:
+            - /url: /uzytkownik/michal5/
+            - heading "michal5" [level=4] [ref=e217]
+            - paragraph
+          - link [ref=e218] [cursor=pointer]:
+            - /url: /uzytkownik/mrbojko/
+            - heading "mrbojko" [level=4] [ref=e219]
+            - paragraph
+          - link [ref=e220] [cursor=pointer]:
+            - /url: /uzytkownik/Jarek_Kant/
+            - heading "Jarek_Kant" [level=4] [ref=e221]
+            - paragraph
+          - link [ref=e222] [cursor=pointer]:
+            - /url: /uzytkownik/MarzenaBlaszczyk/
+            - heading "MarzenaBlaszczyk" [level=4] [ref=e223]
+            - paragraph
+          - link [ref=e224] [cursor=pointer]:
+            - /url: /uzytkownik/m_kokoszkiewicz/
+            - heading "m_kokoszkiewicz" [level=4] [ref=e225]
+            - paragraph
+          - link [ref=e226] [cursor=pointer]:
+            - /url: /uzytkownik/gierwiatowska.natalia@gmail.com/
+            - heading "gierwiatowska.natalia@gmail.com" [level=4] [ref=e227]
+            - paragraph
+          - link [ref=e228] [cursor=pointer]:
+            - /url: /uzytkownik/agn.zdanowicz@gmail.com/
+            - heading "agn.zdanowicz@gmail.com" [level=4] [ref=e229]
+            - paragraph
+          - link [ref=e230] [cursor=pointer]:
+            - /url: /uzytkownik/jan4/
+            - heading "jan4" [level=4] [ref=e231]
+            - paragraph
+          - link [ref=e232] [cursor=pointer]:
+            - /url: /uzytkownik/dariusz/
+            - heading "dariusz" [level=4] [ref=e233]
+            - paragraph
+          - link [ref=e234] [cursor=pointer]:
+            - /url: /uzytkownik/fedr/
+            - heading "fedr" [level=4] [ref=e235]
+            - paragraph
+          - link [ref=e236] [cursor=pointer]:
+            - /url: /uzytkownik/RobWlo/
+            - heading "RobWlo" [level=4] [ref=e237]
+            - paragraph
+          - link [ref=e238] [cursor=pointer]:
+            - /url: /uzytkownik/Monika27/
+            - heading "Monika27" [level=4] [ref=e239]
+            - paragraph
+          - link [ref=e240] [cursor=pointer]:
+            - /url: /uzytkownik/rena2ekiel@interia.eu/
+            - heading "rena2ekiel@interia.eu" [level=4] [ref=e241]
+            - paragraph
+          - link [ref=e242] [cursor=pointer]:
+            - /url: /uzytkownik/jari/
+            - heading "jari" [level=4] [ref=e243]
+            - paragraph
+          - link [ref=e244] [cursor=pointer]:
+            - /url: /uzytkownik/rdzawian1/
+            - heading "rdzawian1" [level=4] [ref=e245]
+            - paragraph
+          - link [ref=e246] [cursor=pointer]:
+            - /url: /uzytkownik/piotr.grudzien@pfr.pl/
+            - heading "piotr.grudzien@pfr.pl" [level=4] [ref=e247]
+            - paragraph
+          - link [ref=e248] [cursor=pointer]:
+            - /url: /uzytkownik/nina/
+            - heading "nina" [level=4] [ref=e249]
+            - paragraph
+          - link [ref=e250] [cursor=pointer]:
+            - /url: /uzytkownik/jakub/
+            - heading "jakub" [level=4] [ref=e251]
+            - paragraph
+          - link [ref=e252] [cursor=pointer]:
+            - /url: /uzytkownik/majka63@gmail.com/
+            - heading "majka63@gmail.com" [level=4] [ref=e253]
+            - paragraph
+          - link [ref=e254] [cursor=pointer]:
+            - /url: /uzytkownik/Oliwia/
+            - heading "Oliwia" [level=4] [ref=e255]
+            - paragraph
+          - link [ref=e256] [cursor=pointer]:
+            - /url: /uzytkownik/Roksana/
+            - heading "Roksana" [level=4] [ref=e257]
+            - paragraph
+          - link [ref=e258] [cursor=pointer]:
+            - /url: /uzytkownik/ArturR/
+            - heading "ArturR" [level=4] [ref=e259]
+            - paragraph
+          - link [ref=e260] [cursor=pointer]:
+            - /url: /uzytkownik/monika/
+            - heading "monika" [level=4] [ref=e261]
+            - paragraph
+          - link [ref=e262] [cursor=pointer]:
+            - /url: /uzytkownik/gminne.sprawy/
+            - heading "gminne.sprawy" [level=4] [ref=e263]
+            - paragraph
+          - link [ref=e264] [cursor=pointer]:
+            - /url: /uzytkownik/dawid7/
+            - heading "dawid7" [level=4] [ref=e265]
+            - paragraph
+          - link [ref=e266] [cursor=pointer]:
+            - /url: /uzytkownik/KKowalewski/
+            - heading "KKowalewski" [level=4] [ref=e267]
+            - paragraph
+          - link [ref=e268] [cursor=pointer]:
+            - /url: /uzytkownik/stowarzyszenie/
+            - heading "stowarzyszenie" [level=4] [ref=e269]
+            - paragraph
+          - link [ref=e270] [cursor=pointer]:
+            - /url: /uzytkownik/jakacki@lasyiobywatele.pl/
+            - heading "jakacki@lasyiobywatele.pl" [level=4] [ref=e271]
+            - paragraph
+          - link [ref=e272] [cursor=pointer]:
+            - /url: /uzytkownik/marta@lasyiobywatele.pl/
+            - heading "marta@lasyiobywatele.pl" [level=4] [ref=e273]
+            - paragraph
+          - link [ref=e274] [cursor=pointer]:
+            - /url: /uzytkownik/paulina@lasyiobywatele.pl/
+            - heading "paulina@lasyiobywatele.pl" [level=4] [ref=e275]
+            - paragraph
+          - link [ref=e276] [cursor=pointer]:
+            - /url: /uzytkownik/rafa/
+            - heading "rafa" [level=4] [ref=e277]
+            - paragraph
+          - link [ref=e278] [cursor=pointer]:
+            - /url: /uzytkownik/ohana/
+            - heading "ohana" [level=4] [ref=e279]
+            - paragraph
+          - link [ref=e280] [cursor=pointer]:
+            - /url: /uzytkownik/micha/
+            - heading "micha" [level=4] [ref=e281]
+            - paragraph
+          - link [ref=e282] [cursor=pointer]:
+            - /url: /uzytkownik/redakcja@ntvsadecka.pl/
+            - heading "redakcja@ntvsadecka.pl" [level=4] [ref=e283]
+            - paragraph
+          - link [ref=e284] [cursor=pointer]:
+            - /url: /uzytkownik/52edc/
+            - heading "52edc" [level=4] [ref=e285]
+            - paragraph
+          - link [ref=e286] [cursor=pointer]:
+            - /url: /uzytkownik/Zbucki/
+            - heading "Zbucki" [level=4] [ref=e287]
+            - paragraph
+          - link [ref=e288] [cursor=pointer]:
+            - /url: /uzytkownik/dawid8/
+            - heading "dawid8" [level=4] [ref=e289]
+            - paragraph
+          - link [ref=e290] [cursor=pointer]:
+            - /url: /uzytkownik/d.gruchala@dygowo.pl/
+            - heading "d.gruchala@dygowo.pl" [level=4] [ref=e291]
+            - paragraph
+          - link [ref=e292] [cursor=pointer]:
+            - /url: /uzytkownik/rad.ram@wp.pl/
+            - heading "rad.ram@wp.pl" [level=4] [ref=e293]
+            - paragraph
+          - link [ref=e294] [cursor=pointer]:
+            - /url: /uzytkownik/k.noga@swidnica.zgora.pl/
+            - heading "k.noga@swidnica.zgora.pl" [level=4] [ref=e295]
+            - paragraph
+          - link [ref=e296] [cursor=pointer]:
+            - /url: /uzytkownik/KarlaM2/
+            - heading "KarlaM2" [level=4] [ref=e297]
+            - paragraph
+          - link [ref=e298] [cursor=pointer]:
+            - /url: /uzytkownik/krzysiek/
+            - heading "krzysiek" [level=4] [ref=e299]
+            - paragraph
+          - link [ref=e300] [cursor=pointer]:
+            - /url: /uzytkownik/mjendryczka/
+            - heading "mjendryczka" [level=4] [ref=e301]
+            - paragraph
+          - link [ref=e302] [cursor=pointer]:
+            - /url: /uzytkownik/pracownik/
+            - heading "pracownik" [level=4] [ref=e303]
+            - paragraph
+          - link [ref=e304] [cursor=pointer]:
+            - /url: /uzytkownik/artur/
+            - heading "artur" [level=4] [ref=e305]
+            - paragraph
+          - link [ref=e306] [cursor=pointer]:
+            - /url: /uzytkownik/HotIce/
+            - heading "HotIce" [level=4] [ref=e307]
+            - paragraph
+          - link [ref=e308] [cursor=pointer]:
+            - /url: /uzytkownik/jerzy/
+            - heading "jerzy" [level=4] [ref=e309]
+            - paragraph
+          - link [ref=e310] [cursor=pointer]:
+            - /url: /uzytkownik/Kszychu/
+            - heading "Kszychu" [level=4] [ref=e311]
+            - paragraph
+          - link [ref=e312] [cursor=pointer]:
+            - /url: /uzytkownik/jakub1/
+            - heading "jakub1" [level=4] [ref=e313]
+            - paragraph
+          - link [ref=e314] [cursor=pointer]:
+            - /url: /uzytkownik/ela_i_mirek/
+            - heading "ela_i_mirek" [level=4] [ref=e315]
+            - paragraph
+          - link [ref=e316] [cursor=pointer]:
+            - /url: /uzytkownik/adam7/
+            - heading "adam7" [level=4] [ref=e317]
+            - paragraph
+          - link [ref=e318] [cursor=pointer]:
+            - /url: /uzytkownik/nikol/
+            - heading "nikol" [level=4] [ref=e319]
+            - paragraph
+          - link [ref=e320] [cursor=pointer]:
+            - /url: /uzytkownik/Bartek/
+            - heading "Bartek" [level=4] [ref=e321]
+            - paragraph
+          - link [ref=e322] [cursor=pointer]:
+            - /url: /uzytkownik/paulina/
+            - heading "paulina" [level=4] [ref=e323]
+            - paragraph
+          - link [ref=e324] [cursor=pointer]:
+            - /url: /uzytkownik/leon/
+            - heading "leon" [level=4] [ref=e325]
+            - paragraph
+          - link [ref=e326] [cursor=pointer]:
+            - /url: /uzytkownik/tetiana/
+            - heading "tetiana" [level=4] [ref=e327]
+            - paragraph
+          - link [ref=e328] [cursor=pointer]:
+            - /url: /uzytkownik/ryszardek/
+            - heading "ryszardek" [level=4] [ref=e329]
+            - paragraph
+          - link [ref=e330] [cursor=pointer]:
+            - /url: /uzytkownik/fundacjapoledialogu/
+            - heading "fundacjapoledialogu" [level=4] [ref=e331]
+            - paragraph
+          - link [ref=e332] [cursor=pointer]:
+            - /url: /uzytkownik/lpawlikowski/
+            - heading "lpawlikowski" [level=4] [ref=e333]
+            - paragraph
+          - link [ref=e334] [cursor=pointer]:
+            - /url: /uzytkownik/jolka/
+            - heading "jolka" [level=4] [ref=e335]
+            - paragraph
+          - link [ref=e336] [cursor=pointer]:
+            - /url: /uzytkownik/olek/
+            - heading "olek" [level=4] [ref=e337]
+            - paragraph
+          - link [ref=e338] [cursor=pointer]:
+            - /url: /uzytkownik/transparentne/
+            - heading "transparentne" [level=4] [ref=e339]
+            - paragraph
+          - link [ref=e340] [cursor=pointer]:
+            - /url: /uzytkownik/SOWP/
+            - heading "SOWP" [level=4] [ref=e341]
+            - paragraph
+          - link [ref=e342] [cursor=pointer]:
+            - /url: /uzytkownik/midland/
+            - heading "midland" [level=4] [ref=e343]
+            - paragraph
+          - link [ref=e344] [cursor=pointer]:
+            - /url: /uzytkownik/tomek_11/
+            - heading "tomek_11" [level=4] [ref=e345]
+            - paragraph
+          - link [ref=e346] [cursor=pointer]:
+            - /url: /uzytkownik/lipigorskiarek@gmail.com/
+            - heading "lipigorskiarek@gmail.com" [level=4] [ref=e347]
+            - paragraph
+          - link [ref=e348] [cursor=pointer]:
+            - /url: /uzytkownik/arkadiusz/
+            - heading "arkadiusz" [level=4] [ref=e349]
+            - paragraph
+          - link [ref=e350] [cursor=pointer]:
+            - /url: /uzytkownik/kamil/
+            - heading "kamil" [level=4] [ref=e351]
+            - paragraph
+          - link [ref=e352] [cursor=pointer]:
+            - /url: /uzytkownik/Szymon_Dubiel/
+            - heading "Szymon_Dubiel" [level=4] [ref=e353]
+            - paragraph
+          - link [ref=e354] [cursor=pointer]:
+            - /url: /uzytkownik/JAN49/
+            - heading "JAN49" [level=4] [ref=e355]
+            - paragraph
+          - link [ref=e356] [cursor=pointer]:
+            - /url: /uzytkownik/mkaczmarczyk/
+            - heading "mkaczmarczyk" [level=4] [ref=e357]
+            - paragraph
+          - link [ref=e358] [cursor=pointer]:
+            - /url: /uzytkownik/inspektor/
+            - heading "inspektor" [level=4] [ref=e359]
+            - paragraph
+          - link [ref=e360] [cursor=pointer]:
+            - /url: /uzytkownik/dariusz5/
+            - heading "dariusz5" [level=4] [ref=e361]
+            - paragraph
+          - link [ref=e362] [cursor=pointer]:
+            - /url: /uzytkownik/tomek4/
+            - heading "tomek4" [level=4] [ref=e363]
+            - paragraph
+          - link [ref=e364] [cursor=pointer]:
+            - /url: /uzytkownik/jolanta/
+            - heading "jolanta" [level=4] [ref=e365]
+            - paragraph
+          - link [ref=e366] [cursor=pointer]:
+            - /url: /uzytkownik/grzegorz8/
+            - heading "grzegorz8" [level=4] [ref=e367]
+            - paragraph
+          - link [ref=e368] [cursor=pointer]:
+            - /url: /uzytkownik/jan3/
+            - heading "jan3" [level=4] [ref=e369]
+            - paragraph
+          - link [ref=e370] [cursor=pointer]:
+            - /url: /uzytkownik/kacper0/
+            - heading "kacper0" [level=4] [ref=e371]
+            - paragraph
+          - link [ref=e372] [cursor=pointer]:
+            - /url: /uzytkownik/piotriw/
+            - heading "piotriw" [level=4] [ref=e373]
+            - paragraph
+          - link [ref=e374] [cursor=pointer]:
+            - /url: /uzytkownik/marcinbojko/
+            - heading "marcinbojko" [level=4] [ref=e375]
+            - paragraph
+          - link [ref=e376] [cursor=pointer]:
+            - /url: /uzytkownik/zbigniew/
+            - heading "zbigniew" [level=4] [ref=e377]
+            - paragraph
+          - link [ref=e378] [cursor=pointer]:
+            - /url: /uzytkownik/pawe0/
+            - heading "pawe0" [level=4] [ref=e379]
+            - paragraph
+          - link [ref=e380] [cursor=pointer]:
+            - /url: /uzytkownik/jacek/
+            - heading "jacek" [level=4] [ref=e381]
+            - paragraph
+          - link [ref=e382] [cursor=pointer]:
+            - /url: /uzytkownik/pawe3/
+            - heading "pawe3" [level=4] [ref=e383]
+            - paragraph
+          - link [ref=e384] [cursor=pointer]:
+            - /url: /uzytkownik/michalina/
+            - heading "michalina" [level=4] [ref=e385]
+            - paragraph
+          - link [ref=e386] [cursor=pointer]:
+            - /url: /uzytkownik/zapka/
+            - heading "zapka" [level=4] [ref=e387]
+            - paragraph
+          - link [ref=e388] [cursor=pointer]:
+            - /url: /uzytkownik/arturfrautschi/
+            - heading "arturfrautschi" [level=4] [ref=e389]
+            - paragraph
+          - link [ref=e390] [cursor=pointer]:
+            - /url: /uzytkownik/kancelaria_doradcow/
+            - heading "kancelaria_doradcow" [level=4] [ref=e391]
+            - paragraph
+          - link [ref=e392] [cursor=pointer]:
+            - /url: /uzytkownik/przemek/
+            - heading "przemek" [level=4] [ref=e393]
+            - paragraph
+          - link [ref=e394] [cursor=pointer]:
+            - /url: /uzytkownik/jarzar/
+            - heading "jarzar" [level=4] [ref=e395]
+            - paragraph
+          - link [ref=e396] [cursor=pointer]:
+            - /url: /uzytkownik/agnzdanowicz/
+            - heading "agnzdanowicz" [level=4] [ref=e397]
+            - paragraph
+          - link [ref=e398] [cursor=pointer]:
+            - /url: /uzytkownik/piotr/
+            - heading "piotr" [level=4] [ref=e399]
+            - paragraph
+          - link [ref=e400] [cursor=pointer]:
+            - /url: /uzytkownik/lukaszgorczynski/
+            - heading "lukaszgorczynski" [level=4] [ref=e401]
+            - paragraph
+          - link [ref=e402] [cursor=pointer]:
+            - /url: /uzytkownik/konradzukowski/
+            - heading "konradzukowski" [level=4] [ref=e403]
+            - paragraph
+          - link [ref=e404] [cursor=pointer]:
+            - /url: /uzytkownik/JanR/
+            - heading "JanR" [level=4] [ref=e405]
+            - paragraph
+          - link [ref=e406] [cursor=pointer]:
+            - /url: /uzytkownik/APalecka/
+            - heading "APalecka" [level=4] [ref=e407]
+            - paragraph
+          - link [ref=e408] [cursor=pointer]:
+            - /url: /uzytkownik/kacper_daniel/
+            - heading "kacper_daniel" [level=4] [ref=e409]
+            - paragraph
+          - link [ref=e410] [cursor=pointer]:
+            - /url: /uzytkownik/anna/
+            - heading "anna" [level=4] [ref=e411]
+            - paragraph
+          - link [ref=e412] [cursor=pointer]:
+            - /url: /uzytkownik/pawel/
+            - heading "pawel" [level=4] [ref=e413]
+            - paragraph
+          - link [ref=e414] [cursor=pointer]:
+            - /url: /uzytkownik/tuujgqdetw/
+            - heading "tuujgqdetw" [level=4] [ref=e415]
+            - paragraph
+          - link [ref=e416] [cursor=pointer]:
+            - /url: /uzytkownik/katarzyna8/
+            - heading "katarzyna8" [level=4] [ref=e417]
+            - paragraph
+          - link [ref=e418] [cursor=pointer]:
+            - /url: /uzytkownik/Ania_De/
+            - heading "Ania_De" [level=4] [ref=e419]
+            - paragraph
+          - link [ref=e420] [cursor=pointer]:
+            - /url: /uzytkownik/micha5/
+            - heading "micha5" [level=4] [ref=e421]
+            - paragraph
+          - link [ref=e422] [cursor=pointer]:
+            - /url: /uzytkownik/andrzej9/
+            - heading "andrzej9" [level=4] [ref=e423]
+            - paragraph
+          - link [ref=e424] [cursor=pointer]:
+            - /url: /uzytkownik/andrzej7/
+            - heading "andrzej7" [level=4] [ref=e425]
+            - paragraph
+          - link [ref=e426] [cursor=pointer]:
+            - /url: /uzytkownik/sylwester/
+            - heading "sylwester" [level=4] [ref=e427]
+            - paragraph
+          - link [ref=e428] [cursor=pointer]:
+            - /url: /uzytkownik/joannagrzelinska/
+            - heading "joannagrzelinska" [level=4] [ref=e429]
+            - paragraph
+          - link [ref=e430] [cursor=pointer]:
+            - /url: /uzytkownik/bartlomiej/
+            - heading "bartlomiej" [level=4] [ref=e431]
+            - paragraph
+          - link [ref=e432] [cursor=pointer]:
+            - /url: /uzytkownik/gerard/
+            - heading "gerard" [level=4] [ref=e433]
+            - paragraph
+          - link [ref=e434] [cursor=pointer]:
+            - /url: /uzytkownik/WilczyGon/
+            - heading "WilczyGon" [level=4] [ref=e435]
+            - paragraph
+          - link [ref=e436] [cursor=pointer]:
+            - /url: /uzytkownik/Krzaczek/
+            - heading "Krzaczek" [level=4] [ref=e437]
+            - paragraph
+          - link [ref=e438] [cursor=pointer]:
+            - /url: /uzytkownik/alina.czyzewska@gmail.com/
+            - heading "alina.czyzewska@gmail.com" [level=4] [ref=e439]
+            - paragraph
+          - link [ref=e440] [cursor=pointer]:
+            - /url: /uzytkownik/mary91/
+            - heading "mary91" [level=4] [ref=e441]
+            - paragraph
+          - link [ref=e442] [cursor=pointer]:
+            - /url: /uzytkownik/maverick/
+            - heading "maverick" [level=4] [ref=e443]
+            - paragraph
+          - link [ref=e444] [cursor=pointer]:
+            - /url: /uzytkownik/adam.iwanczuk@siecobywatelska.pl/
+            - heading "adam.iwanczuk@siecobywatelska.pl" [level=4] [ref=e445]
+            - paragraph
+          - link [ref=e446] [cursor=pointer]:
+            - /url: /uzytkownik/tginpxehsb/
+            - heading "tginpxehsb" [level=4] [ref=e447]
+            - paragraph
+          - link [ref=e448] [cursor=pointer]:
+            - /url: /uzytkownik/PiIw/
+            - heading "PiIw" [level=4] [ref=e449]
+            - paragraph
+          - link [ref=e450] [cursor=pointer]:
+            - /url: /uzytkownik/IOD/
+            - heading "IOD" [level=4] [ref=e451]
+            - paragraph
+          - link [ref=e452] [cursor=pointer]:
+            - /url: /uzytkownik/claude_ai/
+            - heading "claude_ai" [level=4] [ref=e453]
+            - paragraph
+      - generic [ref=e454]:
+        - generic [ref=e455]:
+          - text: Sieć Obywatelska - Watchdog Polska ul. Szpitalna 5/5 00-031 Warszawa
+          - paragraph [ref=e456]:
+            - link "Klauzula RODO" [ref=e457] [cursor=pointer]:
+              - /url: https://fedrowanie.siecobywatelska.pl/media_internal/tinycontent/uploads/11_KLAUZULA.-.dane.z.udip.na.stronach.www.i.w.mediach.spol.pdf
+        - generic [ref=e458]:
+          - text: "silnik:"
+          - link "jawne.info.pl" [ref=e459] [cursor=pointer]:
+            - /url: http://jawne.info.pl
+          - text: "| v1.5.77.deps |"
+          - link "GitHub" [ref=e460] [cursor=pointer]:
+            - /url: https://github.com/watchdogpolska/feder
+          - text: –
+          - link "efd8a3b" [ref=e462] [cursor=pointer]:
+            - /url: https://github.com/watchdogpolska/feder/compare/efd8a3b2...master
+          - text: "|"
+          - link "API" [ref=e463] [cursor=pointer]:
+            - /url: /api/
+        - generic [ref=e465]: Ta strona wykorzystuje cookies.
+  - list [ref=e467]:
+    - listitem [ref=e468]:
+      - link "Ukryj »" [ref=e469] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e470]:
+      - link "Toggle Theme" [ref=e471] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e474]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e475]
+      - link "Historia /uzytkownik/" [ref=e476] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e477]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e478]
+      - link "Wersje Django 5.2.17" [ref=e479] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e480]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e481]
+      - 'link "Czas CPU: 310.87ms (299.65ms)" [ref=e482] [cursor=pointer]':
+        - /url: "#"
+    - listitem [ref=e483]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e484]
+      - link "Ustawienia" [ref=e485] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e486]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e487]
+      - link "Nagłówki" [ref=e488] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e489]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e490]
+      - link "Zapytania UserListView" [ref=e491] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e492]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e493]
+      - link "SQL 5 queries in 3.50ms" [ref=e494] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e495]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e496]
+      - link "Pliki statyczne 3 użyte plików" [ref=e497] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e498]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e499]
+      - link "Templatki users/user_list.html" [ref=e500] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e501]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e502]
+      - link "Alerty" [ref=e503] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e504]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e505]
+      - link "Cache 2 wywołania w 0.16ms" [ref=e506] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e507]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e508]
+      - link "Sygnały 88 odbiorców 15 sygnałów" [ref=e509] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e510]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e511]
+      - link "Gmina" [ref=e512] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e513]:
+      - checkbox "Enable for next and successive requests" [ref=e514]
+      - generic [ref=e515]: Przechwycone przekierowania
+    - listitem [ref=e516]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e517]
+      - link "Profilowanie" [ref=e518] [cursor=pointer]:
+        - /url: "#"
+```
+
+# Test source
+
+```ts
+  1  | import { test, expect } from '@playwright/test';
+  2  | import { PAGES } from './pages';
+  3  | import { VIEWPORTS } from './viewports';
+  4  | 
+  5  | for (const [name, size] of Object.entries(VIEWPORTS)) {
+  6  |   test.describe(`${name} (${size.width}px)`, () => {
+  7  |     test.use({ viewport: size });
+  8  | 
+  9  |     for (const page of PAGES) {
+  10 |       test(`${page.name} - visual baseline`, async ({ page: pw }) => {
+  11 |         await pw.goto(page.path);
+  12 |         await pw.waitForLoadState('networkidle');
+> 13 |         await expect(pw).toHaveScreenshot(`${page.name}-${name}.png`, {
+     |                          ^ Error: expect(page).toHaveScreenshot(expected) failed
+  14 |           maxDiffPixelRatio: 0.001,
+  15 |           fullPage: true,
+  16 |         });
+  17 |       });
+  18 |     }
+  19 |   });
+  20 | }
+  21 | 
+```

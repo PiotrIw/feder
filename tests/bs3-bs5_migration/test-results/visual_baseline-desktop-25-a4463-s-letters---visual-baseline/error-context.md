@@ -1,0 +1,780 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: visual_baseline.spec.ts >> desktop (2560px) >> monitorings-letters - visual baseline
+- Location: tests/bs3-bs5_migration/visual_baseline.spec.ts:10:11
+
+# Error details
+
+```
+Error: expect(page).toHaveScreenshot(expected) failed
+
+Timeout: 5000ms
+  Timeout 5000ms exceeded.
+
+  Snapshot: monitorings-letters-desktop.png
+
+Call log:
+  - Expect "toHaveScreenshot(monitorings-letters-desktop.png)" with timeout 5000ms
+    - verifying given screenshot expectation
+  - taking page screenshot
+    - disabled all CSS animations
+  - waiting for fonts to load...
+  - fonts loaded
+  - Expected an image 2560px by 9383px, received 2560px by 9861px. 1033476 pixels (ratio 0.05 of all image pixels) are different.
+  - waiting 100ms before taking screenshot
+  - Timeout 5000ms exceeded.
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - text: )
+    - generic [ref=e3]:
+      - generic [ref=e4]:
+        - heading "DEV" [level=1] [ref=e5]
+        - link [ref=e6] [cursor=pointer]:
+          - /url: /
+          - img "Fedrowanie" [ref=e8]
+          - paragraph [ref=e9]: Fedrowanie
+        - paragraph [ref=e10]:
+          - link "Sieci Watchdog" [ref=e11] [cursor=pointer]:
+            - /url: http://siecobywatelska.pl
+        - paragraph [ref=e12]:
+          - link "Klauzula RODO" [ref=e13] [cursor=pointer]:
+            - /url: https://fedrowanie.siecobywatelska.pl/media_internal/tinycontent/uploads/11_KLAUZULA.-.dane.z.udip.na.stronach.www.i.w.mediach.spol.pdf
+      - list [ref=e15]:
+        - listitem [ref=e16]:
+          - paragraph [ref=e17]
+        - listitem [ref=e18]:
+          - link "Strona główna" [ref=e19] [cursor=pointer]:
+            - /url: /
+        - listitem [ref=e21]:
+          - link "O stronie" [ref=e22] [cursor=pointer]:
+            - /url: /o-stronie/
+        - listitem [ref=e24]:
+          - paragraph [ref=e25]
+        - generic [ref=e26]: Szukaj
+        - listitem [ref=e28]:
+          - link "Sprawy" [ref=e29] [cursor=pointer]:
+            - /url: /sprawy/
+        - listitem [ref=e31]:
+          - link "Monitoringi" [ref=e32] [cursor=pointer]:
+            - /url: /monitoringi/
+        - listitem [ref=e34]:
+          - link "Tabela monitoringów" [ref=e35] [cursor=pointer]:
+            - /url: /monitoringi/table/
+        - listitem [ref=e37]:
+          - link "Listy przypisane do spraw" [ref=e38] [cursor=pointer]:
+            - /url: /listy/
+        - listitem [ref=e40]:
+          - link "Listy nieprzypisane do spraw" [ref=e41] [cursor=pointer]:
+            - /url: /listy/przypisz
+        - listitem [ref=e43]:
+          - link "Instytucje" [ref=e44] [cursor=pointer]:
+            - /url: /instytucje/
+        - listitem [ref=e46]:
+          - paragraph [ref=e47]
+      - generic [ref=e48]:
+        - generic [ref=e49]: Użytkownik / użytkowniczka
+        - listitem [ref=e50]:
+          - link "Mój profil" [ref=e51] [cursor=pointer]:
+            - /url: /uzytkownik/claude_ai/
+        - listitem [ref=e53]:
+          - link "Panel administracyjny" [ref=e54] [cursor=pointer]:
+            - /url: /admin/
+        - listitem [ref=e56]:
+          - link "Wyloguj" [ref=e57] [cursor=pointer]:
+            - /url: /accounts/logout/
+    - generic [ref=e60]:
+      - list [ref=e61]:
+        - listitem [ref=e62]: Monitoring sądów apelacyjnych
+      - generic [ref=e64]:
+        - link "Edytuj" [ref=e65] [cursor=pointer]:
+          - /url: /monitoringi/monitoring-sadow-apelacyjnych/~edytuj
+        - link "Aktualizuj wyniki" [ref=e66] [cursor=pointer]:
+          - /url: /monitoringi/monitoring-sadow-apelacyjnych/~results-update
+        - link "Przypisz" [ref=e67] [cursor=pointer]:
+          - /url: /monitoringi/monitoring-sadow-apelacyjnych/~przypisz
+        - link "Usuń" [ref=e68] [cursor=pointer]:
+          - /url: /monitoringi/monitoring-sadow-apelacyjnych/~usun
+        - link "Utwórz sprawę" [ref=e69] [cursor=pointer]:
+          - /url: /sprawy/~utworz-5
+        - link "Wiadomość masowa" [ref=e70] [cursor=pointer]:
+          - /url: /monitoringi/monitoring-sadow-apelacyjnych/~wiadomosc-masowa
+        - link "Uprawnienia" [ref=e71] [cursor=pointer]:
+          - /url: /monitoringi/monitoring-sadow-apelacyjnych/~uprawnienia
+        - link "Lista alertów" [ref=e72] [cursor=pointer]:
+          - /url: /alerty/monitoring-5
+        - link "Zobacz dzienniki" [ref=e73] [cursor=pointer]:
+          - /url: /listy/logi/monitoring-5
+        - link "Zobacz tagi" [ref=e75] [cursor=pointer]:
+          - /url: /sprawy/tagi/monitoring-5
+        - link "Zobacz raport" [ref=e77] [cursor=pointer]:
+          - /url: /monitoringi/monitoring-sadow-apelacyjnych/raport
+        - link "Zobacz tabelę spraw" [ref=e79] [cursor=pointer]:
+          - /url: /monitoringi/monitoring-sadow-apelacyjnych/monitoring_cases_table
+      - heading [level=2] [ref=e82]:
+        - text: Monitoring sądów apelacyjnych
+        - generic [ref=e84]:
+          - text: przez
+          - link "adobrawy" [ref=e85] [cursor=pointer]:
+            - /url: /uzytkownik/adobrawy/
+          - time [ref=e86]: 11 sierpnia 2017 02:47
+      - generic [ref=e87]:
+        - table [ref=e90]:
+          - rowgroup [ref=e91]:
+            - row [ref=e92]:
+              - columnheader "Województwo" [ref=e93]
+              - columnheader "Liczba spraw" [ref=e94]
+              - columnheader "Liczba spraw z potw. odbioru" [ref=e95]
+              - columnheader "Liczba spraw z odpowiedzią" [ref=e96]
+            - row [ref=e97]:
+              - cell "Dolnośląskie" [ref=e98]
+              - cell "1" [ref=e99]
+              - cell "0" [ref=e100]
+              - cell "1" [ref=e101]
+            - row [ref=e102]:
+              - cell "Kujawsko-Pomorskie" [ref=e103]
+              - cell "0" [ref=e104]
+              - cell "0" [ref=e105]
+              - cell "0" [ref=e106]
+            - row [ref=e107]:
+              - cell "Lubelskie" [ref=e108]
+              - cell "1" [ref=e109]
+              - cell "0" [ref=e110]
+              - cell "1" [ref=e111]
+            - row [ref=e112]:
+              - cell "Lubuskie" [ref=e113]
+              - cell "0" [ref=e114]
+              - cell "0" [ref=e115]
+              - cell "0" [ref=e116]
+            - row [ref=e117]:
+              - cell "Łódzkie" [ref=e118]
+              - cell "1" [ref=e119]
+              - cell "0" [ref=e120]
+              - cell "1" [ref=e121]
+            - row [ref=e122]:
+              - cell "Małopolskie" [ref=e123]
+              - cell "1" [ref=e124]
+              - cell "0" [ref=e125]
+              - cell "1" [ref=e126]
+            - row [ref=e127]:
+              - cell "Mazowieckie" [ref=e128]
+              - cell "1" [ref=e129]
+              - cell "0" [ref=e130]
+              - cell "1" [ref=e131]
+            - row [ref=e132]:
+              - cell "Opolskie" [ref=e133]
+              - cell "0" [ref=e134]
+              - cell "0" [ref=e135]
+              - cell "0" [ref=e136]
+            - row [ref=e137]:
+              - cell "Podkarpackie" [ref=e138]
+              - cell "1" [ref=e139]
+              - cell "0" [ref=e140]
+              - cell "1" [ref=e141]
+            - row [ref=e142]:
+              - cell "Podlaskie" [ref=e143]
+              - cell "1" [ref=e144]
+              - cell "0" [ref=e145]
+              - cell "1" [ref=e146]
+            - row [ref=e147]:
+              - cell "Pomorskie" [ref=e148]
+              - cell "1" [ref=e149]
+              - cell "0" [ref=e150]
+              - cell "1" [ref=e151]
+            - row [ref=e152]:
+              - cell "Śląskie" [ref=e153]
+              - cell "1" [ref=e154]
+              - cell "0" [ref=e155]
+              - cell "1" [ref=e156]
+            - row [ref=e157]:
+              - cell "Świętokrzyskie" [ref=e158]
+              - cell "0" [ref=e159]
+              - cell "0" [ref=e160]
+              - cell "0" [ref=e161]
+            - row [ref=e162]:
+              - cell "Warmińsko-Mazurskie" [ref=e163]
+              - cell "0" [ref=e164]
+              - cell "0" [ref=e165]
+              - cell "0" [ref=e166]
+            - row [ref=e167]:
+              - cell "Wielkopolskie" [ref=e168]
+              - cell "1" [ref=e169]
+              - cell "0" [ref=e170]
+              - cell "1" [ref=e171]
+            - row [ref=e172]:
+              - cell "Zachodniopomorskie" [ref=e173]
+              - cell "1" [ref=e174]
+              - cell "0" [ref=e175]
+              - cell "1" [ref=e176]
+            - row [ref=e177]:
+              - cell "Wszystkie" [ref=e178]
+              - cell "11" [ref=e179]
+              - cell "0" [ref=e180]
+              - cell "11" [ref=e181]
+        - generic [ref=e182]:
+          - list [ref=e183]:
+            - listitem [ref=e184]:
+              - link "Instytucje i sprawy" [ref=e185] [cursor=pointer]:
+                - /url: /monitoringi/monitoring-sadow-apelacyjnych
+            - listitem [ref=e186]:
+              - generic [ref=e187]: Listy
+            - listitem [ref=e188]:
+              - link "Projekty" [ref=e189] [cursor=pointer]:
+                - /url: /monitoringi/monitoring-sadow-apelacyjnych/projekty
+            - listitem [ref=e190]:
+              - link "Szablon" [ref=e191] [cursor=pointer]:
+                - /url: /monitoringi/monitoring-sadow-apelacyjnych/template
+            - listitem [ref=e192]:
+              - link "Wyniki" [ref=e193] [cursor=pointer]:
+                - /url: /monitoringi/monitoring-sadow-apelacyjnych/results
+          - heading "Listy" [level=3] [ref=e194]
+          - generic [ref=e195]:
+            - heading [level=3] [ref=e196]:
+              - 'link "Not read: Wniosek o udostępnienie informacji publicznej" [ref=e198] [cursor=pointer]':
+                - /url: /listy/16862
+              - generic [ref=e199]:
+                - text: przez
+                - link "Sąd Apelacyjny w Katowicach" [ref=e201] [cursor=pointer]:
+                  - /url: /instytucje/sad-apelacyjny-w-katowicach
+                - text: w sprawie
+                - 'link "Monitoring sądów apelacyjnych #3" [ref=e203] [cursor=pointer]':
+                  - /url: /sprawy/monitoring-sadow-apelacyjnych-3
+                - time [ref=e204]: 16 lipca 2018 08:58
+            - generic [ref=e205]:
+              - paragraph [ref=e206]: Twoja wiadomość
+              - paragraph [ref=e207]: "Do: 2003-informacja Temat: Wniosek o udostępnienie informacji publicznej Wysłano: 11 sierpnia 2017 02:48:11 (UTC+01:00) Sarajewo, Skopie, Warszawa, Zagrzeb"
+              - paragraph [ref=e208]: "została usunięta nieprzeczytana: 5 czerwca 2018 07:52:37 (UTC+01:00) Sarajewo, Skopie, Warszawa, Zagrzeb."
+          - generic [ref=e209]:
+            - heading [level=3] [ref=e210]:
+              - 'link "Nieprzeczytane: Wniosek o udostępnienie informacji publicznej" [ref=e212] [cursor=pointer]':
+                - /url: /listy/16858
+              - generic [ref=e213]:
+                - text: przez
+                - link "Sąd Apelacyjny w Białymstoku" [ref=e215] [cursor=pointer]:
+                  - /url: /instytucje/sad-apelacyjny-w-bialymstoku
+                - text: w sprawie
+                - 'link "Monitoring sądów apelacyjnych #1" [ref=e217] [cursor=pointer]':
+                  - /url: /sprawy/monitoring-sadow-apelacyjnych-1
+                - time [ref=e218]: 16 lipca 2018 08:58
+            - generic [ref=e219]:
+              - paragraph [ref=e220]: Twoja wiadomość
+              - paragraph [ref=e221]: "Do: Jarosławska Marzanna Temat: Wniosek o udostępnienie informacji publicznej Wysłano: 11 sierpnia 2017 02:48:11 (UTC+01:00) Sarajewo, Skopie, Warszawa, Zagrzeb"
+              - paragraph [ref=e222]: "została usunięta nieprzeczytana: 28 maja 2018 16:53:54 (UTC+01:00) Sarajewo, Skopie, Warszawa, Zagrzeb."
+          - generic [ref=e223]:
+            - heading [level=3] [ref=e224]:
+              - 'link "Przeczytano: Wniosek o udostępnienie informacji publicznej" [ref=e226] [cursor=pointer]':
+                - /url: /listy/16559
+              - generic [ref=e227]:
+                - text: przez
+                - link "Sąd Apelacyjny w Krakowie" [ref=e229] [cursor=pointer]:
+                  - /url: /instytucje/sad-apelacyjny-w-krakowie
+                - text: w sprawie
+                - 'link "Monitoring sądów apelacyjnych #4" [ref=e231] [cursor=pointer]':
+                  - /url: /sprawy/monitoring-sadow-apelacyjnych-4
+                - time [ref=e232]: 21 lutego 2018 10:00
+            - generic [ref=e233]:
+              - paragraph [ref=e234]: Twoja wiadomość
+              - paragraph [ref=e235]: "Do: Kluza, Agnieszka Temat: Wniosek o udostępnienie informacji publicznej Wysłano: 11 sierpnia 2017 02:48:11 (UTC+01:00) Sarajewo, Skopie, Warszawa, Zagrzeb"
+              - paragraph [ref=e236]: została przeczytana o godzinie 21 lutego 2018 09:46:49 (UTC+01:00) Sarajewo, Skopie, Warszawa, Zagrzeb.
+          - generic [ref=e237]:
+            - heading [level=3] [ref=e238]:
+              - link "odpowiedź na wniosek o udostepnienie inf.publicznej" [ref=e240] [cursor=pointer]:
+                - /url: /listy/9490
+              - generic [ref=e241]:
+                - text: przez
+                - link "Sąd Apelacyjny w Warszawie" [ref=e243] [cursor=pointer]:
+                  - /url: /instytucje/sad-apelacyjny-w-warszawie
+                - text: w sprawie
+                - 'link "Monitoring sądów apelacyjnych #10" [ref=e245] [cursor=pointer]':
+                  - /url: /sprawy/monitoring-sadow-apelacyjnych-10
+                - time [ref=e246]: 14 września 2017 12:45
+            - generic [ref=e247]:
+              - paragraph [ref=e248]: Stowarzyszenie Sieć Obywatelska Watchdog PolskaStosownie do wniosku z 11 sierpnia 2017 r. o udostępnienie informacji publicznej - w wykonaniu zarządzenia Wiceprezesa Sądu Apelacyjnego w Warszawie, uprzejmie informuję, że:1. Orzeczenia dyscyplinarne sędziów Sądu Apelacyjnego w Warszawie nie są publikowane na żadnej stronie internetowej ,2. Rejestr umów od 1 stycznia 2017 do 31 lipca 2017 r. - w załączeniu,3. W Sądzie Apelacyjnym w Warszawie była przeprowadzona kontrola NIK- raport został zamieszczony na stronie tut. sądu w zakładce Kontrole,
+              - paragraph [ref=e249]: 4. Właściwymi rzeczowo dla spraw z art. 212 Kodeku Karnego są Sądy Rejonowe, a instancją odwoławczą są Sądy Okręgowe,
+              - paragraph [ref=e250]: "5. W 2017 r. z art. 231 Kodeksu Karnego w tut. sądzie zapadły 3 wyroki w sprawach: II AKa 203/16, II AKa 29/17, II Aka 120/17. Wyroki wraz z uzasadnieniem tych spraw zostały opublikowane na stronie Portalu Orzeczeń Sądu Apelacyjnego w Warszawie pod adresem http://orzeczenia.waw.sa.gov.pl ,"
+              - paragraph [ref=e251]: 6. Kalendarz spotkań prezes sądu -nie jest dokumentem urzędowym - gdyż nie stanowi ani oświadczenia woli, ani oświadczenia wiedzy zgodnie z art.6 ust. 2 ustawy o dostępie do informacji publicznej. Należy go zakwalifikować jako dokumentację wewnętrzną. W związku z powyższym nie jest informacją publiczną, o której mowa w art. 1 ust. 1 ustawy o dostępie do informacji publicznej.
+              - paragraph [ref=e252]: SekretarkaRenata KosOddział AdministracyjnySąd Apelacyjny w WarszawiePl.Krasińskich 2/4/600-207 Warszawa
+            - generic [ref=e253]: "1"
+          - generic [ref=e255]:
+            - heading [level=3] [ref=e256]:
+              - link "odp.na wniosek dot. Informacji publicznej" [ref=e258] [cursor=pointer]:
+                - /url: /listy/9488
+              - generic [ref=e259]:
+                - text: przez
+                - link "Sąd Apelacyjny w Poznaniu" [ref=e261] [cursor=pointer]:
+                  - /url: /instytucje/sad-apelacyjny-w-poznaniu
+                - text: w sprawie
+                - 'link "Monitoring sądów apelacyjnych #7" [ref=e263] [cursor=pointer]':
+                  - /url: /sprawy/monitoring-sadow-apelacyjnych-7
+                - time [ref=e264]: 14 września 2017 12:15
+            - generic [ref=e265]:
+              - paragraph
+            - generic [ref=e266]: "1"
+          - generic [ref=e268]:
+            - heading [level=3] [ref=e269]:
+              - link "decyzja odmowa SA Gdańsk" [ref=e271] [cursor=pointer]:
+                - /url: /listy/9444
+              - generic [ref=e272]:
+                - text: przez
+                - link "Sąd Apelacyjny w Gdańsku" [ref=e274] [cursor=pointer]:
+                  - /url: /instytucje/sad-apelacyjny-w-gdansku
+                - text: w sprawie
+                - 'link "Monitoring sądów apelacyjnych #2" [ref=e276] [cursor=pointer]':
+                  - /url: /sprawy/monitoring-sadow-apelacyjnych-2
+                - time [ref=e277]: 7 września 2017 11:45
+            - paragraph [ref=e279]: Pismo wpłynęło do biura SOWP 5.09.2017 r.
+            - generic [ref=e280]: "1"
+          - generic [ref=e282]:
+            - heading [level=3] [ref=e283]:
+              - 'link "Nieprzeczytane: Wniosek o udostępnienie informacji publicznej" [ref=e285] [cursor=pointer]':
+                - /url: /listy/9210
+              - generic [ref=e286]:
+                - text: przez
+                - link "Sąd Apelacyjny w Łodzi" [ref=e288] [cursor=pointer]:
+                  - /url: /instytucje/sad-apelacyjny-w-lodzi
+                - text: w sprawie
+                - 'link "Monitoring sądów apelacyjnych #6" [ref=e290] [cursor=pointer]':
+                  - /url: /sprawy/monitoring-sadow-apelacyjnych-6
+                - time [ref=e291]: 1 września 2017 13:45
+            - generic [ref=e292]:
+              - paragraph [ref=e293]: Twoja wiadomość
+              - paragraph [ref=e294]: "Do: Grabia Dagmara Temat: Wniosek o udostępnienie informacji publicznej Wysłano: 11 sierpnia 2017 02:48:11 (UTC+01:00) Sarajewo, Skopie, Warszawa, Zagrzeb"
+              - paragraph [ref=e295]: "została usunięta nieprzeczytana: 1 września 2017 08:21:13 (UTC+01:00) Sarajewo, Skopie, Warszawa, Zagrzeb."
+          - generic [ref=e296]:
+            - heading [level=3] [ref=e297]:
+              - link "rejestr umów SA Gdańsk" [ref=e299] [cursor=pointer]:
+                - /url: /listy/9049
+              - generic [ref=e300]:
+                - text: przez
+                - link "Sąd Apelacyjny w Gdańsku" [ref=e302] [cursor=pointer]:
+                  - /url: /instytucje/sad-apelacyjny-w-gdansku
+                - text: w sprawie
+                - 'link "Monitoring sądów apelacyjnych #2" [ref=e304] [cursor=pointer]':
+                  - /url: /sprawy/monitoring-sadow-apelacyjnych-2
+                - time [ref=e305]: 30 sierpnia 2017 08:45
+            - generic [ref=e306]:
+              - paragraph [ref=e307]: Dzień dobry.W załączeniu przesyłam pismo Pana SSA Jacka Pietrzaka Wiceprezesa Sądu Apelacyjnego w Gdańsku z dnia 29 sierpnia 2017r. wraz z rejestrem umów.Jednocześnie informuję, że decyzja, o której mowa w ww. piśmie została przesłana na wskazany adres pocztowy.
+              - paragraph [ref=e308]: Z poważaniemKarolina Śreniawa-PisarskaZ-ca Kierownika Oddziału Administracyjnegow Sądzie Apelacyjnym w Gdańsku
+            - generic [ref=e309]: "1"
+          - generic [ref=e311]:
+            - heading [level=3] [ref=e312]:
+              - 'link "Przeczytane: Wniosek o udostępnienie informacji publicznej" [ref=e314] [cursor=pointer]':
+                - /url: /listy/9013
+              - generic [ref=e315]:
+                - text: przez
+                - link "Sąd Apelacyjny w Gdańsku" [ref=e317] [cursor=pointer]:
+                  - /url: /instytucje/sad-apelacyjny-w-gdansku
+                - text: w sprawie
+                - 'link "Monitoring sądów apelacyjnych #2" [ref=e319] [cursor=pointer]':
+                  - /url: /sprawy/monitoring-sadow-apelacyjnych-2
+                - time [ref=e320]: 28 sierpnia 2017 07:45
+            - generic [ref=e321]:
+              - paragraph [ref=e322]: To jest potwierdzenie dla wiadomości e-mail wysłanej przez Ciebie do<boi@gdansk.sa.gov.pl> o 2017-08-26 09:46
+              - paragraph [ref=e323]: To potwierdzenie mówi, że wiadomość została wyświetlona na komputerze adresata o2017-08-28 07:42
+          - generic [ref=e324]:
+            - heading [level=3] [ref=e325]:
+              - 'link "Re: Wysyłanie wiadomości e-mail: Adm.105.154.2017.pdf" [ref=e327] [cursor=pointer]':
+                - /url: /listy/8995
+              - generic [ref=e328]:
+                - text: przez
+                - link "Szymon_Osowski" [ref=e330] [cursor=pointer]:
+                  - /url: /uzytkownik/Szymon_Osowski/
+                - text: w sprawie
+                - 'link "Monitoring sądów apelacyjnych #2" [ref=e332] [cursor=pointer]':
+                  - /url: /sprawy/monitoring-sadow-apelacyjnych-2
+                - time [ref=e333]: 26 sierpnia 2017 09:46
+            - generic [ref=e334]:
+              - paragraph [ref=e335]: Szanowni Państwo,
+              - paragraph [ref=e336]: "W zakresie wyłączenia jawności wnosimy o wydanie i doręczenie decyzji odmownej. Nadto wskazujemy, że każde wyłączenie jawności rodzi obowiązek wydania decyzji z urzędu. Nie można pozostawić wniosku bez rozpoznania - a przynajmniej nie doszukujemy się takiego rozwiązania w ustawie o dostępie do informacji publicznej. Adres stowarzyszenia: ul. Ursynowska 22/2, 02-605 Warszawa."
+              - paragraph [ref=e337]: "Odnośnie żądania podpisania wniosku wskazujemy, że nie ma podstaw do zobowiązania nas w tym zakresie - zgadzamy się ze stanowiskiem wyrażonym na naszej stronie internetowej: http://informacjapubliczna.org/aktualnosci/mozna-zmuszac-podpisania-wniosku-o-informacje/"
+              - paragraph [ref=e338]: Bartosz Wilk, Szymon Osowski, członkowie zarządu zgodnie z zasadami reprezentacji
+              - paragraph [ref=e339]: "Sieć Obywatelska - Watchdog Polskaul. Ursynowska 22/2 | 02-605 Warszawatel: 22 844 73 55 | fax: 22 207 24 09www.siecobywatelska.plwww.watchdogportal.plwww.funduszesoleckie.plwww.informacjapubliczna.org.plNIP 526282872KRS 0000181348 Sąd Rejonowy dla m. st. Warszawy w Warszawie, XII Wydział Gospodarczy Krajowego Rejestru Sądowego"
+            - button "Pokaż cytat" [ref=e340] [cursor=pointer]
+          - generic [ref=e342]:
+            - heading [level=3] [ref=e343]:
+              - link "przedłużenie terminu na rozpatrzenie wniosku" [ref=e345] [cursor=pointer]:
+                - /url: /listy/8990
+              - generic [ref=e346]:
+                - text: przez
+                - link "Sąd Apelacyjny w Warszawie" [ref=e348] [cursor=pointer]:
+                  - /url: /instytucje/sad-apelacyjny-w-warszawie
+                - text: w sprawie
+                - 'link "Monitoring sądów apelacyjnych #10" [ref=e350] [cursor=pointer]':
+                  - /url: /sprawy/monitoring-sadow-apelacyjnych-10
+                - time [ref=e351]: 25 sierpnia 2017 16:00
+            - generic [ref=e352]:
+              - paragraph [ref=e353]: Stowarzyszenie Sieć Obywatelska Watchdog Polska Stosownie do wniosku z 11 sierpnia 2017 r. o udostępnienie informacji publicznej, zgodnie z art.13 ust.2 ustawy o dostępie do informacji publicznej, wyznaczono nowy termin na załatwienie wniosku o udostepnienie informacji publicznej. tj. dzień 22 września 2017 r. ze względu na duży zakres wniosku.
+              - paragraph [ref=e354]: Renata KosSekretarkaOddział AdministracyjnySąd Apelacyjny w WarszawiePl.Krasińskich 2/4/600-207 Warszawa
+          - generic [ref=e355]:
+            - heading [level=3] [ref=e356]:
+              - 'link "Wysyłanie wiadomości e-mail: Adm.105.154.2017.pdf" [ref=e358] [cursor=pointer]':
+                - /url: /listy/8983
+              - generic [ref=e359]:
+                - text: przez
+                - link "Sąd Apelacyjny w Gdańsku" [ref=e361] [cursor=pointer]:
+                  - /url: /instytucje/sad-apelacyjny-w-gdansku
+                - text: w sprawie
+                - 'link "Monitoring sądów apelacyjnych #2" [ref=e363] [cursor=pointer]':
+                  - /url: /sprawy/monitoring-sadow-apelacyjnych-2
+                - time [ref=e364]: 25 sierpnia 2017 15:15
+            - generic [ref=e365]:
+              - paragraph [ref=e366]: (dot. Adm.105.154.2017)
+              - paragraph [ref=e367]: W załączeniu uprzejmie przesyłam odpowiedź z dnia 25 sierpnia 2017r. Pana SSA Jacka Pietrzaka wykonującego funkcję Prezesa Sądu Apelacyjnego w Gdańsku na Państwa wniosek z dnia 11 sierpnia 2017r. wraz ze stosownym zobowiązaniem.Uprzejmie proszę o potwierdzenie otrzymania nin. meila.
+              - paragraph [ref=e368]: Z poważaniemInsp. Mariola BracaOddział AdministracyjnySądu Apelacyjnegow Gdańsku
+            - generic [ref=e369]: "1"
+          - generic [ref=e371]:
+            - heading [level=3] [ref=e372]:
+              - link "[Brak tematu]" [ref=e374] [cursor=pointer]:
+                - /url: /listy/8981
+              - generic [ref=e375]:
+                - text: przez
+                - link "Sąd Apelacyjny w Poznaniu" [ref=e377] [cursor=pointer]:
+                  - /url: /instytucje/sad-apelacyjny-w-poznaniu
+                - text: w sprawie
+                - 'link "Monitoring sądów apelacyjnych #7" [ref=e379] [cursor=pointer]':
+                  - /url: /sprawy/monitoring-sadow-apelacyjnych-7
+                - time [ref=e380]: 25 sierpnia 2017 15:15
+            - generic [ref=e381]:
+              - paragraph [ref=e382]: W związku z pismem z dnia 11.8.2017. przekazanym na adres mailowy Sądu Apelacyjnego w Poznaniu - wpływ do II Wydziału Karnego SA 14 sierpnia 2017r. , uprzejmie informuję, iż wobec obszerności informacji, o jakie się Państwo zwracają, zostaną one udzielone w terminie późniejszym.
+              - paragraph [ref=e383]: Z poważaniemZ-ca Kierownika II Wydziału Karnego Sądu Apelacyjnego w PoznaniuMilenia Brdęk
+          - generic [ref=e384]:
+            - heading [level=3] [ref=e385]:
+              - link "[Brak tematu]" [ref=e387] [cursor=pointer]:
+                - /url: /listy/8979
+              - generic [ref=e388]:
+                - text: przez
+                - link "Sąd Apelacyjny w Poznaniu" [ref=e390] [cursor=pointer]:
+                  - /url: /instytucje/sad-apelacyjny-w-poznaniu
+                - text: w sprawie
+                - 'link "Monitoring sądów apelacyjnych #7" [ref=e392] [cursor=pointer]':
+                  - /url: /sprawy/monitoring-sadow-apelacyjnych-7
+                - time [ref=e393]: 25 sierpnia 2017 15:00
+            - paragraph [ref=e395]: W związki z pismem z dnia 11.8.2017. przekazanym na adres mailowy Sadu Apelacyjnego w Poznaniu, uprzejmie informuę, iz wobec obszerwnosci informajci, o jakie się Państwo zwracaja , zostanąone udzielone w terminiw późniejszym.
+          - generic [ref=e396]:
+            - heading [level=3] [ref=e397]:
+              - link "A-061-79/17 dot. wniosku o udostępnienie informacji publicznej" [ref=e399] [cursor=pointer]:
+                - /url: /listy/8927
+              - generic [ref=e400]:
+                - text: przez
+                - link "Sąd Apelacyjny w Białymstoku" [ref=e402] [cursor=pointer]:
+                  - /url: /instytucje/sad-apelacyjny-w-bialymstoku
+                - text: w sprawie
+                - 'link "Monitoring sądów apelacyjnych #1" [ref=e404] [cursor=pointer]':
+                  - /url: /sprawy/monitoring-sadow-apelacyjnych-1
+                - time [ref=e405]: 25 sierpnia 2017 12:15
+            - paragraph [ref=e407]: "<html xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:o=\"urn:schemas-microsoft-com:office:office\" xmlns:w=\"urn:schemas-microsoft-com:office:word\" xmlns:m=\"http://schemas.microsoft.com/office/2004/12/omml\" xmlns=\"http://www.w3.org/TR/REC-html40\"><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-2\"><meta name=\"Generator\" content=\"Microsoft Word 14 (filtered medium)\"><style><!--/* Font Definitions */@font-face {font-family:Calibri; panose-1:2 15 5 2 2 2 4 3 2 4;}/* Style Definitions */p.MsoNormal, li.MsoNormal, div.MsoNormal {margin:0cm; margin-bottom:.0001pt; font-size:11.0pt; font-family:\"Calibri\",\"sans-serif\"; mso-fareast-language:EN-US;}a:link, span.MsoHyperlink {mso-style-priority:99; color:blue; text-decoration:underline;}a:visited, span.MsoHyperlinkFollowed {mso-style-priority:99; color:purple; text-decoration:underline;}span.Stylwiadomocie-mail17 {mso-style-type:personal-compose; font-family:\"Calibri\",\"sans-serif\"; color:windowtext;}.MsoChpDefault {mso-style-type:export-only; font-family:\"Calibri\",\"sans-serif\"; mso-fareast-language:EN-US;}@page WordSection1 {size:612.0pt 792.0pt; margin:70.85pt 70.85pt 70.85pt 70.85pt;}div.WordSection1 {page:WordSection1;}--></style><!--[if gte mso 9]><xml><o:shapedefaults v:ext=\"edit\" spidmax=\"1026\" /></xml><![endif]--><!--[if gte mso 9]><xml><o:shapelayout v:ext=\"edit\"><o:idmap v:ext=\"edit\" data=\"1\" /></o:shapelayout></xml><![endif]--></head><body lang=\"PL\" link=\"blue\" vlink=\"purple\"><div class=\"WordSection1\"><p class=\"MsoNormal\"><o:p>&nbsp;</o:p></p></div></body></html>"
+            - generic [ref=e408]: "2"
+          - generic [ref=e410]:
+            - heading [level=3] [ref=e411]:
+              - link "odpowiedź na wniosek o informację publiczną" [ref=e413] [cursor=pointer]:
+                - /url: /listy/8903
+              - generic [ref=e414]:
+                - text: przez
+                - link "Sąd Apelacyjny w Poznaniu" [ref=e416] [cursor=pointer]:
+                  - /url: /instytucje/sad-apelacyjny-w-poznaniu
+                - text: w sprawie
+                - 'link "Monitoring sądów apelacyjnych #7" [ref=e418] [cursor=pointer]':
+                  - /url: /sprawy/monitoring-sadow-apelacyjnych-7
+                - time [ref=e419]: 25 sierpnia 2017 10:00
+            - paragraph [ref=e421]: <!DOCTYPE html><html><head> <meta charset="UTF-8"></head><body><p>Witam, w załączeniu uprzejmie przekazuję odpowiedź na wniosek&#160; o informacje publiczną przekazany nam przez Oddział Kadr naszego sądu.<br></p><p><br></p><p>Beata Becker<br></p><p>Z-ca Kierownika Oddziału Administracyjnego<br></p><p>Sąd Apelacyjny w Poznaniu<br></p><p>tel. 61 8 27 45 72<br></p></body></html>
+            - generic [ref=e422]: "1"
+          - generic [ref=e424]:
+            - heading [level=3] [ref=e425]:
+              - link "Adm-063-85/17 informacja publiczna" [ref=e427] [cursor=pointer]:
+                - /url: /listy/8105
+              - generic [ref=e428]:
+                - text: przez
+                - link "Sąd Apelacyjny w Lublinie" [ref=e430] [cursor=pointer]:
+                  - /url: /instytucje/sad-apelacyjny-w-lublinie
+                - text: w sprawie
+                - 'link "Monitoring sądów apelacyjnych #5" [ref=e432] [cursor=pointer]':
+                  - /url: /sprawy/monitoring-sadow-apelacyjnych-5
+                - time [ref=e433]: 24 sierpnia 2017 15:00
+            - paragraph [ref=e435]: "<html xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:o=\"urn:schemas-microsoft-com:office:office\" xmlns:w=\"urn:schemas-microsoft-com:office:word\" xmlns:m=\"http://schemas.microsoft.com/office/2004/12/omml\" xmlns=\"http://www.w3.org/TR/REC-html40\"><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=us-ascii\"><meta name=\"Generator\" content=\"Microsoft Word 15 (filtered medium)\"><style><!--/* Font Definitions */@font-face {font-family:\"Cambria Math\"; panose-1:2 4 5 3 5 4 6 3 2 4;}@font-face {font-family:Calibri; panose-1:2 15 5 2 2 2 4 3 2 4;}/* Style Definitions */p.MsoNormal, li.MsoNormal, div.MsoNormal {margin:0cm; margin-bottom:.0001pt; font-size:11.0pt; font-family:\"Calibri\",sans-serif; mso-fareast-language:EN-US;}a:link, span.MsoHyperlink {mso-style-priority:99; color:#0563C1; text-decoration:underline;}a:visited, span.MsoHyperlinkFollowed {mso-style-priority:99; color:#954F72; text-decoration:underline;}span.Stylwiadomocie-mail17 {mso-style-type:personal-compose; font-family:\"Calibri\",sans-serif; color:windowtext;}.MsoChpDefault {mso-style-type:export-only; font-family:\"Calibri\",sans-serif; mso-fareast-language:EN-US;}@page WordSection1 {size:612.0pt 792.0pt; margin:70.85pt 70.85pt 70.85pt 70.85pt;}div.WordSection1 {page:WordSection1;}--></style><!--[if gte mso 9]><xml><o:shapedefaults v:ext=\"edit\" spidmax=\"1026\" /></xml><![endif]--><!--[if gte mso 9]><xml><o:shapelayout v:ext=\"edit\"><o:idmap v:ext=\"edit\" data=\"1\" /></o:shapelayout></xml><![endif]--></head><body lang=\"PL\" link=\"#0563C1\" vlink=\"#954F72\"><div class=\"WordSection1\"><p class=\"MsoNormal\"><o:p>&nbsp;</o:p></p></div></body></html>"
+            - generic [ref=e436]: "1"
+          - generic [ref=e438]:
+            - heading [level=3] [ref=e439]:
+              - link "Pismo Prezesa SA w Łodzi AV-0164-105/17 dotyczące wniosku z dnia 11.08.17 r. o udostępnienie informacji publicznej" [ref=e441] [cursor=pointer]:
+                - /url: /listy/8102
+              - generic [ref=e442]:
+                - text: przez
+                - link "Sąd Apelacyjny w Łodzi" [ref=e444] [cursor=pointer]:
+                  - /url: /instytucje/sad-apelacyjny-w-lodzi
+                - text: w sprawie
+                - 'link "Monitoring sądów apelacyjnych #6" [ref=e446] [cursor=pointer]':
+                  - /url: /sprawy/monitoring-sadow-apelacyjnych-6
+                - time [ref=e447]: 24 sierpnia 2017 15:00
+            - generic [ref=e448]:
+              - paragraph [ref=e449]: Dzień dobry
+              - paragraph [ref=e450]: W załączeniu przesyłam pismo Prezesa Sądu Apelacyjnego w Łodzi z dnia 24 sierpnia 2017 roku o nr AV-0164-105/17 stanowiące odpowiedź na wniosek z dnia 11 sierpnia 2017 r. o udostępnienie informacji publicznej.
+              - paragraph [ref=e451]: Pozdrawiam
+              - paragraph [ref=e452]: Proszę o potwierdzenie przeczytania tej wiadomości.
+              - paragraph [ref=e453]: "Przemysław StalskiZastępca KierownikaOddziału AdministracyjnegoSądu Apelacyjnego w Łodzitel.: (42) 68 50 642fax: (42) 20 91 172e-mail: przemyslaw.stalski@lodz.sa.gov.pl<mailto:przemyslaw.stalski@lodz.sa.gov.pl>www.lodz.sa.gov.pl<http://www.lodz.sa.gov.pl>"
+            - generic [ref=e454]: "4"
+          - generic [ref=e456]:
+            - heading [level=3] [ref=e457]:
+              - link "informacja publiczna" [ref=e459] [cursor=pointer]:
+                - /url: /listy/8043
+              - generic [ref=e460]:
+                - text: przez
+                - link "Sąd Apelacyjny w Szczecinie" [ref=e462] [cursor=pointer]:
+                  - /url: /instytucje/sad-apelacyjny-w-szczecinie
+                - text: w sprawie
+                - 'link "Monitoring sądów apelacyjnych #9" [ref=e464] [cursor=pointer]':
+                  - /url: /sprawy/monitoring-sadow-apelacyjnych-9
+                - time [ref=e465]: 23 sierpnia 2017 15:00
+            - generic [ref=e466]:
+              - paragraph [ref=e467]: Dzień dobry,
+              - paragraph
+              - paragraph [ref=e468]: w odpowiedzi na pismo z dnia 11 sierpnia 2017 r., w załączeniu uprzejmieprzesyłam zawiadomienie.
+              - paragraph
+              - paragraph
+              - paragraph [ref=e469]: Z poważaniem,
+              - paragraph [ref=e470]: Inspektor Emilia Biegańska | Oddział Administracyjny
+              - paragraph [ref=e471]: Sąd Apelacyjny w Szczecinie | ul. Mickiewicza 163 | 71-165 Szczecin
+              - paragraph [ref=e472]: "tel./ fax: (91) 48 49 481/(91) 48 49 482 | e-mail:<mailto:ebieganska@szczecin.sa.gov.pl> ebieganska@szczecin.sa.gov.pl"
+            - generic [ref=e473]: "1"
+          - generic [ref=e475]:
+            - heading [level=3] [ref=e476]:
+              - link "Częściowa odpowiedź na wniosek" [ref=e478] [cursor=pointer]:
+                - /url: /listy/8030
+              - generic [ref=e479]:
+                - text: przez
+                - link "Sąd Apelacyjny w Poznaniu" [ref=e481] [cursor=pointer]:
+                  - /url: /instytucje/sad-apelacyjny-w-poznaniu
+                - text: w sprawie
+                - 'link "Monitoring sądów apelacyjnych #7" [ref=e483] [cursor=pointer]':
+                  - /url: /sprawy/monitoring-sadow-apelacyjnych-7
+                - time [ref=e484]: 23 sierpnia 2017 13:15
+            - paragraph [ref=e486]: <!DOCTYPE html><html><head> <meta charset="UTF-8"></head><body><p>Dotyczy wniosku o udostępnienie informacji publicznej - pkt. 3.<br></p><p>Uprzejmie informuję, iż dokumentacja przebiegu i efekt&#243;w kontroli przeprowadzanych w sądach oraz wystąpienia nie są umieszczane na stronie internetowej. Osoby przeprowadzające kontrole nie wydają opinii podmiot&#243;w.<br></p><p>Kierownik Oddziału Kontroli<br></p><p>Lidia Eder<br></p></body></html>
+          - generic [ref=e487]:
+            - heading [level=3] [ref=e488]:
+              - link "informacja publiczna (Adm.-0143-176/17)" [ref=e490] [cursor=pointer]:
+                - /url: /listy/8014
+              - generic [ref=e491]:
+                - text: przez
+                - link "Sąd Apelacyjny w Krakowie" [ref=e493] [cursor=pointer]:
+                  - /url: /instytucje/sad-apelacyjny-w-krakowie
+                - text: w sprawie
+                - 'link "Monitoring sądów apelacyjnych #4" [ref=e495] [cursor=pointer]':
+                  - /url: /sprawy/monitoring-sadow-apelacyjnych-4
+                - time [ref=e496]: 22 sierpnia 2017 15:15
+            - generic [ref=e497]:
+              - paragraph [ref=e498]: Dzień dobry
+              - paragraph [ref=e499]: W wykonaniu polecenia uprzejmie przesyłam pismo Pana Prezesa Sądu Apelacyjnego w Krakowie z dnia 22 sierpnia 2017r., znak Adm.-0143-176/17.Jednocześnie proszę o potwierdzenie otrzymania niniejszej korespondencji.
+              - paragraph [ref=e500]: Z poważaniem
+              - paragraph [ref=e501]: "Stanisław TronowOddział AdministracyjnySądu Apelacyjnego w Krakowieul. Przy Rondzie 331-547 KrakówTel. 12 417-55-34Fax: 12 417-54-29Wszelkie odpowiedzi proszę kierować na adres oddzial.administracyjny@krakow.sa.gov.pl"
+            - generic [ref=e502]: "6"
+          - generic [ref=e504]:
+            - heading [level=3] [ref=e505]:
+              - link "dot. wniosku o udostępnienie informacji publicznej" [ref=e507] [cursor=pointer]:
+                - /url: /listy/8002
+              - generic [ref=e508]:
+                - text: przez
+                - link "Sąd Apelacyjny we Wrocławiu" [ref=e510] [cursor=pointer]:
+                  - /url: /instytucje/sad-apelacyjny-we-wroclawiu
+                - text: w sprawie
+                - 'link "Monitoring sądów apelacyjnych #11" [ref=e512] [cursor=pointer]':
+                  - /url: /sprawy/monitoring-sadow-apelacyjnych-11
+                - time [ref=e513]: 22 sierpnia 2017 14:30
+            - generic [ref=e514]:
+              - paragraph [ref=e515]: ABI-061-173/17
+              - paragraph [ref=e516]: Szanowni Państwo,
+              - paragraph [ref=e517]: w odpowiedzi na wniosek o udzielenie informacji publicznej w załączeniu przesyłam pismo Prezesa Sądu Apelacyjnego we Wrocławiu wraz z załącznikiem.
+              - paragraph [ref=e518]: Z poważaniem,
+              - paragraph [ref=e519]: "Grażyna SochaAdministrator Bezpieczeństwa Informacji/Pełnomocnik ds. ochrony informacji niejawnychw Sądzie Apelacyjnym we Wrocławiutel. (71) 798-77-43faks: (71) 798-77-52"
+              - paragraph [ref=e520]: "Uwaga: Niniejsza wiadomość, w szczególności jej treść oraz załączniki, może być poufna. W przypadku gdy nie jest Pan/Pani zamierzonym jej adresatem informujemy, że wszelkie rozpowszechnianie, dystrybucja lub powielanie powyższej wiadomości jest zabronione. Jednocześnie prosimy o powiadomienie nadawcy oraz niezwłoczne usunięcie powyższej wiadomości wraz z załącznikami.Dziękujemy. Sąd Apelacyjny we Wrocławiu."
+              - paragraph [ref=e521]: "Confidentiality Notice: This email, particularly its content and any attached files, may be confidential. If you are not an intended recipient, any disclosure, distribution and reproduction of this message is prohibited. In this case please notify the sender immediately and then delete this message and any attachments.Thank you. Court of Appeal in Wrocław."
+            - generic [ref=e522]: "2"
+          - generic [ref=e524]:
+            - heading [level=3] [ref=e525]:
+              - link "dot. informacji publicznej" [ref=e527] [cursor=pointer]:
+                - /url: /listy/7984
+              - generic [ref=e528]:
+                - text: przez
+                - link "Sąd Apelacyjny w Poznaniu" [ref=e530] [cursor=pointer]:
+                  - /url: /instytucje/sad-apelacyjny-w-poznaniu
+                - text: w sprawie
+                - 'link "Monitoring sądów apelacyjnych #7" [ref=e532] [cursor=pointer]':
+                  - /url: /sprawy/monitoring-sadow-apelacyjnych-7
+                - time [ref=e533]: 22 sierpnia 2017 10:45
+            - generic [ref=e534]:
+              - paragraph [ref=e535]: Dzień dobry,
+              - paragraph
+              - paragraph [ref=e536]: W związku z Państwa wnioskiem o informację publiczną dotyczącą kalendarzaspotkań
+              - paragraph [ref=e537]: Pana Prezesa Sądu Apelacyjnego w Poznaniu, informuje , że w miesiącu lipcuPan Prezes
+              - paragraph [ref=e538]: nie odbył żadnych spotkań z uwagi na okres urlopowy.
+              - paragraph
+              - paragraph [ref=e539]: Paulina Winiarska
+              - paragraph [ref=e540]: Sekretariat Prezesa Sądu Apelacyjnego
+              - paragraph [ref=e541]: w Poznaniu
+          - generic [ref=e542]:
+            - heading [level=3] [ref=e543]:
+              - 'link "Przeczytane: Wniosek o udostępnienie informacji publicznej" [ref=e545] [cursor=pointer]':
+                - /url: /listy/7946
+              - generic [ref=e546]:
+                - text: przez
+                - link "Sąd Apelacyjny w Rzeszowie" [ref=e548] [cursor=pointer]:
+                  - /url: /instytucje/sad-apelacyjny-w-rzeszowie
+                - text: w sprawie
+                - 'link "Monitoring sądów apelacyjnych #8" [ref=e550] [cursor=pointer]':
+                  - /url: /sprawy/monitoring-sadow-apelacyjnych-8
+                - time [ref=e551]: 21 sierpnia 2017 09:15
+            - generic [ref=e552]:
+              - paragraph [ref=e553]: Twoja wiadomość
+              - paragraph [ref=e554]: "Do: Serafin-Kurowiecka Elżbieta Temat: Wniosek o udostępnienie informacji publicznej Wysłano: 11 sierpnia 2017 02:48:11 (UTC+01:00) Sarajewo, Skopie, Warszawa, Zagrzeb"
+              - paragraph [ref=e555]: "została przeczytana: 21 sierpnia 2017 09:08:50 (UTC+01:00) Sarajewo, Skopie, Warszawa, Zagrzeb."
+          - generic [ref=e556]:
+            - heading [level=3] [ref=e557]:
+              - link "pismo O.Adm-010-117/17" [ref=e559] [cursor=pointer]:
+                - /url: /listy/7940
+              - generic [ref=e560]:
+                - text: przez
+                - link "Sąd Apelacyjny w Katowicach" [ref=e562] [cursor=pointer]:
+                  - /url: /instytucje/sad-apelacyjny-w-katowicach
+                - text: w sprawie
+                - 'link "Monitoring sądów apelacyjnych #3" [ref=e564] [cursor=pointer]':
+                  - /url: /sprawy/monitoring-sadow-apelacyjnych-3
+                - time [ref=e565]: 18 sierpnia 2017 15:30
+            - generic [ref=e566]:
+              - paragraph [ref=e567]: W załączeniu przesyłam pismo Prezesa Sądu Apelacyjnego w Katowicach z dnia 18 sierpnia 2017 r. O.Adm-010-117/17 z załącznikiem.
+              - paragraph [ref=e568]: specjalista ds. administracyjnychBarbara Gawor
+            - generic [ref=e569]: "1"
+          - list [ref=e572]:
+            - listitem [ref=e573]:
+              - generic [aria-hidden]: ←
+            - listitem [ref=e574]:
+              - generic "Current Page" [ref=e575]: "1"
+            - listitem [ref=e576]:
+              - link "Page 2 of 2" [ref=e577] [cursor=pointer]:
+                - /url: /monitoringi/monitoring-sadow-apelacyjnych/listy/strona-2
+                - text: "2"
+            - listitem [ref=e578]:
+              - link "Next Page" [ref=e579] [cursor=pointer]:
+                - /url: /monitoringi/monitoring-sadow-apelacyjnych/listy/strona-2
+                - text: →
+      - generic [ref=e580]:
+        - generic [ref=e581]:
+          - text: Sieć Obywatelska - Watchdog Polska ul. Szpitalna 5/5 00-031 Warszawa
+          - paragraph [ref=e582]:
+            - link "Klauzula RODO" [ref=e583] [cursor=pointer]:
+              - /url: https://fedrowanie.siecobywatelska.pl/media_internal/tinycontent/uploads/11_KLAUZULA.-.dane.z.udip.na.stronach.www.i.w.mediach.spol.pdf
+        - generic [ref=e584]:
+          - text: "silnik:"
+          - link "jawne.info.pl" [ref=e585] [cursor=pointer]:
+            - /url: http://jawne.info.pl
+          - text: "| v1.5.77.deps |"
+          - link "GitHub" [ref=e586] [cursor=pointer]:
+            - /url: https://github.com/watchdogpolska/feder
+          - text: –
+          - link "efd8a3b" [ref=e588] [cursor=pointer]:
+            - /url: https://github.com/watchdogpolska/feder/compare/efd8a3b2...master
+          - text: "|"
+          - link "API" [ref=e589] [cursor=pointer]:
+            - /url: /api/
+        - generic [ref=e591]: Ta strona wykorzystuje cookies.
+  - list [ref=e593]:
+    - listitem [ref=e594]:
+      - link "Ukryj »" [ref=e595] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e596]:
+      - link "Toggle Theme" [ref=e597] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e600]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e601]
+      - link "Historia /monitoringi/monitoring-sadow-apelacyjnych/listy" [ref=e602] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e603]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e604]
+      - link "Wersje Django 5.2.17" [ref=e605] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e606]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e607]
+      - 'link "Czas CPU: 296.79ms (318.63ms)" [ref=e608] [cursor=pointer]':
+        - /url: "#"
+    - listitem [ref=e609]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e610]
+      - link "Ustawienia" [ref=e611] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e612]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e613]
+      - link "Nagłówki" [ref=e614] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e615]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e616]
+      - link "Zapytania LetterListMonitoringView" [ref=e617] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e618]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e619]
+      - link "SQL 61 queries in 30.67ms" [ref=e620] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e621]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e622]
+      - link "Pliki statyczne 3 użyte plików" [ref=e623] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e624]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e625]
+      - link "Templatki monitorings/monitoring_letter_list.html" [ref=e626] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e627]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e628]
+      - link "Alerty" [ref=e629] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e630]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e631]
+      - link "Cache 2 wywołania w 0.14ms" [ref=e632] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e633]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e634]
+      - link "Sygnały 88 odbiorców 15 sygnałów" [ref=e635] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e636]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e637]
+      - link "Gmina" [ref=e638] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e639]:
+      - checkbox "Enable for next and successive requests" [ref=e640]
+      - generic [ref=e641]: Przechwycone przekierowania
+    - listitem [ref=e642]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e643]
+      - link "Profilowanie" [ref=e644] [cursor=pointer]:
+        - /url: "#"
+```
+
+# Test source
+
+```ts
+  1  | import { test, expect } from '@playwright/test';
+  2  | import { PAGES } from './pages';
+  3  | import { VIEWPORTS } from './viewports';
+  4  | 
+  5  | for (const [name, size] of Object.entries(VIEWPORTS)) {
+  6  |   test.describe(`${name} (${size.width}px)`, () => {
+  7  |     test.use({ viewport: size });
+  8  | 
+  9  |     for (const page of PAGES) {
+  10 |       test(`${page.name} - visual baseline`, async ({ page: pw }) => {
+  11 |         await pw.goto(page.path);
+  12 |         await pw.waitForLoadState('networkidle');
+> 13 |         await expect(pw).toHaveScreenshot(`${page.name}-${name}.png`, {
+     |                          ^ Error: expect(page).toHaveScreenshot(expected) failed
+  14 |           maxDiffPixelRatio: 0.001,
+  15 |           fullPage: true,
+  16 |         });
+  17 |       });
+  18 |     }
+  19 |   });
+  20 | }
+  21 | 
+```

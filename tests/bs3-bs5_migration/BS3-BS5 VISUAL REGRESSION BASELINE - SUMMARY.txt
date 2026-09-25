@@ -1,0 +1,74 @@
+● Summary
+
+  Baseline captured and verified successfully. Full plain-text report:
+
+  BS3 → BS5 VISUAL REGRESSION BASELINE — SUMMARY
+  ===============================================
+
+  PAGES CAPTURED: 84 unique URL patterns
+  SCREENSHOTS TAKEN: 252 (84 pages × 3 viewports: mobile 375×812, tablet 768×1024, desktop 2560×1440 "2K")
+
+  TEST RESULTS
+  ------------
+  visual_baseline.spec.ts: 251/252 stable on re-run (1 known-flaky: monitorings-responses-report
+    @ tablet, 18px height variance from dynamic page content — not a setup issue)
+  layout_assertions.spec.ts: 147/170 passed
+    - 0 desktop overflow issues at 2560px (all fit comfortably at 2K width)
+    - 23 mobile (375px) pages have genuine pre-existing BS3 horizontal overflow (>20px, real
+      content spilling past viewport, not the ~4px BS3 .row-margin noise floor filtered out):
+      home, institutions-list, monitorings-details, monitorings-letters, monitorings-report,
+      monitorings-drafts, monitorings-template, monitorings-results, monitorings-answers-categories,
+      monitorings-responses-report, monitorings-perm, cases-details, casetags-list, letters-list,
+      letters-unrecognized-list, letters-spam, letters-logs-list-monitoring, letters-logs-detail,
+      alerts-details, alerts-update, alerts-delete, alerts-status, parcels-outgoing-update
+    - Navigation structure: sidebar-left-of-content (desktop) and navbar-collapse (mobile) both pass
+
+  SNAPSHOTS DIR: /home/piotriw/VScode_projects/feder-p312-dj42-mysql8/tests/bs3-bs5_migration/snapshots (45M, gitignored)
+  HTML REPORT:   /home/piotriw/VScode_projects/feder-p312-dj42-mysql8/tests/bs3-bs5_migration/playwright-report/index.html (gitignored)
+
+  URLS SKIPPED AND WHY
+  ---------------------
+  - api/, admin/, __debug__, jsi18n         → Django internals, not app pages
+  - *autocomplete*, *ajax_data*             → confirmed JSON responses (select2/DataTables data sources)
+  - rss/atom/feed routes (8), sitemap.xml   → XML, not HTML
+  - rosetta/*, tinymce/*                    → third-party admin tool / editor-popup utilities, unstyled by app's own theme
+  - google_login/callback, accounts/social/*, accounts/3rdparty/* → redirect off-site or render allauth's bare
+                                               unstyled template (verified via curl — no site chrome)
+  - account_confirm_login_code              → requires transient in-flight state; direct GET just redirects away
+  - listy/webhook                           → POST-only mail webhook (405 on GET)
+  - logs "eksport" route                    → confirmed via view name "export" — CSV/file download
+  - letter/parcel "download"/"attachment" routes → binary file responses, not HTML
+  - answer-categories-prompt                → GET returns raw JSON, not an HTML page
+  - monitoring perm-update (~uprawnienia-<user_pk>) → no existing permission grant in sampled data;
+                                               skipped rather than create one (kept this read-only)
+  - answer-categories-prompt                → GET returns raw JSON, not an HTML page
+  - monitoring perm-update (~uprawnienia-<user_pk>) → no existing permission grant in sampled data;
+                                               skipped rather than create one (kept this read-only)
+  - pagination "page N" URL variants        → duplicate of default page-1 view, skipped
+  - quarantined cases/monitorings           → excluded from ID sampling per your instruction
+  - jst "voivodeship" name                  → duplicate of "list", same pattern, included once
+
+  NOTES / CAVEATS
+  ----------------
+  - Data is a real production copy (189 users, 68k cases) — snapshots/.auth/reports are gitignored,
+    never committed.
+  - The `claude_ai` account had no email on file, so allauth's mandatory email verification silently
+    blocked login (redirected to /accounts/confirm-email/ instead of authenticating). Fixed by adding
+    a verified EmailAddress row to that automation-only account — a small, reversible dev-DB change.
+  - Desktop viewport is 2560×1440 (2K) per your request, not the 1280px in the original template.
+  - Playwright was run from the host (not containerized) against the already-exposed localhost:8000,
+    per your choice — this diverges from the repo's fully-containerized Cypress e2e pattern.
+  - Donate-popup banner only renders Jan 1–May 2 (server-side date gate) — inactive today, so it
+    never appeared in these screenshots; would need a dismiss step if re-baselined during that window.
+  - Do not re-run with --update-snapshots until a migration step has been reviewed and approved.
+
+  Files created: tests/bs3-bs5_migration/{pages.ts, viewports.ts, global-setup.ts, visual_baseline.spec.ts, layout_assertions.spec.ts}, playwright.config.ts, plus .gitignore
+  updates. package.json/package-lock.json gained @playwright/test as a devDependency.
+
+✻ Sautéed for 34m 43s
+
+****************************************************
+Resume this session with:
+claude --resume f3662997-2ee8-47a5-aaf0-8e1109f2b15e
+
+

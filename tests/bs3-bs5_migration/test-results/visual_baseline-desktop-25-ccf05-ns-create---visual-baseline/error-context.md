@@ -1,0 +1,1024 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: visual_baseline.spec.ts >> desktop (2560px) >> institutions-create - visual baseline
+- Location: tests/bs3-bs5_migration/visual_baseline.spec.ts:10:11
+
+# Error details
+
+```
+Error: expect(page).toHaveScreenshot(expected) failed
+
+  351686 pixels (ratio 0.10 of all image pixels) are different.
+
+  Snapshot: institutions-create-desktop.png
+
+Call log:
+  - Expect "toHaveScreenshot(institutions-create-desktop.png)" with timeout 5000ms
+    - verifying given screenshot expectation
+  - taking page screenshot
+    - disabled all CSS animations
+  - waiting for fonts to load...
+  - fonts loaded
+  - 351686 pixels (ratio 0.10 of all image pixels) are different.
+  - waiting 100ms before taking screenshot
+  - taking page screenshot
+    - disabled all CSS animations
+  - waiting for fonts to load...
+  - fonts loaded
+  - captured a stable screenshot
+  - 351686 pixels (ratio 0.10 of all image pixels) are different.
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - text: )
+    - generic [ref=e3]:
+      - generic [ref=e4]:
+        - heading "DEV" [level=1] [ref=e5]
+        - link [ref=e6] [cursor=pointer]:
+          - /url: /
+          - img "Fedrowanie" [ref=e8]
+          - paragraph [ref=e9]: Fedrowanie
+        - paragraph [ref=e10]:
+          - link "Sieci Watchdog" [ref=e11] [cursor=pointer]:
+            - /url: http://siecobywatelska.pl
+        - paragraph [ref=e12]:
+          - link "Klauzula RODO" [ref=e13] [cursor=pointer]:
+            - /url: https://fedrowanie.siecobywatelska.pl/media_internal/tinycontent/uploads/11_KLAUZULA.-.dane.z.udip.na.stronach.www.i.w.mediach.spol.pdf
+      - list [ref=e15]:
+        - listitem [ref=e16]:
+          - paragraph [ref=e17]
+        - listitem [ref=e18]:
+          - link "Strona główna" [ref=e19] [cursor=pointer]:
+            - /url: /
+        - listitem [ref=e21]:
+          - link "O stronie" [ref=e22] [cursor=pointer]:
+            - /url: /o-stronie/
+        - listitem [ref=e24]:
+          - paragraph [ref=e25]
+        - generic [ref=e26]: Szukaj
+        - listitem [ref=e28]:
+          - link "Sprawy" [ref=e29] [cursor=pointer]:
+            - /url: /sprawy/
+        - listitem [ref=e31]:
+          - link "Monitoringi" [ref=e32] [cursor=pointer]:
+            - /url: /monitoringi/
+        - listitem [ref=e34]:
+          - link "Tabela monitoringów" [ref=e35] [cursor=pointer]:
+            - /url: /monitoringi/table/
+        - listitem [ref=e37]:
+          - link "Listy przypisane do spraw" [ref=e38] [cursor=pointer]:
+            - /url: /listy/
+        - listitem [ref=e40]:
+          - link "Listy nieprzypisane do spraw" [ref=e41] [cursor=pointer]:
+            - /url: /listy/przypisz
+        - listitem [ref=e43]:
+          - link "Instytucje" [ref=e44] [cursor=pointer]:
+            - /url: /instytucje/
+        - listitem [ref=e46]:
+          - paragraph [ref=e47]
+      - generic [ref=e48]:
+        - generic [ref=e49]: Użytkownik / użytkowniczka
+        - listitem [ref=e50]:
+          - link "Mój profil" [ref=e51] [cursor=pointer]:
+            - /url: /uzytkownik/claude_ai/
+        - listitem [ref=e53]:
+          - link "Panel administracyjny" [ref=e54] [cursor=pointer]:
+            - /url: /admin/
+        - listitem [ref=e56]:
+          - link "Wyloguj" [ref=e57] [cursor=pointer]:
+            - /url: /accounts/logout/
+    - generic [ref=e60]:
+      - list [ref=e61]:
+        - listitem [ref=e62]: Dodaj instytucje
+      - generic [ref=e64]:
+        - group [ref=e65]:
+          - generic [ref=e66]:
+            - generic [ref=e67]: Nazwa*
+            - textbox "Nazwa*" [ref=e68]
+          - generic [ref=e69]:
+            - generic [ref=e70]: Jednostka podziału terytorialnego*
+            - combobox [aria-hidden] [ref=e71]
+            - combobox [ref=e74] [cursor=pointer]:
+              - textbox
+          - generic [ref=e75]:
+            - generic [ref=e76]: Kod REGON
+            - textbox "Kod REGON" [ref=e77]
+          - generic [ref=e78]:
+            - generic [ref=e79]: Adres e-mail instytucji*
+            - textbox "Adres e-mail instytucji*" [ref=e80]
+          - generic [ref=e82]:
+            - checkbox "Instytucja archiwalna" [ref=e83]
+            - generic [ref=e84]: Instytucja archiwalna
+            - generic [ref=e85]: Instytucja archiwalna nie może być przypisana do monitorowania lub masowej wysyłki.
+        - group [ref=e86]:
+          - group "Tagi" [ref=e88]:
+            - generic [ref=e90]:
+              - generic [ref=e91]:
+                - checkbox "areszt_śledczy" [ref=e92]
+                - generic [ref=e93]: areszt_śledczy
+              - generic [ref=e94]:
+                - checkbox "dzielnica" [ref=e95]
+                - generic [ref=e96]: dzielnica
+              - generic [ref=e97]:
+                - checkbox "hokej" [ref=e98]
+                - generic [ref=e99]: hokej
+              - generic [ref=e100]:
+                - checkbox "inspektor_nadzoru_budowlanego" [ref=e101]
+                - generic [ref=e102]: inspektor_nadzoru_budowlanego
+              - generic [ref=e103]:
+                - checkbox "inspektorat_transportu_drogowego" [ref=e104]
+                - generic [ref=e105]: inspektorat_transportu_drogowego
+              - generic [ref=e106]:
+                - checkbox "instytucje kultury" [ref=e107]
+                - generic [ref=e108]: instytucje kultury
+              - generic [ref=e109]:
+                - checkbox "izba_administracji_skarbowej" [ref=e110]
+                - generic [ref=e111]: izba_administracji_skarbowej
+              - generic [ref=e112]:
+                - checkbox "izba_adwokacka" [ref=e113]
+                - generic [ref=e114]: izba_adwokacka
+              - generic [ref=e115]:
+                - checkbox "klub kobiecy" [ref=e116]
+                - generic [ref=e117]: klub kobiecy
+              - generic [ref=e118]:
+                - checkbox "klub sportowy" [ref=e119]
+                - generic [ref=e120]: klub sportowy
+              - generic [ref=e121]:
+                - checkbox "koło_łowieckie" [ref=e122]
+                - generic [ref=e123]: koło_łowieckie
+              - generic [ref=e124]:
+                - checkbox "koszykówka" [ref=e125]
+                - generic [ref=e126]: koszykówka
+              - generic [ref=e127]:
+                - checkbox "kuratorium" [ref=e128]
+                - generic [ref=e129]: kuratorium
+              - generic [ref=e130]:
+                - checkbox "Lasy Państwowe" [ref=e131]
+                - generic [ref=e132]: Lasy Państwowe
+              - generic [ref=e133]:
+                - checkbox "leśnictwo" [ref=e134]
+                - generic [ref=e135]: leśnictwo
+              - generic [ref=e136]:
+                - checkbox "marszałkowie" [ref=e137]
+                - generic [ref=e138]: marszałkowie
+              - generic [ref=e139]:
+                - checkbox "media gminne" [ref=e140]
+                - generic [ref=e141]: media gminne
+              - generic [ref=e142]:
+                - checkbox "miasto na prawach powiatu" [ref=e143]
+                - generic [ref=e144]: miasto na prawach powiatu
+              - generic [ref=e145]:
+                - checkbox "ministerstwa" [ref=e146]
+                - generic [ref=e147]: ministerstwa
+              - generic [ref=e148]:
+                - checkbox "nadleśnictwa" [ref=e149]
+                - generic [ref=e150]: nadleśnictwa
+              - generic [ref=e151]:
+                - checkbox "nadleśnictwa archiwalne" [ref=e152]
+                - generic [ref=e153]: nadleśnictwa archiwalne
+              - generic [ref=e154]:
+                - checkbox "NFZ" [ref=e155]
+                - generic [ref=e156]: NFZ
+              - generic [ref=e157]:
+                - checkbox "ochrona_roślin" [ref=e158]
+                - generic [ref=e159]: ochrona_roślin
+              - generic [ref=e160]:
+                - checkbox "ochrona_środowiska" [ref=e161]
+                - generic [ref=e162]: ochrona_środowiska
+              - generic [ref=e163]:
+                - checkbox "oddziały NFZ" [ref=e164]
+                - generic [ref=e165]: oddziały NFZ
+              - generic [ref=e166]:
+                - checkbox "okręgowa_izba_radców_prawnych" [ref=e167]
+                - generic [ref=e168]: okręgowa_izba_radców_prawnych
+              - generic [ref=e169]:
+                - checkbox "okręgowa_rada_adwokacka" [ref=e170]
+                - generic [ref=e171]: okręgowa_rada_adwokacka
+              - generic [ref=e172]:
+                - checkbox "okręgowy_inspektorat_służby_więziennej" [ref=e173]
+                - generic [ref=e174]: okręgowy_inspektorat_służby_więziennej
+              - generic [ref=e175]:
+                - checkbox "organ_centralny" [ref=e176]
+                - generic [ref=e177]: organ_centralny
+              - generic [ref=e178]:
+                - checkbox "otwarty_ośrodek_dla_cudzoziemców|urząd_ds_cudzoziemców" [ref=e179]
+                - generic [ref=e180]: otwarty_ośrodek_dla_cudzoziemców|urząd_ds_cudzoziemców
+              - generic [ref=e181]:
+                - checkbox "Państwowa Inspekcja Sanitarna" [ref=e182]
+                - generic [ref=e183]: Państwowa Inspekcja Sanitarna
+              - generic [ref=e184]:
+                - checkbox "park_narodowy" [ref=e185]
+                - generic [ref=e186]: park_narodowy
+              - generic [ref=e187]:
+                - checkbox "piłka nożna" [ref=e188]
+                - generic [ref=e189]: piłka nożna
+              - generic [ref=e190]:
+                - checkbox "policja" [ref=e191]
+                - generic [ref=e192]: policja
+              - generic [ref=e193]:
+                - checkbox "policja_komenda_miejska" [ref=e194]
+                - generic [ref=e195]: policja_komenda_miejska
+              - generic [ref=e196]:
+                - checkbox "policja_komenda_powiatowa" [ref=e197]
+                - generic [ref=e198]: policja_komenda_powiatowa
+              - generic [ref=e199]:
+                - checkbox "policja_komenda_wojewódzka" [ref=e200]
+                - generic [ref=e201]: policja_komenda_wojewódzka
+              - generic [ref=e202]:
+                - checkbox "posłowie/Sejm" [ref=e203]
+                - generic [ref=e204]: posłowie/Sejm
+              - generic [ref=e205]:
+                - checkbox "powiatowy urząd pracy" [ref=e206]
+                - generic [ref=e207]: powiatowy urząd pracy
+              - generic [ref=e208]:
+                - checkbox "powiatowy_inspektor_nadzoru_budowlanego" [ref=e209]
+                - generic [ref=e210]: powiatowy_inspektor_nadzoru_budowlanego
+              - generic [ref=e211]:
+                - checkbox "prokuratura_okręgowa" [ref=e212]
+                - generic [ref=e213]: prokuratura_okręgowa
+              - generic [ref=e214]:
+                - checkbox "prokuratura_rejonowa" [ref=e215]
+                - generic [ref=e216]: prokuratura_rejonowa
+              - generic [ref=e217]:
+                - checkbox "regionalna_dyrekcja_ochrony_środowiska" [ref=e218]
+                - generic [ref=e219]: regionalna_dyrekcja_ochrony_środowiska
+              - generic [ref=e220]:
+                - checkbox "regionalne dyrekcje Lasów Państwowych" [ref=e221]
+                - generic [ref=e222]: regionalne dyrekcje Lasów Państwowych
+              - generic [ref=e223]:
+                - checkbox "regionalne izby obrachunkowe" [ref=e224]
+                - generic [ref=e225]: regionalne izby obrachunkowe
+              - generic [ref=e226]:
+                - checkbox "regionalny_zarząd_gospodarki_wodnej" [ref=e227]
+                - generic [ref=e228]: regionalny_zarząd_gospodarki_wodnej
+              - generic [ref=e229]:
+                - checkbox "RSPO_Biblioteki pedagogiczne" [ref=e230]
+                - generic [ref=e231]: RSPO_Biblioteki pedagogiczne
+              - generic [ref=e232]:
+                - checkbox "RSPO_Branżowa szkoła I stopnia" [ref=e233]
+                - generic [ref=e234]: RSPO_Branżowa szkoła I stopnia
+              - generic [ref=e235]:
+                - checkbox "RSPO_Branżowa szkoła II stopnia" [ref=e236]
+                - generic [ref=e237]: RSPO_Branżowa szkoła II stopnia
+              - generic [ref=e238]:
+                - checkbox "RSPO_Branżowe Centrum Umiejętności" [ref=e239]
+                - generic [ref=e240]: RSPO_Branżowe Centrum Umiejętności
+              - generic [ref=e241]:
+                - checkbox "RSPO_Bursa" [ref=e242]
+                - generic [ref=e243]: RSPO_Bursa
+              - generic [ref=e244]:
+                - checkbox "RSPO_Centrum Kształcenia Zawodowego" [ref=e245]
+                - generic [ref=e246]: RSPO_Centrum Kształcenia Zawodowego
+              - generic [ref=e247]:
+                - checkbox "RSPO_Dom wczasów dziecięcych" [ref=e248]
+                - generic [ref=e249]: RSPO_Dom wczasów dziecięcych
+              - generic [ref=e250]:
+                - checkbox "RSPO_filia" [ref=e251]
+                - generic [ref=e252]: RSPO_filia
+              - generic [ref=e253]:
+                - checkbox "RSPO_Gimnazjum" [ref=e254]
+                - generic [ref=e255]: RSPO_Gimnazjum
+              - generic [ref=e256]:
+                - checkbox "RSPO_Inna szkoła artystyczna" [ref=e257]
+                - generic [ref=e258]: RSPO_Inna szkoła artystyczna
+              - generic [ref=e259]:
+                - checkbox "RSPO_Kolegium Pracowników Służb Społecznych" [ref=e260]
+                - generic [ref=e261]: RSPO_Kolegium Pracowników Służb Społecznych
+              - generic [ref=e262]:
+                - checkbox "RSPO_Liceum ogólnokształcące" [ref=e263]
+                - generic [ref=e264]: RSPO_Liceum ogólnokształcące
+              - generic [ref=e265]:
+                - checkbox "RSPO_Liceum sztuk plastycznych" [ref=e266]
+                - generic [ref=e267]: RSPO_Liceum sztuk plastycznych
+              - generic [ref=e268]:
+                - checkbox "RSPO_Międzyszkolny ośrodek sportowy" [ref=e269]
+                - generic [ref=e270]: RSPO_Międzyszkolny ośrodek sportowy
+              - generic [ref=e271]:
+                - checkbox "RSPO_Młodzieżowy dom kultury" [ref=e272]
+                - generic [ref=e273]: RSPO_Młodzieżowy dom kultury
+              - generic [ref=e274]:
+                - checkbox "RSPO_Młodzieżowy Ośrodek Socjoterapii ze szkołami" [ref=e275]
+                - generic [ref=e276]: RSPO_Młodzieżowy Ośrodek Socjoterapii ze szkołami
+              - generic [ref=e277]:
+                - checkbox "RSPO_Młodzieżowy Ośrodek Wychowawczy" [ref=e278]
+                - generic [ref=e279]: RSPO_Młodzieżowy Ośrodek Wychowawczy
+              - generic [ref=e280]:
+                - checkbox "RSPO_Ognisko pracy pozaszkolnej" [ref=e281]
+                - generic [ref=e282]: RSPO_Ognisko pracy pozaszkolnej
+              - generic [ref=e283]:
+                - checkbox "RSPO_Ogólnokształcąca szkoła baletowa" [ref=e284]
+                - generic [ref=e285]: RSPO_Ogólnokształcąca szkoła baletowa
+              - generic [ref=e286]:
+                - checkbox "RSPO_Ogólnokształcąca szkoła muzyczna I stopnia" [ref=e287]
+                - generic [ref=e288]: RSPO_Ogólnokształcąca szkoła muzyczna I stopnia
+              - generic [ref=e289]:
+                - checkbox "RSPO_Ogólnokształcąca szkoła muzyczna II stopnia" [ref=e290]
+                - generic [ref=e291]: RSPO_Ogólnokształcąca szkoła muzyczna II stopnia
+              - generic [ref=e292]:
+                - checkbox "RSPO_Ogólnokształcąca szkoła sztuk pięknych" [ref=e293]
+                - generic [ref=e294]: RSPO_Ogólnokształcąca szkoła sztuk pięknych
+              - generic [ref=e295]:
+                - checkbox "RSPO_Ogród jordanowski" [ref=e296]
+                - generic [ref=e297]: RSPO_Ogród jordanowski
+              - generic [ref=e298]:
+                - checkbox "RSPO_Ośrodek Rewalidacyjno-Wychowawczy" [ref=e299]
+                - generic [ref=e300]: RSPO_Ośrodek Rewalidacyjno-Wychowawczy
+              - generic [ref=e301]:
+                - checkbox "RSPO_Pałac młodzieży" [ref=e302]
+                - generic [ref=e303]: RSPO_Pałac młodzieży
+              - generic [ref=e304]:
+                - checkbox "RSPO_Placówka doskonalenia nauczycieli" [ref=e305]
+                - generic [ref=e306]: RSPO_Placówka doskonalenia nauczycieli
+              - generic [ref=e307]:
+                - checkbox "RSPO_Placówka Kształcenia Ustawicznego - bez szkół" [ref=e308]
+                - generic [ref=e309]: RSPO_Placówka Kształcenia Ustawicznego - bez szkół
+              - generic [ref=e310]:
+                - checkbox "RSPO_Placówka Kształcenia Ustawicznego ze szkołami" [ref=e311]
+                - generic [ref=e312]: RSPO_Placówka Kształcenia Ustawicznego ze szkołami
+              - generic [ref=e313]:
+                - checkbox "RSPO_Placówki artystyczne (ognisko artystyczne)" [ref=e314]
+                - generic [ref=e315]: RSPO_Placówki artystyczne (ognisko artystyczne)
+              - generic [ref=e316]:
+                - checkbox "RSPO_Policealna szkoła muzyczna" [ref=e317]
+                - generic [ref=e318]: RSPO_Policealna szkoła muzyczna
+              - generic [ref=e319]:
+                - checkbox "RSPO_Poradnia psychologiczno-pedagogiczna" [ref=e320]
+                - generic [ref=e321]: RSPO_Poradnia psychologiczno-pedagogiczna
+              - generic [ref=e322]:
+                - checkbox "RSPO_Poradnia specjalistyczna" [ref=e323]
+                - generic [ref=e324]: RSPO_Poradnia specjalistyczna
+              - generic [ref=e325]:
+                - checkbox "RSPO_Pozaszkolna placówka specjalistyczna" [ref=e326]
+                - generic [ref=e327]: RSPO_Pozaszkolna placówka specjalistyczna
+              - generic [ref=e328]:
+                - checkbox "RSPO_Poznańska szkoła chóralna" [ref=e329]
+                - generic [ref=e330]: RSPO_Poznańska szkoła chóralna
+              - generic [ref=e331]:
+                - checkbox "RSPO_samodzielna" [ref=e332]
+                - generic [ref=e333]: RSPO_samodzielna
+              - generic [ref=e334]:
+                - checkbox "RSPO_specjalna" [ref=e335]
+                - generic [ref=e336]: RSPO_specjalna
+              - generic [ref=e337]:
+                - checkbox "RSPO_Specjalny Ośrodek Szkolno-Wychowawczy" [ref=e338]
+                - generic [ref=e339]: RSPO_Specjalny Ośrodek Szkolno-Wychowawczy
+              - generic [ref=e340]:
+                - checkbox "RSPO_Specjalny Ośrodek Wychowawczy" [ref=e341]
+                - generic [ref=e342]: RSPO_Specjalny Ośrodek Wychowawczy
+              - generic [ref=e343]:
+                - checkbox "RSPO_Szkolne schronisko młodzieżowe" [ref=e344]
+                - generic [ref=e345]: RSPO_Szkolne schronisko młodzieżowe
+              - generic [ref=e346]:
+                - checkbox "RSPO_Szkoła muzyczna I stopnia" [ref=e347]
+                - generic [ref=e348]: RSPO_Szkoła muzyczna I stopnia
+              - generic [ref=e349]:
+                - checkbox "RSPO_Szkoła muzyczna II stopnia" [ref=e350]
+                - generic [ref=e351]: RSPO_Szkoła muzyczna II stopnia
+              - generic [ref=e352]:
+                - checkbox "RSPO_Szkoła podstawowa" [ref=e353]
+                - generic [ref=e354]: RSPO_Szkoła podstawowa
+              - generic [ref=e355]:
+                - checkbox "RSPO_Szkoła policealna" [ref=e356]
+                - generic [ref=e357]: RSPO_Szkoła policealna
+              - generic [ref=e358]:
+                - checkbox "RSPO_Szkoła specjalna przysposabiająca do pracy" [ref=e359]
+                - generic [ref=e360]: RSPO_Szkoła specjalna przysposabiająca do pracy
+              - generic [ref=e361]:
+                - checkbox "RSPO_Szkoła sztuki cyrkowej" [ref=e362]
+                - generic [ref=e363]: RSPO_Szkoła sztuki cyrkowej
+              - generic [ref=e364]:
+                - checkbox "RSPO_Technikum" [ref=e365]
+                - generic [ref=e366]: RSPO_Technikum
+              - generic [ref=e367]:
+                - checkbox "RSPO_w_skład_złożonej" [ref=e368]
+                - generic [ref=e369]: RSPO_w_skład_złożonej
+              - generic [ref=e370]:
+                - checkbox "RSPO_Zespół szkół i placówek oświatowych" [ref=e371]
+                - generic [ref=e372]: RSPO_Zespół szkół i placówek oświatowych
+              - generic [ref=e373]:
+                - checkbox "RSPO_złożona" [ref=e374]
+                - generic [ref=e375]: RSPO_złożona
+              - generic [ref=e376]:
+                - checkbox "rzecznik" [ref=e377]
+                - generic [ref=e378]: rzecznik
+              - generic [ref=e379]:
+                - checkbox "samorząd gminy" [ref=e380]
+                - generic [ref=e381]: samorząd gminy
+              - generic [ref=e382]:
+                - checkbox "samorządowe kolegia odwoławcze" [ref=e383]
+                - generic [ref=e384]: samorządowe kolegia odwoławcze
+              - generic [ref=e385]:
+                - checkbox "sąd" [ref=e386]
+                - generic [ref=e387]: sąd
+              - generic [ref=e388]:
+                - checkbox "sąd apelacyjny" [ref=e389]
+                - generic [ref=e390]: sąd apelacyjny
+              - generic [ref=e391]:
+                - checkbox "sąd okręgowy" [ref=e392]
+                - generic [ref=e393]: sąd okręgowy
+              - generic [ref=e394]:
+                - checkbox "sąd rejonowy" [ref=e395]
+                - generic [ref=e396]: sąd rejonowy
+              - generic [ref=e397]:
+                - checkbox "sąd_administracyjny" [ref=e398]
+                - generic [ref=e399]: sąd_administracyjny
+              - generic [ref=e400]:
+                - checkbox "siatkówka" [ref=e401]
+                - generic [ref=e402]: siatkówka
+              - generic [ref=e403]:
+                - checkbox "służba_więzienna" [ref=e404]
+                - generic [ref=e405]: służba_więzienna
+              - generic [ref=e406]:
+                - checkbox "spółka skarbu państwa" [ref=e407]
+                - generic [ref=e408]: spółka skarbu państwa
+              - generic [ref=e409]:
+                - checkbox "spółki komunalne" [ref=e410]
+                - generic [ref=e411]: spółki komunalne
+              - generic [ref=e412]:
+                - checkbox "starostwo powiatowe" [ref=e413]
+                - generic [ref=e414]: starostwo powiatowe
+              - generic [ref=e415]:
+                - checkbox "straż_graniczna" [ref=e416]
+                - generic [ref=e417]: straż_graniczna
+              - generic [ref=e418]:
+                - checkbox "straż_graniczna_dywizjon" [ref=e419]
+                - generic [ref=e420]: straż_graniczna_dywizjon
+              - generic [ref=e421]:
+                - checkbox "straż_graniczna_oddział" [ref=e422]
+                - generic [ref=e423]: straż_graniczna_oddział
+              - generic [ref=e424]:
+                - checkbox "straż_graniczna_placówka" [ref=e425]
+                - generic [ref=e426]: straż_graniczna_placówka
+              - generic [ref=e427]:
+                - checkbox "szkolenia" [ref=e428]
+                - generic [ref=e429]: szkolenia
+              - generic [ref=e430]:
+                - checkbox "szpitale" [ref=e431]
+                - generic [ref=e432]: szpitale
+              - generic [ref=e433]:
+                - checkbox "szpitale/" [ref=e434]
+                - generic [ref=e435]: szpitale/
+              - generic [ref=e436]:
+                - checkbox "szpitale/-" [ref=e437]
+                - generic [ref=e438]: szpitale/-
+              - generic [ref=e439]:
+                - checkbox "szpitale/104" [ref=e440]
+                - generic [ref=e441]: szpitale/104
+              - generic [ref=e442]:
+                - checkbox "szpitale/79" [ref=e443]
+                - generic [ref=e444]: szpitale/79
+              - generic [ref=e445]:
+                - checkbox "szpitale/alergologia" [ref=e446]
+                - generic [ref=e447]: szpitale/alergologia
+              - generic [ref=e448]:
+                - checkbox "szpitale/anestezjologia i intensywna terapia" [ref=e449]
+                - generic [ref=e450]: szpitale/anestezjologia i intensywna terapia
+              - generic [ref=e451]:
+                - checkbox "szpitale/angiologia" [ref=e452]
+                - generic [ref=e453]: szpitale/angiologia
+              - generic [ref=e454]:
+                - checkbox "szpitale/audiologia i foniatria" [ref=e455]
+                - generic [ref=e456]: szpitale/audiologia i foniatria
+              - generic [ref=e457]:
+                - checkbox "szpitale/balneologia i medycyna fizykalna" [ref=e458]
+                - generic [ref=e459]: szpitale/balneologia i medycyna fizykalna
+              - generic [ref=e460]:
+                - checkbox "szpitale/brak wpisu" [ref=e461]
+                - generic [ref=e462]: szpitale/brak wpisu
+              - generic [ref=e463]:
+                - checkbox "szpitale/chirurgia dziecięca" [ref=e464]
+                - generic [ref=e465]: szpitale/chirurgia dziecięca
+              - generic [ref=e466]:
+                - checkbox "szpitale/chirurgia klatki piersiowej" [ref=e467]
+                - generic [ref=e468]: szpitale/chirurgia klatki piersiowej
+              - generic [ref=e469]:
+                - checkbox "szpitale/chirurgia naczyniowa" [ref=e470]
+                - generic [ref=e471]: szpitale/chirurgia naczyniowa
+              - generic [ref=e472]:
+                - checkbox "szpitale/chirurgia ogólna" [ref=e473]
+                - generic [ref=e474]: szpitale/chirurgia ogólna
+              - generic [ref=e475]:
+                - checkbox "szpitale/chirurgia onkologiczna" [ref=e476]
+                - generic [ref=e477]: szpitale/chirurgia onkologiczna
+              - generic [ref=e478]:
+                - checkbox "szpitale/chirurgia plastyczna" [ref=e479]
+                - generic [ref=e480]: szpitale/chirurgia plastyczna
+              - generic [ref=e481]:
+                - checkbox "szpitale/chirurgia stomatologiczna" [ref=e482]
+                - generic [ref=e483]: szpitale/chirurgia stomatologiczna
+              - generic [ref=e484]:
+                - checkbox "szpitale/chirurgia szczękowo-twarzowa" [ref=e485]
+                - generic [ref=e486]: szpitale/chirurgia szczękowo-twarzowa
+              - generic [ref=e487]:
+                - checkbox "szpitale/choroby płuc" [ref=e488]
+                - generic [ref=e489]: szpitale/choroby płuc
+              - generic [ref=e490]:
+                - checkbox "szpitale/choroby płuc dzieci" [ref=e491]
+                - generic [ref=e492]: szpitale/choroby płuc dzieci
+              - generic [ref=e493]:
+                - checkbox "szpitale/choroby wewnętrzne" [ref=e494]
+                - generic [ref=e495]: szpitale/choroby wewnętrzne
+              - generic [ref=e496]:
+                - checkbox "szpitale/choroby zakaźne" [ref=e497]
+                - generic [ref=e498]: szpitale/choroby zakaźne
+              - generic [ref=e499]:
+                - checkbox "szpitale/dermatologia i wenerologia" [ref=e500]
+                - generic [ref=e501]: szpitale/dermatologia i wenerologia
+              - generic [ref=e502]:
+                - checkbox "szpitale/diabetologia" [ref=e503]
+                - generic [ref=e504]: szpitale/diabetologia
+              - generic [ref=e505]:
+                - checkbox "szpitale/diagnostyka laboratoryjna" [ref=e506]
+                - generic [ref=e507]: szpitale/diagnostyka laboratoryjna
+              - generic [ref=e508]:
+                - checkbox "szpitale/endokrynologia" [ref=e509]
+                - generic [ref=e510]: szpitale/endokrynologia
+              - generic [ref=e511]:
+                - checkbox "szpitale/endokrynologia ginekologiczna i rozrodczość" [ref=e512]
+                - generic [ref=e513]: szpitale/endokrynologia ginekologiczna i rozrodczość
+              - generic [ref=e514]:
+                - checkbox "szpitale/endokrynologia i diabetologia dziecięca" [ref=e515]
+                - generic [ref=e516]: szpitale/endokrynologia i diabetologia dziecięca
+              - generic [ref=e517]:
+                - checkbox "szpitale/epidemiologia" [ref=e518]
+                - generic [ref=e519]: szpitale/epidemiologia
+              - generic [ref=e520]:
+                - checkbox "szpitale/farmakologia kliniczna" [ref=e521]
+                - generic [ref=e522]: szpitale/farmakologia kliniczna
+              - generic [ref=e523]:
+                - checkbox "szpitale/fizjoterapia" [ref=e524]
+                - generic [ref=e525]: szpitale/fizjoterapia
+              - generic [ref=e526]:
+                - checkbox "szpitale/fizyka medyczna" [ref=e527]
+                - generic [ref=e528]: szpitale/fizyka medyczna
+              - generic [ref=e529]:
+                - checkbox "szpitale/gastroenterologia" [ref=e530]
+                - generic [ref=e531]: szpitale/gastroenterologia
+              - generic [ref=e532]:
+                - checkbox "szpitale/gastroenterologia dziecięca" [ref=e533]
+                - generic [ref=e534]: szpitale/gastroenterologia dziecięca
+              - generic [ref=e535]:
+                - checkbox "szpitale/genetyka kliniczna" [ref=e536]
+                - generic [ref=e537]: szpitale/genetyka kliniczna
+              - generic [ref=e538]:
+                - checkbox "szpitale/geriatria" [ref=e539]
+                - generic [ref=e540]: szpitale/geriatria
+              - generic [ref=e541]:
+                - checkbox "szpitale/ginekologia onkologiczna" [ref=e542]
+                - generic [ref=e543]: szpitale/ginekologia onkologiczna
+              - generic [ref=e544]:
+                - checkbox "szpitale/hematologia" [ref=e545]
+                - generic [ref=e546]: szpitale/hematologia
+              - generic [ref=e547]:
+                - checkbox "szpitale/hipertensjologia" [ref=e548]
+                - generic [ref=e549]: szpitale/hipertensjologia
+              - generic [ref=e550]:
+                - checkbox "szpitale/immunologia kliniczna" [ref=e551]
+                - generic [ref=e552]: szpitale/immunologia kliniczna
+              - generic [ref=e553]:
+                - checkbox "szpitale/intensywna terapia" [ref=e554]
+                - generic [ref=e555]: szpitale/intensywna terapia
+              - generic [ref=e556]:
+                - checkbox "szpitale/kardiochirurgia" [ref=e557]
+                - generic [ref=e558]: szpitale/kardiochirurgia
+              - generic [ref=e559]:
+                - checkbox "szpitale/kardiologia" [ref=e560]
+                - generic [ref=e561]: szpitale/kardiologia
+              - generic [ref=e562]:
+                - checkbox "szpitale/kardiologia dziecięca" [ref=e563]
+                - generic [ref=e564]: szpitale/kardiologia dziecięca
+              - generic [ref=e565]:
+                - checkbox "szpitale/medycyna lotnicza" [ref=e566]
+                - generic [ref=e567]: szpitale/medycyna lotnicza
+              - generic [ref=e568]:
+                - checkbox "szpitale/medycyna morska i tropikalna" [ref=e569]
+                - generic [ref=e570]: szpitale/medycyna morska i tropikalna
+              - generic [ref=e571]:
+                - checkbox "szpitale/medycyna nuklearna" [ref=e572]
+                - generic [ref=e573]: szpitale/medycyna nuklearna
+              - generic [ref=e574]:
+                - checkbox "szpitale/medycyna paliatywna" [ref=e575]
+                - generic [ref=e576]: szpitale/medycyna paliatywna
+              - generic [ref=e577]:
+                - checkbox "szpitale/medycyna pracy" [ref=e578]
+                - generic [ref=e579]: szpitale/medycyna pracy
+              - generic [ref=e580]:
+                - checkbox "szpitale/medycyna ratunkowa" [ref=e581]
+                - generic [ref=e582]: szpitale/medycyna ratunkowa
+              - generic [ref=e583]:
+                - checkbox "szpitale/medycyna rodzinna" [ref=e584]
+                - generic [ref=e585]: szpitale/medycyna rodzinna
+              - generic [ref=e586]:
+                - checkbox "szpitale/medycyna sądowa" [ref=e587]
+                - generic [ref=e588]: szpitale/medycyna sądowa
+              - generic [ref=e589]:
+                - checkbox "szpitale/medycyna sportowa" [ref=e590]
+                - generic [ref=e591]: szpitale/medycyna sportowa
+              - generic [ref=e592]:
+                - checkbox "szpitale/medycyna transportu" [ref=e593]
+                - generic [ref=e594]: szpitale/medycyna transportu
+              - generic [ref=e595]:
+                - checkbox "szpitale/mikrobiologia" [ref=e596]
+                - generic [ref=e597]: szpitale/mikrobiologia
+              - generic [ref=e598]:
+                - checkbox "szpitale/mikrobiologia lekarska" [ref=e599]
+                - generic [ref=e600]: szpitale/mikrobiologia lekarska
+              - generic [ref=e601]:
+                - checkbox "szpitale/nefrologia" [ref=e602]
+                - generic [ref=e603]: szpitale/nefrologia
+              - generic [ref=e604]:
+                - checkbox "szpitale/nefrologia dziecięca" [ref=e605]
+                - generic [ref=e606]: szpitale/nefrologia dziecięca
+              - generic [ref=e607]:
+                - checkbox "szpitale/neonatologia" [ref=e608]
+                - generic [ref=e609]: szpitale/neonatologia
+              - generic [ref=e610]:
+                - checkbox "szpitale/neurochirurgia" [ref=e611]
+                - generic [ref=e612]: szpitale/neurochirurgia
+              - generic [ref=e613]:
+                - checkbox "szpitale/neurologia" [ref=e614]
+                - generic [ref=e615]: szpitale/neurologia
+              - generic [ref=e616]:
+                - checkbox "szpitale/neurologia dziecięca" [ref=e617]
+                - generic [ref=e618]: szpitale/neurologia dziecięca
+              - generic [ref=e619]:
+                - checkbox "szpitale/neurologopedia" [ref=e620]
+                - generic [ref=e621]: szpitale/neurologopedia
+              - generic [ref=e622]:
+                - checkbox "szpitale/neuropatologia" [ref=e623]
+                - generic [ref=e624]: szpitale/neuropatologia
+              - generic [ref=e625]:
+                - checkbox "szpitale/okulistyka" [ref=e626]
+                - generic [ref=e627]: szpitale/okulistyka
+              - generic [ref=e628]:
+                - checkbox "szpitale/onkologia i hematologia dziecięca" [ref=e629]
+                - generic [ref=e630]: szpitale/onkologia i hematologia dziecięca
+              - generic [ref=e631]:
+                - checkbox "szpitale/onkologia kliniczna" [ref=e632]
+                - generic [ref=e633]: szpitale/onkologia kliniczna
+              - generic [ref=e634]:
+                - checkbox "szpitale/ortodoncja" [ref=e635]
+                - generic [ref=e636]: szpitale/ortodoncja
+              - generic [ref=e637]:
+                - checkbox "szpitale/ortopedia i traumatologia narządu ruchu" [ref=e638]
+                - generic [ref=e639]: szpitale/ortopedia i traumatologia narządu ruchu
+              - generic [ref=e640]:
+                - checkbox "szpitale/otorynolaryngologia" [ref=e641]
+                - generic [ref=e642]: szpitale/otorynolaryngologia
+              - generic [ref=e643]:
+                - checkbox "szpitale/otorynolaryngologia dziecięca" [ref=e644]
+                - generic [ref=e645]: szpitale/otorynolaryngologia dziecięca
+              - generic [ref=e646]:
+                - checkbox "szpitale/patomorfologia" [ref=e647]
+                - generic [ref=e648]: szpitale/patomorfologia
+              - generic [ref=e649]:
+                - checkbox "szpitale/pediatria" [ref=e650]
+                - generic [ref=e651]: szpitale/pediatria
+              - generic [ref=e652]:
+                - checkbox "szpitale/pediatria metaboliczna" [ref=e653]
+                - generic [ref=e654]: szpitale/pediatria metaboliczna
+              - generic [ref=e655]:
+                - checkbox "szpitale/perinatologia" [ref=e656]
+                - generic [ref=e657]: szpitale/perinatologia
+              - generic [ref=e658]:
+                - checkbox "szpitale/periodontologia" [ref=e659]
+                - generic [ref=e660]: szpitale/periodontologia
+              - generic [ref=e661]:
+                - checkbox "szpitale/pielęgniarstwo anestezjologiczne i intensywnej opieki" [ref=e662]
+                - generic [ref=e663]: szpitale/pielęgniarstwo anestezjologiczne i intensywnej opieki
+              - generic [ref=e664]:
+                - checkbox "szpitale/pielęgniarstwo chirurgiczne" [ref=e665]
+                - generic [ref=e666]: szpitale/pielęgniarstwo chirurgiczne
+              - generic [ref=e667]:
+                - checkbox "szpitale/pielęgniarstwo diabetologiczne" [ref=e668]
+                - generic [ref=e669]: szpitale/pielęgniarstwo diabetologiczne
+              - generic [ref=e670]:
+                - checkbox "szpitale/pielęgniarstwo epidemiologiczne" [ref=e671]
+                - generic [ref=e672]: szpitale/pielęgniarstwo epidemiologiczne
+              - generic [ref=e673]:
+                - checkbox "szpitale/pielęgniarstwo geriatryczne" [ref=e674]
+                - generic [ref=e675]: szpitale/pielęgniarstwo geriatryczne
+              - generic [ref=e676]:
+                - checkbox "szpitale/pielęgniarstwo ginekologiczne" [ref=e677]
+                - generic [ref=e678]: szpitale/pielęgniarstwo ginekologiczne
+              - generic [ref=e679]:
+                - checkbox "szpitale/pielęgniarstwo ginekologiczno-położnicze" [ref=e680]
+                - generic [ref=e681]: szpitale/pielęgniarstwo ginekologiczno-położnicze
+              - generic [ref=e682]:
+                - checkbox "szpitale/pielęgniarstwo internistyczne" [ref=e683]
+                - generic [ref=e684]: szpitale/pielęgniarstwo internistyczne
+              - generic [ref=e685]:
+                - checkbox "szpitale/pielęgniarstwo kardiologiczne" [ref=e686]
+                - generic [ref=e687]: szpitale/pielęgniarstwo kardiologiczne
+              - generic [ref=e688]:
+                - checkbox "szpitale/pielęgniarstwo nefrologiczne" [ref=e689]
+                - generic [ref=e690]: szpitale/pielęgniarstwo nefrologiczne
+              - generic [ref=e691]:
+                - checkbox "szpitale/pielęgniarstwo neonatologiczne" [ref=e692]
+                - generic [ref=e693]: szpitale/pielęgniarstwo neonatologiczne
+              - generic [ref=e694]:
+                - checkbox "szpitale/pielęgniarstwo neurologiczne" [ref=e695]
+                - generic [ref=e696]: szpitale/pielęgniarstwo neurologiczne
+              - generic [ref=e697]:
+                - checkbox "szpitale/pielęgniarstwo onkologiczne" [ref=e698]
+                - generic [ref=e699]: szpitale/pielęgniarstwo onkologiczne
+              - generic [ref=e700]:
+                - checkbox "szpitale/pielęgniarstwo operacyjne" [ref=e701]
+                - generic [ref=e702]: szpitale/pielęgniarstwo operacyjne
+              - generic [ref=e703]:
+                - checkbox "szpitale/pielęgniarstwo opieki długoterminowej" [ref=e704]
+                - generic [ref=e705]: szpitale/pielęgniarstwo opieki długoterminowej
+              - generic [ref=e706]:
+                - checkbox "szpitale/pielęgniarstwo opieki paliatywnej" [ref=e707]
+                - generic [ref=e708]: szpitale/pielęgniarstwo opieki paliatywnej
+              - generic [ref=e709]:
+                - checkbox "szpitale/pielęgniarstwo pediatryczne" [ref=e710]
+                - generic [ref=e711]: szpitale/pielęgniarstwo pediatryczne
+              - generic [ref=e712]:
+                - checkbox "szpitale/pielęgniarstwo położnicze" [ref=e713]
+                - generic [ref=e714]: szpitale/pielęgniarstwo położnicze
+              - generic [ref=e715]:
+                - checkbox "szpitale/pielęgniarstwo promocji zdrowia i edukacji zdrowotnej" [ref=e716]
+                - generic [ref=e717]: szpitale/pielęgniarstwo promocji zdrowia i edukacji zdrowotnej
+              - generic [ref=e718]:
+                - checkbox "szpitale/pielęgniarstwo psychiatryczne" [ref=e719]
+                - generic [ref=e720]: szpitale/pielęgniarstwo psychiatryczne
+              - generic [ref=e721]:
+                - checkbox "szpitale/pielęgniarstwo ratunkowe" [ref=e722]
+                - generic [ref=e723]: szpitale/pielęgniarstwo ratunkowe
+              - generic [ref=e724]:
+                - checkbox "szpitale/pielęgniarstwo rodzinne" [ref=e725]
+                - generic [ref=e726]: szpitale/pielęgniarstwo rodzinne
+              - generic [ref=e727]:
+                - checkbox "szpitale/pielęgniarstwo rodzinne dla pielęgniarek" [ref=e728]
+                - generic [ref=e729]: szpitale/pielęgniarstwo rodzinne dla pielęgniarek
+              - generic [ref=e730]:
+                - checkbox "szpitale/pielęgniarstwo rodzinne dla położnych" [ref=e731]
+                - generic [ref=e732]: szpitale/pielęgniarstwo rodzinne dla położnych
+              - generic [ref=e733]:
+                - checkbox "szpitale/pielęgniarstwo środowiska nauczania i wychowania" [ref=e734]
+                - generic [ref=e735]: szpitale/pielęgniarstwo środowiska nauczania i wychowania
+              - generic [ref=e736]:
+                - checkbox "szpitale/pielęgniarstwo w ochronie zdrowia pracujących" [ref=e737]
+                - generic [ref=e738]: szpitale/pielęgniarstwo w ochronie zdrowia pracujących
+              - generic [ref=e739]:
+                - checkbox "szpitale/pielęgniarstwo zachowawcze" [ref=e740]
+                - generic [ref=e741]: szpitale/pielęgniarstwo zachowawcze
+              - generic [ref=e742]:
+                - checkbox "szpitale/położnictwo" [ref=e743]
+                - generic [ref=e744]: szpitale/położnictwo
+              - generic [ref=e745]:
+                - checkbox "szpitale/położnictwo ginekologiczne" [ref=e746]
+                - generic [ref=e747]: szpitale/położnictwo ginekologiczne
+              - generic [ref=e748]:
+                - checkbox "szpitale/położnictwo i ginekologia" [ref=e749]
+                - generic [ref=e750]: szpitale/położnictwo i ginekologia
+              - generic [ref=e751]:
+                - checkbox "szpitale/położnictwo rodzinne" [ref=e752]
+                - generic [ref=e753]: szpitale/położnictwo rodzinne
+              - generic [ref=e754]:
+                - checkbox "szpitale/promocja zdrowia i edukacja zdrowotna" [ref=e755]
+                - generic [ref=e756]: szpitale/promocja zdrowia i edukacja zdrowotna
+              - generic [ref=e757]:
+                - checkbox "szpitale/protetyka stomatologiczna" [ref=e758]
+                - generic [ref=e759]: szpitale/protetyka stomatologiczna
+              - generic [ref=e760]:
+                - checkbox "szpitale/psychiatria" [ref=e761]
+                - generic [ref=e762]: szpitale/psychiatria
+              - generic [ref=e763]:
+                - checkbox "szpitale/psychiatria dzieci i młodzieży" [ref=e764]
+                - generic [ref=e765]: szpitale/psychiatria dzieci i młodzieży
+              - generic [ref=e766]:
+                - checkbox "szpitale/psychologia kliniczna" [ref=e767]
+                - generic [ref=e768]: szpitale/psychologia kliniczna
+              - generic [ref=e769]:
+                - checkbox "szpitale/radiofarmacja" [ref=e770]
+                - generic [ref=e771]: szpitale/radiofarmacja
+              - generic [ref=e772]:
+                - checkbox "szpitale/radiologia i diagnostyka obrazowa" [ref=e773]
+                - generic [ref=e774]: szpitale/radiologia i diagnostyka obrazowa
+              - generic [ref=e775]:
+                - checkbox "szpitale/radioterapia onkologiczna" [ref=e776]
+                - generic [ref=e777]: szpitale/radioterapia onkologiczna
+              - generic [ref=e778]:
+                - checkbox "szpitale/rehabilitacja medyczna" [ref=e779]
+                - generic [ref=e780]: szpitale/rehabilitacja medyczna
+              - generic [ref=e781]:
+                - checkbox "szpitale/reumatologia" [ref=e782]
+                - generic [ref=e783]: szpitale/reumatologia
+              - generic [ref=e784]:
+                - checkbox "szpitale/seksuologia" [ref=e785]
+                - generic [ref=e786]: szpitale/seksuologia
+              - generic [ref=e787]:
+                - checkbox "szpitale/stomatologia dziecięca" [ref=e788]
+                - generic [ref=e789]: szpitale/stomatologia dziecięca
+              - generic [ref=e790]:
+                - checkbox "szpitale/stomatologia zachowawcza z endodoncją" [ref=e791]
+                - generic [ref=e792]: szpitale/stomatologia zachowawcza z endodoncją
+              - generic [ref=e793]:
+                - checkbox "szpitale/surdologopedia" [ref=e794]
+                - generic [ref=e795]: szpitale/surdologopedia
+              - generic [ref=e796]:
+                - checkbox "szpitale/toksykologia" [ref=e797]
+                - generic [ref=e798]: szpitale/toksykologia
+              - generic [ref=e799]:
+                - checkbox "szpitale/toksykologia kliniczna" [ref=e800]
+                - generic [ref=e801]: szpitale/toksykologia kliniczna
+              - generic [ref=e802]:
+                - checkbox "szpitale/transfuzjologia kliniczna" [ref=e803]
+                - generic [ref=e804]: szpitale/transfuzjologia kliniczna
+              - generic [ref=e805]:
+                - checkbox "szpitale/transplantologia kliniczna" [ref=e806]
+                - generic [ref=e807]: szpitale/transplantologia kliniczna
+              - generic [ref=e808]:
+                - checkbox "szpitale/undefined" [ref=e809]
+                - generic [ref=e810]: szpitale/undefined
+              - generic [ref=e811]:
+                - checkbox "szpitale/urologia" [ref=e812]
+                - generic [ref=e813]: szpitale/urologia
+              - generic [ref=e814]:
+                - checkbox "szpitale/urologia dziecięca" [ref=e815]
+                - generic [ref=e816]: szpitale/urologia dziecięca
+              - generic [ref=e817]:
+                - checkbox "szpitale/zdrowia środowiskowe" [ref=e818]
+                - generic [ref=e819]: szpitale/zdrowia środowiskowe
+              - generic [ref=e820]:
+                - checkbox "szpitale/zdrowie publiczne" [ref=e821]
+                - generic [ref=e822]: szpitale/zdrowie publiczne
+              - generic [ref=e823]:
+                - checkbox "transport" [ref=e824]
+                - generic [ref=e825]: transport
+              - generic [ref=e826]:
+                - checkbox "urząd_centralny" [ref=e827]
+                - generic [ref=e828]: urząd_centralny
+              - generic [ref=e829]:
+                - checkbox "urząd_ds_cudzoziemców" [ref=e830]
+                - generic [ref=e831]: urząd_ds_cudzoziemców
+              - generic [ref=e832]:
+                - checkbox "urząd_górniczy" [ref=e833]
+                - generic [ref=e834]: urząd_górniczy
+              - generic [ref=e835]:
+                - checkbox "wojewoda" [ref=e836]
+                - generic [ref=e837]: wojewoda
+              - generic [ref=e838]:
+                - checkbox "wojewódzki_inspektor_nadzoru_budowlanego" [ref=e839]
+                - generic [ref=e840]: wojewódzki_inspektor_nadzoru_budowlanego
+              - generic [ref=e841]:
+                - checkbox "wojewódzki_inspektorat_ochrony_roślin" [ref=e842]
+                - generic [ref=e843]: wojewódzki_inspektorat_ochrony_roślin
+              - generic [ref=e844]:
+                - checkbox "wojewódzki_inspektorat_ochrony_środowiska" [ref=e845]
+                - generic [ref=e846]: wojewódzki_inspektorat_ochrony_środowiska
+              - generic [ref=e847]:
+                - checkbox "wojewódzki_inspektorat_transportu_drogowego" [ref=e848]
+                - generic [ref=e849]: wojewódzki_inspektorat_transportu_drogowego
+              - generic [ref=e850]:
+                - checkbox "wydział_prawa" [ref=e851]
+                - generic [ref=e852]: wydział_prawa
+              - generic [ref=e853]:
+                - checkbox "x" [ref=e854]
+                - generic [ref=e855]: x
+              - generic [ref=e856]:
+                - checkbox "zakład_karny" [ref=e857]
+                - generic [ref=e858]: zakład_karny
+              - generic [ref=e859]:
+                - checkbox "zakład_medycyny_sądowej" [ref=e860]
+                - generic [ref=e861]: zakład_medycyny_sądowej
+              - generic [ref=e862]:
+                - checkbox "zakłady budżetowe" [ref=e863]
+                - generic [ref=e864]: zakłady budżetowe
+              - generic [ref=e865]:
+                - checkbox "zamknięty_ośrodek_dla_cudzoziemców|straż_graniczna" [ref=e866]
+                - generic [ref=e867]: zamknięty_ośrodek_dla_cudzoziemców|straż_graniczna
+              - generic [ref=e868]:
+                - checkbox "zarząd_okręgowy_polskiego_związku_łowieckiego" [ref=e869]
+                - generic [ref=e870]: zarząd_okręgowy_polskiego_związku_łowieckiego
+              - generic [ref=e871]:
+                - checkbox "żużel" [ref=e872]
+                - generic [ref=e873]: żużel
+        - button "Zapisz" [ref=e876] [cursor=pointer]
+      - generic [ref=e877]:
+        - generic [ref=e878]:
+          - text: Sieć Obywatelska - Watchdog Polska ul. Szpitalna 5/5 00-031 Warszawa
+          - paragraph [ref=e879]:
+            - link "Klauzula RODO" [ref=e880] [cursor=pointer]:
+              - /url: https://fedrowanie.siecobywatelska.pl/media_internal/tinycontent/uploads/11_KLAUZULA.-.dane.z.udip.na.stronach.www.i.w.mediach.spol.pdf
+        - generic [ref=e881]:
+          - text: "silnik:"
+          - link "jawne.info.pl" [ref=e882] [cursor=pointer]:
+            - /url: http://jawne.info.pl
+          - text: "| v1.5.77.deps |"
+          - link "GitHub" [ref=e883] [cursor=pointer]:
+            - /url: https://github.com/watchdogpolska/feder
+          - text: –
+          - link "efd8a3b" [ref=e885] [cursor=pointer]:
+            - /url: https://github.com/watchdogpolska/feder/compare/efd8a3b2...master
+          - text: "|"
+          - link "API" [ref=e886] [cursor=pointer]:
+            - /url: /api/
+        - generic [ref=e888]: Ta strona wykorzystuje cookies.
+  - list [ref=e890]:
+    - listitem [ref=e891]:
+      - link "Ukryj »" [ref=e892] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e893]:
+      - link "Toggle Theme" [ref=e894] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e897]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e898]
+      - link "Historia /instytucje/~utworz" [ref=e899] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e900]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e901]
+      - link "Wersje Django 5.2.17" [ref=e902] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e903]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e904]
+      - 'link "Czas CPU: 591.92ms (582.50ms)" [ref=e905] [cursor=pointer]':
+        - /url: "#"
+    - listitem [ref=e906]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e907]
+      - link "Ustawienia" [ref=e908] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e909]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e910]
+      - link "Nagłówki" [ref=e911] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e912]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e913]
+      - link "Zapytania InstitutionCreateView" [ref=e914] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e915]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e916]
+      - link "SQL 5 queries in 2.97ms" [ref=e917] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e918]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e919]
+      - link "Pliki statyczne 10 użytych plików" [ref=e920] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e921]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e922]
+      - link "Templatki institutions/institution_form.html" [ref=e923] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e924]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e925]
+      - link "Alerty" [ref=e926] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e927]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e928]
+      - link "Cache 2 wywołania w 0.15ms" [ref=e929] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e930]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e931]
+      - link "Sygnały 88 odbiorców 15 sygnałów" [ref=e932] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e933]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e934]
+      - link "Gmina" [ref=e935] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e936]:
+      - checkbox "Enable for next and successive requests" [ref=e937]
+      - generic [ref=e938]: Przechwycone przekierowania
+    - listitem [ref=e939]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e940]
+      - link "Profilowanie" [ref=e941] [cursor=pointer]:
+        - /url: "#"
+```
+
+# Test source
+
+```ts
+  1  | import { test, expect } from '@playwright/test';
+  2  | import { PAGES } from './pages';
+  3  | import { VIEWPORTS } from './viewports';
+  4  | 
+  5  | for (const [name, size] of Object.entries(VIEWPORTS)) {
+  6  |   test.describe(`${name} (${size.width}px)`, () => {
+  7  |     test.use({ viewport: size });
+  8  | 
+  9  |     for (const page of PAGES) {
+  10 |       test(`${page.name} - visual baseline`, async ({ page: pw }) => {
+  11 |         await pw.goto(page.path);
+  12 |         await pw.waitForLoadState('networkidle');
+> 13 |         await expect(pw).toHaveScreenshot(`${page.name}-${name}.png`, {
+     |                          ^ Error: expect(page).toHaveScreenshot(expected) failed
+  14 |           maxDiffPixelRatio: 0.001,
+  15 |           fullPage: true,
+  16 |         });
+  17 |       });
+  18 |     }
+  19 |   });
+  20 | }
+  21 | 
+```

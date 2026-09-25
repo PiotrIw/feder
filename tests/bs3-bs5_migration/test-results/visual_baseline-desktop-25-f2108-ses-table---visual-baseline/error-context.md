@@ -1,0 +1,608 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: visual_baseline.spec.ts >> desktop (2560px) >> monitorings-cases-table - visual baseline
+- Location: tests/bs3-bs5_migration/visual_baseline.spec.ts:10:11
+
+# Error details
+
+```
+Error: expect(page).toHaveScreenshot(expected) failed
+
+  Expected an image 2560px by 1605px, received 2560px by 1611px. 449625 pixels (ratio 0.11 of all image pixels) are different.
+
+  Snapshot: monitorings-cases-table-desktop.png
+
+Call log:
+  - Expect "toHaveScreenshot(monitorings-cases-table-desktop.png)" with timeout 5000ms
+    - verifying given screenshot expectation
+  - taking page screenshot
+    - disabled all CSS animations
+  - waiting for fonts to load...
+  - fonts loaded
+  - Expected an image 2560px by 1605px, received 2560px by 1611px. 449625 pixels (ratio 0.11 of all image pixels) are different.
+  - waiting 100ms before taking screenshot
+  - taking page screenshot
+    - disabled all CSS animations
+  - waiting for fonts to load...
+  - fonts loaded
+  - captured a stable screenshot
+  - Expected an image 2560px by 1605px, received 2560px by 1611px. 449625 pixels (ratio 0.11 of all image pixels) are different.
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - text: )
+    - generic [ref=e3]:
+      - generic [ref=e4]:
+        - heading "DEV" [level=1] [ref=e5]
+        - link [ref=e6] [cursor=pointer]:
+          - /url: /
+          - img "Fedrowanie" [ref=e8]
+          - paragraph [ref=e9]: Fedrowanie
+        - paragraph [ref=e10]:
+          - link "Sieci Watchdog" [ref=e11] [cursor=pointer]:
+            - /url: http://siecobywatelska.pl
+        - paragraph [ref=e12]:
+          - link "Klauzula RODO" [ref=e13] [cursor=pointer]:
+            - /url: https://fedrowanie.siecobywatelska.pl/media_internal/tinycontent/uploads/11_KLAUZULA.-.dane.z.udip.na.stronach.www.i.w.mediach.spol.pdf
+      - list [ref=e15]:
+        - listitem [ref=e16]:
+          - paragraph [ref=e17]
+        - listitem [ref=e18]:
+          - link "Strona główna" [ref=e19] [cursor=pointer]:
+            - /url: /
+        - listitem [ref=e21]:
+          - link "O stronie" [ref=e22] [cursor=pointer]:
+            - /url: /o-stronie/
+        - listitem [ref=e24]:
+          - paragraph [ref=e25]
+        - generic [ref=e26]: Szukaj
+        - listitem [ref=e28]:
+          - link "Sprawy" [ref=e29] [cursor=pointer]:
+            - /url: /sprawy/
+        - listitem [ref=e31]:
+          - link "Monitoringi" [ref=e32] [cursor=pointer]:
+            - /url: /monitoringi/
+        - listitem [ref=e34]:
+          - link "Tabela monitoringów" [ref=e35] [cursor=pointer]:
+            - /url: /monitoringi/table/
+        - listitem [ref=e37]:
+          - link "Listy przypisane do spraw" [ref=e38] [cursor=pointer]:
+            - /url: /listy/
+        - listitem [ref=e40]:
+          - link "Listy nieprzypisane do spraw" [ref=e41] [cursor=pointer]:
+            - /url: /listy/przypisz
+        - listitem [ref=e43]:
+          - link "Instytucje" [ref=e44] [cursor=pointer]:
+            - /url: /instytucje/
+        - listitem [ref=e46]:
+          - paragraph [ref=e47]
+      - generic [ref=e48]:
+        - generic [ref=e49]: Użytkownik / użytkowniczka
+        - listitem [ref=e50]:
+          - link "Mój profil" [ref=e51] [cursor=pointer]:
+            - /url: /uzytkownik/claude_ai/
+        - listitem [ref=e53]:
+          - link "Panel administracyjny" [ref=e54] [cursor=pointer]:
+            - /url: /admin/
+        - listitem [ref=e56]:
+          - link "Wyloguj" [ref=e57] [cursor=pointer]:
+            - /url: /accounts/logout/
+    - generic [ref=e60]:
+      - heading [level=3] [ref=e61]:
+        - text: Tabela Spraw Monitoringu -
+        - link "Monitoring sądów apelacyjnych" [ref=e63] [cursor=pointer]:
+          - /url: /monitoringi/monitoring-sadow-apelacyjnych
+        - text: ":"
+      - generic [ref=e64]:
+        - generic [ref=e65]:
+          - heading "Filtry:" [level=4] [ref=e66]
+          - generic [ref=e67]:
+            - generic [ref=e68]: "Otrzymano potwierdzenie? (kol. Potw.?):"
+            - checkbox "Tak" [checked] [ref=e69]
+            - generic [ref=e70]: Tak
+            - checkbox "Nie" [checked] [ref=e72]
+            - generic [ref=e73]: Nie
+          - generic [ref=e75]:
+            - generic [ref=e76]: "Otrzymano odpowiedź? (kol. Odp.?):"
+            - checkbox "Tak" [checked] [ref=e77]
+            - generic [ref=e78]: Tak
+            - checkbox "Nie" [checked] [ref=e80]
+            - generic [ref=e81]: Nie
+          - generic [ref=e83]:
+            - generic [ref=e84]: "Kwarantanna? (kol. Kwar.?):"
+            - checkbox "Tak" [checked] [ref=e85]
+            - generic [ref=e86]: Tak
+            - checkbox "Nie" [checked] [ref=e88]
+            - generic [ref=e89]: Nie
+          - button "Filtruj obszar i tagi" [ref=e92] [cursor=pointer]
+          - generic [ref=e94]:
+            - generic [ref=e95]:
+              - generic [ref=e96]: Województwa
+              - combobox [aria-hidden] [ref=e97]
+              - combobox [ref=e100] [cursor=pointer]:
+                - textbox
+            - generic [ref=e101]:
+              - generic [ref=e102]: Powiat
+              - combobox [aria-hidden] [ref=e103]
+              - combobox [ref=e106] [cursor=pointer]:
+                - textbox
+            - generic [ref=e107]:
+              - generic [ref=e108]: Gmina
+              - combobox [aria-hidden] [ref=e109]
+              - combobox [ref=e112] [cursor=pointer]:
+                - textbox
+          - generic [ref=e114]:
+            - generic [ref=e115]: Tagi
+            - listbox [aria-hidden] [ref=e116]:
+              - option [ref=e117]: test
+            - combobox [ref=e120]:
+              - list [ref=e121]:
+                - listitem [ref=e122]:
+                  - searchbox [ref=e123]
+        - generic [ref=e127]:
+          - generic [ref=e128]:
+            - generic [ref=e129]:
+              - generic [ref=e130]: Ostatni list od
+              - text: ":"
+              - textbox [ref=e131]
+            - generic [ref=e132]:
+              - generic [ref=e133]: do
+              - text: ":"
+              - textbox [ref=e134]
+          - generic [ref=e136]:
+            - text: Pokaż
+            - combobox "Pokaż pozycji" [ref=e137]:
+              - option "20" [selected]
+              - option "50"
+              - option "100"
+            - text: pozycji
+          - generic [ref=e139]:
+            - text: "Szukaj:"
+            - searchbox "Szukaj:" [ref=e140]
+          - generic [ref=e141]:
+            - table [ref=e144]:
+              - rowgroup [ref=e145]:
+                - row [ref=e146]:
+                  - columnheader [ref=e147]
+                  - 'columnheader "Id: aktywuj, by posortować kolumnę rosnąco" [ref=e148] [cursor=pointer]': Id
+                  - 'columnheader "Nazwa: aktywuj, by posortować kolumnę rosnąco" [ref=e149] [cursor=pointer]': Nazwa
+                  - 'columnheader "Instytucja: aktywuj, by posortować kolumnę rosnąco" [ref=e150] [cursor=pointer]': Instytucja
+                  - 'columnheader "JST: aktywuj, by posortować kolumnę rosnąco" [ref=e151] [cursor=pointer]': JST
+                  - 'columnheader "Status wniosku: aktywuj, by posortować kolumnę rosnąco" [ref=e152] [cursor=pointer]': Status wniosku
+                  - 'columnheader "Ostatni List: aktywuj, by posortować kolumnę rosnąco" [ref=e153] [cursor=pointer]': Ostatni List
+                  - 'columnheader "Liczba listów: aktywuj, by posortować kolumnę rosnąco" [ref=e154] [cursor=pointer]': Liczba listów
+                  - 'columnheader "Tagi: aktywuj, by posortować kolumnę rosnąco" [ref=e155] [cursor=pointer]': Tagi
+                  - 'columnheader "Potw.?: aktywuj, by posortować kolumnę rosnąco" [ref=e156] [cursor=pointer]': Potw.?
+                  - 'columnheader "Odp.?: aktywuj, by posortować kolumnę rosnąco" [ref=e157] [cursor=pointer]': Odp.?
+                  - 'columnheader "Kwar.?: aktywuj, by posortować kolumnę rosnąco" [ref=e158] [cursor=pointer]': Kwar.?
+                - row [ref=e159]:
+                  - columnheader [ref=e160]
+                  - columnheader [ref=e162]:
+                    - textbox "..." [ref=e163]
+                  - columnheader [ref=e164]:
+                    - textbox "..." [ref=e165]
+                  - columnheader [ref=e166]:
+                    - textbox "..." [ref=e167]
+                  - columnheader [ref=e168]
+                  - columnheader [ref=e169]:
+                    - combobox [ref=e170]:
+                      - option [selected]
+                      - option "Otwarte"
+                      - option "Dostarczony"
+                      - option "Odrzucony z powodu spamu"
+                      - option "Miękko odrzucony"
+                      - option "Twardo odrzucony"
+                      - option "NIEWYSŁANY"
+                      - option "Odroczony"
+                      - option "Nieznany"
+                  - columnheader [ref=e171]
+                  - columnheader [ref=e172]
+                  - columnheader [ref=e173]:
+                    - textbox "..." [ref=e174]
+                  - columnheader [ref=e175]
+                  - columnheader [ref=e176]
+                  - columnheader [ref=e177]
+            - table [ref=e179]:
+              - rowgroup:
+                - 'row "Id: aktywuj, by posortować kolumnę rosnąco Nazwa: aktywuj, by posortować kolumnę rosnąco Instytucja: aktywuj, by posortować kolumnę rosnąco JST: aktywuj, by posortować kolumnę rosnąco Status wniosku: aktywuj, by posortować kolumnę rosnąco Ostatni List: aktywuj, by posortować kolumnę rosnąco Liczba listów: aktywuj, by posortować kolumnę rosnąco Tagi: aktywuj, by posortować kolumnę rosnąco Potw.?: aktywuj, by posortować kolumnę rosnąco Odp.?: aktywuj, by posortować kolumnę rosnąco Kwar.?: aktywuj, by posortować kolumnę rosnąco"':
+                  - columnheader
+                  - 'columnheader "Id: aktywuj, by posortować kolumnę rosnąco"':
+                    - generic: Id
+                  - 'columnheader "Nazwa: aktywuj, by posortować kolumnę rosnąco"':
+                    - generic: Nazwa
+                  - 'columnheader "Instytucja: aktywuj, by posortować kolumnę rosnąco"':
+                    - generic: Instytucja
+                  - 'columnheader "JST: aktywuj, by posortować kolumnę rosnąco"':
+                    - generic: JST
+                  - 'columnheader "Status wniosku: aktywuj, by posortować kolumnę rosnąco"':
+                    - generic: Status wniosku
+                  - 'columnheader "Ostatni List: aktywuj, by posortować kolumnę rosnąco"':
+                    - generic: Ostatni List
+                  - 'columnheader "Liczba listów: aktywuj, by posortować kolumnę rosnąco"':
+                    - generic: Liczba listów
+                  - 'columnheader "Tagi: aktywuj, by posortować kolumnę rosnąco"':
+                    - generic: Tagi
+                  - 'columnheader "Potw.?: aktywuj, by posortować kolumnę rosnąco"':
+                    - generic: Potw.?
+                  - 'columnheader "Odp.?: aktywuj, by posortować kolumnę rosnąco"':
+                    - generic: Odp.?
+                  - 'columnheader "Kwar.?: aktywuj, by posortować kolumnę rosnąco"':
+                    - generic: Kwar.?
+                - row:
+                  - columnheader
+                  - columnheader:
+                    - textbox "..." [ref=e181]
+                  - columnheader:
+                    - textbox "..." [ref=e182]
+                  - columnheader:
+                    - textbox "..." [ref=e183]
+                  - columnheader
+                  - columnheader:
+                    - combobox [ref=e184]:
+                      - option [selected]
+                      - option "Otwarte"
+                      - option "Dostarczony"
+                      - option "Odrzucony z powodu spamu"
+                      - option "Miękko odrzucony"
+                      - option "Twardo odrzucony"
+                      - option "NIEWYSŁANY"
+                      - option "Odroczony"
+                      - option "Nieznany"
+                  - columnheader
+                  - columnheader
+                  - columnheader:
+                    - textbox "..." [ref=e185]
+                  - columnheader
+                  - columnheader
+                  - columnheader
+              - rowgroup [ref=e186]:
+                - row [ref=e187]:
+                  - cell [ref=e188]:
+                    - generic [ref=e189]:
+                      - link "Show details" [ref=e190] [cursor=pointer]:
+                        - /url: "#"
+                      - link "Hide details" [ref=e192] [cursor=pointer]:
+                        - /url: "#"
+                  - cell "2694" [ref=e194]
+                  - cell [ref=e195]:
+                    - 'link "Monitoring sądów apelacyjnych #11" [ref=e197] [cursor=pointer]':
+                      - /url: /sprawy/monitoring-sadow-apelacyjnych-11
+                  - cell "Sąd Apelacyjny we Wrocławiu" [ref=e198]
+                  - cell "Dolnośląskie / Wrocław / Wrocław-Krzyki (0264039, delegatura)" [ref=e199]
+                  - cell [ref=e200]
+                  - cell "2018-03-17 20:25:21" [ref=e201]
+                  - cell "3" [ref=e202]
+                  - cell [ref=e203]
+                  - cell [ref=e204]
+                  - cell [ref=e206]
+                  - cell [ref=e208]
+                - row [ref=e210]:
+                  - cell [ref=e211]:
+                    - generic [ref=e212]:
+                      - link "Show details" [ref=e213] [cursor=pointer]:
+                        - /url: "#"
+                      - link "Hide details" [ref=e215] [cursor=pointer]:
+                        - /url: "#"
+                  - cell "2693" [ref=e217]
+                  - cell [ref=e218]:
+                    - 'link "Monitoring sądów apelacyjnych #10" [ref=e220] [cursor=pointer]':
+                      - /url: /sprawy/monitoring-sadow-apelacyjnych-10
+                  - cell "Sąd Apelacyjny w Warszawie" [ref=e221]
+                  - cell "Mazowieckie / Warszawa / Śródmieście (1465108, dzielnica)" [ref=e222]
+                  - cell [ref=e223]
+                  - cell "2018-03-17 20:25:33" [ref=e224]
+                  - cell "5" [ref=e225]
+                  - cell [ref=e226]
+                  - cell [ref=e227]
+                  - cell [ref=e229]
+                  - cell [ref=e231]
+                - row [ref=e233]:
+                  - cell [ref=e234]:
+                    - generic [ref=e235]:
+                      - link "Show details" [ref=e236] [cursor=pointer]:
+                        - /url: "#"
+                      - link "Hide details" [ref=e238] [cursor=pointer]:
+                        - /url: "#"
+                  - cell "2692" [ref=e240]
+                  - cell [ref=e241]:
+                    - 'link "Monitoring sądów apelacyjnych #9" [ref=e243] [cursor=pointer]':
+                      - /url: /sprawy/monitoring-sadow-apelacyjnych-9
+                  - cell "Sąd Apelacyjny w Szczecinie" [ref=e244]
+                  - cell "Zachodniopomorskie / Szczecin / Szczecin (3262011, gmina miejska)" [ref=e245]
+                  - cell [ref=e246]
+                  - cell "2018-03-17 20:25:21" [ref=e247]
+                  - cell "2" [ref=e248]
+                  - cell [ref=e249]
+                  - cell [ref=e250]
+                  - cell [ref=e252]
+                  - cell [ref=e254]
+                - row [ref=e256]:
+                  - cell [ref=e257]:
+                    - generic [ref=e258]:
+                      - link "Show details" [ref=e259] [cursor=pointer]:
+                        - /url: "#"
+                      - link "Hide details" [ref=e261] [cursor=pointer]:
+                        - /url: "#"
+                  - cell "2691" [ref=e263]
+                  - cell [ref=e264]:
+                    - 'link "Monitoring sądów apelacyjnych #8" [ref=e266] [cursor=pointer]':
+                      - /url: /sprawy/monitoring-sadow-apelacyjnych-8
+                  - cell "Sąd Apelacyjny w Rzeszowie" [ref=e267]
+                  - cell "Podkarpackie / Rzeszów / Rzeszów (1863011, gmina miejska)" [ref=e268]
+                  - cell [ref=e269]
+                  - cell "2018-03-17 20:25:20" [ref=e270]
+                  - cell "2" [ref=e271]
+                  - cell [ref=e272]
+                  - cell [ref=e273]
+                  - cell [ref=e275]
+                  - cell [ref=e277]
+                - row [ref=e279]:
+                  - cell [ref=e280]:
+                    - generic [ref=e281]:
+                      - link "Show details" [ref=e282] [cursor=pointer]:
+                        - /url: "#"
+                      - link "Hide details" [ref=e284] [cursor=pointer]:
+                        - /url: "#"
+                  - cell "2690" [ref=e286]
+                  - cell [ref=e287]:
+                    - 'link "Monitoring sądów apelacyjnych #7" [ref=e289] [cursor=pointer]':
+                      - /url: /sprawy/monitoring-sadow-apelacyjnych-7
+                  - cell "Sąd Apelacyjny w Poznaniu" [ref=e290]
+                  - cell "Wielkopolskie / Poznań / Poznań-Stare Miasto (3064059, delegatura)" [ref=e291]
+                  - cell [ref=e292]
+                  - cell "2018-03-17 20:25:33" [ref=e293]
+                  - cell "8" [ref=e294]
+                  - cell [ref=e295]
+                  - cell [ref=e296]
+                  - cell [ref=e298]
+                  - cell [ref=e300]
+                - row [ref=e302]:
+                  - cell [ref=e303]:
+                    - generic [ref=e304]:
+                      - link "Show details" [ref=e305] [cursor=pointer]:
+                        - /url: "#"
+                      - link "Hide details" [ref=e307] [cursor=pointer]:
+                        - /url: "#"
+                  - cell "2689" [ref=e309]
+                  - cell [ref=e310]:
+                    - 'link "Monitoring sądów apelacyjnych #6" [ref=e312] [cursor=pointer]':
+                      - /url: /sprawy/monitoring-sadow-apelacyjnych-6
+                  - cell "Sąd Apelacyjny w Łodzi" [ref=e313]
+                  - cell "Łódzkie / Łódź / Łódź-Śródmieście (1061059, delegatura)" [ref=e314]
+                  - cell [ref=e315]
+                  - cell "2018-03-17 20:25:30" [ref=e316]
+                  - cell "6" [ref=e317]
+                  - cell [ref=e318]
+                  - cell [ref=e319]
+                  - cell [ref=e321]
+                  - cell [ref=e323]
+                - row [ref=e325]:
+                  - cell [ref=e326]:
+                    - generic [ref=e327]:
+                      - link "Show details" [ref=e328] [cursor=pointer]:
+                        - /url: "#"
+                      - link "Hide details" [ref=e330] [cursor=pointer]:
+                        - /url: "#"
+                  - cell "2688" [ref=e332]
+                  - cell [ref=e333]:
+                    - 'link "Monitoring sądów apelacyjnych #5" [ref=e335] [cursor=pointer]':
+                      - /url: /sprawy/monitoring-sadow-apelacyjnych-5
+                  - cell "Sąd Apelacyjny w Lublinie" [ref=e336]
+                  - cell "Lubelskie / Lublin / Lublin (0663011, gmina miejska)" [ref=e337]
+                  - cell [ref=e338]
+                  - cell "2018-03-17 20:25:22" [ref=e339]
+                  - cell "3" [ref=e340]
+                  - cell [ref=e341]
+                  - cell [ref=e342]
+                  - cell [ref=e344]
+                  - cell [ref=e346]
+                - row [ref=e348]:
+                  - cell [ref=e349]:
+                    - generic [ref=e350]:
+                      - link "Show details" [ref=e351] [cursor=pointer]:
+                        - /url: "#"
+                      - link "Hide details" [ref=e353] [cursor=pointer]:
+                        - /url: "#"
+                  - cell "2687" [ref=e355]
+                  - cell [ref=e356]:
+                    - 'link "Monitoring sądów apelacyjnych #4" [ref=e358] [cursor=pointer]':
+                      - /url: /sprawy/monitoring-sadow-apelacyjnych-4
+                  - cell "Sąd Apelacyjny w Krakowie" [ref=e359]
+                  - cell "Małopolskie / Kraków / Kraków-Śródmieście (1261059, delegatura)" [ref=e360]
+                  - cell [ref=e361]
+                  - cell "2018-03-17 20:26:22" [ref=e362]
+                  - cell "6" [ref=e363]
+                  - cell [ref=e364]
+                  - cell [ref=e365]
+                  - cell [ref=e367]
+                  - cell [ref=e369]
+                - row [ref=e371]:
+                  - cell [ref=e372]:
+                    - generic [ref=e373]:
+                      - link "Show details" [ref=e374] [cursor=pointer]:
+                        - /url: "#"
+                      - link "Hide details" [ref=e376] [cursor=pointer]:
+                        - /url: "#"
+                  - cell "2686" [ref=e378]
+                  - cell [ref=e379]:
+                    - 'link "Monitoring sądów apelacyjnych #3" [ref=e381] [cursor=pointer]':
+                      - /url: /sprawy/monitoring-sadow-apelacyjnych-3
+                  - cell "Sąd Apelacyjny w Katowicach" [ref=e382]
+                  - cell "Śląskie / Katowice / Katowice (2469011, gmina miejska)" [ref=e383]
+                  - cell [ref=e384]
+                  - cell "2018-07-16 06:58:12" [ref=e385]
+                  - cell "3" [ref=e386]
+                  - cell [ref=e387]
+                  - cell [ref=e388]
+                  - cell [ref=e390]
+                  - cell [ref=e392]
+                - row [ref=e394]:
+                  - cell [ref=e395]:
+                    - generic [ref=e396]:
+                      - link "Show details" [ref=e397] [cursor=pointer]:
+                        - /url: "#"
+                      - link "Hide details" [ref=e399] [cursor=pointer]:
+                        - /url: "#"
+                  - cell "2685" [ref=e401]
+                  - cell [ref=e402]:
+                    - 'link "Monitoring sądów apelacyjnych #2" [ref=e404] [cursor=pointer]':
+                      - /url: /sprawy/monitoring-sadow-apelacyjnych-2
+                  - cell "Sąd Apelacyjny w Gdańsku" [ref=e405]
+                  - cell "Pomorskie / Gdańsk / Gdańsk (2261011, gmina miejska)" [ref=e406]
+                  - cell [ref=e407]
+                  - cell "2018-03-17 20:25:32" [ref=e408]
+                  - cell "6" [ref=e409]
+                  - cell [ref=e410]
+                  - cell [ref=e411]
+                  - cell [ref=e413]
+                  - cell [ref=e415]
+                - row [ref=e417]:
+                  - cell [ref=e418]:
+                    - generic [ref=e419]:
+                      - link "Show details" [ref=e420] [cursor=pointer]:
+                        - /url: "#"
+                      - link "Hide details" [ref=e422] [cursor=pointer]:
+                        - /url: "#"
+                  - cell "2684" [ref=e424]
+                  - cell [ref=e425]:
+                    - 'link "Monitoring sądów apelacyjnych #1" [ref=e427] [cursor=pointer]':
+                      - /url: /sprawy/monitoring-sadow-apelacyjnych-1
+                  - cell "Sąd Apelacyjny w Białymstoku" [ref=e428]
+                  - cell "Podlaskie / Białystok / Białystok (2061011, gmina miejska)" [ref=e429]
+                  - cell [ref=e430]
+                  - cell "2018-07-16 06:58:12" [ref=e431]
+                  - cell "4" [ref=e432]
+                  - cell [ref=e433]
+                  - cell [ref=e434]
+                  - cell [ref=e436]
+                  - cell [ref=e438]
+          - status [ref=e440]: Pozycje od 1 do 11 z 11 łącznie
+          - generic [ref=e441]:
+            - link "Poprzednia" [disabled] [ref=e442]
+            - link "1" [ref=e444] [cursor=pointer]
+            - link "Następna" [disabled] [ref=e445]
+      - generic [ref=e446]:
+        - generic [ref=e447]:
+          - text: Sieć Obywatelska - Watchdog Polska ul. Szpitalna 5/5 00-031 Warszawa
+          - paragraph [ref=e448]:
+            - link "Klauzula RODO" [ref=e449] [cursor=pointer]:
+              - /url: https://fedrowanie.siecobywatelska.pl/media_internal/tinycontent/uploads/11_KLAUZULA.-.dane.z.udip.na.stronach.www.i.w.mediach.spol.pdf
+        - generic [ref=e450]:
+          - text: "silnik:"
+          - link "jawne.info.pl" [ref=e451] [cursor=pointer]:
+            - /url: http://jawne.info.pl
+          - text: "| v1.5.77.deps |"
+          - link "GitHub" [ref=e452] [cursor=pointer]:
+            - /url: https://github.com/watchdogpolska/feder
+          - text: –
+          - link "efd8a3b" [ref=e454] [cursor=pointer]:
+            - /url: https://github.com/watchdogpolska/feder/compare/efd8a3b2...master
+          - text: "|"
+          - link "API" [ref=e455] [cursor=pointer]:
+            - /url: /api/
+        - generic [ref=e457]: Ta strona wykorzystuje cookies.
+  - list [ref=e459]:
+    - listitem [ref=e460]:
+      - link "Ukryj »" [ref=e461] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e462]:
+      - link "Toggle Theme" [ref=e463] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e466]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e467]
+      - link "Historia /monitoringi/monitoring-sadow-apelacyjnych/monitoring_cases_table" [ref=e468] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e469]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e470]
+      - link "Wersje Django 5.2.17" [ref=e471] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e472]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e473]
+      - 'link "Czas CPU: 146.19ms (148.98ms)" [ref=e474] [cursor=pointer]':
+        - /url: "#"
+    - listitem [ref=e475]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e476]
+      - link "Ustawienia" [ref=e477] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e478]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e479]
+      - link "Nagłówki" [ref=e480] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e481]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e482]
+      - link "Zapytania MonitoringCasesTableView" [ref=e483] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e484]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e485]
+      - link "SQL 6 queries in 2.59ms" [ref=e486] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e487]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e488]
+      - link "Pliki statyczne 10 użytych plików" [ref=e489] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e490]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e491]
+      - link "Templatki monitorings/monitoring_cases_table.html" [ref=e492] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e493]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e494]
+      - link "Alerty" [ref=e495] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e496]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e497]
+      - link "Cache 2 wywołania w 0.14ms" [ref=e498] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e499]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e500]
+      - link "Sygnały 88 odbiorców 15 sygnałów" [ref=e501] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e502]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e503]
+      - link "Gmina" [ref=e504] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e505]:
+      - checkbox "Enable for next and successive requests" [ref=e506]
+      - generic [ref=e507]: Przechwycone przekierowania
+    - listitem [ref=e508]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e509]
+      - link "Profilowanie" [ref=e510] [cursor=pointer]:
+        - /url: "#"
+```
+
+# Test source
+
+```ts
+  1  | import { test, expect } from '@playwright/test';
+  2  | import { PAGES } from './pages';
+  3  | import { VIEWPORTS } from './viewports';
+  4  | 
+  5  | for (const [name, size] of Object.entries(VIEWPORTS)) {
+  6  |   test.describe(`${name} (${size.width}px)`, () => {
+  7  |     test.use({ viewport: size });
+  8  | 
+  9  |     for (const page of PAGES) {
+  10 |       test(`${page.name} - visual baseline`, async ({ page: pw }) => {
+  11 |         await pw.goto(page.path);
+  12 |         await pw.waitForLoadState('networkidle');
+> 13 |         await expect(pw).toHaveScreenshot(`${page.name}-${name}.png`, {
+     |                          ^ Error: expect(page).toHaveScreenshot(expected) failed
+  14 |           maxDiffPixelRatio: 0.001,
+  15 |           fullPage: true,
+  16 |         });
+  17 |       });
+  18 |     }
+  19 |   });
+  20 | }
+  21 | 
+```

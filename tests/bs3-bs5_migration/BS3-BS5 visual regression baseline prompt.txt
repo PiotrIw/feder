@@ -1,0 +1,224 @@
+I have django app with UI dependent on bootstrap3 and jquery, which needs to be migrated to bootstrap5, htmx and vanilla js without breaking UI. Below is the audit instruction for claude code:
+```
+You are performing a read-only audit of a Django project. Do not modify any files. Use the explore agent to scan the codebase and produce a structured report.
+Audit targets (run all of these):
+
+1) BS3 class fingerprints — scan all *.html files under templates/ for Bootstrap 3 patterns: col-(xs|sm|md|lg)-[0-9]+, panel, well, glyphicon, btn-default, navbar-default, data-toggle, data-target, data-dismiss. Report frequency per pattern and which templates contain the most hits.
+2) Template inheritance map — find every {% extends %} tag across all templates. List which base templates exist and how many child templates extend each one.
+3) Inclusion tags and custom template tags — find every {% load %} and {% include %} across all templates. List which tag libraries are loaded most frequently and which partials are included most.
+4) Crispy-forms usage — check settings.py (and any split settings files) for CRISPY_TEMPLATE_PACK. Count how many templates use {% crispy %} or {% crispy_forms_tags %}. Report whether the pack is currently bootstrap3.
+5) jQuery and JS interaction surface — scan all *.html and *.js files under templates/ and static/ for: $(, $.ajax, .modal(, .tooltip(, .popover(, data-toggle, data-target. Report total count and which files have the highest concentration.
+6) Removed BS3 components — specifically flag any usage of: panel, well, thumbnail, glyphicon, navbar-default, navbar-inverse, btn-default, label (BS3 label badge), page-header, dl-horizontal. These have no direct BS5 equivalent and need manual substitution.
+
+Output format: produce a single markdown report with one section per audit target. Each section should include a frequency table (count ? pattern or file), a total count, and a short plain-English summary of what it means for the migration effort. End with an overall effort estimate: number of templates affected, whether crispy-forms covers most form work, and a rough Track A vs Track B split.
+```
+
+Result of the audit attached. 
+
+
+
+
+
+
+Ive also made claude code preparing an automasted tests refence using instruction:
+```
+You are setting up a visual regression baseline for a Django app before a Bootstrap 3 to Bootstrap 5 migration. This is a read-only reconnaissance and screenshot task. Do not modify any files except to create new test files under tests/bs3-bs5_migration/. Verify proposed python and tests scripts against codebase for consisteny and fix when needed.
+
+GOAL: capture baseline screenshots of every reachable page at three viewport widths, storing them as Playwright snapshot fixtures. These will be the ground truth for diffing after each migration step. Use CLAUDE_USER and CLAUDE_PASS from .env to login. Run all the python commands inside development container.
+
+---
+
+STEP 1 - DISCOVER ALL URL PATTERNS
+
+Run this in the Django shell to get all URL patterns:
+
+  python manage.py shell -c "
+  from django.urls import get_resolver
+  import json
+
+  def collect_urls(resolver, prefix=''):
+      urls = []
+      for pattern in resolver.url_patterns:
+          if hasattr(pattern, 'url_patterns'):
+              urls.extend(collect_urls(pattern, prefix + str(pattern.pattern)))
+          else:
+              full = prefix + str(pattern.pattern)
+              urls.append({'name': pattern.name, 'pattern': full})
+      return urls
+
+  print(json.dumps(collect_urls(get_resolver()), indent=2))
+  "
+
+From the output, build a concrete list of URLs to visit. Apply these filters:
+- Skip patterns with required path parameters that cannot be filled with a sensible default (e.g. <pk>, <slug>) unless you can infer a real ID from the database.
+- For parameterised URLs where a real object exists, query the database for the first available ID and include that URL once.
+- Skip webhook, API-only, and export endpoints (patterns containing api/, webhook/, export/, .csv, .json).
+- Include all auth pages (login, logout redirect, MFA flows, password reset).
+
+Document the final URL list and the reason any URL was skipped.
+
+---
+
+STEP 2 - CHECK THE DEV SERVER
+
+  curl -s -o /dev/null -w "%{http_code}" http://localhost:8000/
+
+If the response is not 200 or 302, start the server:
+
+  python manage.py runserver 8000 &
+
+Wait 3 seconds before continuing.
+
+---
+
+STEP 3 - CREATE tests/bs3-bs5_migration/visual_baseline.spec.ts
+
+Create this file, filling the PAGES array from the URLs discovered in Step 1:
+
+  import { test, expect } from '@playwright/test';
+
+  const VIEWPORTS = [
+    { name: 'mobile',  width: 375,  height: 812  },
+    { name: 'tablet',  width: 768,  height: 1024 },
+    { name: 'desktop', width: 1280, height: 900  },
+  ];
+
+  const PAGES = [
+    { name: 'home',  path: '/' },
+    { name: 'login', path: '/accounts/login/' },
+    // add every discovered URL here
+  ];
+
+  for (const viewport of VIEWPORTS) {
+    test.describe(`${viewport.name} (${viewport.width}px)`, () => {
+      test.use({ viewport: { width: viewport.width, height: viewport.height } });
+
+      for (const page of PAGES) {
+        test(`${page.name} - visual baseline`, async ({ page: pw }) => {
+          await pw.goto(`http://localhost:8000${page.path}`);
+          await pw.waitForLoadState('networkidle');
+          const dismiss = pw.locator('[data-dismiss="modal"], .cookie-accept');
+          if (await dismiss.count() > 0) await dismiss.first().click();
+          await expect(pw).toHaveScreenshot(`${page.name}-${viewport.name}.png`, {
+            maxDiffPixelRatio: 0.001,
+            fullPage: true,
+          });
+        });
+      }
+    });
+  }
+
+---
+
+STEP 4 - CREATE tests/bs3-bs5_migration/layout_assertions.spec.ts
+
+  import { test, expect } from '@playwright/test';
+
+  const PAGES = [ /* same list as Step 3 */ ];
+
+  test.describe('Layout sanity - desktop', () => {
+    test.use({ viewport: { width: 1280, height: 900 } });
+
+    for (const page of PAGES) {
+      test(`${page.name} - no horizontal overflow`, async ({ page: pw }) => {
+        await pw.goto(`http://localhost:8000${page.path}`);
+        await pw.waitForLoadState('networkidle');
+        const scrollWidth = await pw.evaluate(() =>
+          document.documentElement.scrollWidth > document.documentElement.clientWidth
+        );
+        expect(scrollWidth, 'Page has horizontal scroll').toBe(false);
+      });
+    }
+  });
+
+  test.describe('Layout sanity - mobile', () => {
+    test.use({ viewport: { width: 375, height: 812 } });
+
+    for (const page of PAGES) {
+      test(`${page.name} - no horizontal overflow on mobile`, async ({ page: pw }) => {
+        await pw.goto(`http://localhost:8000${page.path}`);
+        await pw.waitForLoadState('networkidle');
+        const scrollWidth = await pw.evaluate(() =>
+          document.documentElement.scrollWidth > document.documentElement.clientWidth
+        );
+        expect(scrollWidth, 'Mobile layout has horizontal scroll').toBe(false);
+      });
+    }
+  });
+
+  test.describe('Navigation structure', () => {
+    test.use({ viewport: { width: 1280, height: 900 } });
+
+    test('navbar is above main content', async ({ page: pw }) => {
+      await pw.goto('http://localhost:8000/');
+      await pw.waitForLoadState('networkidle');
+      const navBox  = await pw.locator('nav').first().boundingBox();
+      const mainBox = await pw.locator('main, [role=main], .container').first().boundingBox();
+      expect(navBox).toBeTruthy();
+      expect(mainBox).toBeTruthy();
+      expect(navBox!.y + navBox!.height).toBeLessThanOrEqual(mainBox!.y + 5);
+    });
+
+    test('navbar collapses on mobile', async ({ page: pw }) => {
+      await pw.setViewportSize({ width: 375, height: 812 });
+      await pw.goto('http://localhost:8000/');
+      await pw.waitForLoadState('networkidle');
+      const toggle = pw.locator('.navbar-toggle, .navbar-toggler');
+      await expect(toggle).toBeVisible();
+    });
+  });
+
+---
+
+STEP 5 - CREATE playwright.config.ts IF IT DOES NOT EXIST
+
+Check first: ls playwright.config.ts 2>/dev/null
+
+If missing, create it:
+
+  import { defineConfig } from '@playwright/test';
+
+  export default defineConfig({
+    testDir: './tests',
+    snapshotDir: './tests/bs3-bs5_migration/snapshots',
+    reporter: [['html', { outputFolder: 'tests/bs3-bs5_migration/playwright-report' }]],
+    use: {
+      baseURL: 'http://localhost:8000',
+      screenshot: 'only-on-failure',
+      video: 'retain-on-failure',
+    },
+    expect: {
+      toHaveScreenshot: {
+        maxDiffPixelRatio: 0.001,
+      },
+    },
+  });
+
+---
+
+STEP 6 - CAPTURE THE BASELINE
+
+Run in update mode once to generate the ground truth snapshots:
+
+  npx playwright test tests/bs3-bs5_migration/visual_baseline.spec.ts --update-snapshots
+
+Then run without the flag to confirm all tests pass against their own baseline:
+
+  npx playwright test tests/bs3-bs5_migration/visual_baseline.spec.ts
+  npx playwright test tests/bs3-bs5_migration/layout_assertions.spec.ts
+
+---
+
+STEP 7 - REPORT
+
+Produce a plain text summary containing:
+- Total pages captured
+- Total screenshots taken (pages x 3 viewports)
+- Any pages that failed and why
+- Any pages that already have horizontal overflow on BS3
+- Full path to the snapshots directory
+- Full path to the HTML report
+
+IMPORTANT: the snapshots directory is now the migration ground truth. Do not delete it or re-run with --update-snapshots again until a migration step has been deliberately reviewed and approved.
+```
+The report from step 7 is attached.

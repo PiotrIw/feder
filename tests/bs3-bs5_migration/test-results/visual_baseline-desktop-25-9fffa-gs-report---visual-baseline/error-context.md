@@ -1,0 +1,549 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: visual_baseline.spec.ts >> desktop (2560px) >> monitorings-report - visual baseline
+- Location: tests/bs3-bs5_migration/visual_baseline.spec.ts:10:11
+
+# Error details
+
+```
+Error: expect(page).toHaveScreenshot(expected) failed
+
+  Expected an image 2560px by 1684px, received 2560px by 1882px. 476157 pixels (ratio 0.10 of all image pixels) are different.
+
+  Snapshot: monitorings-report-desktop.png
+
+Call log:
+  - Expect "toHaveScreenshot(monitorings-report-desktop.png)" with timeout 5000ms
+    - verifying given screenshot expectation
+  - taking page screenshot
+    - disabled all CSS animations
+  - waiting for fonts to load...
+  - fonts loaded
+  - Expected an image 2560px by 1684px, received 2560px by 1882px. 476157 pixels (ratio 0.10 of all image pixels) are different.
+  - waiting 100ms before taking screenshot
+  - taking page screenshot
+    - disabled all CSS animations
+  - waiting for fonts to load...
+  - fonts loaded
+  - captured a stable screenshot
+  - Expected an image 2560px by 1684px, received 2560px by 1882px. 476157 pixels (ratio 0.10 of all image pixels) are different.
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - text: )
+    - generic [ref=e3]:
+      - generic [ref=e4]:
+        - heading "DEV" [level=1] [ref=e5]
+        - link [ref=e6] [cursor=pointer]:
+          - /url: /
+          - img "Fedrowanie" [ref=e8]
+          - paragraph [ref=e9]: Fedrowanie
+        - paragraph [ref=e10]:
+          - link "Sieci Watchdog" [ref=e11] [cursor=pointer]:
+            - /url: http://siecobywatelska.pl
+        - paragraph [ref=e12]:
+          - link "Klauzula RODO" [ref=e13] [cursor=pointer]:
+            - /url: https://fedrowanie.siecobywatelska.pl/media_internal/tinycontent/uploads/11_KLAUZULA.-.dane.z.udip.na.stronach.www.i.w.mediach.spol.pdf
+      - list [ref=e15]:
+        - listitem [ref=e16]:
+          - paragraph [ref=e17]
+        - listitem [ref=e18]:
+          - link "Strona główna" [ref=e19] [cursor=pointer]:
+            - /url: /
+        - listitem [ref=e21]:
+          - link "O stronie" [ref=e22] [cursor=pointer]:
+            - /url: /o-stronie/
+        - listitem [ref=e24]:
+          - paragraph [ref=e25]
+        - generic [ref=e26]: Szukaj
+        - listitem [ref=e28]:
+          - link "Sprawy" [ref=e29] [cursor=pointer]:
+            - /url: /sprawy/
+        - listitem [ref=e31]:
+          - link "Monitoringi" [ref=e32] [cursor=pointer]:
+            - /url: /monitoringi/
+        - listitem [ref=e34]:
+          - link "Tabela monitoringów" [ref=e35] [cursor=pointer]:
+            - /url: /monitoringi/table/
+        - listitem [ref=e37]:
+          - link "Listy przypisane do spraw" [ref=e38] [cursor=pointer]:
+            - /url: /listy/
+        - listitem [ref=e40]:
+          - link "Listy nieprzypisane do spraw" [ref=e41] [cursor=pointer]:
+            - /url: /listy/przypisz
+        - listitem [ref=e43]:
+          - link "Instytucje" [ref=e44] [cursor=pointer]:
+            - /url: /instytucje/
+        - listitem [ref=e46]:
+          - paragraph [ref=e47]
+      - generic [ref=e48]:
+        - generic [ref=e49]: Użytkownik / użytkowniczka
+        - listitem [ref=e50]:
+          - link "Mój profil" [ref=e51] [cursor=pointer]:
+            - /url: /uzytkownik/claude_ai/
+        - listitem [ref=e53]:
+          - link "Panel administracyjny" [ref=e54] [cursor=pointer]:
+            - /url: /admin/
+        - listitem [ref=e56]:
+          - link "Wyloguj" [ref=e57] [cursor=pointer]:
+            - /url: /accounts/logout/
+    - generic [ref=e60]:
+      - list [ref=e61]:
+        - listitem [ref=e62]:
+          - link "Monitoring sądów apelacyjnych" [ref=e63] [cursor=pointer]:
+            - /url: /monitoringi/monitoring-sadow-apelacyjnych
+        - listitem [ref=e64]: / Raport
+      - generic [ref=e66]:
+        - link "Edytuj" [ref=e67] [cursor=pointer]:
+          - /url: /monitoringi/monitoring-sadow-apelacyjnych/~edytuj
+        - link "Aktualizuj wyniki" [ref=e68] [cursor=pointer]:
+          - /url: /monitoringi/monitoring-sadow-apelacyjnych/~results-update
+        - link "Przypisz" [ref=e69] [cursor=pointer]:
+          - /url: /monitoringi/monitoring-sadow-apelacyjnych/~przypisz
+        - link "Usuń" [ref=e70] [cursor=pointer]:
+          - /url: /monitoringi/monitoring-sadow-apelacyjnych/~usun
+        - link "Utwórz sprawę" [ref=e71] [cursor=pointer]:
+          - /url: /sprawy/~utworz-5
+        - link "Wiadomość masowa" [ref=e72] [cursor=pointer]:
+          - /url: /monitoringi/monitoring-sadow-apelacyjnych/~wiadomosc-masowa
+        - link "Uprawnienia" [ref=e73] [cursor=pointer]:
+          - /url: /monitoringi/monitoring-sadow-apelacyjnych/~uprawnienia
+        - link "Lista alertów" [ref=e74] [cursor=pointer]:
+          - /url: /alerty/monitoring-5
+        - link "Zobacz dzienniki" [ref=e75] [cursor=pointer]:
+          - /url: /listy/logi/monitoring-5
+        - link "Zobacz tagi" [ref=e77] [cursor=pointer]:
+          - /url: /sprawy/tagi/monitoring-5
+        - link "Zobacz raport" [ref=e79] [cursor=pointer]:
+          - /url: /monitoringi/monitoring-sadow-apelacyjnych/raport
+        - link "Zobacz tabelę spraw" [ref=e81] [cursor=pointer]:
+          - /url: /monitoringi/monitoring-sadow-apelacyjnych/monitoring_cases_table
+      - heading [level=2] [ref=e84]:
+        - text: Monitoring sądów apelacyjnych
+        - generic [ref=e86]:
+          - text: przez
+          - link "adobrawy" [ref=e87] [cursor=pointer]:
+            - /url: /uzytkownik/adobrawy/
+          - time [ref=e88]: 11 sierpnia 2017 02:47
+      - generic [ref=e89]:
+        - generic [ref=e90]:
+          - generic [ref=e91]:
+            - heading "Filtry" [level=2] [ref=e92]
+            - generic [ref=e93]:
+              - generic [ref=e94]:
+                - generic [ref=e95]: Nazwa instytucji
+                - textbox "Nazwa instytucji" [ref=e96]
+              - generic [ref=e97]:
+                - generic [ref=e98]: Województwa
+                - combobox [aria-hidden] [ref=e99]
+                - combobox [ref=e102] [cursor=pointer]:
+                  - textbox
+              - generic [ref=e103]:
+                - generic [ref=e104]: Powiat
+                - combobox [aria-hidden] [ref=e105]
+                - combobox [ref=e108] [cursor=pointer]:
+                  - textbox
+              - generic [ref=e109]:
+                - generic [ref=e110]: Gmina
+                - combobox [aria-hidden] [ref=e111]
+                - combobox [ref=e114] [cursor=pointer]:
+                  - textbox
+              - group "Tagi" [ref=e116]:
+                - generic [ref=e119]:
+                  - checkbox "test" [ref=e120]
+                  - generic [ref=e121]: test
+              - group "Data pierwszego wniosku" [ref=e123]:
+                - textbox [ref=e125]
+                - text: "-"
+                - textbox [ref=e126]
+              - generic [ref=e127]:
+                - generic [ref=e128]: Status pierwszego wniosku
+                - combobox "Status pierwszego wniosku" [ref=e129]:
+                  - option "---------" [selected]
+                  - option "Otwarte"
+                  - option "Dostarczony"
+                  - option "Odrzucony z powodu spamu"
+                  - option "Miękko odrzucony"
+                  - option "Twardo odrzucony"
+                  - option "NIEWYSŁANY"
+                  - option "Odroczony"
+                  - option "Nieznany"
+              - group "Data ostatniego wniosku" [ref=e131]:
+                - textbox [ref=e133]
+                - text: "-"
+                - textbox [ref=e134]
+              - generic [ref=e135]:
+                - generic [ref=e136]: Status ostatniego wniosku
+                - combobox "Status ostatniego wniosku" [ref=e137]:
+                  - option "---------" [selected]
+                  - option "Otwarte"
+                  - option "Dostarczony"
+                  - option "Odrzucony z powodu spamu"
+                  - option "Miękko odrzucony"
+                  - option "Twardo odrzucony"
+                  - option "NIEWYSŁANY"
+                  - option "Odroczony"
+                  - option "Nieznany"
+              - generic [ref=e138]:
+                - generic [ref=e139]: Otrzymano potwierdzenie
+                - combobox "Otrzymano potwierdzenie" [ref=e140]:
+                  - option "Nieznany" [selected]
+                  - option "Tak"
+                  - option "Nie"
+              - generic [ref=e141]:
+                - generic [ref=e142]: Otrzymano odpowiedź
+                - combobox "Otrzymano odpowiedź" [ref=e143]:
+                  - option "Nieznany" [selected]
+                  - option "Tak"
+                  - option "Nie"
+              - button "Filtruj" [ref=e144] [cursor=pointer]
+              - link "Pobierz .csv" [ref=e146] [cursor=pointer]:
+                - /url: /api/cases/report/?format=csv&page=1&page_size=10000&monitoring=5
+              - link "Pobierz .xlsx" [ref=e148] [cursor=pointer]:
+                - /url: /api/cases/report/?format=xlsx&page=1&page_size=10000&monitoring=5
+          - generic [ref=e150]:
+            - heading "Zarządzanie tagami" [level=2] [ref=e151]
+            - paragraph [ref=e152]: Wybierz tagi, które chcesz dodać lub usunąć, wybierz sprawy z listy poniżej, a następnie potwierdź klikając w przycisk wybranej akcji.
+            - generic [ref=e154]:
+              - checkbox "test (0)" [ref=e155]
+              - generic [ref=e156]: test (0)
+            - button "Dodaj" [ref=e157] [cursor=pointer]
+            - button "Usuń" [ref=e159] [cursor=pointer]
+        - generic [ref=e162]:
+          - heading "Raport" [level=3] [ref=e163]
+          - table [ref=e164]:
+            - rowgroup [ref=e165]:
+              - row [ref=e166]:
+                - columnheader [ref=e167]:
+                  - generic [ref=e168]:
+                    - generic [ref=e169]: zaznacz lub odznacz wszystkie
+                    - checkbox "zaznacz lub odznacz wszystkie" [ref=e170]
+                - columnheader "instytucja" [ref=e171]
+                - columnheader "jednostka administracyjna" [ref=e172]
+                - columnheader "tagi" [ref=e173]
+                - columnheader "data wysłania pierwszego wniosku" [ref=e174]
+                - columnheader "status pierwszego wniosku" [ref=e175]
+                - columnheader "data wysłania ostatniego wniosku" [ref=e176]
+                - columnheader "status ostatniego wniosku" [ref=e177]
+                - columnheader "potwierdzenie dostarczenia wniosku" [ref=e178]
+                - columnheader "otrzymano odpowiedź" [ref=e179]
+            - rowgroup [ref=e180]:
+              - row [ref=e181]:
+                - cell [ref=e182]:
+                  - generic [ref=e183]:
+                    - generic [ref=e184]: sprawa monitoring-sadow-apelacyjnych-11
+                    - checkbox "sprawa monitoring-sadow-apelacyjnych-11" [ref=e185]
+                - cell [ref=e186]:
+                  - link "Sąd Apelacyjny we Wrocławiu" [ref=e187] [cursor=pointer]:
+                    - /url: /sprawy/monitoring-sadow-apelacyjnych-11
+                  - text: "boi@wroclaw.sa.gov.pl REGON: 00596578800000"
+                - cell "Dolnośląskie Wrocław Wrocław-Krzyki" [ref=e188]
+                - cell "None" [ref=e189]
+                - cell "11 sierpnia 2017" [ref=e190]
+                - cell [ref=e191]
+                - cell [ref=e192]
+                - cell [ref=e193]
+                - cell "nie" [ref=e194]
+                - cell "tak" [ref=e196]
+              - row [ref=e198]:
+                - cell [ref=e199]:
+                  - generic [ref=e200]:
+                    - generic [ref=e201]: sprawa monitoring-sadow-apelacyjnych-5
+                    - checkbox "sprawa monitoring-sadow-apelacyjnych-5" [ref=e202]
+                - cell [ref=e203]:
+                  - link "Sąd Apelacyjny w Lublinie" [ref=e204] [cursor=pointer]:
+                    - /url: /sprawy/monitoring-sadow-apelacyjnych-5
+                  - text: "boi@lublin.sa.gov.pl REGON: 00417647000000"
+                - cell "Lubelskie Lublin Lublin" [ref=e205]
+                - cell "None" [ref=e206]
+                - cell "11 sierpnia 2017" [ref=e207]
+                - cell [ref=e208]
+                - cell [ref=e209]
+                - cell [ref=e210]
+                - cell "nie" [ref=e211]
+                - cell "tak" [ref=e213]
+              - row [ref=e215]:
+                - cell [ref=e216]:
+                  - generic [ref=e217]:
+                    - generic [ref=e218]: sprawa monitoring-sadow-apelacyjnych-6
+                    - checkbox "sprawa monitoring-sadow-apelacyjnych-6" [ref=e219]
+                - cell [ref=e220]:
+                  - link "Sąd Apelacyjny w Łodzi" [ref=e221] [cursor=pointer]:
+                    - /url: /sprawy/monitoring-sadow-apelacyjnych-6
+                  - text: "administracja@lodz.sa.gov.pl REGON: 00431357500000"
+                - cell "Łódzkie Łódź Łódź-Śródmieście" [ref=e222]
+                - cell "None" [ref=e223]
+                - cell "11 sierpnia 2017" [ref=e224]
+                - cell [ref=e225]
+                - cell [ref=e226]
+                - cell [ref=e227]
+                - cell "nie" [ref=e228]
+                - cell "tak" [ref=e230]
+              - row [ref=e232]:
+                - cell [ref=e233]:
+                  - generic [ref=e234]:
+                    - generic [ref=e235]: sprawa monitoring-sadow-apelacyjnych-4
+                    - checkbox "sprawa monitoring-sadow-apelacyjnych-4" [ref=e236]
+                - cell [ref=e237]:
+                  - link "Sąd Apelacyjny w Krakowie" [ref=e238] [cursor=pointer]:
+                    - /url: /sprawy/monitoring-sadow-apelacyjnych-4
+                  - text: "biuro.podawcze@krakow.sa.gov.pl REGON: 00389466000000"
+                - cell "Małopolskie Kraków Kraków-Śródmieście" [ref=e239]
+                - cell "None" [ref=e240]
+                - cell "11 sierpnia 2017" [ref=e241]
+                - cell [ref=e242]
+                - cell [ref=e243]
+                - cell [ref=e244]
+                - cell "nie" [ref=e245]
+                - cell "tak" [ref=e247]
+              - row [ref=e249]:
+                - cell [ref=e250]:
+                  - generic [ref=e251]:
+                    - generic [ref=e252]: sprawa monitoring-sadow-apelacyjnych-10
+                    - checkbox "sprawa monitoring-sadow-apelacyjnych-10" [ref=e253]
+                - cell [ref=e254]:
+                  - link "Sąd Apelacyjny w Warszawie" [ref=e255] [cursor=pointer]:
+                    - /url: /sprawy/monitoring-sadow-apelacyjnych-10
+                  - text: "boi@waw.sa.gov.pl REGON: 00647286900000"
+                - cell "Mazowieckie Warszawa Śródmieście" [ref=e256]
+                - cell "None" [ref=e257]
+                - cell "11 sierpnia 2017" [ref=e258]
+                - cell [ref=e259]
+                - cell [ref=e260]
+                - cell [ref=e261]
+                - cell "nie" [ref=e262]
+                - cell "tak" [ref=e264]
+              - row [ref=e266]:
+                - cell [ref=e267]:
+                  - generic [ref=e268]:
+                    - generic [ref=e269]: sprawa monitoring-sadow-apelacyjnych-8
+                    - checkbox "sprawa monitoring-sadow-apelacyjnych-8" [ref=e270]
+                - cell [ref=e271]:
+                  - link "Sąd Apelacyjny w Rzeszowie" [ref=e272] [cursor=pointer]:
+                    - /url: /sprawy/monitoring-sadow-apelacyjnych-8
+                  - text: "boi@rzeszow.sa.gov.pl REGON: 00513930000000"
+                - cell "Podkarpackie Rzeszów Rzeszów" [ref=e273]
+                - cell "None" [ref=e274]
+                - cell "11 sierpnia 2017" [ref=e275]
+                - cell [ref=e276]
+                - cell [ref=e277]
+                - cell [ref=e278]
+                - cell "nie" [ref=e279]
+                - cell "tak" [ref=e281]
+              - row [ref=e283]:
+                - cell [ref=e284]:
+                  - generic [ref=e285]:
+                    - generic [ref=e286]: sprawa monitoring-sadow-apelacyjnych-1
+                    - checkbox "sprawa monitoring-sadow-apelacyjnych-1" [ref=e287]
+                - cell [ref=e288]:
+                  - link "Sąd Apelacyjny w Białymstoku" [ref=e289] [cursor=pointer]:
+                    - /url: /sprawy/monitoring-sadow-apelacyjnych-1
+                  - text: "boi@bialystok.sa.gov.pl REGON: 00233929200000"
+                - cell "Podlaskie Białystok Białystok" [ref=e290]
+                - cell "None" [ref=e291]
+                - cell "11 sierpnia 2017" [ref=e292]
+                - cell [ref=e293]
+                - cell [ref=e294]
+                - cell [ref=e295]
+                - cell "nie" [ref=e296]
+                - cell "tak" [ref=e298]
+              - row [ref=e300]:
+                - cell [ref=e301]:
+                  - generic [ref=e302]:
+                    - generic [ref=e303]: sprawa monitoring-sadow-apelacyjnych-2
+                    - checkbox "sprawa monitoring-sadow-apelacyjnych-2" [ref=e304]
+                - cell [ref=e305]:
+                  - link "Sąd Apelacyjny w Gdańsku" [ref=e306] [cursor=pointer]:
+                    - /url: /sprawy/monitoring-sadow-apelacyjnych-2
+                  - text: "boi@gdansk.sa.gov.pl REGON: 00286135000000"
+                - cell "Pomorskie Gdańsk Gdańsk" [ref=e307]
+                - cell "None" [ref=e308]
+                - cell "11 sierpnia 2017" [ref=e309]
+                - cell [ref=e310]
+                - cell "26 sierpnia 2017" [ref=e311]
+                - cell [ref=e312]
+                - cell "nie" [ref=e313]
+                - cell "tak" [ref=e315]
+              - row [ref=e317]:
+                - cell [ref=e318]:
+                  - generic [ref=e319]:
+                    - generic [ref=e320]: sprawa monitoring-sadow-apelacyjnych-3
+                    - checkbox "sprawa monitoring-sadow-apelacyjnych-3" [ref=e321]
+                - cell [ref=e322]:
+                  - link "Sąd Apelacyjny w Katowicach" [ref=e323] [cursor=pointer]:
+                    - /url: /sprawy/monitoring-sadow-apelacyjnych-3
+                  - text: "informacja@katowice.sa.gov.pl REGON: 00350266000000"
+                - cell "Śląskie Katowice Katowice" [ref=e324]
+                - cell "None" [ref=e325]
+                - cell "11 sierpnia 2017" [ref=e326]
+                - cell [ref=e327]
+                - cell [ref=e328]
+                - cell [ref=e329]
+                - cell "nie" [ref=e330]
+                - cell "tak" [ref=e332]
+              - row [ref=e334]:
+                - cell [ref=e335]:
+                  - generic [ref=e336]:
+                    - generic [ref=e337]: sprawa monitoring-sadow-apelacyjnych-7
+                    - checkbox "sprawa monitoring-sadow-apelacyjnych-7" [ref=e338]
+                - cell [ref=e339]:
+                  - link "Sąd Apelacyjny w Poznaniu" [ref=e340] [cursor=pointer]:
+                    - /url: /sprawy/monitoring-sadow-apelacyjnych-7
+                  - text: "informacja@poznan.sa.gov.pl REGON: 00481842400000"
+                - cell "Wielkopolskie Poznań Poznań-Stare Miasto" [ref=e341]
+                - cell "None" [ref=e342]
+                - cell "11 sierpnia 2017" [ref=e343]
+                - cell [ref=e344]
+                - cell [ref=e345]
+                - cell [ref=e346]
+                - cell "nie" [ref=e347]
+                - cell "tak" [ref=e349]
+              - row [ref=e351]:
+                - cell [ref=e352]:
+                  - generic [ref=e353]:
+                    - generic [ref=e354]: sprawa monitoring-sadow-apelacyjnych-9
+                    - checkbox "sprawa monitoring-sadow-apelacyjnych-9" [ref=e355]
+                - cell [ref=e356]:
+                  - link "Sąd Apelacyjny w Szczecinie" [ref=e357] [cursor=pointer]:
+                    - /url: /sprawy/monitoring-sadow-apelacyjnych-9
+                  - text: "sekretariat@szczecin.sa.gov.pl REGON: 81273402100000"
+                - cell "Zachodniopomorskie Szczecin Szczecin" [ref=e358]
+                - cell "None" [ref=e359]
+                - cell "11 sierpnia 2017" [ref=e360]
+                - cell [ref=e361]
+                - cell [ref=e362]
+                - cell [ref=e363]
+                - cell "nie" [ref=e364]
+                - cell "tak" [ref=e366]
+          - list [ref=e369]:
+            - listitem [ref=e370]:
+              - generic [aria-hidden]: ←
+            - listitem [ref=e371]:
+              - generic "Current Page" [ref=e372]: "1"
+            - listitem [ref=e373]:
+              - generic [aria-hidden]: →
+      - generic [ref=e374]:
+        - generic [ref=e375]:
+          - text: Sieć Obywatelska - Watchdog Polska ul. Szpitalna 5/5 00-031 Warszawa
+          - paragraph [ref=e376]:
+            - link "Klauzula RODO" [ref=e377] [cursor=pointer]:
+              - /url: https://fedrowanie.siecobywatelska.pl/media_internal/tinycontent/uploads/11_KLAUZULA.-.dane.z.udip.na.stronach.www.i.w.mediach.spol.pdf
+        - generic [ref=e378]:
+          - text: "silnik:"
+          - link "jawne.info.pl" [ref=e379] [cursor=pointer]:
+            - /url: http://jawne.info.pl
+          - text: "| v1.5.77.deps |"
+          - link "GitHub" [ref=e380] [cursor=pointer]:
+            - /url: https://github.com/watchdogpolska/feder
+          - text: –
+          - link "efd8a3b" [ref=e382] [cursor=pointer]:
+            - /url: https://github.com/watchdogpolska/feder/compare/efd8a3b2...master
+          - text: "|"
+          - link "API" [ref=e383] [cursor=pointer]:
+            - /url: /api/
+        - generic [ref=e385]: Ta strona wykorzystuje cookies.
+  - list [ref=e387]:
+    - listitem [ref=e388]:
+      - link "Ukryj »" [ref=e389] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e390]:
+      - link "Toggle Theme" [ref=e391] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e394]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e395]
+      - link "Historia /monitoringi/monitoring-sadow-apelacyjnych/raport" [ref=e396] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e397]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e398]
+      - link "Wersje Django 5.2.17" [ref=e399] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e400]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e401]
+      - 'link "Czas CPU: 215.64ms (227.83ms)" [ref=e402] [cursor=pointer]':
+        - /url: "#"
+    - listitem [ref=e403]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e404]
+      - link "Ustawienia" [ref=e405] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e406]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e407]
+      - link "Nagłówki" [ref=e408] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e409]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e410]
+      - link "Zapytania MonitoringReportView" [ref=e411] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e412]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e413]
+      - link "SQL 17 queries in 14.74ms" [ref=e414] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e415]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e416]
+      - link "Pliki statyczne 11 użytych plików" [ref=e417] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e418]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e419]
+      - link "Templatki monitorings/monitoring_report.html" [ref=e420] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e421]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e422]
+      - link "Alerty" [ref=e423] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e424]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e425]
+      - link "Cache 2 wywołania w 0.14ms" [ref=e426] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e427]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e428]
+      - link "Sygnały 88 odbiorców 15 sygnałów" [ref=e429] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e430]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e431]
+      - link "Gmina" [ref=e432] [cursor=pointer]:
+        - /url: "#"
+    - listitem [ref=e433]:
+      - checkbox "Enable for next and successive requests" [ref=e434]
+      - generic [ref=e435]: Przechwycone przekierowania
+    - listitem [ref=e436]:
+      - checkbox "Disable for next and successive requests" [checked] [ref=e437]
+      - link "Profilowanie" [ref=e438] [cursor=pointer]:
+        - /url: "#"
+```
+
+# Test source
+
+```ts
+  1  | import { test, expect } from '@playwright/test';
+  2  | import { PAGES } from './pages';
+  3  | import { VIEWPORTS } from './viewports';
+  4  | 
+  5  | for (const [name, size] of Object.entries(VIEWPORTS)) {
+  6  |   test.describe(`${name} (${size.width}px)`, () => {
+  7  |     test.use({ viewport: size });
+  8  | 
+  9  |     for (const page of PAGES) {
+  10 |       test(`${page.name} - visual baseline`, async ({ page: pw }) => {
+  11 |         await pw.goto(page.path);
+  12 |         await pw.waitForLoadState('networkidle');
+> 13 |         await expect(pw).toHaveScreenshot(`${page.name}-${name}.png`, {
+     |                          ^ Error: expect(page).toHaveScreenshot(expected) failed
+  14 |           maxDiffPixelRatio: 0.001,
+  15 |           fullPage: true,
+  16 |         });
+  17 |       });
+  18 |     }
+  19 |   });
+  20 | }
+  21 | 
+```
