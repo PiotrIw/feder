@@ -77,7 +77,7 @@
             {% endfor %}
 
             {% if case_list.has_previous or case_list.has_next %}
-                <ul class="pagination">
+                <ul class="pagination justify-content-center">
                     {% if case_list.has_previous %}
                         <li class="page-item">
                             <a class="page-link" href="{% url 'institutions:details' slug=object.slug page=case_list.previous_page_number %}" rel="prev">&laquo; {% trans 'previous' %}</a>
