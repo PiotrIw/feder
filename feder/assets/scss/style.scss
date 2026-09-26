@@ -270,6 +270,35 @@ iframe.letter-quote {
 }
 
 
+/* headings */
+
+// BS3 shrank <small>/.small nested inside headings further than the base
+// 87.5% (65% inside h1-h3, 75% inside h4-h6) and colored it a muted gray.
+// BS5 dropped that heading-context styling entirely, so subtitles like the
+// "by <author> <date>" bylines under the letter/monitoring headers (see
+// letters/_header.html, monitorings/_header.html) now render larger and in
+// the heading's own color instead of muted.
+h1, h2, h3,
+.h1, .h2, .h3 {
+  small, .small {
+    font-size: 65%;
+    font-weight: normal;
+    line-height: 1;
+    color: $gray-light;
+  }
+}
+
+h4, h5, h6,
+.h4, .h5, .h6 {
+  small, .small {
+    font-size: 75%;
+    font-weight: normal;
+    line-height: 1;
+    color: $gray-light;
+  }
+}
+
+
 /* breadcrumbs */
 
 .breadcrumb {
