@@ -10,7 +10,7 @@
                 </a>
             {% endif %}
             {% if "delete_case" in monitoring_perms %}
-                <a class="btn btn-primary" href="{% url 'cases:delete' slug=object.slug %}">
+                <a class="btn btn-warning" href="{% url 'cases:delete' slug=object.slug %}">
                     {% trans 'Delete' %}
                 </a>
             {% endif %}

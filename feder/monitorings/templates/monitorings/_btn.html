@@ -16,7 +16,7 @@
                 </a>
             {% endif %}
             {% if "delete_monitoring" in monitoring_perms %}
-                <a class="btn btn-primary" href="{% url 'monitorings:delete' slug=object.slug %}">
+                <a class="btn btn-warning" href="{% url 'monitorings:delete' slug=object.slug %}">
                     {% trans 'Delete' %}
                 </a>
             {% endif %}
