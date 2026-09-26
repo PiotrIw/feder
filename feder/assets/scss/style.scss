@@ -196,6 +196,15 @@ iframe.letter-quote {
   border: 0;
 }
 
+// BS3's .close class no longer exists in BS5, so this modal's close button
+// (which still uses it) has no default styling or positioning and was
+// rendering at the top-left of the header instead of the top-right.
+.js-attachment-text-modal-close {
+  margin-left: auto;
+  background-color: #f8d7da;
+  border: none;
+}
+
 /* utility classes */
 
 .centered {
